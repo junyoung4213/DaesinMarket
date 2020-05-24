@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.daesin.beans.MemberBean;
-import com.daesin.service.UserService;
+import com.daesin.service.MemberService;
 import com.daesin.validator.UserValidator;
 
 @Controller
@@ -25,7 +26,7 @@ import com.daesin.validator.UserValidator;
 public class MemberController extends HomeController {
 
 	@Autowired
-	private UserService userService;
+	private MemberService memberService;
 
 	@Resource(name = "loginMemberBean")
 	@Lazy
@@ -41,13 +42,13 @@ public class MemberController extends HomeController {
 	}
 
 	@PostMapping("/login_pro")
-	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") MemberBean tempLoginMemberBean,
+	public String login_pro(@Valid @ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean,
 			BindingResult result) {
 		if (result.hasErrors()) {
 			return "member/login";
 		}
 
-		userService.getLoginUserInfo(tempLoginMemberBean);
+		memberService.getLoginMemberInfo(tempLoginMemberBean);
 
 		if (loginMemberBean.isMemberLogin() == true) {
 			return "member/login_success";
@@ -67,14 +68,15 @@ public class MemberController extends HomeController {
 		if (result.hasErrors()) {
 			return "member/join";
 		}
-
-		userService.addUserInfo(joinMemberBean);
+		memberService.addMemberInfo(joinMemberBean);
 
 		return "member/join_success";
 	}
 	
+	
+	
 	@GetMapping("/modify")
-	public String modifyUserBean() {
+	public String modifyMemberBean() {
 		return "member/modify";
 	}
 	
@@ -106,7 +108,7 @@ public class MemberController extends HomeController {
 
 		loginMemberBean.setMemberLogin(false);
 
-		return "user/logout";
+		return "member/logout";
 	}
 
 	@GetMapping("/not_login")

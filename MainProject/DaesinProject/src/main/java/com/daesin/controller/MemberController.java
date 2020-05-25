@@ -1,5 +1,7 @@
 package com.daesin.controller;
 
+import java.util.Random;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.daesin.beans.MemberBean;
 import com.daesin.service.MemberService;
@@ -59,8 +61,13 @@ public class MemberController extends HomeController {
 	}
 
 	@GetMapping("/join")
-	public String join(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
-		return "member/join";
+	public ModelAndView join(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
+
+		ModelAndView mv = new ModelAndView();
+		int ran = new Random().nextInt(900000) + 100000;
+		mv.setViewName("member/join");
+		mv.addObject("random", ran);
+		return mv;
 	}
 
 	@PostMapping("/join_pro")
@@ -72,15 +79,11 @@ public class MemberController extends HomeController {
 
 		return "member/join_success";
 	}
-	
-	
-	
+
 	@GetMapping("/modify")
 	public String modifyMemberBean() {
 		return "member/modify";
 	}
-	
-
 
 	/*
 	 * @GetMapping("/modify") public String modify(@ModelAttribute("modifyUserBean")

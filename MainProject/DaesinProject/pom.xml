@@ -165,6 +165,13 @@
 			<version>1.6.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+
 
 		<!-- Apache Commons IO (2019-11-20일 기준 최신버전) -->
 		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->

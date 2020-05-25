@@ -18,6 +18,8 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/servlet-context.xml</param-value>
 		</init-param>
+		
+		
 		<load-on-startup>1</load-on-startup>
 		<multipart-config>
 			<max-file-size>52428800</max-file-size>
@@ -29,9 +31,8 @@
 	<!-- Bean을 정의할 xml 파일을 지정한다. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/*context.xml</param-value>
 	</context-param>
-
 	<!-- 리스너설정 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

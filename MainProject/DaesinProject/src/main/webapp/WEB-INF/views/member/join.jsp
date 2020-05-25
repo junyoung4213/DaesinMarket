@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <title>Daesin Company</title>
 <meta charset="utf-8" />
@@ -30,30 +30,80 @@
 <script>
 	function checkMemberIdExist() {
 		var mId = $("#mId").val()
-		
-		if(mId.length == 0){
-			alert("아이디를 입력해주세요")
-			return
+
+		if (mId.length == 0) {
+			alert("아이디를 입력해주세요");
+			return;
 		}
-		
+
 		$.ajax({
 			url : "${root}member/checkMemberIdExist/" + mId,
 			type : "get",
 			dataType : "text",
-			success : function(result){
-				if(result.trim() == "true"){
-					alert("사용할 수 있는 아이디입니다")
+			success : function(result) {
+				if (result.trim() == "true") {
+					alert("사용할 수 있는 아이디입니다");
 					$("#memberIdExist").val("true")
-				}else{
-					alert("사용할 수 없는 아이디입니다")
+				} else {
+					alert("사용할 수 없는 아이디입니다");
 					$("#memberIdExist").val("false")
 				}
 			}
 		})
 	}
-	function resetMemberIdExist(){
+	function resetMemberIdExist() {
 		$("#memberIdExist").val("false")
 	}
+
+	/*
+	이메일 인증 버튼 클릭시 발생하는 이벤트
+	 */
+			function emailBtn() {
+				
+				/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
+				$.ajax({
+					
+					type : "get",
+					url : "<c:url value='/email/createEmailCheck.do'/>",
+					data : "userEmail=" + $("#mEmail").val() + "&random="
+							+ $("#random").val(),
+					//data: "userEmail="+encodeURIComponent($('#userEmail').val()),
+					/* encodeURIComponent
+					예를들어, http://a.com?name=egoing&job=programmer 에서 &job=programmer
+					중 '&'는 하나의 파라미터가 끝나고 다음 파라미터가 온다는 의미이다.
+					그런데 다음과 같이 job의 값에 &가 포함된다면 시스템은 job의 값을 제대로 인식할수 없게 된다. */
+					success : function(data) {
+						alert("사용가능한 이메일입니다. 인증번호를 입력해주세요.");
+					},
+					error : function(data) {
+						alert("에러가 발생했습니다.");
+						return false;
+					}
+				});
+			};
+	/*
+	이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
+	 */
+
+			function emailAuthBtn() {
+				$.ajax({
+					
+					type : "get",
+					url : "<c:url value='/email/emailAuth.do'/>",
+					data : "authCode=" + $('#certification').val() + "&random="
+							+ $("#random").val(),
+					success : function(data) {
+						if (data == "complete") {
+							alert("인증이 완료되었습니다.");
+						} else if (data == "false") {
+							alert("인증번호를 잘못 입력하셨습니다.")
+						}
+					},
+					error : function(data) {
+						alert("에러가 발생했습니다.");
+					}
+				});
+			};
 </script>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -96,36 +146,39 @@
 						<div class="form-group">
 							<form:label path="mEmail">이메일 주소</form:label>
 							<div class="input-group">
-									<form:input path="mEmail" class="form-control"/>
+								<form:input path="mEmail" class="form-control" />
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary">인증하기</button>
+									<button type="button" class="btn btn-primary" onclick="emailBtn();">인증하기</button>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="user_id">인증번호</label>
+						<form:label path="certification">인증번호</form:label>
 							<div class="input-group">
-									<form:input path="certification" class="form-control" />
+								<form:input path="certification" class="form-control" />
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary">인증확인</button>
+									<button type="button" class="btn btn-primary" onclick="emailAuthBtn();">인증확인</button>
 								</div>
 							</div>
 						</div>
 
+						<%-- <form:hidden path="random" value="${random }" /> --%>
+						<input type="hidden" path="random" id="random" value="${random }" />
+
+
 						<div class="form-group">
-								<form:label path="mPw">비밀번호</form:label>
-								<form:password path="mPw" class="form-control"/>
-								<form:errors path="mPw" style="color:red" />
+							<form:label path="mPw">비밀번호</form:label>
+							<form:password path="mPw" class="form-control" />
+							<form:errors path="mPw" style="color:red" />
 						</div>
 						<div class="form-group">
 							<form:label path="mPw2">비밀번호 확인</form:label>
-								<form:password path="mPw2" class="form-control"/>
-								<form:errors path="mPw2" style="color:red" />
+							<form:password path="mPw2" class="form-control" />
+							<form:errors path="mPw2" style="color:red" />
 						</div>
 						<div class="form-group">
 							<div class="text-center">
 								<form:button class="btn btn-primary">회원가입</form:button>
-								<button type="submit" class="btn btn-primary">회원가입</button>
 							</div>
 						</div>
 					</form:form>
@@ -145,7 +198,6 @@
 <script src="${root }js/owl.carousel.min.js"></script>
 <script src="${root }js/jquery.magnific-popup.min.js"></script>
 <script src="${root }js/aos.js"></script>
-
 <script src="${root }js/main.js"></script>
 </body>
 </html>

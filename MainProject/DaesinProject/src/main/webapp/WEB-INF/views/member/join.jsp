@@ -95,8 +95,11 @@
 					success : function(data) {
 						if (data == "complete") {
 							alert("인증이 완료되었습니다.");
+							$('#email_Btn').attr('disabled',true)
+							$('#email_AuthBtn').attr('disabled',true)
 						} else if (data == "false") {
 							alert("인증번호를 잘못 입력하셨습니다.")
+							
 						}
 					},
 					error : function(data) {
@@ -104,6 +107,10 @@
 					}
 				});
 			};
+			
+			
+			
+			
 </script>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -148,7 +155,7 @@
 							<div class="input-group">
 								<form:input path="mEmail" class="form-control" />
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary" onclick="emailBtn();">인증하기</button>
+									<button type="button" class="btn btn-primary" onclick="emailBtn();" id="email_Btn">인증하기</button>
 								</div>
 							</div>
 						</div>
@@ -157,7 +164,7 @@
 							<div class="input-group">
 								<form:input path="certification" class="form-control" />
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary" onclick="emailAuthBtn();">인증확인</button>
+									<button type="button" class="btn btn-primary" onclick="emailAuthBtn();" id="email_AuthBtn">인증확인</button>
 								</div>
 							</div>
 						</div>

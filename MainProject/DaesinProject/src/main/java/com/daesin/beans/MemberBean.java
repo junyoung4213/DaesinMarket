@@ -17,7 +17,7 @@ public class MemberBean {
 	 */
 
 	// 회원번호
-	private Integer mNo;
+	private int mNo;
 
 	// 회원아이디
 	private String mId;
@@ -34,9 +34,6 @@ public class MemberBean {
 	// 회원포인트
 	private String mPoint;
 
-	// 회원닉네임
-	private String mNickname;
-
 	// 회원 로그인 여부 확인
 	private boolean memberLogin;
 
@@ -51,11 +48,11 @@ public class MemberBean {
 		this.memberLogin = false;
 	}
 
-	public Integer getMNo() {
+	public int getMNo() {
 		return mNo;
 	}
 
-	public void setMNo(Integer mNo) {
+	public void setMNo(int mNo) {
 		this.mNo = mNo;
 	}
 
@@ -99,14 +96,6 @@ public class MemberBean {
 		this.mPoint = mPoint;
 	}
 
-	public String getMNickname() {
-		return mNickname;
-	}
-
-	public void setMNickname(String mNickname) {
-		this.mNickname = mNickname;
-	}
-
 	public boolean isMemberLogin() {
 		return memberLogin;
 	}
@@ -138,7 +127,13 @@ public class MemberBean {
 		this.mEmail = param.getMEmail();
 		this.mPw = param.getMPw();
 		this.mPoint = param.getMPoint();
-		this.mNickname = param.getMNickname();
+	}
+
+	@Override
+	public String toString() {
+		return "MemberBean [mNo=" + mNo + ", mId=" + mId + ", mEmail=" + mEmail + ", mPw=" + mPw + ", mPw2=" + mPw2
+				+ ", mPoint=" + mPoint + ", memberLogin=" + memberLogin + ", memberIdExist=" + memberIdExist
+				+ ", certification=" + certification + "]";
 	}
 
 }

@@ -47,7 +47,6 @@ public class UserService {
 		MemberBean tempModifyUserBean = userDao.getModifyUserInfo(loginUserBean.getMNo());
 
 		modifyUserBean.setMId(tempModifyUserBean.getMId());
-		modifyUserBean.setMNickname(tempModifyUserBean.getMNickname());
 		modifyUserBean.setMNo(loginUserBean.getMNo());
 
 	}

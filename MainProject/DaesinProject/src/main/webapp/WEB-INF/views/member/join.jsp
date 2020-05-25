@@ -97,6 +97,8 @@
 							alert("인증이 완료되었습니다.");
 							$('#email_Btn').attr('disabled',true)
 							$('#email_AuthBtn').attr('disabled',true)
+							$('#mEmail').attr('readonly',true)
+							$('#certification').attr('readonly',true)
 						} else if (data == "false") {
 							alert("인증번호를 잘못 입력하셨습니다.")
 							
@@ -108,7 +110,22 @@
 				});
 			};
 			
-			
+			function checkPwd(){
+				  var f1 = document.forms[0];
+				  var pw1 = f1.mPw.value;
+				  var pw2 = f1.mPw2.value;
+				  if(pw1!=pw2){
+				   document.getElementById('checkPwd').style.color = "red";
+				   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
+				  }else{
+				   document.getElementById('checkPwd').style.color = "black";
+				   document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
+				   
+				  }
+				  
+				 }
+
+
 			
 			
 </script>
@@ -180,9 +197,13 @@
 						</div>
 						<div class="form-group">
 							<form:label path="mPw2">비밀번호 확인</form:label>
-							<form:password path="mPw2" class="form-control" />
+							<form:password path="mPw2" class="form-control" onkeyup="checkPwd()"/>
 							<form:errors path="mPw2" style="color:red" />
+							<div id="checkPwd">동일한 암호를 입력하세요.</div>
+
+							
 						</div>
+						
 						<div class="form-group">
 							<div class="text-center">
 								<form:button class="btn btn-primary">회원가입</form:button>

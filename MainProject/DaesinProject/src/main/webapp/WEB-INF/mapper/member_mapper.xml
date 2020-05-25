@@ -12,27 +12,30 @@
 		]]>
 	</select>
 
-
-	<!-- mapper.xml -->
-	<insert id="createAuthKey">
-		insert into userAuth values(#{userEmail}, #{authKey})
+	<insert id="addMemberInfo"
+		parameterType="com.daesin.beans.MemberBean"> 
+		<![CDATA[ insert into MEMBER(m_no, m_id, m_email, m_pw) values 
+		(member_seq.nextval, #{mId}, #{mEmail}, #{mPw}) ]]>
 	</insert>
 
-	<update id="userAuth">
-	<![CDATA[update member set m_certification = 1 where (select count(*) from userAuth where userEmail = #{userEmail}) > 0]]>
-	</update>
+	<!-- <select id="checkUserNicknameExist"
+		parameterType="java.lang.String" resultType="java.lang.String"> <![CDATA[ select m_nickname from member where 
+		m_nickname =#{m_nickname} ]]>
+	</select>
 
-	<!-- <select id="checkUserNicknameExist" parameterType="java.lang.String" 
-		resultType="java.lang.String"> <![CDATA[ select m_nickname from member where 
-		m_nickname =#{m_nickname} ]]> </select> <insert id="addUserInfo" parameterType="com.daesin.beans.BoardBean"> 
-		<![CDATA[ insert into user_table(user_idx, user_name, user_id, user_pw) values 
-		(user_seq.nextval, #{user_name}, #{user_id}, #{user_pw}) ]]> </insert> <select 
-		id="getLoginUserInfo" parameterType="com.daesin.beans.BoardBean" resultType="com.daesin.beans.BoardBean"> 
+	<select id="getLoginUserInfo"
+		parameterType="com.daesin.beans.BoardBean"
+		resultType="com.daesin.beans.BoardBean"> 
 		<![CDATA[ select user_idx, user_name from user_table where user_id = #{user_id} 
-		and user_pw=#{user_pw} ]]> </select> <select id="getModifyUserInfo" parameterType="java.lang.Integer" 
+		and user_pw=#{user_pw} ]]>
+	</select>
+	<select id="getModifyUserInfo" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean"> <![CDATA[ select user_id, user_name 
-		from user_table where user_idx = #{user_idx} ]]> </select> <update id="modifyUserInfo" 
+		from user_table where user_idx = #{user_idx} ]]>
+	</select>
+	<update id="modifyUserInfo"
 		parameterType="com.daesin.beans.BoardBean"> <![CDATA[ update user_table set 
-		user_pw = #{user_pw} where user_idx = #{user_idx} ]]> </update> -->
+		user_pw = #{user_pw} where user_idx = #{user_idx} ]]>
+	</update> -->
 </mapper>
 

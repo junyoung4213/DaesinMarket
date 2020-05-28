@@ -33,6 +33,12 @@ public class MemberController extends HomeController {
 	@Resource(name = "loginMemberBean")
 	@Lazy
 	private MemberBean loginMemberBean;
+	
+	@ModelAttribute("random")
+	public int getRandomNumber() {
+		int ran = new Random().nextInt(900000) + 100000;
+	    return ran;
+	}
 
 	@GetMapping("/login")
 	public String login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean,
@@ -132,6 +138,14 @@ public class MemberController extends HomeController {
 	@GetMapping("/about")
 	public String about() {
 		return "member/about";
+	}
+	@GetMapping("/findId")
+	public String findId(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
+		return "member/find_id";
+	}
+	@GetMapping("/findPw")
+	public String findPw(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
+		return "member/find_pw";
 	}
 
 	@InitBinder

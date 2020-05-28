@@ -28,57 +28,67 @@
 
 </head>
 <script>
-
 	/*
 	이메일 인증 버튼 클릭시 발생하는 이벤트
 	 */
-			function emailBtn() {
-				
-				/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
-				$.ajax({
-					
-					type : "get",
-					url : "<c:url value='/email/createEmailCheck.do'/>",
-					data : "userEmail=" + $("#mEmail").val() + "&random="
-							+ $("#random").val(),
-					complete : function(data) {
-						alert("입력하신 메일로 인증번호가 발송되었습니다.");
-					}
-				});
-			};
+	function emailBtn() {
+
+		/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
+		$.ajax({
+
+			type : "get",
+			url : "<c:url value='/email/createEmailCheck.do'/>",
+			data : "userEmail=" + $("#mEmail").val() + "&random="
+					+ $("#random").val(),
+			complete : function(data) {
+				alert("입력하신 메일로 인증번호가 발송되었습니다.");
+			}
+		});
+	};
 	/*
 	이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
 	 */
 
-			function emailAuthBtn() {
-				$.ajax({
-					
-					type : "get",
-					url : "<c:url value='/email/emailAuth.do'/>",
-					data : "authCode=" + $('#certification').val() + "&random="
-							+ $("#random").val(),
-					success : function(data) {
-						if (data == "complete") {
-							alert("인증이 완료되었습니다.");
-							
-							$('#email_Btn').attr('disabled',true)
-							$('#email_AuthBtn').attr('disabled',true)
-							$('#mEmail').attr('readonly',true)
-							$('#certification').attr('readonly',true)
-							
-							$('#resultId').css("display","");
-							
-						} else if (data == "false") {
-							alert("인증번호를 잘못 입력하셨습니다.")
-						}
-					},
-					error : function(data) {
-						alert("에러가 발생했습니다.");
-					}
-				});
-			};
+	function emailAuthBtn() {
+		$.ajax({
 
-			
+			type : "get",
+			url : "<c:url value='/email/emailAuth.do'/>",
+			data : "authCode=" + $('#certification').val() + "&random="
+					+ $("#random").val(),
+			success : function(data) {
+				if (data == "complete") {
+					alert("인증이 완료되었습니다.");
+
+					$('#email_Btn').attr('disabled', true)
+					$('#email_AuthBtn').attr('disabled', true)
+					$('#mEmail').attr('readonly', true)
+					$('#certification').attr('readonly', true)
+					returnId();
+				} else if (data == "false") {
+					alert("인증번호를 잘못 입력하셨습니다.")
+				}
+			},
+			error : function(data) {
+				alert("에러가 발생했습니다.");
+			}
+		});
+	};
+	
+	
+	function returnId() {
+		var mEmail = $("#mEmail").val()
+
+		$.ajax({
+			url : "${root}member/returnId/" + mEmail,
+			type : "get",
+			dataType : "text",
+			success : function(data) {
+				$('#resultId').css("display", "");
+				$('#mId').attr("placeholder",data)
+			}
+		})
+	}
 </script>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -109,33 +119,34 @@
 							<div class="input-group">
 								<form:input path="mEmail" class="form-control" />
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary" onclick="emailBtn();" id="email_Btn">인증하기</button>
+									<button type="button" class="btn btn-primary"
+										onclick="emailBtn();" id="email_Btn">인증하기</button>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
-						<form:label path="certification">인증번호</form:label>
+							<form:label path="certification">인증번호</form:label>
 							<div class="input-group">
 								<form:input path="certification" class="form-control" />
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary" onclick="emailAuthBtn();" id="email_AuthBtn">인증확인</button>
+									<button type="button" class="btn btn-primary"
+										onclick="emailAuthBtn();" id="email_AuthBtn">인증확인</button>
 								</div>
 							</div>
 						</div>
-						
-						<div id="resultId" class="text-center form-group" style="display:none" >
-						<form:label path="mId">찾은 아이디</form:label>
-							<div class="input-group" >
-								<form:input path="mId" type="text" readonly="true" class="form-control" style="text-align:center"/>
+
+						<div id="resultId" class="text-center form-group"
+							style="display: none">
+							<form:label path="mId">찾은 아이디</form:label>
+							<div class="input-group">
+								<form:input path="mId" type="text" readonly="true"
+									class="form-control" style="text-align:center" />
 							</div>
 						</div>
-						
-						
-						
 
 						<%-- <form:hidden path="random" value="${random }" /> --%>
 						<input type="hidden" path="random" id="random" value="${random }" />
-						
+
 					</form:form>
 				</div>
 			</div>

@@ -15,6 +15,10 @@ public class MemberDao {
 	public String checkMemberIdExist(String mId) {
 		return sqlSessionTemplate.selectOne("member.checkMemberIdExist", mId);
 	}
+	
+	public String returnId(String mEmail) {
+		return sqlSessionTemplate.selectOne("member.returnId", mEmail);
+	}
 
 	public void addMemberInfo(MemberBean joinMemberBean) {
 		sqlSessionTemplate.insert("member.addMemberInfo", joinMemberBean);

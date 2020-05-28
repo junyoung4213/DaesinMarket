@@ -30,6 +30,12 @@ public class MemberService {
 			return false;
 		}
 	}
+	
+	public String returnId(String mEmail) {
+		String member_id = memberDao.returnId(mEmail);
+
+		return member_id;
+	}
 
 	public void addMemberInfo(MemberBean joinMemberBean) {
 		memberDao.addMemberInfo(joinMemberBean);

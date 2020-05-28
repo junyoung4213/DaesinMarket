@@ -11,6 +11,15 @@
 		where m_id =#{m_id}
 		]]>
 	</select>
+	
+	<select id="returnId" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		<![CDATA[
+		select m_id
+		from member
+		where m_email =#{m_email}
+		]]>
+	</select>
 
 	<insert id="addMemberInfo"
 		parameterType="com.daesin.beans.MemberBean"> 

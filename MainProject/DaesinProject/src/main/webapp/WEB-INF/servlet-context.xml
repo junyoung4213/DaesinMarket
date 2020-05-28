@@ -34,6 +34,27 @@
 	<resources mapping="/js/**" location="/resources/js/"/>
 	<resources mapping="/scss/**" location="/resources/scss/"/>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/login_pro" />
+			<beans:bean
+				class="com.daesin.interceptor.CheckLoginInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/member/logout" />
+			<mapping path="/member/support" />
+			<mapping path="/member/faq" />
+			<mapping path="/member/modify" />
+			<beans:bean
+				class="com.daesin.interceptor.AuthInterceptor" />
+		</interceptor>
+<!-- 		<interceptor>
+			<mapping path="/board/modify"/>
+			<mapping path="/board/delete"/>
+			<beans:bean
+				class="com.daesin.interceptor.CheckWriterInterceptor" />
+		</interceptor> -->
+	</interceptors> 
 	
 
 
@@ -73,28 +94,7 @@
 			ref='sqlSession' />
 	</beans:bean>
 
-	<!-- <interceptors>
-		<interceptor>
-			<mapping path="/**" />
-			<beans:bean
-				class="kr.co.softcampus.interceptor.TopMenuInterceptor" />
-		</interceptor>
-		<interceptor>
-			<mapping path="/user/modify" />
-			<mapping path="/user/logout" />
-			<mapping path="/board/*" />
-			<exclude-mapping path="/board/main" />
-			<beans:bean
-				class="kr.co.softcampus.interceptor.CheckLoginInterceptor" />
-		</interceptor>
-		<interceptor>
-			<mapping path="/board/modify"/>
-			<mapping path="/board/delete"/>
-			<beans:bean
-				class="kr.co.softcampus.interceptor.CheckWriterInterceptor" />
-		</interceptor>
-	</interceptors> -->
-
+	
 	<!-- MessageSource를 등록한다 -->
 	<beans:bean
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
@@ -116,3 +116,4 @@
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"
 		id="multipartResolver" />
 </beans:beans>
+

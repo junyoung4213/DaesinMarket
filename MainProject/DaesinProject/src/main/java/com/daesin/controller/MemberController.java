@@ -40,31 +40,29 @@ public class MemberController extends HomeController {
 	    return ran;
 	}
 
-	@GetMapping("/login")
-	public String login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean,
-			@RequestParam(value = "fail", defaultValue = "false") boolean fail, Model model) {
-
-		model.addAttribute("fail", fail);
-
-		return "member/login";
-	}
-
-	@PostMapping("/login_pro")
-	public String login_pro(@Valid @ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean,
-			BindingResult result) {
-		if (result.hasErrors()) {
-			return "member/login";
-		}
-		
-		memberService.getLoginMemberInfo(tempLoginMemberBean);
-
-		if (loginMemberBean.isMemberLogin() == true) {
-			return "member/login_success";
-		} else {
-			return "member/login_fail";
-		}
-
-	}
+	/*
+	 * @GetMapping("/login") public String
+	 * login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean,
+	 * 
+	 * @RequestParam(value = "fail", defaultValue = "false") boolean fail, Model
+	 * model) {
+	 * 
+	 * model.addAttribute("fail", fail);
+	 * 
+	 * return "member/login"; }
+	 * 
+	 * @PostMapping("/login_pro") public String
+	 * login_pro(@Valid @ModelAttribute("tempLoginMemberBean") MemberBean
+	 * tempLoginMemberBean, BindingResult result) { if (result.hasErrors()) { return
+	 * "member/login"; }
+	 * 
+	 * memberService.getLoginMemberInfo(tempLoginMemberBean);
+	 * 
+	 * if (loginMemberBean.isMemberLogin() == true) { return "member/login_success";
+	 * } else { return "member/login_fail"; }
+	 * 
+	 * }
+	 */
 
 	@GetMapping("/join")
 	public ModelAndView join(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
@@ -153,6 +151,24 @@ public class MemberController extends HomeController {
 		UserValidator validator1 = new UserValidator();
 		binder.addValidators(validator1);
 
+	}
+	
+	@GetMapping("/login")
+	public String login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean) {
+		return "member/login";
+	}
+
+	@PostMapping("/login_pro")
+	public String login_pro(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean, Model model) {
+		MemberBean memberVO = memberService.getLoginMemberInfo(tempLoginMemberBean);
+
+		if (memberVO == null) {
+			return "member/login_fail";
+		}
+
+		model.addAttribute("member", memberVO);
+
+		return "member/login_success";
 	}
 
 }

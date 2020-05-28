@@ -41,14 +41,13 @@ public class MemberService {
 		memberDao.addMemberInfo(joinMemberBean);
 	}
 
-	public void getLoginMemberInfo(MemberBean tempLoginMemberBean) {
+	public MemberBean getLoginMemberInfo(MemberBean tempLoginMemberBean) {
 		MemberBean tempLoginMemberBean2 = memberDao.getLoginMemberInfo(tempLoginMemberBean);
 
 		if (tempLoginMemberBean2 != null) {
-			loginMemberBean.setM_no(tempLoginMemberBean2.getM_no());
-			loginMemberBean.setM_id(tempLoginMemberBean2.getM_id());
-			loginMemberBean.setMemberLogin(true);
+			return tempLoginMemberBean2;
 		}
+		return null;
 	}
 
 	public void getModifyMemberInfo(MemberBean modifyMemberBean) {

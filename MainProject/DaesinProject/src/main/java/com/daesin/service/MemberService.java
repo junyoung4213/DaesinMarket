@@ -45,23 +45,23 @@ public class MemberService {
 		MemberBean tempLoginMemberBean2 = memberDao.getLoginMemberInfo(tempLoginMemberBean);
 
 		if (tempLoginMemberBean2 != null) {
-			loginMemberBean.setMNo(tempLoginMemberBean2.getMNo());
-			loginMemberBean.setMId(tempLoginMemberBean2.getMId());
+			loginMemberBean.setM_no(tempLoginMemberBean2.getM_no());
+			loginMemberBean.setM_id(tempLoginMemberBean2.getM_id());
 			loginMemberBean.setMemberLogin(true);
 		}
 	}
 
 	public void getModifyMemberInfo(MemberBean modifyMemberBean) {
-		MemberBean tempModifyMemberBean = memberDao.getModifyMemberInfo(loginMemberBean.getMNo());
+		MemberBean tempModifyMemberBean = memberDao.getModifyMemberInfo(loginMemberBean.getM_no());
 
-		modifyMemberBean.setMId(tempModifyMemberBean.getMId());
-		modifyMemberBean.setMNo(loginMemberBean.getMNo());
+		modifyMemberBean.setM_id(tempModifyMemberBean.getM_id());
+		modifyMemberBean.setM_no(loginMemberBean.getM_no());
 
 	}
 
 	public void modifyMemberInfo(MemberBean modifyMemberBean) {
 
-		modifyMemberBean.setMNo(loginMemberBean.getMNo());
+		modifyMemberBean.setM_no(loginMemberBean.getM_no());
 
 		memberDao.modifyMemberInfo(modifyMemberBean);
 	}

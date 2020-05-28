@@ -38,7 +38,7 @@
 
 			type : "get",
 			url : "<c:url value='/email/createEmailCheck.do'/>",
-			data : "userEmail=" + $("#mEmail").val() + "&random="
+			data : "userEmail=" + $("#m_email").val() + "&random="
 					+ $("#random").val(),
 			complete : function(data) {
 				alert("입력하신 메일로 인증번호가 발송되었습니다.");
@@ -62,7 +62,7 @@
 
 					$('#email_Btn').attr('disabled', true)
 					$('#email_AuthBtn').attr('disabled', true)
-					$('#mEmail').attr('readonly', true)
+					$('#m_email').attr('readonly', true)
 					$('#certification').attr('readonly', true)
 					returnId();
 				} else if (data == "false") {
@@ -77,15 +77,15 @@
 	
 	
 	function returnId() {
-		var mEmail = $("#mEmail").val()
+		var m_email = $("#m_email").val()
 
 		$.ajax({
-			url : "${root}member/returnId/" + mEmail,
+			url : "${root}member/returnId/" + m_email,
 			type : "get",
 			dataType : "text",
 			success : function(data) {
 				$('#resultId').css("display", "");
-				$('#mId').attr("placeholder",data)
+				$('#m_id').attr("placeholder",data)
 			}
 		})
 	}
@@ -115,9 +115,9 @@
 				<div class="card-body">
 					<form:form action="#" method="post" modelAttribute="joinMemberBean">
 						<div class="form-group">
-							<form:label path="mEmail">이메일 주소</form:label>
+							<form:label path="m_email">이메일 주소</form:label>
 							<div class="input-group">
-								<form:input path="mEmail" class="form-control" />
+								<form:input path="m_email" class="form-control" />
 								<div class="input-group-append">
 									<button type="button" class="btn btn-primary"
 										onclick="emailBtn();" id="email_Btn">인증하기</button>
@@ -137,9 +137,9 @@
 
 						<div id="resultId" class="text-center form-group"
 							style="display: none">
-							<form:label path="mId">찾은 아이디</form:label>
+							<form:label path="m_id">찾은 아이디</form:label>
 							<div class="input-group">
-								<form:input path="mId" type="text" readonly="true"
+								<form:input path="m_id" type="text" readonly="true"
 									class="form-control" style="text-align:center" />
 							</div>
 						</div>

@@ -12,12 +12,12 @@ public class MemberDao {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public String checkMemberIdExist(String mId) {
-		return sqlSessionTemplate.selectOne("member.checkMemberIdExist", mId);
+	public String checkMemberIdExist(String m_id) {
+		return sqlSessionTemplate.selectOne("member.checkMemberIdExist", m_id);
 	}
 	
-	public String returnId(String mEmail) {
-		return sqlSessionTemplate.selectOne("member.returnId", mEmail);
+	public String returnId(String m_email) {
+		return sqlSessionTemplate.selectOne("member.returnId", m_email);
 	}
 
 	public void addMemberInfo(MemberBean joinMemberBean) {
@@ -29,8 +29,8 @@ public class MemberDao {
 		return sqlSessionTemplate.selectOne("member.getLoginMemberInfo", tempLoginMemberBean);
 	}
 
-	public MemberBean getModifyMemberInfo(int mNo) {
-		return sqlSessionTemplate.selectOne("member.getModifyMemberInfo", mNo);
+	public MemberBean getModifyMemberInfo(int m_no) {
+		return sqlSessionTemplate.selectOne("member.getModifyMemberInfo", m_no);
 	}
 
 	public void modifyMemberInfo(MemberBean modifyUserBean) {

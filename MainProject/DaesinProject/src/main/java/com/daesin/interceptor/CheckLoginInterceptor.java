@@ -12,15 +12,15 @@ import com.daesin.beans.MemberBean;
 
 public class CheckLoginInterceptor implements HandlerInterceptor {
 
-	@Resource(name = "loginUserBean")
+	@Resource(name = "loginMemberBean")
 	@Lazy
-	private MemberBean loginUserBean;
+	private MemberBean loginMemberBean;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
-		if (loginUserBean.isMemberLogin() == false) {
+		if (loginMemberBean.isMemberLogin() == false) {
 			String contextPath = request.getContextPath();
 			response.sendRedirect(contextPath + "/user/not_login");
 			return false;

@@ -17,22 +17,22 @@ public class MemberBean {
 	 */
 
 	// 회원번호
-	private int mNo;
+	private int m_no;
 
 	// 회원아이디
-	private String mId;
+	private String m_id;
 
 	// 회원이메일
-	private String mEmail;
+	private String m_email;
 
 	// 회원비밀번호
-	private String mPw;
+	private String m_pw;
 
 	// 회원비밀번호 확인
-	private String mPw2;
+	private String m_pw2;
 
 	// 회원포인트
-	private String mPoint;
+	private String m_point;
 
 	// 회원 로그인 여부 확인
 	private boolean memberLogin;
@@ -48,52 +48,52 @@ public class MemberBean {
 		this.memberLogin = false;
 	}
 
-	public int getMNo() {
-		return mNo;
+	public int getM_no() {
+		return m_no;
 	}
 
-	public void setMNo(int mNo) {
-		this.mNo = mNo;
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
 	}
 
-	public String getMId() {
-		return mId;
+	public String getM_id() {
+		return m_id;
 	}
 
-	public void setMId(String mId) {
-		this.mId = mId;
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 
-	public String getMEmail() {
-		return mEmail;
+	public String getM_email() {
+		return m_email;
 	}
 
-	public void setMEmail(String mEmail) {
-		this.mEmail = mEmail;
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
 	}
 
-	public String getMPw() {
-		return mPw;
+	public String getM_pw() {
+		return m_pw;
 	}
 
-	public void setMPw(String mPw) {
-		this.mPw = mPw;
+	public void setM_pw(String m_pw) {
+		this.m_pw = m_pw;
 	}
 
-	public String getmPw2() {
-		return mPw2;
+	public String getM_pw2() {
+		return m_pw2;
 	}
 
-	public void setmPw2(String mPw2) {
-		this.mPw2 = mPw2;
+	public void setM_pw2(String m_pw2) {
+		this.m_pw2 = m_pw2;
 	}
 
-	public String getMPoint() {
-		return mPoint;
+	public String getM_point() {
+		return m_point;
 	}
 
-	public void setMPoint(String mPoint) {
-		this.mPoint = mPoint;
+	public void setM_point(String m_point) {
+		this.m_point = m_point;
 	}
 
 	public boolean isMemberLogin() {
@@ -120,20 +120,12 @@ public class MemberBean {
 		this.certification = certification;
 	}
 
-	// Member 모델 복사
-	public void CopyData(MemberBean param) {
-		this.mNo = param.getMNo();
-		this.mId = param.getMId();
-		this.mEmail = param.getMEmail();
-		this.mPw = param.getMPw();
-		this.mPoint = param.getMPoint();
-	}
-
 	@Override
 	public String toString() {
-		return "MemberBean [mNo=" + mNo + ", mId=" + mId + ", mEmail=" + mEmail + ", mPw=" + mPw + ", mPw2=" + mPw2
-				+ ", mPoint=" + mPoint + ", memberLogin=" + memberLogin + ", memberIdExist=" + memberIdExist
+		return "MemberBean [m_no=" + m_no + ", m_id=" + m_id + ", m_email=" + m_email + ", m_pw=" + m_pw + ", m_pw2="
+				+ m_pw2 + ", m_point=" + m_point + ", memberLogin=" + memberLogin + ", memberIdExist=" + memberIdExist
 				+ ", certification=" + certification + "]";
 	}
 
+	
 }

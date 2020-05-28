@@ -55,7 +55,7 @@ public class MemberController extends HomeController {
 		if (result.hasErrors()) {
 			return "member/login";
 		}
-
+		
 		memberService.getLoginMemberInfo(tempLoginMemberBean);
 
 		if (loginMemberBean.isMemberLogin() == true) {

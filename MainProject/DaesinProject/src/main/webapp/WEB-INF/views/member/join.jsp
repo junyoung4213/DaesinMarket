@@ -67,17 +67,8 @@
 					url : "<c:url value='/email/createEmailCheck.do'/>",
 					data : "userEmail=" + $("#mEmail").val() + "&random="
 							+ $("#random").val(),
-					//data: "userEmail="+encodeURIComponent($('#userEmail').val()),
-					/* encodeURIComponent
-					예를들어, http://a.com?name=egoing&job=programmer 에서 &job=programmer
-					중 '&'는 하나의 파라미터가 끝나고 다음 파라미터가 온다는 의미이다.
-					그런데 다음과 같이 job의 값에 &가 포함된다면 시스템은 job의 값을 제대로 인식할수 없게 된다. */
-					success : function(data) {
-						alert("사용가능한 이메일입니다. 인증번호를 입력해주세요.");
-					},
-					error : function(data) {
-						alert("에러가 발생했습니다.");
-						return false;
+					complete : function(data) {
+						alert("입력하신 메일로 인증번호가 발송되었습니다.");
 					}
 				});
 			};

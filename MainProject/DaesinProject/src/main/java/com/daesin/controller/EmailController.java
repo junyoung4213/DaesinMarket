@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +20,7 @@ import com.daesin.service.MailService;
 
 @Controller
 @RequestMapping(value = "/email")
+@EnableAsync
 public class EmailController {
 
 	@Autowired
@@ -60,6 +63,7 @@ public class EmailController {
 
 	@RequestMapping(value = "/createEmailCheck.do", method = RequestMethod.GET)
 	@ResponseBody
+	@Async
 	public boolean createEmailCheck(@RequestParam String userEmail, @RequestParam int random, HttpServletRequest req) {
 		// 이메일 인증
 		int ran = new Random().nextInt(900000) + 100000;

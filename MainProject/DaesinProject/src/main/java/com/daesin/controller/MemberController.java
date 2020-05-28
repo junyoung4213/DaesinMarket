@@ -3,6 +3,7 @@ package com.daesin.controller;
 import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.daesin.beans.MemberBean;
@@ -33,11 +33,11 @@ public class MemberController extends HomeController {
 	@Resource(name = "loginMemberBean")
 	@Lazy
 	private MemberBean loginMemberBean;
-	
+
 	@ModelAttribute("random")
 	public int getRandomNumber() {
 		int ran = new Random().nextInt(900000) + 100000;
-	    return ran;
+		return ran;
 	}
 
 	/*
@@ -111,9 +111,9 @@ public class MemberController extends HomeController {
 	 */
 
 	@GetMapping("/logout")
-	public String logout() {
+	public String logout(HttpSession session) {
 
-		loginMemberBean.setMemberLogin(false);
+		session.invalidate();
 
 		return "member/logout";
 	}
@@ -137,10 +137,12 @@ public class MemberController extends HomeController {
 	public String about() {
 		return "member/about";
 	}
+
 	@GetMapping("/findId")
 	public String findId(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
 		return "member/find_id";
 	}
+
 	@GetMapping("/findPw")
 	public String findPw(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
 		return "member/find_pw";
@@ -152,7 +154,7 @@ public class MemberController extends HomeController {
 		binder.addValidators(validator1);
 
 	}
-	
+
 	@GetMapping("/login")
 	public String login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean) {
 		return "member/login";

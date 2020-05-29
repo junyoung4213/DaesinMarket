@@ -38,7 +38,8 @@
 
 			type : "get",
 			url : "<c:url value='/email/createEmailCheck.do'/>",
-			data : "userEmail=" + $("#m_email").val(),
+			data : "userEmail=" + $("#m_email").val() + "&random="
+					+ $("#random").val(),
 			complete : function(data) {
 				alert("입력하신 메일로 인증번호가 발송되었습니다.");
 			}
@@ -53,7 +54,8 @@
 
 			type : "get",
 			url : "<c:url value='/email/emailAuth.do'/>",
-			data : "authCode=" + $('#certification').val(),
+			data : "authCode=" + $('#certification').val() + "&random="
+					+ $("#random").val(),
 			success : function(data) {
 				if (data == "complete") {
 					alert("인증이 완료되었습니다.");
@@ -97,7 +99,7 @@
 		<div class="row">
 			<div class="col-md-12 mb-0">
 				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <strong
-					class="text-black">아이디 찾기</strong>
+					class="text-black">비밀번호 찾기</strong>
 			</div>
 		</div>
 	</div>
@@ -107,7 +109,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-12 text-center">
-				<h2 class="h1 mb-3 text-black">아이디 찾기</h2>
+				<h2 class="h1 mb-3 text-black">비밀번호 찾기</h2>
 			</div>
 			<div class="card shadow col-md-5">
 				<div class="card-body">
@@ -117,7 +119,8 @@
 							<div class="input-group">
 								<form:input path="m_email" class="form-control" />
 								<div class="input-group-append">
-								<form:button type="button" class="btn btn-primary" onclick="emailBtn();">인증하기</form:button>
+									<button type="button" class="btn btn-primary"
+										onclick="emailBtn();" id="email_Btn">인증하기</button>
 								</div>
 							</div>
 						</div>
@@ -140,6 +143,9 @@
 									class="form-control" style="text-align:center" />
 							</div>
 						</div>
+
+						<%-- <form:hidden path="random" value="${random }" /> --%>
+						<input type="hidden" path="random" id="random" value="${random }" />
 
 					</form:form>
 				</div>

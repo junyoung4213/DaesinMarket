@@ -26,7 +26,7 @@ public class MailServiceImpl implements MailService {
 	}
 
 	@Override
-	public boolean send(String subject, String text, String from, String to, String filePath) {
+	public void send(String subject, String text, String from, String to, String filePath) {
 // javax.mail.internet.MimeMessage
 		MimeMessage message = mailService.createMimeMessage();
 		try {
@@ -52,10 +52,8 @@ public class MailServiceImpl implements MailService {
 // FileSystemResource file = new FileSystemResource(new File("D:/emailPic.png"));
 // helper.addInline("emailPic.png", file);
 			mailService.send(message);
-			return true;
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		return false;
 	}
 }

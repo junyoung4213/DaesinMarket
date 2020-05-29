@@ -10,7 +10,16 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 	
 	private void saveDestination(HttpServletRequest request) {
+		
+		String contextPath = request.getContextPath(); 
+
 		String uri = request.getRequestURI();
+		
+		if (uri.indexOf(contextPath) == 0) {
+			//요청URI의 프로젝트명 뒷부분만 추출
+			uri = uri.substring(contextPath.length());
+		}
+		
 		String query = request.getQueryString();
 		if(query == null || query.equals("null")) {
 			query="";

@@ -65,8 +65,7 @@
 					
 					type : "get",
 					url : "<c:url value='/email/createEmailCheck.do'/>",
-					data : "userEmail=" + $("#m_email").val() + "&random="
-							+ $("#random").val(),
+					data : "userEmail=" + $("#m_email").val(),
 					complete : function(data) {
 						alert("입력하신 메일로 인증번호가 발송되었습니다.");
 					}
@@ -81,8 +80,7 @@
 					
 					type : "get",
 					url : "<c:url value='/email/emailAuth.do'/>",
-					data : "authCode=" + $('#certification').val() + "&random="
-							+ $("#random").val(),
+					data : "authCode=" + $('#certification').val(),
 					success : function(data) {
 						if (data == "complete") {
 							alert("인증이 완료되었습니다.");
@@ -176,10 +174,6 @@
 								</div>
 							</div>
 						</div>
-
-						<%-- <form:hidden path="random" value="${random }" /> --%>
-						<input type="hidden" path="random" id="random" value="${random }" />
-
 
 						<div class="form-group">
 							<form:label path="m_pw">비밀번호</form:label>

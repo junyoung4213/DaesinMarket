@@ -64,26 +64,23 @@ public class EmailController {
 	@RequestMapping(value = "/createEmailCheck.do", method = RequestMethod.GET)
 	@ResponseBody
 	@Async
-	public boolean createEmailCheck(@RequestParam String userEmail, @RequestParam int random, HttpServletRequest req) {
+	public void createEmailCheck(@RequestParam String userEmail, HttpServletRequest req) {
 		// 이메일 인증
 		int ran = new Random().nextInt(900000) + 100000;
 		HttpSession session = req.getSession(true);
 		String authCode = String.valueOf(ran);
 		session.setAttribute("authCode", authCode);
-		session.setAttribute("random", random);
 		String subject = "회원가입 인증 코드 발급 안내 입니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("귀하의 인증 코드는 " + authCode + "입니다.");
-		return mailService.send(subject, sb.toString(), "junyoung4213@gmail.com", userEmail, null);
+		mailService.send(subject, sb.toString(), "junyoung4213@gmail.com", userEmail, null);
 	}
 
 	@RequestMapping(value = "/emailAuth.do", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<String> emailAuth(@RequestParam String authCode, @RequestParam String random,
-			HttpSession session) {
+	public ResponseEntity<String> emailAuth(@RequestParam String authCode, HttpSession session) {
 		String originalJoinCode = (String) session.getAttribute("authCode");
-		String originalRandom = Integer.toString((int) session.getAttribute("random"));
-		if (originalJoinCode.equals(authCode) && originalRandom.equals(random))
+		if (originalJoinCode.equals(authCode))
 			return new ResponseEntity<String>("complete", HttpStatus.OK);
 		else
 			return new ResponseEntity<String>("false", HttpStatus.OK);

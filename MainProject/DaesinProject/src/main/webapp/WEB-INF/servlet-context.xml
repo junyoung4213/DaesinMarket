@@ -36,11 +36,15 @@
 	<resources mapping="/scss/**" location="/resources/scss/"/>
 	
 	<interceptors>
+	
+		<!-- 로그인시 인터셉터 발동 -->
 		<interceptor>
 			<mapping path="/member/login_pro" />
 			<beans:bean
 				class="com.daesin.interceptor.CheckLoginInterceptor" />
 		</interceptor>
+		
+		<!-- 로그인이 필요한 페이지 -->
 		<interceptor>
 			<mapping path="/member/logout" />
 			<mapping path="/member/support" />

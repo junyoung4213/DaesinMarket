@@ -18,11 +18,9 @@ public class MemberService {
 	@Resource(name = "loginMemberBean")
 	@Lazy
 	private MemberBean loginMemberBean;
-	
-	
 
-	public boolean checkMemberIdExist(String mId) {
-		String member_id = memberDao.checkMemberIdExist(mId);
+	public boolean checkMemberIdExist(String m_id) {
+		String member_id = memberDao.checkMemberIdExist(m_id);
 
 		if (member_id == null) {
 			return true;
@@ -30,9 +28,19 @@ public class MemberService {
 			return false;
 		}
 	}
-	
-	public String returnId(String mEmail) {
-		String member_id = memberDao.returnId(mEmail);
+
+	public MemberBean checkCorrectMember(MemberBean tempMemberBean) {
+		MemberBean MemberVO = memberDao.checkCorrectMember(tempMemberBean);
+
+		if (MemberVO != null) {
+			return MemberVO;
+		}
+		return null;
+
+	}
+
+	public String returnId(String m_email) {
+		String member_id = memberDao.returnId(m_email);
 
 		return member_id;
 	}

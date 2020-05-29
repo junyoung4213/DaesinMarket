@@ -144,15 +144,8 @@ public class MemberController extends HomeController {
 	}
 
 	@GetMapping("/findPw")
-	public String findPw(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
+	public String findPw(@ModelAttribute("tempMemberBean") MemberBean tempMemberBean) {
 		return "member/find_pw";
-	}
-
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		UserValidator validator1 = new UserValidator();
-		binder.addValidators(validator1);
-
 	}
 
 	@GetMapping("/login")
@@ -162,7 +155,7 @@ public class MemberController extends HomeController {
 
 	@PostMapping("/login_pro")
 	public String login_pro(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean, Model model) {
-		
+
 		MemberBean memberVO = memberService.getLoginMemberInfo(tempLoginMemberBean);
 
 		if (memberVO == null) {
@@ -174,4 +167,10 @@ public class MemberController extends HomeController {
 		return "member/login_success";
 	}
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		UserValidator validator1 = new UserValidator();
+		binder.addValidators(validator1);
+
+	}
 }

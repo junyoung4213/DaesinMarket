@@ -11,6 +11,15 @@
 		where m_id =#{m_id}
 		]]>
 	</select>
+	
+	<select id="checkCorrectMember" parameterType="com.daesin.beans.MemberBean"
+		resultType="com.daesin.beans.MemberBean">
+		<![CDATA[
+		select m_id, m_email, m_pw
+		from member
+		where m_id =#{m_id} and m_email=#{m_email}
+		]]>
+	</select>
 
 	<select id="returnId" parameterType="java.lang.String"
 		resultType="java.lang.String">

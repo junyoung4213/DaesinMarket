@@ -57,7 +57,7 @@
 				<form:form action="${root }member/login_pro" method="post"
 					modelAttribute="tempLoginMemberBean">
 					<div class="p-3 p-lg-5 border">
-						<c:if test="${fail==true }">
+						<c:if test="${param.fail==true }">
 							<div class="alert alert-danger text-center">
 								<h3>로그인 실패</h3>
 								<p>아이디나 비밀번호를 확인해주세요</p>

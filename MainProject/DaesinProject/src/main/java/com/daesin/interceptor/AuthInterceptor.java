@@ -8,6 +8,22 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
+	
+	private void saveDestination(HttpServletRequest request) {
+		String uri = request.getRequestURI();
+		String query = request.getQueryString();
+		if(query == null || query.equals("null")) {
+			query="";
+		}else {
+			query="?" + query;
+		}
+		
+		if(request.getMethod().equals("GET")) {
+			request.getSession().setAttribute("destination", uri+query);
+		}
+	}
+	
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -15,6 +31,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String path = request.getContextPath();
 		if (session.getAttribute("member") == null) {
+			
+			saveDestination(request);
 			response.sendRedirect(path+"/member/not_login");
 			return false;
 		}

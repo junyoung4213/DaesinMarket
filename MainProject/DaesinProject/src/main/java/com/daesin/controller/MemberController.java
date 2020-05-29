@@ -162,6 +162,7 @@ public class MemberController extends HomeController {
 
 	@PostMapping("/login_pro")
 	public String login_pro(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean, Model model) {
+		
 		MemberBean memberVO = memberService.getLoginMemberInfo(tempLoginMemberBean);
 
 		if (memberVO == null) {

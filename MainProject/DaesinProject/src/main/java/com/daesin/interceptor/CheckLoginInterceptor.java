@@ -42,7 +42,7 @@ public class CheckLoginInterceptor implements HandlerInterceptor {
 		if(ModelVO!=null) {
 			session.setAttribute("member", ModelVO);
 		}
-
+	
 	}
 
 	@Override

@@ -1,9 +1,6 @@
 package com.daesin.service;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.daesin.beans.MemberBean;
@@ -14,10 +11,6 @@ public class MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
-
-	@Resource(name = "loginMemberBean")
-	@Lazy
-	private MemberBean loginMemberBean;
 
 	public boolean checkMemberIdExist(String m_id) {
 		String member_id = memberDao.checkMemberIdExist(m_id);
@@ -58,18 +51,7 @@ public class MemberService {
 		return null;
 	}
 
-	public void getModifyMemberInfo(MemberBean modifyMemberBean) {
-		MemberBean tempModifyMemberBean = memberDao.getModifyMemberInfo(loginMemberBean.getM_no());
-
-		modifyMemberBean.setM_id(tempModifyMemberBean.getM_id());
-		modifyMemberBean.setM_no(loginMemberBean.getM_no());
-
-	}
-
 	public void modifyMemberInfo(MemberBean modifyMemberBean) {
-
-		modifyMemberBean.setM_no(loginMemberBean.getM_no());
-
 		memberDao.modifyMemberInfo(modifyMemberBean);
 	}
 

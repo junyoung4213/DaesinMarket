@@ -25,6 +25,23 @@
 
 <link rel="stylesheet" href="${root }css/style.css" />
 </head>
+<script>
+
+function checkPwd() {
+	var f1 = document.forms[0];
+	var pw1 = f1.m_pw.value;
+	var pw2 = f1.m_pw2.value;
+	if (pw1 != pw2) {
+		document.getElementById('checkPwd').style.color = "red";
+		document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
+	} else {
+		document.getElementById('checkPwd').style.color = "black";
+		document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
+
+	}
+
+}
+</script>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
@@ -41,39 +58,43 @@
 </div>
 
 <div class="site-section" data-aos="fade">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-12 text-center">
-              <h2 class="h1 mb-3 text-black">정보수정</h2>
-            </div>
-            <div class="card shadow col-md-5">
-              <div class="card-body">
-					<form action="modify_member.html" method="post">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-12 text-center">
+				<h2 class="h1 mb-3 text-black">정보수정</h2>
+			</div>
+			<div class="card shadow col-md-5">
+				<div class="card-body">
+					<form:form action="${root }member/modify_pro" method="post" modelAttribute="modifyMemberBean">
+					<form:hidden path="m_no" value="${m_no}"/>
 						<div class="form-group">
-							<label for="member_name">이름</label> <input type="text"
-								id="member_name" name="member_name" class="form-control" value="홍길동"
-								disabled="disabled" />
+							<form:label path="m_id">아이디</form:label>
+							<form:input path="m_id" class="form-control"
+								value="${m_id}" disabled="true" />
 						</div>
 						<div class="form-group">
-							<label for="member_id">아이디</label> <input type="text" id="member_id"
-								name="member_id" class="form-control" value="abc"
-								disabled="disabled" />
+							<form:label path="m_email">이메일</form:label>
+							<form:input path="m_email" class="form-control"
+								value="${m_email}" disabled="true" />
 						</div>
 						<div class="form-group">
-							<label for="member_pw">비밀번호</label> <input type="password"
-								id="member_pw" name="member_pw" class="form-control" value="1234" />
+							<form:label path="m_pw">새비밀번호</form:label>
+							<form:password path="m_pw" class="form-control" />
+							<form:errors path="m_pw" style="color:red" />
 						</div>
 						<div class="form-group">
-							<label for="member_pw2">비밀번호 확인</label> <input type="password"
-								id="member_pw2" name="member_pw2" class="form-control" value="1234" />
+							<form:label path="m_pw2">비밀번호 확인</form:label>
+							<form:password path="m_pw2" class="form-control"
+								onkeyup="checkPwd()" />
+							<form:errors path="m_pw2" style="color:red" />
+							<div id="checkPwd">동일한 암호를 입력하세요.</div>
 						</div>
 						<div class="form-group">
 							<div class="text-right text-center">
-								<button type="submit" class="btn btn-primary">정보수정</button>
+								<form:button class="btn btn-primary">정보수정</form:button>
 							</div>
 						</div>
-
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>

@@ -11,8 +11,9 @@
 		where m_id =#{m_id}
 		]]>
 	</select>
-	
-	<select id="checkCorrectMember" parameterType="com.daesin.beans.MemberBean"
+
+	<select id="checkCorrectMember"
+		parameterType="com.daesin.beans.MemberBean"
 		resultType="com.daesin.beans.MemberBean">
 		<![CDATA[
 		select m_id, m_email, m_pw
@@ -37,24 +38,35 @@
 	</insert>
 
 
-	<!-- m_no 와 m_id 만 select해서 where절에서 id와 pw값을 비교한 결과값을 반환했더니 null만 나왔다.
-		 select 구문에 m_pw 도 조회를 하니까 해결됨  -->
+	<!-- m_no 와 m_id 만 select해서 where절에서 id와 pw값을 비교한 결과값을 반환했더니 null만 나왔다. 
+		select 구문에 m_pw 도 조회를 하니까 해결됨 -->
 	<select id="getLoginMemberInfo"
 		parameterType="com.daesin.beans.MemberBean"
 		resultType="com.daesin.beans.MemberBean"> 
 		<![CDATA[ 
-		select m_no, m_id, m_pw
+		select *
 		from member 
 		where m_id =#{m_id} and m_pw=#{m_pw}
 		]]>
 	</select>
+	
+	<update id="modifyMemberInfo"
+		parameterType="com.daesin.beans.MemberBean"> 
+		<![CDATA[ 
+		update member 
+		set m_pw = #{m_pw} 
+		where m_no = #{m_no} 
+		]]>
+	</update>
 
-	<!-- <select id="checkUserNicknameExist" parameterType="java.lang.String" 
-		resultType="java.lang.String"> <![CDATA[ select m_nickname from member where 
-		m_nickname =#{m_nickname} ]]> </select> <select id="getModifyUserInfo" parameterType="java.lang.Integer" 
+	<!-- <select id="checkUserNicknameExist"
+		parameterType="java.lang.String" resultType="java.lang.String"> <![CDATA[ select m_nickname from member where 
+		m_nickname =#{m_nickname} ]]>
+	</select>
+	<select id="getModifyUserInfo" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean"> <![CDATA[ select user_id, user_name 
-		from user_table where user_idx = #{user_idx} ]]> </select> <update id="modifyUserInfo" 
-		parameterType="com.daesin.beans.BoardBean"> <![CDATA[ update user_table set 
-		user_pw = #{user_pw} where user_idx = #{user_idx} ]]> </update> -->
+		from user_table where user_idx = #{user_idx} ]]>
+	</select> -->
+	
 </mapper>
 

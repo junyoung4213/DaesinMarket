@@ -42,7 +42,7 @@ public class EmailController {
 		String subject = "인증코드";
 		StringBuilder sb = new StringBuilder();
 		sb.append("인증코드는 [" + authCode + "] 입니다.");
-		sendEmail(subject, sb.toString(),userEmail);
+		sendEmail(subject, sb.toString(), userEmail);
 	}
 
 	@RequestMapping(value = "/emailAuth.do", method = RequestMethod.GET)
@@ -66,7 +66,7 @@ public class EmailController {
 			String subject = "비밀번호";
 			StringBuilder sb = new StringBuilder();
 			sb.append("비밀번호는 " + password + " 입니다.");
-			sendEmail(subject, sb.toString(),userEmail);
+			sendEmail(subject, sb.toString(), userEmail);
 			return new ResponseEntity<String>("complete", HttpStatus.OK);
 
 		} else {
@@ -74,9 +74,9 @@ public class EmailController {
 			return new ResponseEntity<String>("false", HttpStatus.OK);
 		}
 	}
-	
+
 	public void sendEmail(String subject, String message, String userEmail) {
-			mailService.send(subject+" 전송 메일입니다.", message, "junyoung4213@gmail.com", userEmail, null);
+		mailService.send(subject + " 전송 메일입니다.", message, "junyoung4213@gmail.com", userEmail, null);
 	}
 
 }

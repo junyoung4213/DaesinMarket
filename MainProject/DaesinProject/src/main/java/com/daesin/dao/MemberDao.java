@@ -15,11 +15,11 @@ public class MemberDao {
 	public String checkMemberIdExist(String m_id) {
 		return sqlSessionTemplate.selectOne("member.checkMemberIdExist", m_id);
 	}
-	
+
 	public MemberBean checkCorrectMember(MemberBean tempMemberBean) {
-		return sqlSessionTemplate.selectOne("member.checkCorrectMember",tempMemberBean);
+		return sqlSessionTemplate.selectOne("member.checkCorrectMember", tempMemberBean);
 	}
-	
+
 	public String returnId(String m_email) {
 		return sqlSessionTemplate.selectOne("member.returnId", m_email);
 	}
@@ -37,7 +37,7 @@ public class MemberDao {
 		return sqlSessionTemplate.selectOne("member.getModifyMemberInfo", m_no);
 	}
 
-	public void modifyMemberInfo(MemberBean modifyUserBean) {
-		sqlSessionTemplate.update("member.modifyMemberInfo",modifyUserBean);
+	public void modifyMemberInfo(MemberBean modifyMemberBean) {
+		sqlSessionTemplate.update("member.modifyMemberInfo", modifyMemberBean);
 	}
 }

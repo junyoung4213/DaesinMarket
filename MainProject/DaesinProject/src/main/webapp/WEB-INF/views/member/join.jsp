@@ -58,65 +58,61 @@
 	/*
 	이메일 인증 버튼 클릭시 발생하는 이벤트
 	 */
-			function emailBtn() {
-				
-				/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
-				$.ajax({
-					
-					type : "get",
-					url : "<c:url value='/email/createEmailCheck.do'/>",
-					data : "userEmail=" + $("#m_email").val(),
-					complete : function(data) {
-						alert("입력하신 메일로 인증번호가 발송되었습니다.");
-					}
-				});
-			};
+	function emailBtn() {
+
+		/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
+		$.ajax({
+
+			type : "get",
+			url : "<c:url value='/email/createEmailCheck.do'/>",
+			data : "userEmail=" + $("#m_email").val(),
+			complete : function(data) {
+				alert("입력하신 메일로 인증번호가 발송되었습니다.");
+			}
+		});
+	};
 	/*
 	이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
 	 */
 
-			function emailAuthBtn() {
-				$.ajax({
-					
-					type : "get",
-					url : "<c:url value='/email/emailAuth.do'/>",
-					data : "authCode=" + $('#certification').val(),
-					success : function(data) {
-						if (data == "complete") {
-							alert("인증이 완료되었습니다.");
-							$('#email_Btn').attr('disabled',true)
-							$('#email_AuthBtn').attr('disabled',true)
-							$('#m_email').attr('readonly',true)
-							$('#certification').attr('readonly',true)
-						} else if (data == "false") {
-							alert("인증번호를 잘못 입력하셨습니다.")
-							
-						}
-					},
-					error : function(data) {
-						alert("에러가 발생했습니다.");
-					}
-				});
-			};
-			
-			function checkPwd(){
-				  var f1 = document.forms[0];
-				  var pw1 = f1.m_pw.value;
-				  var pw2 = f1.m_pw2.value;
-				  if(pw1!=pw2){
-				   document.getElementById('checkPwd').style.color = "red";
-				   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
-				  }else{
-				   document.getElementById('checkPwd').style.color = "black";
-				   document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
-				   
-				  }
-				  
-				 }
+	function emailAuthBtn() {
+		$.ajax({
 
+			type : "get",
+			url : "<c:url value='/email/emailAuth.do'/>",
+			data : "authCode=" + $('#certification').val(),
+			success : function(data) {
+				if (data == "complete") {
+					alert("인증이 완료되었습니다.");
+					$('#email_Btn').attr('disabled', true)
+					$('#email_AuthBtn').attr('disabled', true)
+					$('#m_email').attr('readonly', true)
+					$('#certification').attr('readonly', true)
+				} else if (data == "false") {
+					alert("인증번호를 잘못 입력하셨습니다.")
 
-			
-			
+				}
+			},
+			error : function(data) {
+				alert("에러가 발생했습니다.");
+			}
+		});
+	};
+
+	function checkPwd() {
+		var f1 = document.forms[0];
+		var pw1 = f1.m_pw.value;
+		var pw2 = f1.m_pw2.value;
+		if (pw1 != pw2) {
+			document.getElementById('checkPwd').style.color = "red";
+			document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
+		} else {
+			document.getElementById('checkPwd').style.color = "black";
+			document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
+
+		}
+
+	}
 </script>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -161,16 +157,18 @@
 							<div class="input-group">
 								<form:input path="m_email" class="form-control" />
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary" onclick="emailBtn();" id="email_Btn">인증하기</button>
+									<button type="button" class="btn btn-primary"
+										onclick="emailBtn();" id="email_Btn">인증하기</button>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
-						<form:label path="certification">인증번호</form:label>
+							<form:label path="certification">인증번호</form:label>
 							<div class="input-group">
 								<form:input path="certification" class="form-control" />
 								<div class="input-group-append">
-									<button type="button" class="btn btn-primary" onclick="emailAuthBtn();" id="email_AuthBtn">인증확인</button>
+									<button type="button" class="btn btn-primary"
+										onclick="emailAuthBtn();" id="email_AuthBtn">인증확인</button>
 								</div>
 							</div>
 						</div>
@@ -182,13 +180,14 @@
 						</div>
 						<div class="form-group">
 							<form:label path="m_pw2">비밀번호 확인</form:label>
-							<form:password path="m_pw2" class="form-control" onkeyup="checkPwd()"/>
+							<form:password path="m_pw2" class="form-control"
+								onkeyup="checkPwd()" />
 							<form:errors path="m_pw2" style="color:red" />
 							<div id="checkPwd">동일한 암호를 입력하세요.</div>
 
-							
+
 						</div>
-						
+
 						<div class="form-group">
 							<div class="text-center">
 								<form:button class="btn btn-primary">회원가입</form:button>

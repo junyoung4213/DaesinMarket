@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.daesin.beans.MemberBean;
@@ -29,10 +30,6 @@ public class MemberController extends HomeController {
 
 	@Autowired
 	private MemberService memberService;
-
-	@Resource(name = "loginMemberBean")
-	@Lazy
-	private MemberBean loginMemberBean;
 
 	@ModelAttribute("random")
 	public int getRandomNumber() {
@@ -85,8 +82,20 @@ public class MemberController extends HomeController {
 	}
 
 	@GetMapping("/modify")
-	public String modifyMemberBean() {
+	public String modify(@SessionAttribute("member") MemberBean modifyMemberBean, Model model) {
+
+		model.addAttribute("modifyMemberBean", modifyMemberBean);
+
 		return "member/modify";
+	}
+
+	@PostMapping("/modify_pro")
+	public String modify_pro(@ModelAttribute("modifyMemberBean") MemberBean modifyMemberBean) {
+		System.out.println(modifyMemberBean.toString());
+		memberService.modifyMemberInfo(modifyMemberBean);
+
+		return "member/modify_success";
+
 	}
 
 	/*

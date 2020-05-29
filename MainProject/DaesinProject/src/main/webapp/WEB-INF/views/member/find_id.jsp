@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -10,7 +10,6 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Mukta:300,400,700" />
 <link rel="stylesheet" href="${root }fonts/icomoon/style.css" />
@@ -72,8 +71,7 @@
 			}
 		});
 	};
-	
-	
+
 	function returnId() {
 		var m_email = $("#m_email").val()
 
@@ -83,7 +81,7 @@
 			dataType : "text",
 			success : function(data) {
 				$('#resultId').css("display", "");
-				$('#m_id').attr("placeholder",data)
+				$('#m_id').attr("placeholder", data)
 			}
 		})
 	}
@@ -117,7 +115,8 @@
 							<div class="input-group">
 								<form:input path="m_email" class="form-control" />
 								<div class="input-group-append">
-								<form:button type="button" class="btn btn-primary" onclick="emailBtn();">인증하기</form:button>
+									<form:button type="button" class="btn btn-primary"
+										onclick="emailBtn();">인증하기</form:button>
 								</div>
 							</div>
 						</div>

@@ -31,7 +31,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = request.getSession();
 		String path = request.getContextPath();
 		if (session.getAttribute("member") == null) {
-			
 			saveDestination(request);
 			response.sendRedirect(path+"/member/not_login");
 			return false;

@@ -43,6 +43,11 @@ public class MemberBean {
 	// 이메일 인증번호
 	private String certification;
 
+	private String s_fname;
+	private String s_lname;
+	private String s_phone;
+	private int s_score;
+
 	public MemberBean() {
 		this.memberIdExist = false;
 		this.memberLogin = false;
@@ -120,12 +125,44 @@ public class MemberBean {
 		this.certification = certification;
 	}
 
+	public String getS_fname() {
+		return s_fname;
+	}
+
+	public void setS_fname(String s_fname) {
+		this.s_fname = s_fname;
+	}
+
+	public String getS_lname() {
+		return s_lname;
+	}
+
+	public void setS_lname(String s_lname) {
+		this.s_lname = s_lname;
+	}
+
+	public String getS_phone() {
+		return s_phone;
+	}
+
+	public void setS_phone(String s_phone) {
+		this.s_phone = s_phone;
+	}
+
+	public int getS_score() {
+		return s_score;
+	}
+
+	public void setS_score(int s_score) {
+		this.s_score = s_score;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberBean [m_no=" + m_no + ", m_id=" + m_id + ", m_email=" + m_email + ", m_pw=" + m_pw + ", m_pw2="
 				+ m_pw2 + ", m_point=" + m_point + ", memberLogin=" + memberLogin + ", memberIdExist=" + memberIdExist
-				+ ", certification=" + certification + "]";
+				+ ", certification=" + certification + ", s_fname=" + s_fname + ", s_lname="
+				+ s_lname + ", s_phone=" + s_phone + ", s_score=" + s_score + "]";
 	}
 
-	
 }

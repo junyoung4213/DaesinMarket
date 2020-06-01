@@ -28,6 +28,10 @@ public class MemberDao {
 		sqlSessionTemplate.insert("member.addMemberInfo", joinMemberBean);
 
 	}
+	
+	public void addSupporterInfo(MemberBean tempSupporterBean) {
+		sqlSessionTemplate.insert("member.addSupporterInfo",tempSupporterBean);
+	}
 
 	public MemberBean getLoginMemberInfo(MemberBean tempLoginMemberBean) {
 		return sqlSessionTemplate.selectOne("member.getLoginMemberInfo", tempLoginMemberBean);

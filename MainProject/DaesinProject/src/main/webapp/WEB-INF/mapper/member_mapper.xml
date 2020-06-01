@@ -36,6 +36,17 @@
 		<![CDATA[ insert into MEMBER(m_no, m_id, m_email, m_pw) values 
 		(member_seq.nextval, #{m_id}, #{m_email}, #{m_pw}) ]]>
 	</insert>
+	
+	<insert id="addSupporterInfo"
+		parameterType="com.daesin.beans.MemberBean"> 
+		<![CDATA[ UPDATE MEMBER
+		set s_name = #{s_fname}||#{s_lname}, 
+			s_phone = #{s_phone} 
+		where m_no = #{m_no}
+		]]>
+	</insert>
+	
+	
 
 
 	<!-- m_no 와 m_id 만 select해서 where절에서 id와 pw값을 비교한 결과값을 반환했더니 null만 나왔다. 

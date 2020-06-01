@@ -41,6 +41,10 @@ public class MemberService {
 	public void addMemberInfo(MemberBean joinMemberBean) {
 		memberDao.addMemberInfo(joinMemberBean);
 	}
+	
+	public void addSupporterInfo(MemberBean tempSupporterBean) {
+		memberDao.addSupporterInfo(tempSupporterBean);
+	}
 
 	public MemberBean getLoginMemberInfo(MemberBean tempLoginMemberBean) {
 		MemberBean tempLoginMemberBean2 = memberDao.getLoginMemberInfo(tempLoginMemberBean);

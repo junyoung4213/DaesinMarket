@@ -2,12 +2,10 @@ package com.daesin.controller;
 
 import java.util.Random;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -133,8 +131,21 @@ public class MemberController extends HomeController {
 	}
 
 	@GetMapping("/support")
-	public String support() {
+	public String support(@ModelAttribute("tempSupporterBean") MemberBean tempSupporterBean, HttpSession session) {
+
+		System.out.println(session.getAttribute("member").toString());
+
 		return "member/support";
+	}
+
+	@PostMapping("/support_pro")
+	public String support_pro(@ModelAttribute("tempSupporterBean") MemberBean tempSupporterBean) {
+		
+		System.out.println(tempSupporterBean.toString());
+		
+		memberService.addSupporterInfo(tempSupporterBean);
+
+		return "member/support_success";
 	}
 
 	@GetMapping("/faq")

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.daesin.beans.MemberBean;
+import com.daesin.beans.QuestionBean;
 import com.daesin.service.MailService;
 import com.daesin.service.MemberService;
 
@@ -31,10 +32,10 @@ public class EmailController {
 	@Autowired
 	private MemberService memberService;
 
+	// 이메일 인증
 	@RequestMapping(value = "/createEmailCheck.do", method = RequestMethod.GET)
 	@ResponseBody
 	public void createEmailCheck(@RequestParam String userEmail, HttpServletRequest req) {
-		// 이메일 인증
 		int ran = new Random().nextInt(900000) + 100000;
 		HttpSession session = req.getSession(true);
 		String authCode = String.valueOf(ran);
@@ -55,6 +56,7 @@ public class EmailController {
 			return new ResponseEntity<String>("false", HttpStatus.OK);
 	}
 
+	// 비밀번호 찾기
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.POST)
 	public ResponseEntity<String> findPassword(@ModelAttribute("tempMemberBean") MemberBean tempMemberBean) {
 		MemberBean MemberVO = memberService.checkCorrectMember(tempMemberBean);
@@ -70,8 +72,27 @@ public class EmailController {
 			return new ResponseEntity<String>("complete", HttpStatus.OK);
 
 		} else {
-
 			return new ResponseEntity<String>("false", HttpStatus.OK);
+		}
+	}
+
+	// 문의메일 보내기
+	@RequestMapping(value = "/question.do", method = RequestMethod.POST)
+	public String question(@ModelAttribute("questionBean") QuestionBean questionBean) {
+
+		if (questionBean != null) {
+			String title = questionBean.getTitle();
+			String content = questionBean.getContent();
+			String m_email = questionBean.getM_email();
+			String m_id = questionBean.getM_id();
+			int m_no = questionBean.getM_no();
+			StringBuilder sb = new StringBuilder();
+			sb.append("<h1>제목: " + title + "</h1>" + "<p>내용: " + content + "</p><br>" + "이메일주소: " + m_email + "<br>"
+					+ "고객번호: " + m_no);
+			sendEmail(m_id + " 고객님의", sb.toString(), "junyoung4213@gmail.com");
+			return "member/faq_success";
+		} else {
+			return "member/faq_fail";
 		}
 	}
 

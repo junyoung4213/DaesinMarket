@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.daesin.beans.MemberBean;
+import com.daesin.beans.QuestionBean;
 import com.daesin.beans.SupporterBean;
 import com.daesin.service.MemberService;
 import com.daesin.service.SupporterService;
@@ -131,15 +132,11 @@ public class MemberController extends HomeController {
 	@GetMapping("/support")
 	public String support(@ModelAttribute("tempSupporterBean") SupporterBean tempSupporterBean, HttpSession session) {
 
-		System.out.println(session.getAttribute("member").toString());
-
 		return "member/support";
 	}
 
 	@PostMapping("/support_pro")
 	public String support_pro(@ModelAttribute("tempSupporterBean") SupporterBean tempSupporterBean) {
-
-		System.out.println(tempSupporterBean.toString());
 
 		supporterService.addSupporterInfo(tempSupporterBean);
 
@@ -147,7 +144,7 @@ public class MemberController extends HomeController {
 	}
 
 	@GetMapping("/faq")
-	public String faq() {
+	public String faq(@ModelAttribute("questionBean") QuestionBean questionBean) {
 		return "member/faq";
 	}
 

@@ -2,14 +2,11 @@ package com.daesin.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +43,23 @@ public class BoardController {
 
 		return "board/main";
 	}
+	
+	@GetMapping("/write")
+	public String write(@ModelAttribute("writeContentBean") BoardBean writeContentBean,
+			@RequestParam("bCno") int bCno) {
+
+		writeContentBean.setbCno(bCno);
+		
+		return "board/write";
+	}
+
+	@PostMapping("/write_pro")
+	public String write_pro(@ModelAttribute("writeContentBean") BoardBean writeContentBean) {
+
+		boardService.addContentInfo(writeContentBean);
+
+		return "board/write_success";
+	}
 
 //	@GetMapping("/read")
 //	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,
@@ -61,25 +75,7 @@ public class BoardController {
 //		return "board/read";
 //	}
 //
-//	@GetMapping("/write")
-//	public String write(@ModelAttribute("writeContentBean") BoardBean writeContentBean,
-//			@RequestParam("board_info_idx") int board_info_idx) {
-//
-//		writeContentBean.setContent_board_idx(board_info_idx);
-//		return "board/write";
-//	}
-//
-//	@PostMapping("/write_pro")
-//	public String write_pro(@Valid @ModelAttribute("writeContentBean") BoardBean writeContentBean,
-//			BindingResult result) {
-//		if (result.hasErrors()) {
-//			return "board/write";
-//		}
-//
-//		boardService.addContentInfo(writeContentBean);
-//
-//		return "board/write_success";
-//	}
+
 //
 //	@GetMapping("/modify")
 //	public String modify(@RequestParam("board_info_idx") int board_info_idx,

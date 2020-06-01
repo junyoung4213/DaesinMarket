@@ -3,21 +3,21 @@
 					    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 
-	<!-- <insert id="addContentInfo"
+	<insert id="addContentInfo"
 		parameterType="com.daesin.beans.BoardBean">
 
-		<selectKey keyProperty="content_idx" order="BEFORE"
+	<!-- 	<selectKey keyProperty="bNo" order="BEFORE"
 			resultType="java.lang.Integer">
-			select content_seq.nextval from dual
-		</selectKey>
+			select board_seq.nextval from dual
+		</selectKey> -->
 	
 	<![CDATA[
-	insert into content_table(content_idx,content_subject,content_text,
-	content_file,content_writer_idx,content_board_idx, content_date) 
-	values (#{content_idx}, #{content_subject}, #{content_text}, #{content_file, jdbcType=VARCHAR},
-		#{content_writer_idx}, #{content_board_idx}, sysdate)
+	insert into board(b_title,b_content,
+	bi_name,b_reward, b_end_time, b_mno,b_cno, b_write_time) 
+	values (#{bTitle}, #{bContent}, #{biName, jdbcType=VARCHAR},
+		#{bReward},#{bEndTime},	#{bMno}, #{bCno}, sysdate)
 	]]>
-	</insert> -->
+	</insert>
 
 	<select id="getBoardInfoName" parameterType="java.lang.Integer"
 		resultType="java.lang.String">

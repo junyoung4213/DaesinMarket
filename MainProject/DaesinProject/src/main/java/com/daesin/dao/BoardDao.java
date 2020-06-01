@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.daesin.beans.BoardBean;
-import com.daesin.beans.BoardImgBean;
 
 @Repository
 public class BoardDao {
@@ -16,7 +15,7 @@ public class BoardDao {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public void addContentInfo(BoardImgBean writeContentBean) {
+	public void addContentInfo(BoardBean writeContentBean) {
 		sqlSessionTemplate.insert("board.addContentInfo", writeContentBean);
 	}
 
@@ -33,7 +32,7 @@ public class BoardDao {
 		return sqlSessionTemplate.selectOne("board.getContentInfo", content_idx);
 	}
 
-	public void modifyContentInfo(BoardImgBean modifyContentBean) {
+	public void modifyContentInfo(BoardBean modifyContentBean) {
 		sqlSessionTemplate.selectOne("board.modifyContentInfo", modifyContentBean);
 	}
 

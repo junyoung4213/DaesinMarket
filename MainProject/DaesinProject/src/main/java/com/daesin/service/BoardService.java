@@ -3,8 +3,6 @@ package com.daesin.service;
 import java.io.File;
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,8 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.daesin.beans.BoardBean;
-import com.daesin.beans.BoardImgBean;
-import com.daesin.beans.MemberBean;
 import com.daesin.beans.PageBean;
 import com.daesin.dao.BoardDao;
 
@@ -36,7 +32,7 @@ public class BoardService {
 	@Autowired
 	@Lazy
 	private BoardBean boardBean;
-
+	
 	private String saveUploadFile(MultipartFile upload_file) {
 
 		String file_name = System.currentTimeMillis() + "_" + upload_file.getOriginalFilename();
@@ -50,7 +46,7 @@ public class BoardService {
 		return file_name;
 	}
 
-	public void addContentInfo(BoardImgBean writeContentBean) {
+	public void addContentInfo(BoardBean writeContentBean) {
 
 		MultipartFile upload_file = writeContentBean.getUpload_file();
 
@@ -58,7 +54,7 @@ public class BoardService {
 			String file_name = saveUploadFile(upload_file);
 			writeContentBean.setBiName(file_name);
 		}
-		writeContentBean.setBiBno(boardBean.getbMno());
+		writeContentBean.setbNo(writeContentBean.getbMno());
 
 		boardDao.addContentInfo(writeContentBean);
 
@@ -81,7 +77,7 @@ public class BoardService {
 		return boardDao.getContentInfo(content_idx);
 	}
 
-	public void modifyContentInfo(BoardImgBean modifyContentBean) {
+	public void modifyContentInfo(BoardBean modifyContentBean) {
 		MultipartFile upload_file = modifyContentBean.getUpload_file();
 
 		if (upload_file.getSize() > 0) {

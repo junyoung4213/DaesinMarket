@@ -29,92 +29,67 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 
-	<div class="bg-light py-3">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 mb-0">
-					<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
-						href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span> <strong
-						class="text-black">배달</strong>
-				</div>
+<div class="bg-light py-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0">
+				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
+					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
+				<strong class="text-black">배달</strong>
 			</div>
 		</div>
 	</div>
-	
-      <div class="container" style="margin-top: 100px;">
-        <div class="row">
-          <div class="col-sm-3"></div>
-          <div class="col-sm-6 mb-5">
-            <div class="col-md-12 text-center">
-              <h1 class="mb-3 text-black">글쓰기</h1>
-              <br />
-              <div class="border-bottom"></div>
-              <br /><br />
-            </div>
-            <div class="card shadow">
-              <div class="card-body">
-                <form action="board_read.html" method="post">
-                  <div class="form-group">
-                    <label for="board_subject">제목</label>
-                    <input
-                      type="text"
-                      id="board_subject"
-                      name="board_subject"
-                      class="form-control"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="board_content">내용</label>
-                    <textarea
-                      id="board_content"
-                      name="board_content"
-                      class="form-control"
-                      rows="10"
-                      style="resize: none;"
-                    ></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="board_file">첨부 이미지</label>
-                    <input
-                      type="file"
-                      id="board_file"
-                      name="board_file"
-                      class="form-control"
-                      accept="image/*"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="board_reward">리워드</label>
-                    <input
-                      type="text"
-                      id="board_reward"
-                      name="board_reward"
-                      class="form-control"
-                    />
-                  </div>
-                  <!-- <div class="form-group">
-                    <label for="board_reward">마감기간</label>
-                    <input
-                      type="date"
-                      id="board_reward"
-                      name="board_reward"
-                      class="form-control"
-                    />
-                  </div> -->
-                  <div class="form-group">
-                    <div class="text-right">
-                      <button type="submit" class="btn btn-primary">
-                        작성하기
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3"></div>
-        </div>
-      </div>
+</div>
+
+<div class="container" style="margin-top: 100px;">
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6 mb-5">
+			<div class="col-md-12 text-center">
+				<h1 class="mb-3 text-black">글쓰기</h1>
+				<br />
+				<div class="border-bottom"></div>
+				<br /> <br />
+			</div>
+			<div class="card shadow">
+				<div class="card-body">
+					<form:form action="${root }board/write_pro" method="post" modelAttribute="writeContentBean" enctype="multipart/form-data">
+						<form:hidden path="bCno" value="${bCno }"/>
+						<form:hidden path="bMno" value="${member.mNo }"/>
+						<div class="form-group">
+							<form:label path="bTitle">제목</form:label>
+							<form:input path="bTitle" class="form-control" />
+						</div>
+						<div class="form-group">
+							<form:label path="bContent">내용</form:label>
+							<form:textarea path="bContent" class="form-control" rows="10"
+								style="resize: none;"></form:textarea>
+						</div>
+						<div class="form-group">
+							<form:label path="biName">첨부이미지</form:label>
+							<form:input type="file" path="upload_file" class="form-control"
+								accept="image/*" />
+						</div>
+						<div class="form-group">
+							<form:label path="bReward">금액</form:label>
+							<form:input path="bReward" class="form-control" />
+						</div>
+						<div class="form-group">
+							<form:label path="bEndTime">마감기간</form:label>
+							<form:input type="date" path="bEndTime" class="form-control" />
+						</div>
+						<div class="form-group">
+							<div class="text-right">
+								<form:button class="btn btn-primary">작성하기</form:button>
+							</div>
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+</div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 

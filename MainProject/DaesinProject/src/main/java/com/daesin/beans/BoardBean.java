@@ -2,6 +2,8 @@ package com.daesin.beans;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 //게시판 
 public class BoardBean {
 
@@ -43,6 +45,12 @@ public class BoardBean {
 
 	// 지역
 	private String bLocation;
+
+	// 파일명
+	private String biName;
+
+	// 이미지 파일
+	private MultipartFile upload_file;
 
 	public int getbCno() {
 		return bCno;
@@ -148,12 +156,28 @@ public class BoardBean {
 		this.bLocation = bLocation;
 	}
 
+	public String getBiName() {
+		return biName;
+	}
+
+	public void setBiName(String biName) {
+		this.biName = biName;
+	}
+
+	public MultipartFile getUpload_file() {
+		return upload_file;
+	}
+
+	public void setUpload_file(MultipartFile upload_file) {
+		this.upload_file = upload_file;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardBean [bCno=" + bCno + ", bNo=" + bNo + ", bTitle=" + bTitle + ", bContent=" + bContent
 				+ ", bReward=" + bReward + ", bAddr1=" + bAddr1 + ", bAddr2=" + bAddr2 + ", bWriteTime=" + bWriteTime
 				+ ", bEndTime=" + bEndTime + ", bMno=" + bMno + ", bStatus=" + bStatus + ", bPhone=" + bPhone
-				+ ", bLocation=" + bLocation + "]";
+				+ ", bLocation=" + bLocation + ", biName=" + biName + ", upload_file=" + upload_file + "]";
 	}
 
 }

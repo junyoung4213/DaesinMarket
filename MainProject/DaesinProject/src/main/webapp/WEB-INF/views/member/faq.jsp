@@ -50,9 +50,9 @@
 				<form:form action="${root }email/question.do" method="post"
 					modelAttribute="questionBean">
 					<div class="p-3 p-lg-5 border">
-						<form:hidden path="m_no" value="${member.m_no }" />
-						<form:hidden path="m_email" value="${member.m_email }" />
-						<form:hidden path="m_id" value="${member.m_id }" />
+						<form:hidden path="mNo" value="${member.mNo }" />
+						<form:hidden path="mEmail" value="${member.mEmail }" />
+						<form:hidden path="mId" value="${member.mId }" />
 
 						<div class="form-group row">
 							<div class="col-md-12">

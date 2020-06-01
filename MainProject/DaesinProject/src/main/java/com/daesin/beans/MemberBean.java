@@ -17,22 +17,22 @@ public class MemberBean {
 	 */
 
 	// 회원번호
-	private int m_no;
+	private int mNo;
 
 	// 회원아이디
-	private String m_id;
+	private String mId;
 
 	// 회원이메일
-	private String m_email;
+	private String mEmail;
 
 	// 회원비밀번호
-	private String m_pw;
+	private String mPw;
 
 	// 회원비밀번호 확인
-	private String m_pw2;
+	private String mPw2;
 
 	// 회원포인트
-	private String m_point;
+	private String mPoint;
 
 	// 회원 로그인 여부 확인
 	private boolean memberLogin;
@@ -43,62 +43,62 @@ public class MemberBean {
 	// 이메일 인증번호
 	private String certification;
 
-	private String s_fname;
-	private String s_lname;
-	private String s_phone;
-	private int s_score;
+	private String sFname;
+	private String sLname;
+	private String sPhone;
+	private int sScore;
 
 	public MemberBean() {
 		this.memberIdExist = false;
 		this.memberLogin = false;
 	}
 
-	public int getM_no() {
-		return m_no;
+	public int getmNo() {
+		return mNo;
 	}
 
-	public void setM_no(int m_no) {
-		this.m_no = m_no;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
 
-	public String getM_id() {
-		return m_id;
+	public String getmId() {
+		return mId;
 	}
 
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 
-	public String getM_email() {
-		return m_email;
+	public String getmEmail() {
+		return mEmail;
 	}
 
-	public void setM_email(String m_email) {
-		this.m_email = m_email;
+	public void setmEmail(String mEmail) {
+		this.mEmail = mEmail;
 	}
 
-	public String getM_pw() {
-		return m_pw;
+	public String getmPw() {
+		return mPw;
 	}
 
-	public void setM_pw(String m_pw) {
-		this.m_pw = m_pw;
+	public void setmPw(String mPw) {
+		this.mPw = mPw;
 	}
 
-	public String getM_pw2() {
-		return m_pw2;
+	public String getmPw2() {
+		return mPw2;
 	}
 
-	public void setM_pw2(String m_pw2) {
-		this.m_pw2 = m_pw2;
+	public void setmPw2(String mPw2) {
+		this.mPw2 = mPw2;
 	}
 
-	public String getM_point() {
-		return m_point;
+	public String getmPoint() {
+		return mPoint;
 	}
 
-	public void setM_point(String m_point) {
-		this.m_point = m_point;
+	public void setmPoint(String mPoint) {
+		this.mPoint = mPoint;
 	}
 
 	public boolean isMemberLogin() {
@@ -125,44 +125,44 @@ public class MemberBean {
 		this.certification = certification;
 	}
 
-	public String getS_fname() {
-		return s_fname;
+	public String getsFname() {
+		return sFname;
 	}
 
-	public void setS_fname(String s_fname) {
-		this.s_fname = s_fname;
+	public void setsFname(String sFname) {
+		this.sFname = sFname;
 	}
 
-	public String getS_lname() {
-		return s_lname;
+	public String getsLname() {
+		return sLname;
 	}
 
-	public void setS_lname(String s_lname) {
-		this.s_lname = s_lname;
+	public void setsLname(String sLname) {
+		this.sLname = sLname;
 	}
 
-	public String getS_phone() {
-		return s_phone;
+	public String getsPhone() {
+		return sPhone;
 	}
 
-	public void setS_phone(String s_phone) {
-		this.s_phone = s_phone;
+	public void setsPhone(String sPhone) {
+		this.sPhone = sPhone;
 	}
 
-	public int getS_score() {
-		return s_score;
+	public int getsScore() {
+		return sScore;
 	}
 
-	public void setS_score(int s_score) {
-		this.s_score = s_score;
+	public void setsScore(int sScore) {
+		this.sScore = sScore;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberBean [m_no=" + m_no + ", m_id=" + m_id + ", m_email=" + m_email + ", m_pw=" + m_pw + ", m_pw2="
-				+ m_pw2 + ", m_point=" + m_point + ", memberLogin=" + memberLogin + ", memberIdExist=" + memberIdExist
-				+ ", certification=" + certification + ", s_fname=" + s_fname + ", s_lname="
-				+ s_lname + ", s_phone=" + s_phone + ", s_score=" + s_score + "]";
+		return "MemberBean [mNo=" + mNo + ", mId=" + mId + ", mEmail=" + mEmail + ", mPw=" + mPw + ", mPw2=" + mPw2
+				+ ", mPoint=" + mPoint + ", memberLogin=" + memberLogin + ", memberIdExist=" + memberIdExist
+				+ ", certification=" + certification + ", sFname=" + sFname + ", sLname=" + sLname + ", sPhone="
+				+ sPhone + ", sScore=" + sScore + "]";
 	}
 
 }

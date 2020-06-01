@@ -4,9 +4,9 @@ public class QuestionBean {
 
 	private String title;
 	private String content;
-	private int m_no;
-	private String m_email;
-	private String m_id;
+	private int mNo;
+	private String mEmail;
+	private String mId;
 
 	public String getTitle() {
 		return title;
@@ -24,34 +24,34 @@ public class QuestionBean {
 		this.content = content;
 	}
 
-	public int getM_no() {
-		return m_no;
+	public int getmNo() {
+		return mNo;
 	}
 
-	public void setM_no(int m_no) {
-		this.m_no = m_no;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
 
-	public String getM_email() {
-		return m_email;
+	public String getmEmail() {
+		return mEmail;
 	}
 
-	public void setM_email(String m_email) {
-		this.m_email = m_email;
+	public void setmEmail(String mEmail) {
+		this.mEmail = mEmail;
 	}
 
-	public String getM_id() {
-		return m_id;
+	public String getmId() {
+		return mId;
 	}
 
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 
 	@Override
 	public String toString() {
-		return "QuestionBean [title=" + title + ", content=" + content + ", m_no=" + m_no + ", m_email=" + m_email
-				+ ", m_id=" + m_id + "]";
+		return "QuestionBean [title=" + title + ", content=" + content + ", mNo=" + mNo + ", mEmail=" + mEmail
+				+ ", mId=" + mId + "]";
 	}
 
 }

@@ -48,26 +48,26 @@
 			</div>
 			<div class="col-md-5">
 				<form:form action="${root}member/support_pro" method="post" modelAttribute="tempSupporterBean">
-				<form:hidden path="s_no" value="${member.m_no}"/>
+				<form:hidden path="sNo" value="${member.mNo}"/>
 					<div class="p-3 p-lg-5 border">
 						<div class="form-group row">
 							<div class="col-md-6">
-								<form:label path="s_fname" class="text-black">성</form:label>
+								<form:label path="sFname" class="text-black">성</form:label>
 								<span class="text-danger">*</span>
-								<form:input path="s_fname" class="form-control" />
+								<form:input path="sFname" class="form-control" />
 							</div>
 							<div class="col-md-6">
-								<form:label path="s_lname" class="text-black">이름</form:label>
+								<form:label path="sLname" class="text-black">이름</form:label>
 								<span class="text-danger">*</span>
-								<form:input path="s_lname" class="form-control" />
+								<form:input path="sLname" class="form-control" />
 							</div>
 						</div>
 						<div class="forn-inline">
 							<div class="form-group row">
 								<div class="col-md-12 mb-3">
-									<form:label path="s_phone" class="text-black">전화번호</form:label>
+									<form:label path="sPhone" class="text-black">전화번호</form:label>
 									<span class="text-danger">*</span>
-									<form:input path="s_phone" class="form-control" placeholder="" />
+									<form:input path="sPhone" class="form-control" placeholder="" />
 								</div>
 							</div>
 						</div>

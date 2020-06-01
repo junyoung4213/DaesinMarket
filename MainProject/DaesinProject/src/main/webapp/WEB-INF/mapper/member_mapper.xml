@@ -8,7 +8,7 @@
 		<![CDATA[
 		select m_id
 		from member
-		where m_id =#{m_id}
+		where m_id =#{mId}
 		]]>
 	</select>
 
@@ -18,7 +18,7 @@
 		<![CDATA[
 		select m_id, m_email, m_pw
 		from member
-		where m_id =#{m_id} and m_email=#{m_email}
+		where m_id =#{mId} and m_email=#{mEmail}
 		]]>
 	</select>
 
@@ -27,14 +27,14 @@
 		<![CDATA[
 		select m_id
 		from member
-		where m_email =#{m_email}
+		where m_email =#{mEmail}
 		]]>
 	</select>
 
 	<insert id="addMemberInfo"
 		parameterType="com.daesin.beans.MemberBean"> 
 		<![CDATA[ insert into MEMBER(m_no, m_id, m_email, m_pw) values 
-		(member_seq.nextval, #{m_id}, #{m_email}, #{m_pw}) ]]>
+		(member_seq.nextval, #{mId}, #{mEmail}, #{mPw}) ]]>
 	</insert>
 	
 	<!-- <insert id="addSupporterInfo"
@@ -54,7 +54,7 @@
 		<![CDATA[ 
 		select *
 		from member 
-		where m_id =#{m_id} and m_pw=#{m_pw}
+		where m_id =#{mId} and m_pw=#{mPw}
 		]]>
 	</select>
 	
@@ -62,8 +62,8 @@
 		parameterType="com.daesin.beans.MemberBean"> 
 		<![CDATA[ 
 		update member 
-		set m_pw = #{m_pw} 
-		where m_no = #{m_no} 
+		set m_pw = #{mPw} 
+		where m_no = #{mNo} 
 		]]>
 	</update>
 

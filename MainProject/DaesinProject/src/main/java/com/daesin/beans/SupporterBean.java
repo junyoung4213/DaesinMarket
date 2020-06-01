@@ -3,53 +3,53 @@ package com.daesin.beans;
 public class SupporterBean {
 
 	// 서포터 번호
-	private int s_no;
+	private int sNo;
 	
 	// 서포터 first name
-	private String s_fname;
+	private String sFname;
 	
 	// 서포터 last name
-	private String s_lname;
+	private String sLname;
 	
 	// 서포터 전화번호
-	private String s_phone;
+	private String sPhone;
 
-	public int getS_no() {
-		return s_no;
+	public int getsNo() {
+		return sNo;
 	}
 
-	public void setS_no(int s_no) {
-		this.s_no = s_no;
+	public void setsNo(int sNo) {
+		this.sNo = sNo;
 	}
 
-	public String getS_fname() {
-		return s_fname;
+	public String getsFname() {
+		return sFname;
 	}
 
-	public void setS_fname(String s_fname) {
-		this.s_fname = s_fname;
+	public void setsFname(String sFname) {
+		this.sFname = sFname;
 	}
 
-	public String getS_lname() {
-		return s_lname;
+	public String getsLname() {
+		return sLname;
 	}
 
-	public void setS_lname(String s_lname) {
-		this.s_lname = s_lname;
+	public void setsLname(String sLname) {
+		this.sLname = sLname;
 	}
 
-	public String getS_phone() {
-		return s_phone;
+	public String getsPhone() {
+		return sPhone;
 	}
 
-	public void setS_phone(String s_phone) {
-		this.s_phone = s_phone;
+	public void setsPhone(String sPhone) {
+		this.sPhone = sPhone;
 	}
 
 	@Override
 	public String toString() {
-		return "SupporterBean [s_no=" + s_no + ", s_fname=" + s_fname + ", s_lname=" + s_lname + ", s_phone=" + s_phone
-				+ "]";
+		return "SupporterBean [sNo=" + sNo + ", sFname=" + sFname + ", sLname=" + sLname + ", sPhone=" + sPhone + "]";
 	}
 
+	
 }

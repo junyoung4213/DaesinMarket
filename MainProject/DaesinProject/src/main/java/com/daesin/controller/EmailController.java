@@ -62,8 +62,8 @@ public class EmailController {
 		MemberBean MemberVO = memberService.checkCorrectMember(tempMemberBean);
 
 		if (MemberVO != null) {
-			String password = MemberVO.getM_pw();
-			String userEmail = MemberVO.getM_email();
+			String password = MemberVO.getmPw();
+			String userEmail = MemberVO.getmEmail();
 			System.out.println(password);
 			String subject = "비밀번호";
 			StringBuilder sb = new StringBuilder();
@@ -83,9 +83,9 @@ public class EmailController {
 		if (questionBean != null) {
 			String title = questionBean.getTitle();
 			String content = questionBean.getContent();
-			String m_email = questionBean.getM_email();
-			String m_id = questionBean.getM_id();
-			int m_no = questionBean.getM_no();
+			String m_email = questionBean.getmEmail();
+			String m_id = questionBean.getmId();
+			int m_no = questionBean.getmNo();
 			StringBuilder sb = new StringBuilder();
 			sb.append("<h1>제목: " + title + "</h1>" + "<p>내용: " + content + "</p><br>" + "이메일주소: " + m_email + "<br>"
 					+ "고객번호: " + m_no);

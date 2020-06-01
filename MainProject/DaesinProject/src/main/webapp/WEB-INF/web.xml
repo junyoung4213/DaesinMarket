@@ -16,7 +16,7 @@
 		<!-- Spring MVC 설정을 위한 xml 파일을 지정한다. -->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/servlet-context.xml</param-value>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		
 		
@@ -33,7 +33,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/*context.xml</param-value>
 	</context-param>
-	<!-- 리스너설정 -->
+	<!-- 리스너설정 -->z
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>

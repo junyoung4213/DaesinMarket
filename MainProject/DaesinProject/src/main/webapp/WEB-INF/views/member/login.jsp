@@ -69,14 +69,14 @@
 						</c:if>
 						<div class="form-group row">
 							<div class="col-md-12">
-								<form:label path="m_id" class="text-black">아이디</form:label>
-								<form:input path="m_id" class="form-control" />
+								<form:label path="mId" class="text-black">아이디</form:label>
+								<form:input path="mId" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="col-md-12">
-								<form:label path="m_pw" class="text-black">비밀번호</form:label>
-								<form:password path="m_pw" class="form-control" />
+								<form:label path="mPw" class="text-black">비밀번호</form:label>
+								<form:password path="mPw" class="form-control" />
 							</div>
 						</div>
 						<br />

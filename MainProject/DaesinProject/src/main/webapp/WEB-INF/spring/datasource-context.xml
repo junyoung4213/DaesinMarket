@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- properties 파일의 내용을 사용할 수 있도록 Bean을 정의한다. -->
+	<bean
+		class='org.springframework.beans.factory.config.PropertyPlaceholderConfigurer'>
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/properties/db.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id='dataSource'
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${db.classname}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+</beans>

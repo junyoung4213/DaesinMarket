@@ -29,8 +29,8 @@
 
 function checkPwd() {
 	var f1 = document.forms[0];
-	var pw1 = f1.m_pw.value;
-	var pw2 = f1.m_pw2.value;
+	var pw1 = f1.mPw.value;
+	var pw2 = f1.mPw2.value;
 	if (pw1 != pw2) {
 		document.getElementById('checkPwd').style.color = "red";
 		document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
@@ -66,27 +66,27 @@ function checkPwd() {
 			<div class="card shadow col-md-5">
 				<div class="card-body">
 					<form:form action="${root }member/modify_pro" method="post" modelAttribute="modifyMemberBean">
-					<form:hidden path="m_no" value="${m_no}"/>
+					<form:hidden path="mNo" value="${mNo}"/>
 						<div class="form-group">
-							<form:label path="m_id">아이디</form:label>
-							<form:input path="m_id" class="form-control"
-								value="${m_id}" disabled="true" />
+							<form:label path="mId">아이디</form:label>
+							<form:input path="mId" class="form-control"
+								value="${mId}" disabled="true" />
 						</div>
 						<div class="form-group">
-							<form:label path="m_email">이메일</form:label>
-							<form:input path="m_email" class="form-control"
-								value="${m_email}" disabled="true" />
+							<form:label path="mEmail">이메일</form:label>
+							<form:input path="mEmail" class="form-control"
+								value="${mEmail}" disabled="true" />
 						</div>
 						<div class="form-group">
-							<form:label path="m_pw">새비밀번호</form:label>
-							<form:password path="m_pw" class="form-control" />
-							<form:errors path="m_pw" style="color:red" />
+							<form:label path="mPw">새비밀번호</form:label>
+							<form:password path="mPw" class="form-control" />
+							<form:errors path="mPw" style="color:red" />
 						</div>
 						<div class="form-group">
-							<form:label path="m_pw2">비밀번호 확인</form:label>
-							<form:password path="m_pw2" class="form-control"
+							<form:label path="mPw2">비밀번호 확인</form:label>
+							<form:password path="mPw2" class="form-control"
 								onkeyup="checkPwd()" />
-							<form:errors path="m_pw2" style="color:red" />
+							<form:errors path="mPw2" style="color:red" />
 							<div id="checkPwd">동일한 암호를 입력하세요.</div>
 						</div>
 						<div class="form-group">

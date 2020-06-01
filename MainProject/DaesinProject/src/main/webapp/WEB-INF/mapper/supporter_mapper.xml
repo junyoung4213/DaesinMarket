@@ -5,7 +5,7 @@
 	<insert id="addSupporterInfo"
 		parameterType="com.daesin.beans.SupporterBean"> 
 		<![CDATA[ INSERT INTO SUPPORTER(s_no,s_name,s_phone)
-		values(#{s_no},#{s_fname}||#{s_lname}, #{s_phone})
+		values(#{sNo},#{sFname}||#{sLname}, #{sPhone})
 		]]>
 	</insert>
 

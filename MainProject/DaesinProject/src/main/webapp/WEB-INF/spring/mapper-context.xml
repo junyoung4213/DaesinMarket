@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class='org.mybatis.spring.SqlSessionFactoryBean'
+		id='sqlSession'>
+		<property name="dataSource" ref='dataSource' />
+		<property name="mapperLocations"
+			value='/WEB-INF/mapper/*mapper.xml' />
+		<property name="configLocation"
+			value="/WEB-INF/mapper/mybatis-config.xml" />
+	</bean>
+
+	<bean class='org.mybatis.spring.SqlSessionTemplate'
+		id='sqlSessionTemplate' destroy-method="clearCache">
+		<constructor-arg index='0'>
+			<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+				<property name="dataSource" ref="dataSource" />
+				<property name="mapperLocations"
+					value="/WEB-INF/mapper/*mapper.xml" />
+				<property name="configLocation"
+					value="/WEB-INF/mapper/mybatis-config.xml" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!-- mybatis mapper auto scanning -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.daesin.dao" />
+	</bean>
+</beans>

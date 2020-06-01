@@ -20,12 +20,12 @@ public class UserValidator implements Validator {
 
 		String beanName = errors.getObjectName();
 
-		
 		if (beanName.equals("joinUserBean")) {
 
 			if (userBean.isMemberIdExist() == false) {
 				errors.rejectValue("user_id", "DontCheckUserIdExist");
 			}
 		}
+
 	}
 }

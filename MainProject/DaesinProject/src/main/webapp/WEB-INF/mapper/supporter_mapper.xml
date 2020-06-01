@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="supporter">
+	<insert id="addSupporterInfo"
+		parameterType="com.daesin.beans.SupporterBean"> 
+		<![CDATA[ INSERT INTO SUPPORTER(s_no,s_name,s_phone)
+		values(#{s_no},#{s_fname}||#{s_lname}, #{s_phone})
+		]]>
+	</insert>
+
+</mapper>

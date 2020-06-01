@@ -48,7 +48,7 @@
 			</div>
 			<div class="col-md-5">
 				<form:form action="${root}member/support_pro" method="post" modelAttribute="tempSupporterBean">
-				<form:hidden path="m_no" value="${member.m_no}"/>
+				<form:hidden path="s_no" value="${member.m_no}"/>
 					<div class="p-3 p-lg-5 border">
 						<div class="form-group row">
 							<div class="col-md-6">

@@ -3,15 +3,11 @@ package com.daesin.controller;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +15,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.daesin.beans.MemberBean;
+import com.daesin.beans.SupporterBean;
 import com.daesin.service.MemberService;
-import com.daesin.validator.UserValidator;
+import com.daesin.service.SupporterService;
 
 @Controller
 @RequestMapping("/member")
@@ -28,6 +25,9 @@ public class MemberController extends HomeController {
 
 	@Autowired
 	private MemberService memberService;
+
+	@Autowired
+	private SupporterService supporterService;
 
 	@ModelAttribute("random")
 	public int getRandomNumber() {
@@ -70,10 +70,8 @@ public class MemberController extends HomeController {
 	}
 
 	@PostMapping("/join_pro")
-	public String join_pro(@Valid @ModelAttribute("joinMemberBean") MemberBean joinMemberBean, BindingResult result) {
-		if (result.hasErrors()) {
-			return "member/join";
-		}
+	public String join_pro(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
+	
 		memberService.addMemberInfo(joinMemberBean);
 
 		return "member/join_success";
@@ -131,7 +129,7 @@ public class MemberController extends HomeController {
 	}
 
 	@GetMapping("/support")
-	public String support(@ModelAttribute("tempSupporterBean") MemberBean tempSupporterBean, HttpSession session) {
+	public String support(@ModelAttribute("tempSupporterBean") SupporterBean tempSupporterBean, HttpSession session) {
 
 		System.out.println(session.getAttribute("member").toString());
 
@@ -139,11 +137,11 @@ public class MemberController extends HomeController {
 	}
 
 	@PostMapping("/support_pro")
-	public String support_pro(@ModelAttribute("tempSupporterBean") MemberBean tempSupporterBean) {
-		
+	public String support_pro(@ModelAttribute("tempSupporterBean") SupporterBean tempSupporterBean) {
+
 		System.out.println(tempSupporterBean.toString());
-		
-		memberService.addSupporterInfo(tempSupporterBean);
+
+		supporterService.addSupporterInfo(tempSupporterBean);
 
 		return "member/support_success";
 	}
@@ -187,10 +185,8 @@ public class MemberController extends HomeController {
 		return "member/login_success";
 	}
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		UserValidator validator1 = new UserValidator();
-		binder.addValidators(validator1);
-
-	}
+	/* 추후에 수정할것. 유효성 검사.
+	 * @InitBinder public void initBinder(WebDataBinder binder) { UserValidator
+	 * validator1 = new UserValidator(); binder.addValidators(validator1); }
+	 */
 }

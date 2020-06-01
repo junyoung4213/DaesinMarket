@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.daesin.beans.MemberBean;
+import com.daesin.beans.SupporterBean;
 
 @Repository
 public class MemberDao {
@@ -29,9 +30,7 @@ public class MemberDao {
 
 	}
 	
-	public void addSupporterInfo(MemberBean tempSupporterBean) {
-		sqlSessionTemplate.insert("member.addSupporterInfo",tempSupporterBean);
-	}
+	
 
 	public MemberBean getLoginMemberInfo(MemberBean tempLoginMemberBean) {
 		return sqlSessionTemplate.selectOne("member.getLoginMemberInfo", tempLoginMemberBean);

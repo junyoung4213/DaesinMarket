@@ -5,4 +5,5 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		<bean id="loginMemberBean" class="com.daesin.beans.MemberBean" scope="session"/>
+		<bean id="tempSupporterBean" class="com.daesin.beans.SupporterBean"/>
 </beans>

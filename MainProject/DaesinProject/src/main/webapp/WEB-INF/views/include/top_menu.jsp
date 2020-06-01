@@ -12,7 +12,7 @@
 					<div class="row align-items-center">
 						<div
 							class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-							
+
 						</div>
 
 						<div
@@ -25,18 +25,20 @@
 						<div class="col-6 col-md-4 order-3 order-md-3 text-right">
 							<div class="site-top-icons">
 								<ul>
-									<li><a href="${root }member/login"><span
-											class="" style="font-size: 15px;">로그인</span></a>
-									</li>
-									<li><a href="${root }member/logout"><span
-											class="" style="font-size: 15px;">로그아웃</span></a>
-									</li>
-									<li><a href="${root }member/join"><span
-											class="" style="font-size: 15px;">회원가입</span></a>
-									</li>
-									<li><a href="${root }member/modify"><span
-											class="" style="font-size: 15px;">마이페이지</span></a>
-									</li>
+									<c:if test="${member == null}">
+										<li><a href="${root }member/login"><span class=""
+												style="font-size: 15px;">로그인</span></a></li>
+										<li><a href="${root }member/join"><span class=""
+												style="font-size: 15px;">회원가입</span></a></li>
+									</c:if>
+									<c:if test="${member != null}">
+										<li><a href="${root }member/logout"><span class=""
+												style="font-size: 15px;">로그아웃</span></a></li>
+										<li><a href="${root }member/modify"><span class=""
+												style="font-size: 15px;">마이페이지</span></a></li>
+									</c:if>
+
+
 
 									<li class="d-inline-block d-md-none ml-md-0"><a href="#"
 										class="site-menu-toggle js-menu-toggle"><span

@@ -5,8 +5,6 @@ import java.io.File;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MailServiceImpl implements MailService {
-	private Log log = LogFactory.getLog(MailServiceImpl.class);
 // org.springframework.mail.javamail.JavaMailSender
 	@Autowired
 	@Lazy

@@ -15,9 +15,9 @@ public class MainService {
 	@Autowired
 	private BoardDao boardDao;
 
-	public List<BoardBean> getMainList(int board_info_idx) {
+	public List<BoardBean> getMainList(int cNo) {
 		RowBounds rowBounds = new RowBounds(0, 5);
-		return boardDao.getContentList(board_info_idx, rowBounds);
+		return boardDao.getBoardList(cNo, rowBounds);
 
 	}
 }

@@ -2,35 +2,23 @@ package com.daesin.beans;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotBlank;
-
-import org.springframework.web.multipart.MultipartFile;
-
 //게시판 
 public class BoardBean {
 
 	// 카테고리번호
-	private Integer bCno;
+	private int bCno;
 
 	// 글번호
-	private Integer bNo;
+	private int bNo;
 
 	// 글제목
-	@NotBlank
 	private String bTitle;
 
 	// 글내용
-	@NotBlank
 	private String bContent;
 
-	// 이미지 파일
-	private MultipartFile upload_file;
-
-	// 파일명
-	private String content_file;
-
 	// 금액
-	private Integer bReward;
+	private int bReward;
 
 	// 도로명주소
 	private String bAddr1;
@@ -44,152 +32,128 @@ public class BoardBean {
 	// 마감시간
 	private Date bEndTime;
 
-	// 지원자수
-	private Integer bSnumber;
-
 	// 회원번호
-	private Integer bMno;
+	private int bMno;
 
 	// 진행상황
-	private Integer bStatus;
+	private int bStatus;
 
 	// 연락처
 	private String bPhone;
 
-	public Integer getBCno() {
+	// 지역
+	private String bLocation;
+
+	public int getbCno() {
 		return bCno;
 	}
 
-	public void setBCno(Integer bCno) {
+	public void setbCno(int bCno) {
 		this.bCno = bCno;
 	}
 
-	public Integer getBNo() {
+	public int getbNo() {
 		return bNo;
 	}
 
-	public void setBNo(Integer bNo) {
+	public void setbNo(int bNo) {
 		this.bNo = bNo;
 	}
 
-	public String getBTitle() {
+	public String getbTitle() {
 		return bTitle;
 	}
 
-	public void setBTitle(String bTitle) {
+	public void setbTitle(String bTitle) {
 		this.bTitle = bTitle;
 	}
 
-	public String getBContent() {
+	public String getbContent() {
 		return bContent;
 	}
 
-	public void setBContent(String bContent) {
+	public void setbContent(String bContent) {
 		this.bContent = bContent;
 	}
 
-	public Integer getBReward() {
+	public int getbReward() {
 		return bReward;
 	}
 
-	public void setBReward(Integer bReward) {
+	public void setbReward(int bReward) {
 		this.bReward = bReward;
 	}
 
-	public String getBAddr1() {
+	public String getbAddr1() {
 		return bAddr1;
 	}
 
-	public void setBAddr1(String bAddr1) {
+	public void setbAddr1(String bAddr1) {
 		this.bAddr1 = bAddr1;
 	}
 
-	public String getBAddr2() {
+	public String getbAddr2() {
 		return bAddr2;
 	}
 
-	public void setBAddr2(String bAddr2) {
+	public void setbAddr2(String bAddr2) {
 		this.bAddr2 = bAddr2;
 	}
 
-	public Date getBWriteTime() {
+	public Date getbWriteTime() {
 		return bWriteTime;
 	}
 
-	public void setBWriteTime(Date bWriteTime) {
+	public void setbWriteTime(Date bWriteTime) {
 		this.bWriteTime = bWriteTime;
 	}
 
-	public Date getBEndTime() {
+	public Date getbEndTime() {
 		return bEndTime;
 	}
 
-	public void setBEndTime(Date bEndTime) {
+	public void setbEndTime(Date bEndTime) {
 		this.bEndTime = bEndTime;
 	}
 
-	public Integer getBSnumber() {
-		return bSnumber;
-	}
-
-	public void setBSnumber(Integer bSnumber) {
-		this.bSnumber = bSnumber;
-	}
-
-	public Integer getBMno() {
+	public int getbMno() {
 		return bMno;
 	}
 
-	public void setBMno(Integer bMno) {
+	public void setbMno(int bMno) {
 		this.bMno = bMno;
 	}
 
-	public Integer getBStatus() {
+	public int getbStatus() {
 		return bStatus;
 	}
 
-	public void setBStatus(Integer bStatus) {
+	public void setbStatus(int bStatus) {
 		this.bStatus = bStatus;
 	}
 
-	public String getBPhone() {
+	public String getbPhone() {
 		return bPhone;
 	}
 
-	public void setBPhone(String bPhone) {
+	public void setbPhone(String bPhone) {
 		this.bPhone = bPhone;
 	}
 
-	public MultipartFile getUpload_file() {
-		return upload_file;
+	public String getbLocation() {
+		return bLocation;
 	}
 
-	public void setUpload_file(MultipartFile upload_file) {
-		this.upload_file = upload_file;
+	public void setbLocation(String bLocation) {
+		this.bLocation = bLocation;
 	}
 
-	public String getContent_file() {
-		return content_file;
+	@Override
+	public String toString() {
+		return "BoardBean [bCno=" + bCno + ", bNo=" + bNo + ", bTitle=" + bTitle + ", bContent=" + bContent
+				+ ", bReward=" + bReward + ", bAddr1=" + bAddr1 + ", bAddr2=" + bAddr2 + ", bWriteTime=" + bWriteTime
+				+ ", bEndTime=" + bEndTime + ", bMno=" + bMno + ", bStatus=" + bStatus + ", bPhone=" + bPhone
+				+ ", bLocation=" + bLocation + "]";
 	}
 
-	public void setContent_file(String content_file) {
-		this.content_file = content_file;
-	}
-
-	// Board 모델 복사
-	public void CopyData(BoardBean param) {
-		this.bCno = param.getBCno();
-		this.bNo = param.getBNo();
-		this.bTitle = param.getBTitle();
-		this.bContent = param.getBContent();
-		this.bReward = param.getBReward();
-		this.bAddr1 = param.getBAddr1();
-		this.bAddr2 = param.getBAddr2();
-		this.bWriteTime = param.getBWriteTime();
-		this.bEndTime = param.getBEndTime();
-		this.bSnumber = param.getBSnumber();
-		this.bMno = param.getBMno();
-		this.bStatus = param.getBStatus();
-		this.bPhone = param.getBPhone();
-	}
 }

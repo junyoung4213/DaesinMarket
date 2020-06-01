@@ -57,10 +57,9 @@
 						<li><a href="${root }member/about">ABOUT</a></li>
 						<li class="has-children"><a href="${root }board/main">Request</a>
 							<ul class="dropdown">
-								<li><a href="${root }board/main">배달</a></li>
-								<li><a href="${root }board/main">쇼핑</a></li>
-								<li><a href="${root }board/main">단순작업</a></li>
-								<li><a href="${root }board/main">역할대행</a></li>
+								<c:forEach var="obj" items="${menuList }">
+									<li><a href="${root }board/main?bCno=${obj.cNo}">${obj.cName }</a></li>
+								</c:forEach>
 							</ul></li>
 						<li class="has-children"><a href="#">Contact</a>
 							<ul class="dropdown">

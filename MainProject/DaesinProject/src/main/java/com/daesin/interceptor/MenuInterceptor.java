@@ -2,37 +2,28 @@ package com.daesin.interceptor;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.daesin.beans.BoardInfoBean;
-import com.daesin.beans.MemberBean;
-import com.daesin.service.TopMenuService;
+import com.daesin.beans.CategoryBean;
+import com.daesin.service.MenuService;
 
-public class TopMenuInterceptor implements HandlerInterceptor {
+public class MenuInterceptor implements HandlerInterceptor {
 
 	@Autowired
-	private TopMenuService topMenuService;
+	private MenuService menuService;
 	
-	@Resource(name = "loginUserBean")
-	@Lazy
-	private MemberBean loginUserBean;
-
-
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
-		List<BoardInfoBean> topMenuList = topMenuService.getTopMenuList();
+		List<CategoryBean> menuList = menuService.getMenuList();
 
-		request.setAttribute("topMenuList", topMenuList);
-		request.setAttribute("loginUserBean", loginUserBean);
+		request.setAttribute("menuList", menuList);
 
 		return true;
 	}

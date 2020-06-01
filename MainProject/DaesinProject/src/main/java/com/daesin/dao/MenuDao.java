@@ -6,17 +6,17 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.daesin.beans.BoardInfoBean;
+import com.daesin.beans.CategoryBean;
 
 @Repository
-public class TopMenuDao {
+public class MenuDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
-	public List<BoardInfoBean> getTopMenuList() {
-		List<BoardInfoBean> topMenuList = sqlSessionTemplate.selectList("topmenu.get_topmenu_list");
-		return topMenuList;
+	public List<CategoryBean> getMenuList() {
+		List<CategoryBean> menuList = sqlSessionTemplate.selectList("menu.get_menu_list");
+		return menuList;
 	}
 
 }

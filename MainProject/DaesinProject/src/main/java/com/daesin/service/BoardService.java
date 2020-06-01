@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.daesin.beans.BoardBean;
+import com.daesin.beans.BoardImgBean;
 import com.daesin.beans.MemberBean;
 import com.daesin.beans.PageBean;
 import com.daesin.dao.BoardDao;
@@ -32,9 +33,9 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 
-	@Resource(name = "loginUserBean")
+	@Autowired
 	@Lazy
-	private MemberBean loginUserBean;
+	private BoardBean boardBean;
 
 	private String saveUploadFile(MultipartFile upload_file) {
 
@@ -49,15 +50,15 @@ public class BoardService {
 		return file_name;
 	}
 
-	public void addContentInfo(BoardBean writeContentBean) {
+	public void addContentInfo(BoardImgBean writeContentBean) {
 
 		MultipartFile upload_file = writeContentBean.getUpload_file();
 
 		if (upload_file.getSize() > 0) {
 			String file_name = saveUploadFile(upload_file);
-			writeContentBean.setContent_file(file_name);
+			writeContentBean.setBiName(file_name);
 		}
-		writeContentBean.setBMno(loginUserBean.getmNo());
+		writeContentBean.setBiBno(boardBean.getbMno());
 
 		boardDao.addContentInfo(writeContentBean);
 
@@ -67,12 +68,12 @@ public class BoardService {
 		return boardDao.getBoardInfoName(board_info_idx);
 	}
 
-	public List<BoardBean> getContentList(int board_info_idx, int page) {
+	public List<BoardBean> getBoardList(int bCno, int page) {
 
 		int start = (page - 1) * page_listcnt;
 		RowBounds rowBounds = new RowBounds(start, page_listcnt);
 
-		return boardDao.getContentList(board_info_idx, rowBounds);
+		return boardDao.getBoardList(bCno, rowBounds);
 
 	}
 
@@ -80,12 +81,12 @@ public class BoardService {
 		return boardDao.getContentInfo(content_idx);
 	}
 
-	public void modifyContentInfo(BoardBean modifyContentBean) {
+	public void modifyContentInfo(BoardImgBean modifyContentBean) {
 		MultipartFile upload_file = modifyContentBean.getUpload_file();
 
 		if (upload_file.getSize() > 0) {
 			String file_name = saveUploadFile(upload_file);
-			modifyContentBean.setContent_file(file_name);
+			modifyContentBean.setBiName(file_name);
 		}
 		boardDao.modifyContentInfo(modifyContentBean);
 	}
@@ -94,8 +95,8 @@ public class BoardService {
 		boardDao.deleteContentInfo(content_idx);
 	}
 
-	public PageBean getContentCnt(int content_board_idx, int currentPage) {
-		int content_cnt = boardDao.getContentCnt(content_board_idx);
+	public PageBean getContentCnt(int bCno, int currentPage) {
+		int content_cnt = boardDao.getContentCnt(bCno);
 
 		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
 

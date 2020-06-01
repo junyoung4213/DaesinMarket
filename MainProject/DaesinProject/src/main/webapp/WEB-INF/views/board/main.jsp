@@ -57,100 +57,18 @@
 							<th class="text-center">금액</th>
 							<th class="text-center d-none d-md-table-cell">지역</th>
 							<th class="text-center d-none d-md-table-cell">작성시간</th>
-							<th class="text-center">지원자</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="${root }board/read">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="read.html">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="read.html">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="read.html">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="read.html">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="read.html">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="read.html">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="read.html">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="read.html">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
-						<tr>
-							<td class="text-center">10</td>
-							<td class="text-center"><a href="read.html">물건 대신 옮겨주실분
-									구합니다</a></td>
-							<td class="text-center">5,000원</td>
-							<td class="text-center d-none d-md-table-cell">서울</td>
-							<td class="text-center d-none d-md-table-cell">2018-12-12</td>
-							<td class="text-center">1명</td>
-						</tr>
+					<c:forEach var="obj" items="${boardList }">
+							<tr>
+								<td class="text-center d-none d-md-table-cell">${obj.bNo }</td>
+								<td class="text-center d-none d-md-table-cell"><a href='${root }board/read?bCno=${bCno}&bNo=${obj.bNo}&page=${page}'>${obj.bTitle}</a></td>
+								<td class="text-center d-none d-md-table-cell">${obj.bReward }</td>
+								<td class="text-center d-none d-md-table-cell">${obj.bLocation}</td>
+								<td class="text-center d-none d-md-table-cell">${obj.bWriteTime}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 

@@ -12,38 +12,34 @@
 		</selectKey>
 	
 	<![CDATA[
-	insert into board(content_idx,b_title,b_content,
-	b_mno,b_no, b_write_time) 
-	values (#{content_idx}, #{b_title}, #{b_content}, #{b_mno}, #{b_no}, sysdate)
+	insert into content_table(content_idx,content_subject,content_text,
+	content_file,content_writer_idx,content_board_idx, content_date) 
+	values (#{content_idx}, #{content_subject}, #{content_text}, #{content_file, jdbcType=VARCHAR},
+		#{content_writer_idx}, #{content_board_idx}, sysdate)
 	]]>
-	</insert>
-
-
-
+	</insert> -->
 
 	<select id="getBoardInfoName" parameterType="java.lang.Integer"
 		resultType="java.lang.String">
 	<![CDATA[
-	select board_info_name
-	from board_info_table
-	where board_info_idx=#{board_info_idx}
+	select c_name
+	from category
+	where c_no=#{cNo}
 	]]>
 	</select>
 
-	<select id="getContentList" parameterType="java.lang.Integer"
+	<select id="getBoardList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select a1.content_idx, a1.content_subject, a2.user_name as content_writer_name,
-			to_char(a1.content_date, 'YYYY-MM-DD') as content_date
-			from content_table a1, user_table a2
-			where a1.content_writer_idx=a2.user_idx
-			and a1.content_board_idx=#{board_info_idx}
-			order by a1.content_idx desc
+	select b_cno, b_no, b_title, b_reward, b_location, to_char(b_write_time, 'YYYY-MM-DD')
+			from board
+			where b_cno=#{bCno}
+			order by b_no desc
 	]]>
 	</select>
 
-	<select id="getContentInfo" parameterType="java.lang.Integer"
-		resultType="com.daesin.beans.BoardBean">
+	<!-- <select id="getContentInfo" parameterType="java.lang.Integer"
+		resultType="kr.co.softcampus.beans.ContentBean">
 	<![CDATA[
 	select a2.user_name as content_writer_name,
 	to_char(a1.content_date, 'YYYY-MM-DD') as content_date,
@@ -51,10 +47,10 @@
 	from content_table a1, user_table a2
 	where a1.content_writer_idx = a2.user_idx and content_idx=${content_idx}
 	]]>
-	</select>
+	</select> -->
 
-	<update id="modifyContentInfo"
-		parameterType="com.daesin.beans.BoardBean">
+	<!-- <update id="modifyContentInfo"
+		parameterType="kr.co.softcampus.beans.ContentBean">
 	<![CDATA[
 	update content_table
 	set content_subject = #{content_subject}, content_text=#{content_text},
@@ -67,13 +63,13 @@
 	<![CDATA[
 	delete from content_table where content_idx=#{content_idx}
 	]]>
-	</select>
+	</select> -->
 
 	<select id="getContentCnt" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">
 	<![CDATA[
-	select count(*) from content_table where content_board_idx = #{content_board_idx}
+	select count(*) from board where b_cno = #{bCno}
 	]]>
-	</select> -->
+	</select>
 
 </mapper>

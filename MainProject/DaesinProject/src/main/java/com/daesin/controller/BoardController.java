@@ -43,37 +43,38 @@ public class BoardController {
 
 		return "board/main";
 	}
-	
+
 	@GetMapping("/write")
 	public String write(@ModelAttribute("writeContentBean") BoardBean writeContentBean,
 			@RequestParam("bCno") int bCno) {
 
 		writeContentBean.setbCno(bCno);
-		
+
 		return "board/write";
 	}
 
 	@PostMapping("/write_pro")
 	public String write_pro(@ModelAttribute("writeContentBean") BoardBean writeContentBean) {
 
+		System.out.println(writeContentBean.toString());
 		boardService.addContentInfo(writeContentBean);
 
 		return "board/write_success";
 	}
 
-//	@GetMapping("/read")
-//	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,
-//			Model model) {
-//		model.addAttribute("bCno", bCno);
-//		model.addAttribute("bNo", bNo);
-//
-//		BoardBean readContentBean = boardService.getContentInfo(bNo);
-//		model.addAttribute("readContentBean", readContentBean);
-//
-//		model.addAttribute("page", page);
-//
-//		return "board/read";
-//	}
+	@GetMapping("/read")
+	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,
+			Model model) {
+		model.addAttribute("bCno", bCno);
+		model.addAttribute("bNo", bNo);
+
+		BoardBean readContentBean = boardService.getContentInfo(bNo);
+		model.addAttribute("readContentBean", readContentBean);
+
+		model.addAttribute("page", page);
+
+		return "board/read";
+	}
 //
 
 //

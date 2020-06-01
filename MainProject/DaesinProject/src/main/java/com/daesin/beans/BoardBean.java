@@ -22,7 +22,7 @@ public class BoardBean {
 	// 금액
 	private int bReward;
 
-	// 도로명주소
+	// 주소
 	private String bAddr1;
 
 	// 상세주소

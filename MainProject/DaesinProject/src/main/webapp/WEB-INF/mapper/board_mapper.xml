@@ -13,9 +13,9 @@
 	
 	<![CDATA[
 	insert into board(b_title,b_content,
-	bi_name,b_reward, b_end_time, b_mno,b_cno, b_write_time) 
+	bi_name,b_reward, b_addr1, b_addr2, b_end_time, b_mno,b_cno, b_write_time) 
 	values (#{bTitle}, #{bContent}, #{biName, jdbcType=VARCHAR},
-		#{bReward},#{bEndTime},	#{bMno}, #{bCno}, sysdate)
+		#{bReward}, #{bAddr1},#{bAddr2}, #{bEndTime}, #{bMno}, #{bCno}, sysdate)
 	]]>
 	</insert>
 
@@ -31,23 +31,23 @@
 	<select id="getBoardList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select b_cno, b_no, b_title, b_reward, b_location, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time
+	select b_cno, b_no, b_mno, b_title, b_reward, b_location, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time
 			from board
 			where b_cno=#{bCno}
 			order by b_no desc
 	]]>
 	</select>
 
-	<!-- <select id="getContentInfo" parameterType="java.lang.Integer"
-		resultType="kr.co.softcampus.beans.ContentBean">
+	<select id="getContentInfo" parameterType="java.lang.Integer"
+		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
 	select a2.user_name as content_writer_name,
-	to_char(a1.content_date, 'YYYY-MM-DD') as content_date,
+	TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time,
 	a1.content_subject, a1.content_text, a1.content_file, a1.content_writer_idx 
-	from content_table a1, user_table a2
+	from board a1, member a2
 	where a1.content_writer_idx = a2.user_idx and content_idx=${content_idx}
 	]]>
-	</select> -->
+	</select>
 
 	<!-- <update id="modifyContentInfo"
 		parameterType="kr.co.softcampus.beans.ContentBean">

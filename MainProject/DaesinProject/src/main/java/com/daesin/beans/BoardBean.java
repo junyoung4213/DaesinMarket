@@ -1,6 +1,6 @@
 package com.daesin.beans;
 
-import java.util.Date;
+import java.sql.Date;
 
 //게시판 
 public class BoardBean {

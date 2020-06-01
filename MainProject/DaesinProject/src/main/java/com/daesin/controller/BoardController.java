@@ -28,8 +28,8 @@ public class BoardController {
 	private BoardService boardService;
 
 	@GetMapping("/main")
-	public String main(@RequestParam("bCno") int bCno,
-			@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	public String main(@RequestParam("bCno") int bCno, @RequestParam(value = "page", defaultValue = "1") int page,
+			Model model) {
 		model.addAttribute("bCno", bCno);
 
 		String cName = boardService.getBoardInfoName(bCno);
@@ -48,15 +48,14 @@ public class BoardController {
 	}
 
 //	@GetMapping("/read")
-//	public String read(@RequestParam("board_info_idx") int board_info_idx, @RequestParam("content_idx") int content_idx,
-//			@RequestParam("page") int page, Model model) {
-//		model.addAttribute("board_info_idx", board_info_idx);
-//		model.addAttribute("content_idx", content_idx);
+//	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,
+//			Model model) {
+//		model.addAttribute("bCno", bCno);
+//		model.addAttribute("bNo", bNo);
 //
-//		BoardBean readContentBean = boardService.getContentInfo(content_idx);
+//		BoardBean readContentBean = boardService.getContentInfo(bNo);
 //		model.addAttribute("readContentBean", readContentBean);
 //
-//		model.addAttribute("loginUserBean", loginUserBean);
 //		model.addAttribute("page", page);
 //
 //		return "board/read";
@@ -138,4 +137,3 @@ public class BoardController {
 //	}
 
 }
-

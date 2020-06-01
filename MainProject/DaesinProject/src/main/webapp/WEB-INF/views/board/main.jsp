@@ -38,7 +38,7 @@
 				<div class="col-md-12 mb-0">
 					<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
 						href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span> <strong
-						class="text-black">배달</strong>
+						class="text-black">${cName }</strong>
 				</div>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 	<div class="container" style="margin-top: 100px;">
 		<div class="card shadow">
 			<div class="card-body">
-				<h4 class="card-title text-center mb-5">배달 게시판</h4>
+				<h4 class="card-title text-center mb-5">${cName} 게시판</h4>
 				<table class="table table-hover mb-5" id="board_list">
 					<thead>
 						<tr>

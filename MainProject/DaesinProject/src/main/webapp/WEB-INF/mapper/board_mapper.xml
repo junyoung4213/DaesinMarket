@@ -31,7 +31,7 @@
 	<select id="getBoardList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select b_cno, b_no, b_title, b_reward, b_location, to_char(b_write_time, 'YYYY-MM-DD')
+	select b_cno, b_no, b_title, b_reward, b_location, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time
 			from board
 			where b_cno=#{bCno}
 			order by b_no desc

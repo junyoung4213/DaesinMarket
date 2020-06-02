@@ -43,6 +43,8 @@
 		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
 		$('#bAddr1').val(roadAddrPart1.substring(0,addrDetail.length));
 		$('#bAddr2').val(roadAddrPart1.substring(addrDetail.length+2,roadAddrPart1.length));
+		var list = roadAddrPart1.split(" ");
+		$('#bAddr3').val(list[0] +" "+ list[1])
 	}
 </script>
 
@@ -113,6 +115,9 @@
 							<form:input path="bAddr2" class="form-control"
 								placeholder="상세주소" required="true" readonly="true" />
 						</div>
+						
+						<form:hidden path="bAddr3" value=""/>
+						
 						<div class="form-group">
 							<form:label path="bEndTime">마감기간</form:label>
 							<form:input type="date" path="bEndTime" class="form-control" />

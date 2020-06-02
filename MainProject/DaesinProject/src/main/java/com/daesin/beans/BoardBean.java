@@ -28,6 +28,9 @@ public class BoardBean {
 	// 상세주소
 	private String bAddr2;
 
+	// 지역
+	private String bAddr3;
+
 	// 작성시간
 	private Date bWriteTime;
 
@@ -108,6 +111,14 @@ public class BoardBean {
 		this.bAddr2 = bAddr2;
 	}
 
+	public String getbAddr3() {
+		return bAddr3;
+	}
+
+	public void setbAddr3(String bAddr3) {
+		this.bAddr3 = bAddr3;
+	}
+
 	public Date getbWriteTime() {
 		return bWriteTime;
 	}
@@ -175,9 +186,10 @@ public class BoardBean {
 	@Override
 	public String toString() {
 		return "BoardBean [bCno=" + bCno + ", bNo=" + bNo + ", bTitle=" + bTitle + ", bContent=" + bContent
-				+ ", bReward=" + bReward + ", bAddr1=" + bAddr1 + ", bAddr2=" + bAddr2 + ", bWriteTime=" + bWriteTime
-				+ ", bEndTime=" + bEndTime + ", bMno=" + bMno + ", bStatus=" + bStatus + ", bPhone=" + bPhone
-				+ ", bLocation=" + bLocation + ", biName=" + biName + ", upload_file=" + upload_file + "]";
+				+ ", bReward=" + bReward + ", bAddr1=" + bAddr1 + ", bAddr2=" + bAddr2 + ", bAddr3=" + bAddr3
+				+ ", bWriteTime=" + bWriteTime + ", bEndTime=" + bEndTime + ", bMno=" + bMno + ", bStatus=" + bStatus
+				+ ", bPhone=" + bPhone + ", bLocation=" + bLocation + ", biName=" + biName + ", upload_file="
+				+ upload_file + "]";
 	}
 
 }

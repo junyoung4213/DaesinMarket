@@ -63,7 +63,7 @@
 							<td class="text-center d-none d-md-table-cell"><a
 								href='${root }board/read?bCno=${bCno}&bNo=${obj.bNo}&page=${page}'>${obj.bTitle}</a></td>
 							<td class="text-center d-none d-md-table-cell">${obj.bReward }</td>
-							<td class="text-center d-none d-md-table-cell">${obj.bLocation}</td>
+							<td class="text-center d-none d-md-table-cell">${obj.bAddr3}</td>
 							<td class="text-center d-none d-md-table-cell">${obj.bWriteTime}</td>
 						</tr>
 					</c:forEach>
@@ -111,14 +111,13 @@
 								class="page-link">다음</a></li>
 						</c:otherwise>
 					</c:choose>
-
+					<li><a href="${root }board/write?bCno=${bCno}" class="btn btn-primary">글쓰기</a></li>
 				</ul>
+					
+
 			</div>
 
-			<div class="text-right">
-				<a href="${root }board/write?bCno=${bCno}"
-					class="btn btn-primary">글쓰기</a>
-			</div>
+
 		</div>
 	</div>
 </div>

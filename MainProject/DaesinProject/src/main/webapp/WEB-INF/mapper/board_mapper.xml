@@ -13,9 +13,9 @@
 	
 	<![CDATA[
 	insert into board(b_title,b_content,
-	bi_name,b_reward, b_addr1, b_addr2, b_end_time, b_mno,b_cno, b_write_time) 
+	bi_name,b_reward, b_addr1, b_addr2, b_addr3, b_end_time, b_mno,b_cno, b_write_time) 
 	values (#{bTitle}, #{bContent}, #{biName, jdbcType=VARCHAR},
-		#{bReward}, #{bAddr1},#{bAddr2}, #{bEndTime}, #{bMno}, #{bCno}, sysdate)
+		#{bReward}, #{bAddr1},#{bAddr2},#{bAddr3}, #{bEndTime}, #{bMno}, #{bCno}, sysdate)
 	]]>
 	</insert>
 
@@ -31,7 +31,7 @@
 	<select id="getBoardList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select b_cno, b_no, b_mno, b_title, b_reward, b_location, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time
+	select b_cno, b_no, b_mno, b_title, b_reward, b_location, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3
 			from board
 			where b_cno=#{bCno} and (b_end_time > sysdate)
 			order by b_no desc
@@ -41,7 +41,7 @@
 	<select id="getContentInfo" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select b_no, b_title, b_content, bi_name, b_reward, b_addr1, b_addr2, 
+	select b_no, b_title, b_content, bi_name, b_reward, b_addr1, b_addr2,
 	TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time,
 	TO_CHAR(b_end_time, 'YYYY-MM-DD') as b_end_time
 	from board

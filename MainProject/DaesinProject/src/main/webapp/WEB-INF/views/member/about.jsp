@@ -76,7 +76,7 @@
               data-aos="fade"
               data-aos-delay=""
             >
-              <a class="block-2-item" href="${root }board/main">
+              <a class="block-2-item" href="${root }board/main?bCno=1">
                 <figure class="image">
                   <img
                     src="${root }images/delivery.jpg"
@@ -95,7 +95,7 @@
               data-aos="fade"
               data-aos-delay="100"
             >
-              <a class="block-2-item" href="${root }board/main">
+              <a class="block-2-item" href="${root }board/main?bCno=2">
                 <figure class="image">
                   <img
                     src="${root }images/shopping.jpg"
@@ -114,7 +114,7 @@
               data-aos="fade"
               data-aos-delay="200"
             >
-              <a class="block-2-item" href="${root }board/main">
+              <a class="block-2-item" href="${root }board/main?bCno=3">
                 <figure class="image">
                   <img
                     src="${root }images/work.jpg"
@@ -133,7 +133,7 @@
               data-aos="fade"
               data-aos-delay="200"
             >
-              <a class="block-2-item" href="${root }board/main">
+              <a class="block-2-item" href="${root }board/main?bCno=4">
                 <figure class="image">
                   <img
                     src="${root }images/actor.jpg"

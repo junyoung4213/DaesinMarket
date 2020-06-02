@@ -57,6 +57,14 @@
 		where m_no = #{mNo} 
 		]]>
 	</update>
+	
+	<insert id="addSupporterInfo"
+		parameterType="com.daesin.beans.MemberBean"> 
+		<![CDATA[ UPDATE MEMBER
+		SET s_name=#{sFname}||#{sLname},s_phone=#{sPhone}
+		WHERE m_no=#{mNo}
+		]]>
+	</insert>
 
 </mapper>
 

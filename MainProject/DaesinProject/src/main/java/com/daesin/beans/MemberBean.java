@@ -46,6 +46,7 @@ public class MemberBean {
 	private String sFname;
 	private String sLname;
 	private String sPhone;
+	private String sName;
 	private int sScore;
 
 	public MemberBean() {
@@ -139,6 +140,14 @@ public class MemberBean {
 
 	public void setsLname(String sLname) {
 		this.sLname = sLname;
+	}
+
+	public String getsName() {
+		return sName;
+	}
+
+	public void setsName(String sName) {
+		this.sName = sName;
 	}
 
 	public String getsPhone() {

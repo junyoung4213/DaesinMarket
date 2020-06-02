@@ -1,55 +1,76 @@
 package com.daesin.beans;
 
-public class SupporterBean {
+public class CommentBean {
 
-	// 서포터 번호
-	private int sNo;
-	
-	// 서포터 first name
-	private String sFname;
-	
-	// 서포터 last name
-	private String sLname;
-	
-	// 서포터 전화번호
-	private String sPhone;
+	// 댓글번호
+	private int coNum;
 
-	public int getsNo() {
-		return sNo;
+	// 서포터번호
+	private int coSno;
+
+	// 글 번호
+	private int coBno;
+
+	// 메세지
+	private String coMsg;
+
+	// 서포터 이름
+	private String coName;
+
+	private String coDate;
+
+	public int getCoNum() {
+		return coNum;
 	}
 
-	public void setsNo(int sNo) {
-		this.sNo = sNo;
+	public void setCoNum(int coNum) {
+		this.coNum = coNum;
 	}
 
-	public String getsFname() {
-		return sFname;
+	public int getCoSno() {
+		return coSno;
 	}
 
-	public void setsFname(String sFname) {
-		this.sFname = sFname;
+	public void setCoSno(int coSno) {
+		this.coSno = coSno;
 	}
 
-	public String getsLname() {
-		return sLname;
+	public int getCoBno() {
+		return coBno;
 	}
 
-	public void setsLname(String sLname) {
-		this.sLname = sLname;
+	public void setCoBno(int coBno) {
+		this.coBno = coBno;
 	}
 
-	public String getsPhone() {
-		return sPhone;
+	public String getCoMsg() {
+		return coMsg;
 	}
 
-	public void setsPhone(String sPhone) {
-		this.sPhone = sPhone;
+	public void setCoMsg(String coMsg) {
+		this.coMsg = coMsg;
+	}
+
+	public String getCoName() {
+		return coName;
+	}
+
+	public void setCoName(String coName) {
+		this.coName = coName;
+	}
+
+	public String getCoDate() {
+		return coDate;
+	}
+
+	public void setCoDate(String coDate) {
+		this.coDate = coDate;
 	}
 
 	@Override
 	public String toString() {
-		return "SupporterBean [sNo=" + sNo + ", sFname=" + sFname + ", sLname=" + sLname + ", sPhone=" + sPhone + "]";
+		return "CommentBean [coNum=" + coNum + ", coSno=" + coSno + ", coBno=" + coBno + ", coMsg=" + coMsg
+				+ ", coName=" + coName + ", coDate=" + coDate + "]";
 	}
 
-	
 }

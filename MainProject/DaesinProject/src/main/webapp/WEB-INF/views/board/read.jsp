@@ -45,9 +45,9 @@
 
 <div class="container" style="margin-top: 100px">
 	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6 mb-5">
-			<div class="col-md-12 text-center">
+		<div class="col-lg-3"></div>
+		<div class="col-lg-6 mb-5">
+			<div class="col-lg-12 text-center">
 				<h1 class="text-black">${cName }의뢰</h1>
 				<br />
 				<div class="border-bottom"></div>
@@ -109,8 +109,7 @@
 					</div>
 
 					<div class="form-group">
-						<div class="text-right">
-							<a href="${root }board/request" class="btn btn-success">신청하기</a>
+						<div class="text-center">
 							<a href="${root }board/main?bCno=${bCno}&page=${page}"
 								class="btn btn-primary">목록보기</a> <a
 								href="${root }board/modify?bCno=${bCno }&bNo=${bNo}&page=${page}"
@@ -121,8 +120,55 @@
 					</div>
 				</div>
 			</div>
+			<%-- <div class="card shadow mt-5">
+				<div class="card-body">
+					<div class="form-group">
+						<h3>서포터 ${readCommentBean.coName}</h3>
+					</div>
+					<div class="form-group">
+						<h3>코멘트</h3>
+						<textarea id="bContent" name="bContent" class="form-control"
+							rows="2" style="resize: none" disabled="disabled">${readCommentBean.coMsg }</textarea>
+					</div>
+				</div>
+			</div> --%>
+
+			<!-- 댓글 구현부  -->
+			<div class="container col-md-12">
+				<form id="commentForm" name="commentForm" method="post">
+					<br> <br>
+					<div>
+						<div>
+							<span><strong>신청자수</strong></span> <span id="cCnt"></span>명
+						</div>
+						<div>
+							<table class="table">
+								<tr>
+									<td><textarea class="col-md-12" rows="3" cols="30"
+											id="coMsg" name="coMsg" placeholder="한마디를 입력하세요"></textarea>
+										<br>
+										<div class="card">
+											<button type="button" onClick="request()" class="btn btn-success">신청하기</button>
+										</div></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<input type="hidden" id="coBno" name="coBno"
+						value="${readContentBean.bNo }" /> <input type="hidden"
+						id="coSno" name="coSno" value="${member.mNo}" /> <input
+						type="hidden" id="coDate" name="coDate" value="" />
+				</form>
+			</div>
+			<div class="container text-center">
+				<form id="commentListForm" name="commentListForm" method="post">
+					<div id="commentList"></div>
+				</form>
+			</div>
+			<!-- //댓글 구현부 -->
 		</div>
 	</div>
+
 </div>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 
@@ -140,6 +186,99 @@
 		if (confirm("정말 삭제하시겠습니까?")) {
 			location.href = "delete?bCno=${bCno}&bNo=${bNo}"
 		}
+	}
+	
+	function request(){
+		var result = confirm("정말 신청하시겠습니까?");
+		
+		if(result==true){
+			fn_comment();
+		}
+	}
+	
+	/**
+	 * 초기 페이지 로딩시 댓글 불러오기
+	 */
+	$(function() {
+		getCommentList();
+
+		
+
+	});
+
+
+	/*
+	 * 댓글 등록하기(Ajax)
+	 */
+	function fn_comment() {
+		var today = new Date();
+		$('#coDate').val(today.toLocaleString())
+		$.ajax({
+			type : 'POST',
+			url : "<c:url value='/board/addComment.do'/>",
+			data : $("#commentForm").serialize(),
+			success : function(data) {
+				if (data == "success") {
+					getCommentList();
+					$("#coMsg").val("");
+					alert("신청에 성공하셨습니다!")
+				}
+			},
+			error : function(request, status, error) {
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+
+		});
+	}
+
+
+	/**
+	 * 댓글 불러오기(Ajax)
+	 */
+	function getCommentList() {
+
+		$.ajax({
+					type : 'GET',
+					url : "<c:url value='/board/commentList.do'/>",
+					dataType : "json",
+					data : $("#commentForm").serialize(),
+					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					success : function(data) {
+
+						var html = "";
+						var cCnt = data.length;
+
+						if (data.length > 0) {
+
+							$.each(data, function(key, value){ 
+								
+								html += "<div class='card shadow m-2 p-2' style='text-align:left'>"
+								html += "<h6>서포터 이름 : " + value.co_name + "<br>";
+								html += "작성시간 : " + value.co_date + "<br>";
+								html += "내용 : " + value.co_msg + "</h6>";
+								html += "</div>";
+
+				            });
+
+						} else {
+
+							html += "<div>";
+							html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+							html += "</table></div>";
+							html += "</div>";
+
+						}
+
+						$("#cCnt").html(cCnt);
+						$("#commentList").html(html);
+
+					},
+					error : function(request, status, error) {
+
+					}
+
+				});
+
 	}
 </script>
 </body>

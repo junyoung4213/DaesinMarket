@@ -55,7 +55,7 @@
 					<ul class="site-menu js-clone-nav d-none d-md-block" id="menu">
 						<li><a href="${root }main">HOME</a></li>
 						<li><a href="${root }member/about">ABOUT</a></li>
-						<li class="has-children"><a href="${root }board/main">Request</a>
+						<li class="has-children"><a>Request</a>
 							<ul class="dropdown">
 								<c:forEach var="obj" items="${menuList }">
 									<li><a href="${root }board/main?bCno=${obj.cNo}">${obj.cName }</a></li>

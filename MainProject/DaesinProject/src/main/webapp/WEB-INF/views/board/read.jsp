@@ -35,10 +35,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a>
-				<span class="mx-2 mb-0">/</span>
-				<a href="${root }board/main">Request</a>
-				<span class="mx-2 mb-0">/</span> <strong class="text-black">${cName }</strong>
+				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
+					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
+				<strong class="text-black">${cName }</strong>
 			</div>
 		</div>
 	</div>
@@ -56,7 +55,6 @@
 			</div>
 			<div class="card shadow">
 				<div class="card-body">
-
 					<div class="form-group">
 						<label for="bTitle">제목</label>
 						<input type="text" id="bTitle" name="bTitle" class="form-control"
@@ -66,9 +64,7 @@
 					<div class="form-group">
 						<label for="bContent">내용</label>
 						<textarea id="bContent" name="bContent" class="form-control"
-							rows="10" style="resize: none" disabled="disabled">
-							${readContentBean.bContent }
-							</textarea>
+							rows="10" style="resize: none" disabled="disabled">${readContentBean.bContent }</textarea>
 					</div>
 
 					<c:if test="${readContentBean.biName != null}">
@@ -116,8 +112,9 @@
 						<div class="text-right">
 							<a href="${root }board/request" class="btn btn-success">신청하기</a>
 							<a href="${root }board/main?bCno=${bCno}&page=${page}"
-								class="btn btn-primary">목록보기</a>
-							<a href="${root }board/modify?bCno=${bCno }&bNo=${bNo}&page=${page}" class="btn btn-info">수정하기</a>
+								class="btn btn-primary">목록보기</a> <a
+								href="${root }board/modify?bCno=${bCno }&bNo=${bNo}&page=${page}"
+								class="btn btn-info">수정하기</a>
 							<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button>
 							<a href="${root }board/report" class="btn btn-danger">신고하기</a>
 						</div>

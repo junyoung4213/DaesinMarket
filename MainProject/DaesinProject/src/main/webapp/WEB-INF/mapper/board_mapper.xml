@@ -31,9 +31,9 @@
 	<select id="getBoardList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select b_cno, b_no, b_mno, b_title, b_reward, b_location, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time
+	select b_cno, b_no, b_mno, b_title, b_reward, b_location, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time
 			from board
-			where b_cno=#{bCno}
+			where b_cno=#{bCno} and (b_end_time > sysdate)
 			order by b_no desc
 	]]>
 	</select>
@@ -60,11 +60,11 @@
 	]]>
 	</update>
 
-	<!-- <select id="deleteContentInfo" parameterType="java.lang.Integer">
+	<select id="deleteContentInfo" parameterType="java.lang.Integer">
 	<![CDATA[
-	delete from content_table where content_idx=#{content_idx}
+	delete from board where b_no=#{bNo}
 	]]>
-	</select> -->
+	</select>
 
 	<select id="getContentCnt" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">

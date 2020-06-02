@@ -113,21 +113,22 @@ public class BoardController {
 
 		return "board/modify_success";
 	}
-//
-//	@GetMapping("/delete")
-//	public String delete(@RequestParam("board_info_idx") int board_info_idx,
-//			@RequestParam("content_idx") int content_idx, Model model) {
-//
-//		boardService.deleteContentInfo(content_idx);
-//
-//		model.addAttribute("board_info_idx", board_info_idx);
-//
-//		return "board/delete";
-//	}
-//
-//	@GetMapping("/not_writer")
-//	public String not_writer() {
-//		return "board/not_writer";
-//	}
+
+	@GetMapping("/delete")
+	public String delete(@RequestParam("bNo") int bNo,
+			@RequestParam("bCno") int bCno, Model model) {
+
+		boardService.deleteContentInfo(bNo);
+
+		model.addAttribute("bNo", bNo);
+		model.addAttribute("bCno",bCno);
+
+		return "board/delete";
+	}
+
+	@GetMapping("/not_writer")
+	public String not_writer() {
+		return "board/not_writer";
+	}
 
 }

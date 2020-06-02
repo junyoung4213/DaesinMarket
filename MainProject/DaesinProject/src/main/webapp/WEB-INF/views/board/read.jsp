@@ -138,7 +138,7 @@
 <script>
 	var deletePopup = function() {
 		if (confirm("정말 삭제하시겠습니까?")) {
-			location.href = "delete"
+			location.href = "delete?bCno=${bCno}&bNo=${bNo}"
 		}
 	}
 </script>

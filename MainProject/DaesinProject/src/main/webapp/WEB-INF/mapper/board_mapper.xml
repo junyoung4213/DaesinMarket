@@ -49,17 +49,18 @@
 	]]>
 	</select>
 
-	<!-- <update id="modifyContentInfo"
-		parameterType="kr.co.softcampus.beans.ContentBean">
+	<update id="modifyContentInfo"
+		parameterType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	update content_table
-	set content_subject = #{content_subject}, content_text=#{content_text},
-	content_file = #{content_file, jdbcType=VARCHAR}
-	where content_idx = #{content_idx}
+	update board
+	set b_title = #{bTitle}, b_content=#{bContent},
+	bi_name = #{biName, jdbcType=VARCHAR}, b_reward = #{bReward},
+	b_addr1 = #{bAddr1}, b_addr2 =#{bAddr2}, b_end_time = #{bEndTime}
+	where b_no = #{bNo}
 	]]>
 	</update>
 
-	<select id="deleteContentInfo" parameterType="java.lang.Integer">
+	<!-- <select id="deleteContentInfo" parameterType="java.lang.Integer">
 	<![CDATA[
 	delete from content_table where content_idx=#{content_idx}
 	]]>

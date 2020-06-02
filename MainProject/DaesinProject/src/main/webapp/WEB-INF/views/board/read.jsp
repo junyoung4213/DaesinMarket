@@ -35,9 +35,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
-					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
-				<strong class="text-black">${cName }</strong>
+				<a href="${root }main">Home</a>
+				<span class="mx-2 mb-0">/</span>
+				<a href="${root }board/main">Request</a>
+				<span class="mx-2 mb-0">/</span> <strong class="text-black">${cName }</strong>
 			</div>
 		</div>
 	</div>
@@ -48,14 +49,13 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6 mb-5">
 			<div class="col-md-12 text-center">
-				<h1 class="text-black">${cName } 의뢰</h1>
+				<h1 class="text-black">${cName }의뢰</h1>
 				<br />
 				<div class="border-bottom"></div>
 				<br /> <br />
 			</div>
 			<div class="card shadow">
 				<div class="card-body">
-
 
 					<div class="form-group">
 						<label for="bTitle">제목</label>
@@ -70,6 +70,7 @@
 							${readContentBean.bContent }
 							</textarea>
 					</div>
+
 					<c:if test="${readContentBean.biName != null}">
 						<div class="form-group">
 							<label for="upload_file">첨부 이미지</label>
@@ -90,19 +91,20 @@
 						<input type="text" id="bAddr1" name="bAddr1" class="form-control"
 							value="${readContentBean.bAddr1 }" disabled="disabled" />
 					</div>
-					<div class="form-group">
 
+					<div class="form-group">
 						<label for="bAddr2">상세주소</label>
 						<input type="text" id="bAddr2" name="bAddr2" class="form-control"
 							value="${readContentBean.bAddr2 }" disabled="disabled" />
 					</div>
-					<div class="form-group">
 
+					<div class="form-group">
 						<label for="b_write_time">작성시간</label>
 						<input type="text" id="b_write_time" name="b_write_time"
 							class="form-control" value="${readContentBean.bWriteTime }"
 							disabled="disabled" />
 					</div>
+
 					<div class="form-group">
 						<label for="b_end_time">마감시간</label>
 						<input type="text" id="b_end_time" name="b_end_time"
@@ -110,22 +112,19 @@
 							disabled="disabled" />
 					</div>
 
-
 					<div class="form-group">
 						<div class="text-right">
 							<a href="${root }board/request" class="btn btn-success">신청하기</a>
 							<a href="${root }board/main?bCno=${bCno}&page=${page}"
-								class="btn btn-primary">목록보기</a> <a href="${root }board/modify"
-								class="btn btn-info">수정하기</a>
+								class="btn btn-primary">목록보기</a>
+							<a href="${root }board/modify?bCno=${bCno }&bNo=${bNo}&page=${page}" class="btn btn-info">수정하기</a>
 							<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button>
 							<a href="${root }board/report" class="btn btn-danger">신고하기</a>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />

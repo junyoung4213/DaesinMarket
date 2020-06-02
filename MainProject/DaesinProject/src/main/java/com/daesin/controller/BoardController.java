@@ -165,17 +165,14 @@ public class BoardController {
 
 	@RequestMapping(value = "/commentList.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ResponseEntity<Object> ajax_commentList(@ModelAttribute("commentBean") CommentBean commentBean,
+	public ResponseEntity<Object> ajax_commentList(@RequestParam("coBno") int coBno, 
 			HttpServletRequest request) throws Exception {
 
 		HttpHeaders responseHeaders = new HttpHeaders();
 		ArrayList<HashMap<String, Object>> hmlist = new ArrayList<HashMap<String, Object>>();
 		
-		System.out.println("commentBean : " + commentBean.toString());
-		
-
 		// 해당 게시물 댓글
-		List<CommentBean> commentList = supporterService.selectComment(commentBean);
+		List<CommentBean> commentList = supporterService.selectComment(coBno);
 
 		if (commentList.size() > 0) {
 			for (int i = 0; i < commentList.size(); i++) {

@@ -28,8 +28,8 @@ public class SupporterService {
 		supporterDao.addComment(commentBean);
 	}
 	
-	public List<CommentBean> selectComment(CommentBean commentBean){
-		return supporterDao.selectComment(commentBean);
+	public List<CommentBean> selectComment(int coBno){
+		return supporterDao.selectComment(coBno);
 	}
 
 }

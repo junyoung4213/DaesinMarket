@@ -28,8 +28,8 @@ public class SupporterDao {
 		sqlSessionTemplate.insert("comment.addComment",commentBean);
 	}
 	
-	public List<CommentBean> selectComment(CommentBean commentBean){
-		return sqlSessionTemplate.selectList("comment.selectComment",commentBean);
+	public List<CommentBean> selectComment(int coBno){
+		return sqlSessionTemplate.selectList("comment.selectComment",coBno);
 	}
 	
 }

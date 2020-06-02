@@ -41,11 +41,11 @@
 	<select id="getContentInfo" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select a2.user_name as content_writer_name,
+	select b_no, b_title, b_content, bi_name, b_reward, b_addr1, b_addr2, 
 	TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time,
-	a1.content_subject, a1.content_text, a1.content_file, a1.content_writer_idx 
-	from board a1, member a2
-	where a1.content_writer_idx = a2.user_idx and content_idx=${content_idx}
+	TO_CHAR(b_end_time, 'YYYY-MM-DD') as b_end_time
+	from board
+	where b_no = #{bNo}
 	]]>
 	</select>
 

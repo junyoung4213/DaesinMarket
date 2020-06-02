@@ -36,6 +36,7 @@
 	<resources mapping="/images/**" location="/resources/images/" />
 	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/scss/**" location="/resources/scss/" />
+	<resources mapping="/upload/**" location="/resources/upload/" />
 
 	<interceptors>
 

@@ -32,23 +32,23 @@
 
 
 <div class="bg-light py-3">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 mb-0">
-					<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
-						href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span> <strong
-						class="text-black">배달</strong>
-				</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0">
+				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
+					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
+				<strong class="text-black">${cName }</strong>
 			</div>
 		</div>
 	</div>
+</div>
 
 <div class="container" style="margin-top: 100px">
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6 mb-5">
 			<div class="col-md-12 text-center">
-				<h1 class="mb-3 text-black">미션</h1>
+				<h1 class="text-black">${cName } 의뢰</h1>
 				<br />
 				<div class="border-bottom"></div>
 				<br /> <br />
@@ -56,48 +56,69 @@
 			<div class="card shadow">
 				<div class="card-body">
 
+
 					<div class="form-group">
-						<label for="board_date">위치</label> <input type="text"
-							id="board_date" name="board_date" class="form-control"
-							value="서울시 마포구 망원동" disabled="disabled" />
+						<label for="bTitle">제목</label>
+						<input type="text" id="bTitle" name="bTitle" class="form-control"
+							value="${readContentBean.bTitle }" disabled="disabled" />
+					</div>
+
+					<div class="form-group">
+						<label for="bContent">내용</label>
+						<textarea id="bContent" name="bContent" class="form-control"
+							rows="10" style="resize: none" disabled="disabled">
+							${readContentBean.bContent }
+							</textarea>
+					</div>
+					<c:if test="${readContentBean.biName != null}">
+						<div class="form-group">
+							<label for="upload_file">첨부 이미지</label>
+							<img alt="첨부 이미지" src="${root }upload/${readContentBean.biName}"
+								width="100%">
+						</div>
+					</c:if>
+
+					<div class="form-group">
+						<label for="bReward">금액</label>
+						<input type="text" id="bReward" name="bReward"
+							class="form-control" value="${readContentBean.bReward }"
+							disabled="disabled" />
+					</div>
+
+					<div class="form-group">
+						<label for="bAddr1">주소</label>
+						<input type="text" id="bAddr1" name="bAddr1" class="form-control"
+							value="${readContentBean.bAddr1 }" disabled="disabled" />
 					</div>
 					<div class="form-group">
-						<label for="board_date">작성시간</label> <input type="text"
-							id="board_date" name="board_date" class="form-control"
-							value="2018-7-20" disabled="disabled" />
-					</div>
-					<!-- <div class="form-group">
-						<label for="board_date">마감시간</label> <input type="text"
-							id="board_date" name="board_date" class="form-control"
-							value="2018-7-22" disabled="disabled" />
-					</div> -->
-					<div class="form-group">
-						<label for="board_subject">제목</label> <input type="text"
-							id="board_subject" name="board_subject" class="form-control"
-							value="제목입니다" disabled="disabled" />
+
+						<label for="bAddr2">상세주소</label>
+						<input type="text" id="bAddr2" name="bAddr2" class="form-control"
+							value="${readContentBean.bAddr2 }" disabled="disabled" />
 					</div>
 					<div class="form-group">
-						<label for="board_content">내용</label>
-						<textarea id="board_content" name="board_content"
-							class="form-control" rows="10" style="resize: none"
-							disabled="disabled">본문입니다</textarea>
+
+						<label for="b_write_time">작성시간</label>
+						<input type="text" id="b_write_time" name="b_write_time"
+							class="form-control" value="${readContentBean.bWriteTime }"
+							disabled="disabled" />
 					</div>
 					<div class="form-group">
-						<label for="board_file">첨부 이미지</label> <img src="images/shoe.png"
-							width="100%" />
+						<label for="b_end_time">마감시간</label>
+						<input type="text" id="b_end_time" name="b_end_time"
+							class="form-control" value="${readContentBean.bEndTime }"
+							disabled="disabled" />
 					</div>
-					<div class="form-group">
-						<label for="board_content">리워드</label> <input type="text"
-							id="board_content" name="board_content" class="form-control"
-							value="5,000원" disabled="disabled" />
-					</div>
+
+
 					<div class="form-group">
 						<div class="text-right">
-							<a href="request.html" class="btn btn-success">신청하기</a> <a
-								href="${root }board/main" class="btn btn-primary">목록보기</a> <a
-								href="${root }board/modify" class="btn btn-info">수정하기</a> 
-								<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button> <a
-								href="request.html" class="btn btn-danger">신고하기</a>
+							<a href="${root }board/request" class="btn btn-success">신청하기</a>
+							<a href="${root }board/main?bCno=${bCno}&page=${page}"
+								class="btn btn-primary">목록보기</a> <a href="${root }board/modify"
+								class="btn btn-info">수정하기</a>
+							<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button>
+							<a href="${root }board/report" class="btn btn-danger">신고하기</a>
 						</div>
 					</div>
 
@@ -119,14 +140,11 @@
 
 <script src="${root }js/main.js"></script>
 <script>
-
-var deletePopup = function(){
-	if(confirm("정말 삭제하시겠습니까?")){
-		location.href="delete"
+	var deletePopup = function() {
+		if (confirm("정말 삭제하시겠습니까?")) {
+			location.href = "delete"
+		}
 	}
-}
-
-
 </script>
 </body>
 </html>

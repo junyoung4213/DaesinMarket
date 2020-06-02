@@ -66,6 +66,10 @@ public class BoardController {
 	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,
 			Model model) {
 		model.addAttribute("bCno", bCno);
+		
+		String cName = boardService.getBoardInfoName(bCno);
+		model.addAttribute("cName", cName);
+		
 		model.addAttribute("bNo", bNo);
 
 		BoardBean readContentBean = boardService.getContentInfo(bNo);

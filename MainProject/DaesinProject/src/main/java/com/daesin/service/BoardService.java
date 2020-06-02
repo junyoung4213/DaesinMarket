@@ -73,8 +73,8 @@ public class BoardService {
 
 	}
 
-	public BoardBean getContentInfo(int content_idx) {
-		return boardDao.getContentInfo(content_idx);
+	public BoardBean getContentInfo(int bNo) {
+		return boardDao.getContentInfo(bNo);
 	}
 
 	public void modifyContentInfo(BoardBean modifyContentBean) {

@@ -3,6 +3,7 @@ package com.daesin.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,8 +29,11 @@ public class SupporterDao {
 		sqlSessionTemplate.insert("comment.addComment",commentBean);
 	}
 	
-	public List<CommentBean> selectComment(int coBno){
-		return sqlSessionTemplate.selectList("comment.selectComment",coBno);
+	public List<CommentBean> selectComment(int coBno, RowBounds rowBounds){
+		return sqlSessionTemplate.selectList("comment.selectComment",coBno,rowBounds);
 	}
 	
+	public int getCommentCnt(int coBno) {
+		return sqlSessionTemplate.selectOne("comment.getCommentCnt", coBno);
+	}
 }

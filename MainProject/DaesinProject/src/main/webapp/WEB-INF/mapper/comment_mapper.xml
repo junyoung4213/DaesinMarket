@@ -23,7 +23,7 @@
 	
 	</insert>
 	
-	<select id="selectComment" parameterType="com.daesin.beans.CommentBean" resultType="com.daesin.beans.CommentBean">
+	<select id="selectComment" parameterType="java.lang.Integer" resultType="com.daesin.beans.CommentBean">
 		SELECT co_sno,co_num,co_bno,co_msg,co_name,co_date
 		FROM board_comment
 		WHERE co_bno=#{coBno}

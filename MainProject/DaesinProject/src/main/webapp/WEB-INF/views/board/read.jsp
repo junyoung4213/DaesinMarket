@@ -144,9 +144,9 @@
 						</div>
 					</div>
 					<input type="hidden" id="coBno" name="coBno"
-						value="${readContentBean.bNo }" /> <input type="hidden"
-						id="coSno" name="coSno" value="${member.mNo}" /> <input
-						type="hidden" id="coDate" name="coDate" value="" />
+						value="${readContentBean.bNo }" />
+					<input type="hidden" id="coSno" name="coSno" value="${member.mNo}" />
+					<input type="hidden" id="coDate" name="coDate" value="" />
 				</form>
 			</div>
 			<div class="container text-center">
@@ -155,6 +155,50 @@
 				</form>
 			</div>
 			<!-- //댓글 구현부 -->
+
+			<div id="commentPart" class="d-none d-md-block">
+				<%-- <ul class="pagination justify-content-center">
+					<c:choose>
+						<c:when test="${pageBean.prevPage <=0 }">
+							<li class="page-item disabled"><a href="#" class="page-link">이전</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a onclick="getCommentList(${pageBean.prevPage});"
+								class="page-link">이전</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:forEach var="idx" begin="${pageBean.min }"
+						end="${pageBean.max }">
+						<c:choose>
+							<c:when test="${idx==pageBean.currentPage }">
+								<li class="page-item active"><a
+									onclick="getCommentList(${idx});"
+									class="page-link">${idx }</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a
+									onclick="getCommentList(${idx});"
+									class="page-link">${idx }</a></li>
+							</c:otherwise>
+						</c:choose>
+
+					</c:forEach>
+					<c:choose>
+						<c:when test="${pageBean.max >= pageBean.pageCnt }">
+							<li class="page-item disabled"><a href="#" class="page-link">다음</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a onclick="getCommentList(${pageBean.nextPage});"
+								class="page-link">다음</a></li>
+						</c:otherwise>
+					</c:choose>
+				</ul> --%>
+			</div>
+
+
+
 		</div>
 	</div>
 
@@ -190,7 +234,7 @@
 	 */
 	$(function() {
 		
-		getCommentList();
+		getCommentList(1);
 
 	});
 
@@ -207,9 +251,8 @@
 			data : $("#commentForm").serialize(),
 			success : function(data) {
 				if (data == "success") {
-					getCommentList();
+					getCommentList(1);
 					$("#coMsg").val("");
-					alert("신청에 성공하셨습니다!")
 				}
 			},
 			error : function(request, status, error) {
@@ -223,28 +266,29 @@
 	/**
 	 * 댓글 불러오기(Ajax)
 	 */
-	function getCommentList() {
-
+	function getCommentList(x) {
 		$.ajax({
 					type : 'GET',
-					url : "<c:url value='/board/commentList.do'/>",
+					url : "<c:url value='/board/commentList.do?cPage="+ x + "'/>",
 					dataType : "json",
 					data : $("#commentForm").serialize(),
 					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(data) {
-
 						var html = "";
-						var cCnt = data.length;
+						var cCnt = "0";
+						var comment = "";
 
 						if (data.length > 0) {
-
+							
 							$.each(data, function(key, value){ 
-								console.log(value);
-								if(${readContentBean.bMno == member.mNo} || value.co_sno == ${member.mNo}){
+								
+								if(value.co_name!=null ){
+								
+								if(value.co_sno == ${member.mNo} || ${readContentBean.bMno == member.mNo} ){
 								html += "<div class='card shadow m-2 p-3 row' style='text-align:left'>"
 								html += "<div>"
 								html += "<h6>이름 : " + value.co_name + "<br>";
-								html += "내용 : " + value.co_msg + "<br>";
+								html += "<p>내용 : " + value.co_msg + "</p><br>";
 								html += value.co_date + "</h6>";
 								html += "</div>"
 								
@@ -263,17 +307,51 @@
 									html += "</div>";
 									html += "</div>";
 								}
+								}
 								
 								
 				            });
+							
+							$.each(data[0], function(key, value){
+								cCnt = value.contentCnt;
+								console.log(cCnt);
+								comment+= '<ul class="pagination justify-content-center">';
+								
+								if(value.prevPage<=0){
+									comment += '<li class="page-item disabled"><a href="#" class="page-link">이전</a></li>';
+								}else{
+									comment += '<li class="page-item"><a onclick="getCommentList('+value.prevPage+');" class="page-link">이전</a></li>'
+								}
+								
+								for(var i=value.min; i<=value.max;i++){
+									if(value.currentPage==i){
+										comment+='<li class="page-item active"><a onclick="getCommentList('+i+');" class="page-link">'+i+'</a></li>'
+									}else{
+										comment+='<li class="page-item"><a onclick="getCommentList('+i+');" class="page-link">'+i+'</a></li>'
+									}
+								}
+								
+								if(value.max >= value.pageCnt){
+									comment+='<li class="page-item disabled"><a href="#" class="page-link">다음</a></li>'
+								}else{
+									comment+='<li class="page-item"><a onclick="getCommentList('+value.nextPage+');" class="page-link">다음</a></li>'
+								}
+								
+								comment+='</ul>'
+								
+							});
 
 						} else {
 							html += "<div><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
 							html += "</div>";
 						}
-
+						
+						
+						
+						
 						$("#cCnt").html(cCnt);
 						$("#commentList").html(html);
+						$("#commentPart").html(comment);
 
 					},
 					error : function(request, status, error) {
@@ -283,6 +361,7 @@
 				});
 
 	}
+	
 </script>
 </body>
 </html>

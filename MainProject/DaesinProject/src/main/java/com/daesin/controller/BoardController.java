@@ -52,6 +52,9 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 
 		PageBean pageBean = boardService.getContentCnt(bCno, page);
+
+		System.out.println("main페이지 : " + pageBean.toString());
+
 		model.addAttribute("pageBean", pageBean);
 
 		model.addAttribute("page", page);
@@ -78,7 +81,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/read")
-	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,
+	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,@RequestParam(value = "cPage", defaultValue = "1") int cPage,
 			Model model) {
 		model.addAttribute("bCno", bCno);
 
@@ -93,6 +96,12 @@ public class BoardController {
 		/* model.addAttribute("readCommentBean", readCommentBean); */
 
 		model.addAttribute("page", page);
+
+		PageBean pageBean = supporterService.getCommentCnt(bNo, cPage);
+
+		System.out.println(pageBean.toString());
+		model.addAttribute("pageBean", pageBean);
+		model.addAttribute("cPage", cPage);
 
 		return "board/read";
 	}
@@ -165,18 +174,24 @@ public class BoardController {
 
 	@RequestMapping(value = "/commentList.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ResponseEntity<Object> ajax_commentList(@RequestParam("coBno") int coBno, 
-			HttpServletRequest request) throws Exception {
+	public ResponseEntity<Object> ajax_commentList(@RequestParam("coBno") int coBno, HttpServletRequest request,
+			@RequestParam(value = "cPage", defaultValue = "1") int cPage, Model model) throws Exception {
 
 		HttpHeaders responseHeaders = new HttpHeaders();
 		ArrayList<HashMap<String, Object>> hmlist = new ArrayList<HashMap<String, Object>>();
-		
+
 		// 해당 게시물 댓글
-		List<CommentBean> commentList = supporterService.selectComment(coBno);
+		List<CommentBean> commentList = supporterService.selectComment(coBno, cPage);
+
+		PageBean pageBean = supporterService.getCommentCnt(coBno, cPage);
+
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("pageBean", pageBean);
+		hmlist.add(hm);
 
 		if (commentList.size() > 0) {
 			for (int i = 0; i < commentList.size(); i++) {
-				HashMap<String, Object> hm = new HashMap<String, Object>();
+				hm = new HashMap<String, Object>();
 				hm.put("co_num", commentList.get(i).getCoNum());
 				hm.put("co_msg", commentList.get(i).getCoMsg());
 				hm.put("co_name", commentList.get(i).getCoName());
@@ -184,6 +199,7 @@ public class BoardController {
 				hm.put("co_sno", commentList.get(i).getCoSno());
 				hmlist.add(hm);
 			}
+			
 
 		}
 		JSONArray json = new JSONArray(hmlist);

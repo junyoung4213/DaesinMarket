@@ -20,12 +20,16 @@ public class PageBean {
 	// 현재 페이지 번호
 	private int currentPage;
 
+	// 전체 게시물 갯수
+	private int contentCnt;
+
 	// contentCnt : 전체글 개수, currentPage : 현재 글 번호, contentPageCnt : 페이지당 글의 개수,
 	// paginationCnt : 페이지 버튼의 개수
 	public PageBean(int contentCnt, int currentPage, int contentPageCnt, int paginationCnt) {
 
 		// 현재 페이지 번호
 		this.currentPage = currentPage;
+		this.contentCnt = contentCnt;
 
 		// 전체 페이지 개수
 		pageCnt = contentCnt / contentPageCnt;
@@ -36,14 +40,14 @@ public class PageBean {
 
 		min = ((currentPage - 1) / contentPageCnt) * contentPageCnt + 1;
 		max = min + paginationCnt - 1;
-		
-		if(max > pageCnt) {
-			max=pageCnt;
+
+		if (max > pageCnt) {
+			max = pageCnt;
 		}
-		
-		prevPage = min -1;
-		nextPage = max+1;
-		if(nextPage > pageCnt) {
+
+		prevPage = min - 1;
+		nextPage = max + 1;
+		if (nextPage > pageCnt) {
 			nextPage = pageCnt;
 		}
 
@@ -71,6 +75,16 @@ public class PageBean {
 
 	public int getCurrentPage() {
 		return currentPage;
+	}
+
+	public int getContentCnt() {
+		return contentCnt;
+	}
+
+	@Override
+	public String toString() {
+		return "PageBean [min=" + min + ", max=" + max + ", prevPage=" + prevPage + ", nextPage=" + nextPage
+				+ ", pageCnt=" + pageCnt + ", currentPage=" + currentPage + ", contentCnt=" + contentCnt + "]";
 	}
 
 }

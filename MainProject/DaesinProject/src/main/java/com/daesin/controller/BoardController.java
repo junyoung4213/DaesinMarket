@@ -241,5 +241,21 @@ public class BoardController {
 
 		return "success";
 	}
+	
+	@RequestMapping(value = "/delete.do")
+	@ResponseBody
+	public String ajax_delete(@RequestParam("coNum") int coNum, HttpSession session)
+			throws Exception {
+
+		try {
+			System.out.println(coNum);
+			supporterService.deleteReport(coNum);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "success";
+	}
 
 }

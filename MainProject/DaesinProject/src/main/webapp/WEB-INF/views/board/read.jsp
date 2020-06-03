@@ -251,6 +251,27 @@
 		}
 	}
 	
+	function del(coNum){
+		
+		console.log(coNum)
+		
+		$.ajax({
+			type : 'POST',
+			url : "<c:url value='/board/delete.do'/>",
+			data : {coNum : coNum},
+			success : function(data) {
+				if (data == "success") {
+					alert("신청이 정상적으로 취소되었습니다.");
+					getCommentList(1);
+				}
+			},
+			error : function(request, status, error) {
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+
+		});
+	}
+	
 	/**
 	 * 초기 페이지 로딩시 댓글 불러오기
 	 */
@@ -333,7 +354,7 @@
 									html += "</div>";
 								}else if(value.co_sno == ${member.mNo}){
 									html += "<div class='text-center card'>";
-									html += "<button type='button' class='btn btn-danger'>취소하기</button>";
+									html += "<button type='button' class='btn btn-danger' onclick='del("+value.co_num+");'>취소하기</button>";
 									html += "</div>";
 									html += "</div>";
 								}else{

@@ -88,5 +88,9 @@ public class SupporterService {
 	public void addReport(ReportBean reportBean) {
 		supporterDao.addReport(reportBean);
 	}
+	
+	public void deleteReport(int coNum) {
+		supporterDao.deleteReport(coNum);
+	}
 
 }

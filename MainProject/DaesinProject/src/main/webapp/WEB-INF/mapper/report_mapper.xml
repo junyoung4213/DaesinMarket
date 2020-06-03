@@ -10,5 +10,12 @@
 		]]>
 	</insert>
 	
+	<delete id="deleteReport" parameterType="java.lang.Integer">
+	<![CDATA[ 
+		DELETE FROM board_comment
+		where co_num=#{coNum}
+		]]>
+	
+	</delete>
 
 </mapper>

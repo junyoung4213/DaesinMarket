@@ -48,4 +48,8 @@ public class SupporterDao {
 	public void addReport(ReportBean reportBean) {
 		sqlSessionTemplate.insert("report.addReport",reportBean);
 	}
+	
+	public void deleteReport(int coNum) {
+		sqlSessionTemplate.delete("report.deleteReport",coNum);
+	}
 }

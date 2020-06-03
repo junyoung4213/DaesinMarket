@@ -147,6 +147,8 @@
 						value="${readContentBean.bNo }" />
 					<input type="hidden" id="coSno" name="coSno" value="${member.mNo}" />
 					<input type="hidden" id="coDate" name="coDate" value="" />
+					<input type="hidden" id="bMno" name="bMno" value="${readContentBean.bMno }" />
+					<input type="hidden" id="cnt" name="cnt" value="" />
 				</form>
 			</div>
 			<div class="container text-center">
@@ -263,6 +265,12 @@
 	 */
 	function fn_comment() {
 		var today = new Date();
+		var cnt = (Number($('#cCnt').text()) + 1); 
+		var lastPage = Math.floor(cnt/10);
+		if (cnt%10 > 0) {
+			lastPage++;
+		}
+		
 		$('#coDate').val(today.toLocaleString())
 		$.ajax({
 			type : 'POST',
@@ -270,7 +278,7 @@
 			data : $("#commentForm").serialize(),
 			success : function(data) {
 				if (data == "success") {
-					getCommentList(1);
+					getCommentList(lastPage);
 					$("#coMsg").val("");
 				}
 			},
@@ -294,7 +302,7 @@
 					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(data) {
 						var html = "";
-						var cCnt = "0";
+						var cCnt = 0;
 						var comment = "";
 
 						if (data.length > 0) {
@@ -310,7 +318,6 @@
 								html += "<p>내용 : " + value.co_msg + "</p><br>";
 								html += value.co_date + "</h6>";
 								html += "</div>"
-								
 								}
 								
 								if(${readContentBean.bMno == member.mNo}){
@@ -369,6 +376,7 @@
 						
 						
 						$("#cCnt").html(cCnt);
+						/* $("#cnt").val(cCnt); */
 						$("#commentList").html(html);
 						$("#commentPart").html(comment);
 

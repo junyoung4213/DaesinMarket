@@ -57,6 +57,14 @@ public class SupporterService {
 		return supporterDao.selectComment(coBno,rowBounds);
 	}
 	
+	public List<CommentBean> selectCommentPart(int coSno, int cPage){
+		
+		int start = (cPage - 1) * page_listcnt;
+		RowBounds rowBounds = new RowBounds(start, page_listcnt);
+		
+		return supporterDao.selectCommentPart(coSno,rowBounds);
+	}
+	
 	public PageBean getCommentCnt(int coBno, int currentPage) {
 		int content_cnt = supporterDao.getCommentCnt(coBno);
 		
@@ -64,6 +72,16 @@ public class SupporterService {
 
 		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
 
+		return pageBean;
+	}
+	
+	public PageBean getCommentCntPart(int coSno, int currentPage) {
+		int content_cnt = supporterDao.getCommentCntPart(coSno);
+		
+		System.out.println("content_cnt : " + content_cnt);
+		
+		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
+		
 		return pageBean;
 	}
 	

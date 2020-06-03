@@ -30,10 +30,24 @@
 		order By co_num
 	</select>
 	
+	<select id="selectCommentPart" parameterType="java.lang.Integer" resultType="com.daesin.beans.CommentBean">
+		SELECT co_sno,co_num,co_bno,co_msg,co_name,co_date
+		FROM board_comment
+		WHERE co_sno=#{coSno}
+		order By co_num
+	</select>
+	
 	<select id="getCommentCnt" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">
 	<![CDATA[
 	select count(*) from board_comment where co_bno = #{coBno}
+	]]>
+	</select>
+	
+	<select id="getCommentCntPart" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+	<![CDATA[
+	select count(*) from board_comment where co_sno = #{coSno}
 	]]>
 	</select>
 

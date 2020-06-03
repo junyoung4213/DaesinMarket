@@ -33,8 +33,16 @@ public class SupporterDao {
 		return sqlSessionTemplate.selectList("comment.selectComment",coBno,rowBounds);
 	}
 	
+	public List<CommentBean> selectCommentPart(int coSno, RowBounds rowBounds){
+		return sqlSessionTemplate.selectList("comment.selectCommentPart",coSno,rowBounds);
+	}
+	
 	public int getCommentCnt(int coBno) {
 		return sqlSessionTemplate.selectOne("comment.getCommentCnt", coBno);
+	}
+	
+	public int getCommentCntPart(int coSno) {
+		return sqlSessionTemplate.selectOne("comment.getCommentCntPart", coSno);
 	}
 	
 	public void addReport(ReportBean reportBean) {

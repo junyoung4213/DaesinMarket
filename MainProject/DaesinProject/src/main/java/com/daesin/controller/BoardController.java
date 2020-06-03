@@ -175,16 +175,25 @@ public class BoardController {
 
 	@RequestMapping(value = "/commentList.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ResponseEntity<Object> ajax_commentList(@RequestParam("coBno") int coBno, HttpServletRequest request,
-			@RequestParam(value = "cPage", defaultValue = "1") int cPage, Model model) throws Exception {
+	public ResponseEntity<Object> ajax_commentList(@ModelAttribute("commentBean") CommentBean commentBean,@RequestParam("coBno") int coBno,@RequestParam("coSno") int coSno,@RequestParam("bMno") int bMno, HttpServletRequest request,
+			@RequestParam(value = "cPage", defaultValue = "1") int cPage) throws Exception {
 
 		HttpHeaders responseHeaders = new HttpHeaders();
 		ArrayList<HashMap<String, Object>> hmlist = new ArrayList<HashMap<String, Object>>();
+		
+		commentBean.setCoBno(coBno);
+		commentBean.setCoSno(coSno);
 
 		// 해당 게시물 댓글
-		List<CommentBean> commentList = supporterService.selectComment(coBno, cPage);
-
-		PageBean pageBean = supporterService.getCommentCnt(coBno, cPage);
+		List<CommentBean> commentList;
+		PageBean pageBean;
+		if(bMno == coSno) {
+		commentList = supporterService.selectComment(coBno, cPage);
+		pageBean = supporterService.getCommentCnt(coBno, cPage);
+		}else {
+		commentList = supporterService.selectCommentPart(coSno, cPage);
+		pageBean = supporterService.getCommentCntPart(coSno, cPage);
+		}
 
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("pageBean", pageBean);

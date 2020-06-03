@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.daesin.beans.CommentBean;
 import com.daesin.beans.MemberBean;
 import com.daesin.beans.PageBean;
+import com.daesin.beans.ReportBean;
 import com.daesin.dao.SupporterDao;
 
 @Service
@@ -31,6 +32,10 @@ public class SupporterService {
 	@Autowired
 	@Lazy 
 	private CommentBean commentBean;
+	
+	@Autowired
+	@Lazy 
+	private ReportBean reportBean;
 
 	public void addSupporterInfo(MemberBean tempSupporterBean) {
 		supporterDao.addSupporterInfo(tempSupporterBean);
@@ -60,6 +65,10 @@ public class SupporterService {
 		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
 
 		return pageBean;
+	}
+	
+	public void addReport(ReportBean reportBean) {
+		supporterDao.addReport(reportBean);
 	}
 
 }

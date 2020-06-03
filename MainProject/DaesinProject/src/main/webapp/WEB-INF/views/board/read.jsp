@@ -115,7 +115,7 @@
 								href="${root }board/modify?bCno=${bCno }&bNo=${bNo}&page=${page}"
 								class="btn btn-info">수정하기</a>
 							<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button>
-							<a href="${root }board/report" class="btn btn-danger">신고하기</a>
+							<button class="btn btn-danger" onclick="report();">신고하기</button>
 						</div>
 					</div>
 				</div>
@@ -219,6 +219,25 @@
 		if (confirm("정말 삭제하시겠습니까?")) {
 			location.href = "delete?bCno=${bCno}&bNo=${bNo}"
 		}
+	}
+	
+	function report() {
+		var report = prompt("신고내용을 적어주세요","신고 내용");
+		$.ajax({
+			type : 'POST',
+			url : "<c:url value='/board/report.do?bNo="+${bNo}+"'/>",
+			data : {report : report},
+			success : function(data) {
+				if (data == "success") {
+					alert("신고내용이 성공적으로 접수되었습니다");
+				}
+			},
+			error : function(request, status, error) {
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+
+		});
+		
 	}
 	
 	function request(){

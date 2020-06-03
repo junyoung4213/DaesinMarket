@@ -23,14 +23,12 @@
 					</div>
 					<div class="col-md-6 col-lg-4">
 						<ul class="list-unstyled">
-							<li><a href="${root }board/main">배달</a></li>
-							<li><a href="${root }board/main">쇼핑</a></li>
-							<li><a href="${root }board/main">단순작업</a></li>
-							<li><a href="${root }board/main">역할 대행</a></li>
-				
+							<li><a href="${root }board/main?bCno=1">배달</a></li>
+							<li><a href="${root }board/main?bCno=2">쇼핑</a></li>
+							<li><a href="${root }board/main?bCno=3">단순작업</a></li>
+							<li><a href="${root }board/main?bCno=4">역할 대행</a></li>
 						</ul>
 					</div>
-			
 				</div>
 			</div>
 

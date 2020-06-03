@@ -1,7 +1,6 @@
 package com.daesin.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.daesin.beans.CommentBean;
 import com.daesin.beans.MemberBean;
+import com.daesin.beans.ReportBean;
 
 @Repository
 public class SupporterDao {
@@ -35,5 +35,9 @@ public class SupporterDao {
 	
 	public int getCommentCnt(int coBno) {
 		return sqlSessionTemplate.selectOne("comment.getCommentCnt", coBno);
+	}
+	
+	public void addReport(ReportBean reportBean) {
+		sqlSessionTemplate.insert("report.addReport",reportBean);
 	}
 }

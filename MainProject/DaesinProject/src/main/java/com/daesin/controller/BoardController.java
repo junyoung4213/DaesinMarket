@@ -26,6 +26,7 @@ import com.daesin.beans.BoardBean;
 import com.daesin.beans.CommentBean;
 import com.daesin.beans.MemberBean;
 import com.daesin.beans.PageBean;
+import com.daesin.beans.ReportBean;
 import com.daesin.service.BoardService;
 import com.daesin.service.SupporterService;
 
@@ -205,6 +206,28 @@ public class BoardController {
 		JSONArray json = new JSONArray(hmlist);
 		return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
 
+	}
+	
+	@RequestMapping(value = "/report.do")
+	@ResponseBody
+	public String ajax_report(@ModelAttribute("reportBean") ReportBean reportBean,@RequestParam("bNo") int bNo,@RequestParam("report") String report, HttpSession session)
+			throws Exception {
+
+		MemberBean memberBean = (MemberBean) session.getAttribute("member");
+		try {
+			System.out.println("report: " + report);
+			System.out.println(memberBean.toString());
+			reportBean.setrSno(memberBean.getmNo());
+			reportBean.setrBno(bNo);
+			reportBean.setrMsg(report);
+			System.out.println(reportBean.toString());
+			supporterService.addReport(reportBean);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "success";
 	}
 
 }

@@ -29,6 +29,13 @@
 		WHERE co_bno=#{coBno}
 		order By co_num
 	</select>
+	
+	<select id="getCommentCnt" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+	<![CDATA[
+	select count(*) from board_comment where co_bno = #{coBno}
+	]]>
+	</select>
 
 	
 

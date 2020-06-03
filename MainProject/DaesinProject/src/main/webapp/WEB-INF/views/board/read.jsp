@@ -120,18 +120,6 @@
 					</div>
 				</div>
 			</div>
-			<%-- <div class="card shadow mt-5">
-				<div class="card-body">
-					<div class="form-group">
-						<h3>서포터 ${readCommentBean.coName}</h3>
-					</div>
-					<div class="form-group">
-						<h3>코멘트</h3>
-						<textarea id="bContent" name="bContent" class="form-control"
-							rows="2" style="resize: none" disabled="disabled">${readCommentBean.coMsg }</textarea>
-					</div>
-				</div>
-			</div> --%>
 
 			<!-- 댓글 구현부  -->
 			<div class="container col-md-12">
@@ -148,7 +136,8 @@
 											id="coMsg" name="coMsg" placeholder="한마디를 입력하세요"></textarea>
 										<br>
 										<div class="card">
-											<button type="button" onClick="request()" class="btn btn-success">신청하기</button>
+											<button type="button" onClick="request()"
+												class="btn btn-success">신청하기</button>
 										</div></td>
 								</tr>
 							</table>
@@ -200,9 +189,8 @@
 	 * 초기 페이지 로딩시 댓글 불러오기
 	 */
 	$(function() {
-		getCommentList();
-
 		
+		getCommentList();
 
 	});
 
@@ -251,22 +239,37 @@
 						if (data.length > 0) {
 
 							$.each(data, function(key, value){ 
+								console.log(value);
+								if(${readContentBean.bMno == member.mNo} || value.co_sno == ${member.mNo}){
+								html += "<div class='card shadow m-2 p-3 row' style='text-align:left'>"
+								html += "<div>"
+								html += "<h6>이름 : " + value.co_name + "<br>";
+								html += "내용 : " + value.co_msg + "<br>";
+								html += value.co_date + "</h6>";
+								html += "</div>"
 								
-								html += "<div class='card shadow m-2 p-2' style='text-align:left'>"
-								html += "<h6>서포터 이름 : " + value.co_name + "<br>";
-								html += "작성시간 : " + value.co_date + "<br>";
-								html += "내용 : " + value.co_msg + "</h6>";
-								html += "</div>";
-
+								}
+								
+								if(${readContentBean.bMno == member.mNo}){
+									html += "<div class='text-center'>";
+									html += "<button type='button' class='btn btn-primary mr-3'>수락하기</button>";
+									html += "<button type='button' class='btn btn-danger'>거절하기</button>";
+									html += "</div>";
+									html += "</div>";
+								}else if(value.co_sno == ${member.mNo}){
+									html += "<div class='text-center'>";
+									html += "<button type='button' class='btn btn-primary mr-3'>수정하기</button>";
+									html += "<button type='button' class='btn btn-danger'>취소하기</button>";
+									html += "</div>";
+									html += "</div>";
+								}
+								
+								
 				            });
 
 						} else {
-
-							html += "<div>";
-							html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-							html += "</table></div>";
+							html += "<div><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
 							html += "</div>";
-
 						}
 
 						$("#cCnt").html(cCnt);

@@ -181,6 +181,7 @@ public class BoardController {
 				hm.put("co_msg", commentList.get(i).getCoMsg());
 				hm.put("co_name", commentList.get(i).getCoName());
 				hm.put("co_date", commentList.get(i).getCoDate());
+				hm.put("co_sno", commentList.get(i).getCoSno());
 				hmlist.add(hm);
 			}
 

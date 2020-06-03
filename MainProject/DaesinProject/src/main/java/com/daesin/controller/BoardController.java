@@ -186,14 +186,17 @@ public class BoardController {
 
 		// 해당 게시물 댓글
 		List<CommentBean> commentList;
-		PageBean pageBean;
-		if(bMno == coSno) {
 		commentList = supporterService.selectComment(coBno, cPage);
-		pageBean = supporterService.getCommentCnt(coBno, cPage);
-		}else {
-		commentList = supporterService.selectCommentPart(coSno, cPage);
-		pageBean = supporterService.getCommentCntPart(coSno, cPage);
-		}
+		PageBean pageBean = supporterService.getCommentCnt(coBno, cPage);
+		
+		//  게시물 작성자만 댓글 보이게, 서포터는 자기가 작성한 댓글만 볼 수 있게 하는 설정
+		//	if(bMno == coSno) {
+		//	commentList = supporterService.selectComment(coBno, cPage);
+		//	pageBean = supporterService.getCommentCnt(coBno, cPage);
+		//	}else {
+		//	commentList = supporterService.selectCommentPart(coSno, cPage);
+		//	pageBean = supporterService.getCommentCntPart(coSno, cPage);
+		//	}
 
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("pageBean", pageBean);

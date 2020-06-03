@@ -147,7 +147,8 @@
 						value="${readContentBean.bNo }" />
 					<input type="hidden" id="coSno" name="coSno" value="${member.mNo}" />
 					<input type="hidden" id="coDate" name="coDate" value="" />
-					<input type="hidden" id="bMno" name="bMno" value="${readContentBean.bMno }" />
+					<input type="hidden" id="bMno" name="bMno"
+						value="${readContentBean.bMno }" />
 					<input type="hidden" id="cnt" name="cnt" value="" />
 				</form>
 			</div>
@@ -264,6 +265,11 @@
 	 * 댓글 등록하기(Ajax)
 	 */
 	function fn_comment() {
+		
+		if(${readContentBean.bMno == member.mNo}){
+			alert("본인 글에는 본인이 신청할 수 없습니다.")
+		}else{
+		
 		var today = new Date();
 		var cnt = (Number($('#cCnt').text()) + 1); 
 		var lastPage = Math.floor(cnt/10);
@@ -287,6 +293,7 @@
 			}
 
 		});
+		}
 	}
 
 
@@ -311,26 +318,25 @@
 								
 								if(value.co_name!=null ){
 								
-								if(value.co_sno == ${member.mNo} || ${readContentBean.bMno == member.mNo} ){
 								html += "<div class='card shadow m-2 p-3 row' style='text-align:left'>"
 								html += "<div>"
 								html += "<h6>이름 : " + value.co_name + "<br>";
 								html += "<p>내용 : " + value.co_msg + "</p><br>";
 								html += value.co_date + "</h6>";
 								html += "</div>"
-								}
+								
 								
 								if(${readContentBean.bMno == member.mNo}){
-									html += "<div class='text-center'>";
-									html += "<button type='button' class='btn btn-primary mr-3'>수락하기</button>";
-									html += "<button type='button' class='btn btn-danger'>거절하기</button>";
+									html += "<div class='text-center card'>";
+									html += "<button type='button' class='btn btn-primary'>수락하기</button>";
 									html += "</div>";
 									html += "</div>";
 								}else if(value.co_sno == ${member.mNo}){
-									html += "<div class='text-center'>";
-									html += "<button type='button' class='btn btn-primary mr-3'>수정하기</button>";
+									html += "<div class='text-center card'>";
 									html += "<button type='button' class='btn btn-danger'>취소하기</button>";
 									html += "</div>";
+									html += "</div>";
+								}else{
 									html += "</div>";
 								}
 								}

@@ -87,6 +87,7 @@
 							<form:textarea path="bContent" class="form-control" rows="10"
 								style="resize: none;"></form:textarea>
 						</div>
+						
 						<div class="form-group">
 							<form:label path="biName">첨부이미지</form:label>
 							<img alt="첨부 이미지" src="${root }upload/${modifyContentBean.biName}"
@@ -94,7 +95,6 @@
 							<form:input type="file" path="upload_file" class="form-control"
 								accept="image/*"/>
 						</div>
-						
 						
 						<div class="form-group">
 							<form:label path="bReward">금액</form:label>

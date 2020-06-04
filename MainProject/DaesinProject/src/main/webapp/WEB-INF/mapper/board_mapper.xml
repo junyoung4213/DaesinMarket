@@ -46,13 +46,14 @@
 
 	<update id="modifyContentInfo"
 		parameterType="com.daesin.beans.BoardBean">
-	<![CDATA[
 	update board
 	set b_title = #{bTitle}, b_content=#{bContent},
-	bi_name = #{biName, jdbcType=VARCHAR}, b_reward = #{bReward},
+	<if test="biName != null">
+	bi_name = #{biName, jdbcType=VARCHAR},
+	</if> 
+	b_reward = #{bReward},
 	b_addr1 = #{bAddr1}, b_addr2 =#{bAddr2}, b_end_time = #{bEndTime}
 	where b_no = #{bNo}
-	]]>
 	</update>
 
 	<select id="deleteContentInfo" parameterType="java.lang.Integer">

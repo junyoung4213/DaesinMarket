@@ -10,46 +10,47 @@
 			<div class="site-navbar-top">
 				<div class="container">
 					<div class="row align-items-center">
-						<div
-							class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-
-						</div>
-
-						<div
-							class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-							<div class="site-logo">
+						
+						
+						<div class="col-md-12 row">
+							<div class="site-logo col-md-6">
 								<a href="${root }main" class="js-logo-clone">대신컴퍼니</a>
 							</div>
-						</div>
-
-						<div class="col-6 col-md-4 order-3 order-md-3 text-right">
-							<div class="site-top-icons">
-								<ul>
+							<div class="site-top-icons col-md-6 text-right">
+								<ul class="">
 									<c:if test="${member == null}">
-										<li><a href="${root }member/login"><span class=""
-												style="font-size: 15px;">로그인</span></a></li>
-										<li><a href="${root }member/join"><span class=""
-												style="font-size: 15px;">회원가입</span></a></li>
+										<li><a href="${root }member/login">
+												<span class="d-none d-md-block btn btn-primary"
+													style="font-size: 20px;">로그인</span>
+											</a></li>
+										<li><a href="${root }member/join">
+												<span class="d-none d-md-block btn btn-info"
+													style="font-size: 20px;">회원가입</span>
+											</a></li>
 									</c:if>
 									<c:if test="${member != null}">
-										<li><span class="" style="font-size: 15px;">회원아이디:
-												${member.mId } / </span></li>
-										<li><span class="" style="font-size: 15px;">포인트:
-												${member.mPoint }</span></li><br>
-										<li><a href="${root }member/logout"><span class=""
-												style="font-size: 15px;">로그아웃</span></a></li>
-										<li><a href="${root }member/modify"><span class=""
-												style="font-size: 15px;">마이페이지</span></a></li>
+										<li><span class="d-none d-md-block"
+											style="font-size: 20px;">회원아이디: ${member.mId } / </span></li>
+										<li><span class="d-none d-md-block"
+											style="font-size: 20px;">포인트: ${member.mPoint }</span></li>
+										<br>
+										<li><a href="${root }member/logout">
+												<span class="d-none d-md-block btn btn-primary"
+													style="font-size: 20px;">로그아웃</span>
+											</a></li>
+										<li><a href="${root }member/modify">
+												<span class="d-none d-md-block btn btn-info"
+													style="font-size: 20px;">마이페이지</span>
+											</a></li>
 									</c:if>
-
-
-
 									<li class="d-inline-block d-md-none ml-md-0"><a href="#"
-										class="site-menu-toggle js-menu-toggle"><span
-											class="icon-menu"></span></a></li>
+											class="site-menu-toggle js-menu-toggle">
+											<span class="icon-menu"></span>
+										</a></li>
 								</ul>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>

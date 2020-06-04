@@ -144,12 +144,12 @@
 						</div>
 					</div>
 					<input type="hidden" id="coBno" name="coBno"
-						value="${readContentBean.bNo }" />
-					<input type="hidden" id="coSno" name="coSno" value="${member.mNo}" />
-					<input type="hidden" id="coDate" name="coDate" value="" />
-					<input type="hidden" id="bMno" name="bMno"
-						value="${readContentBean.bMno }" />
-					<input type="hidden" id="cnt" name="cnt" value="" />
+						value="${readContentBean.bNo }" /> <input type="hidden"
+						id="coSno" name="coSno" value="${member.mNo}" /> <input
+						type="hidden" id="coDate" name="coDate" value="" /> <input
+						type="hidden" id="bMno" name="bMno"
+						value="${readContentBean.bMno }" /> <input type="hidden" id="cnt"
+						name="cnt" value="" />
 				</form>
 			</div>
 			<div class="container text-center">
@@ -253,8 +253,10 @@
 	
 	function del(coNum){
 		
-		console.log(coNum)
 		
+		var result = confirm("정말 취소하시겠습니까?");
+		
+		if(result==true){
 		$.ajax({
 			type : 'POST',
 			url : "<c:url value='/board/delete.do'/>",
@@ -270,6 +272,7 @@
 			}
 
 		});
+		}
 	}
 	
 	/**

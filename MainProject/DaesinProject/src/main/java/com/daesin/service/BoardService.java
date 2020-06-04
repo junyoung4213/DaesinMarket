@@ -54,7 +54,6 @@ public class BoardService {
 			String file_name = saveUploadFile(upload_file);
 			writeContentBean.setBiName(file_name);
 		}
-		writeContentBean.setbNo(writeContentBean.getbMno());
 
 		boardDao.addContentInfo(writeContentBean);
 

@@ -89,9 +89,13 @@
 						</div>
 						<div class="form-group">
 							<form:label path="biName">첨부이미지</form:label>
+							<img alt="첨부 이미지" src="${root }upload/${modifyContentBean.biName}"
+								width="100%">
 							<form:input type="file" path="upload_file" class="form-control"
-								accept="image/*" />
+								accept="image/*"/>
 						</div>
+						
+						
 						<div class="form-group">
 							<form:label path="bReward">금액</form:label>
 							<form:input path="bReward" class="form-control" />

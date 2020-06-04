@@ -80,6 +80,7 @@
 						modelAttribute="writeContentBean" enctype="multipart/form-data">
 						<form:hidden path="bCno" value="${bCno }" />
 						<form:hidden path="bMno" value="${member.mNo }" />
+						<form:hidden path="bNo"/>
 						<div class="form-group">
 							<form:label path="bTitle">제목</form:label>
 							<form:input path="bTitle" class="form-control" />
@@ -102,7 +103,7 @@
 							<form:label path="bAddr1">주소</form:label>
 							<div class="input-group">
 								<form:input path="bAddr1" class="form-control"
-									placeholder="Enter Addr" required="true" readonly="true" />
+									placeholder="Enter Addr" readonly="true" />
 								<div class="input-group-append">
 									<form:button type="button" class="btn btn-primary"
 										onclick="goPopup();">주소검색</form:button>

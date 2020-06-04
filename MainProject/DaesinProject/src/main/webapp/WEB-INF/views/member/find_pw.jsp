@@ -75,15 +75,15 @@
 					<form:form action="" method="post" modelAttribute="tempMemberBean"
 						id="testform">
 						<div class="form-group">
-							<form:label path="m_id">아이디</form:label>
+							<form:label path="mId">아이디</form:label>
 							<div class="input-group">
-								<form:input path="m_id" class="form-control" />
+								<form:input path="mId" class="form-control" />
 							</div>
 						</div>
 						<div class="form-group">
-							<form:label path="m_email">이메일 주소</form:label>
+							<form:label path="mEmail">이메일 주소</form:label>
 							<div class="input-group">
-								<form:input path="m_email" class="form-control" />
+								<form:input path="mEmail" class="form-control" />
 							</div>
 						</div>
 

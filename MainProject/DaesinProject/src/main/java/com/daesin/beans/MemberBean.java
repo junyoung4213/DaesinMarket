@@ -32,7 +32,7 @@ public class MemberBean {
 	private String mPw2;
 
 	// 회원포인트
-	private String mPoint;
+	private int mPoint;
 
 	// 회원 로그인 여부 확인
 	private boolean memberLogin;
@@ -94,11 +94,11 @@ public class MemberBean {
 		this.mPw2 = mPw2;
 	}
 
-	public String getmPoint() {
+	public int getmPoint() {
 		return mPoint;
 	}
 
-	public void setmPoint(String mPoint) {
+	public void setmPoint(int mPoint) {
 		this.mPoint = mPoint;
 	}
 
@@ -171,7 +171,7 @@ public class MemberBean {
 		return "MemberBean [mNo=" + mNo + ", mId=" + mId + ", mEmail=" + mEmail + ", mPw=" + mPw + ", mPw2=" + mPw2
 				+ ", mPoint=" + mPoint + ", memberLogin=" + memberLogin + ", memberIdExist=" + memberIdExist
 				+ ", certification=" + certification + ", sFname=" + sFname + ", sLname=" + sLname + ", sPhone="
-				+ sPhone + ", sScore=" + sScore + "]";
+				+ sPhone + ", sName=" + sName + ", sScore=" + sScore + "]";
 	}
 
 }

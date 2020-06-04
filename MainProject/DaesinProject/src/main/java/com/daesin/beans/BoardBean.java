@@ -37,7 +37,7 @@ public class BoardBean {
 	// 마감시간
 	private Date bEndTime;
 
-	// 회원번호
+	// 작성자번호
 	private int bMno;
 
 	// 진행상황

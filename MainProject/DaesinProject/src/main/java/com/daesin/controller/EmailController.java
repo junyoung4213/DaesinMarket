@@ -67,7 +67,7 @@ public class EmailController {
 			System.out.println(password);
 			String subject = "비밀번호";
 			StringBuilder sb = new StringBuilder();
-			sb.append("비밀번호는 " + password + " 입니다.");
+			sb.append("회원님의 비밀번호는 " + password + " 입니다.");
 			sendEmail(subject, sb.toString(), userEmail);
 			return new ResponseEntity<String>("complete", HttpStatus.OK);
 

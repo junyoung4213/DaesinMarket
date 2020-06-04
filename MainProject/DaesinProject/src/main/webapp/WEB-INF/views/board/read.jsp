@@ -35,9 +35,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
-					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
-				<strong class="text-black">${cName }</strong>
+				<a href="${root }main">Home</a>
+				<span class="mx-2 mb-0">/</span>
+				<a href="${root }board/main">Request</a>
+				<span class="mx-2 mb-0">/</span> <strong class="text-black">${cName }</strong>
 			</div>
 		</div>
 	</div>
@@ -111,11 +112,16 @@
 					<div class="form-group">
 						<div class="text-center">
 							<a href="${root }board/main?bCno=${bCno}&page=${page}"
-								class="btn btn-primary">목록보기</a> <a
-								href="${root }board/modify?bCno=${bCno }&bNo=${bNo}&page=${page}"
-								class="btn btn-info">수정하기</a>
-							<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button>
-							<button class="btn btn-danger" onclick="report();">신고하기</button>
+								class="btn btn-primary">목록보기</a>
+							<c:if test="${readContentBean.bMno == member.mNo}">
+								<a
+									href="${root }board/modify?bCno=${bCno }&bNo=${bNo}&page=${page}"
+									class="btn btn-info">수정하기</a>
+								<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button>
+							</c:if>
+							<c:if test="${readContentBean.bMno != member.mNo }">
+								<button class="btn btn-danger" onclick="report();">신고하기</button>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -226,6 +232,9 @@
 	
 	function report() {
 		var report = prompt("신고내용을 적어주세요","신고 내용");
+		if(report==null){
+			alert("신고요청이 취소되었습니다")
+		}else{
 		$.ajax({
 			type : 'POST',
 			url : "<c:url value='/board/report.do?bNo="+${bNo}+"'/>",
@@ -240,7 +249,7 @@
 			}
 
 		});
-		
+		}
 	}
 	
 	function request(){
@@ -352,7 +361,7 @@
 								
 								if(${readContentBean.bMno == member.mNo}){
 									html += "<div class='text-center card'>";
-									html += "<button type='button' class='btn btn-primary'>수락하기</button>";
+									html += "<button type='button' class='btn btn-primary' onclick='aceept("+value.co_num+");'>수락하기</button>";
 									html += "</div>";
 									html += "</div>";
 								}else if(value.co_sno == ${member.mNo}){

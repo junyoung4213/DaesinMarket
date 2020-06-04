@@ -32,6 +32,10 @@
 												style="font-size: 15px;">회원가입</span></a></li>
 									</c:if>
 									<c:if test="${member != null}">
+										<li><span class="" style="font-size: 15px;">회원아이디:
+												${member.mId } / </span></li>
+										<li><span class="" style="font-size: 15px;">포인트:
+												${member.mPoint }</span></li><br>
 										<li><a href="${root }member/logout"><span class=""
 												style="font-size: 15px;">로그아웃</span></a></li>
 										<li><a href="${root }member/modify"><span class=""

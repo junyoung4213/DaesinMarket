@@ -73,17 +73,25 @@ public class BoardController {
 	}
 
 	@PostMapping("/write_pro")
-	public String write_pro(@ModelAttribute("writeContentBean") BoardBean writeContentBean) {
+	public String write_pro(@ModelAttribute("writeContentBean") BoardBean writeContentBean, HttpSession session) {
 
-		System.out.println(writeContentBean.toString());
+		MemberBean member = (MemberBean) session.getAttribute("member");
+
+		if (writeContentBean.getbReward() > member.getmPoint()) {
+			return "board/write_fail";
+		}
+		System.out.println("바뀌기전 : " + writeContentBean.toString());
+
 		boardService.addContentInfo(writeContentBean);
+
+		System.out.println("바뀐후 : " + writeContentBean.toString());
 
 		return "board/write_success";
 	}
 
 	@GetMapping("/read")
-	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,@RequestParam(value = "cPage", defaultValue = "1") int cPage,
-			Model model) {
+	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,
+			@RequestParam(value = "cPage", defaultValue = "1") int cPage, Model model) {
 		model.addAttribute("bCno", bCno);
 
 		String cName = boardService.getBoardInfoName(bCno);
@@ -175,12 +183,13 @@ public class BoardController {
 
 	@RequestMapping(value = "/commentList.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public ResponseEntity<Object> ajax_commentList(@ModelAttribute("commentBean") CommentBean commentBean,@RequestParam("coBno") int coBno,@RequestParam("coSno") int coSno,@RequestParam("bMno") int bMno, HttpServletRequest request,
-			@RequestParam(value = "cPage", defaultValue = "1") int cPage) throws Exception {
+	public ResponseEntity<Object> ajax_commentList(@ModelAttribute("commentBean") CommentBean commentBean,
+			@RequestParam("coBno") int coBno, @RequestParam("coSno") int coSno, @RequestParam("bMno") int bMno,
+			HttpServletRequest request, @RequestParam(value = "cPage", defaultValue = "1") int cPage) throws Exception {
 
 		HttpHeaders responseHeaders = new HttpHeaders();
 		ArrayList<HashMap<String, Object>> hmlist = new ArrayList<HashMap<String, Object>>();
-		
+
 		commentBean.setCoBno(coBno);
 		commentBean.setCoSno(coSno);
 
@@ -188,15 +197,15 @@ public class BoardController {
 		List<CommentBean> commentList;
 		commentList = supporterService.selectComment(coBno, cPage);
 		PageBean pageBean = supporterService.getCommentCnt(coBno, cPage);
-		
-		//  게시물 작성자만 댓글 보이게, 서포터는 자기가 작성한 댓글만 볼 수 있게 하는 설정
-		//	if(bMno == coSno) {
-		//	commentList = supporterService.selectComment(coBno, cPage);
-		//	pageBean = supporterService.getCommentCnt(coBno, cPage);
-		//	}else {
-		//	commentList = supporterService.selectCommentPart(coSno, cPage);
-		//	pageBean = supporterService.getCommentCntPart(coSno, cPage);
-		//	}
+
+		// 게시물 작성자만 댓글 보이게, 서포터는 자기가 작성한 댓글만 볼 수 있게 하는 설정
+		// if(bMno == coSno) {
+		// commentList = supporterService.selectComment(coBno, cPage);
+		// pageBean = supporterService.getCommentCnt(coBno, cPage);
+		// }else {
+		// commentList = supporterService.selectCommentPart(coSno, cPage);
+		// pageBean = supporterService.getCommentCntPart(coSno, cPage);
+		// }
 
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("pageBean", pageBean);
@@ -212,18 +221,17 @@ public class BoardController {
 				hm.put("co_sno", commentList.get(i).getCoSno());
 				hmlist.add(hm);
 			}
-			
 
 		}
 		JSONArray json = new JSONArray(hmlist);
 		return new ResponseEntity<Object>(json.toString(), responseHeaders, HttpStatus.CREATED);
 
 	}
-	
+
 	@RequestMapping(value = "/report.do")
 	@ResponseBody
-	public String ajax_report(@ModelAttribute("reportBean") ReportBean reportBean,@RequestParam("bNo") int bNo,@RequestParam("report") String report, HttpSession session)
-			throws Exception {
+	public String ajax_report(@ModelAttribute("reportBean") ReportBean reportBean, @RequestParam("bNo") int bNo,
+			@RequestParam("report") String report, HttpSession session) throws Exception {
 
 		MemberBean memberBean = (MemberBean) session.getAttribute("member");
 		try {
@@ -241,11 +249,10 @@ public class BoardController {
 
 		return "success";
 	}
-	
+
 	@RequestMapping(value = "/delete.do")
 	@ResponseBody
-	public String ajax_delete(@RequestParam("coNum") int coNum, HttpSession session)
-			throws Exception {
+	public String ajax_delete(@RequestParam("coNum") int coNum, HttpSession session) throws Exception {
 
 		try {
 			System.out.println(coNum);

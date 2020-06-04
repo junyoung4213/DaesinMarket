@@ -3,20 +3,15 @@
 					    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 
-	<insert id="addContentInfo"
-		parameterType="com.daesin.beans.BoardBean">
-
-	<!-- 	<selectKey keyProperty="bNo" order="BEFORE"
-			resultType="java.lang.Integer">
-			select board_seq.nextval from dual
-		</selectKey> -->
-	
+	<insert id="addContentInfo" parameterType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	insert into board(b_title,b_content,
-	bi_name,b_reward, b_addr1, b_addr2, b_addr3, b_end_time, b_mno,b_cno, b_write_time) 
-	values (#{bTitle}, #{bContent}, #{biName, jdbcType=VARCHAR},
-		#{bReward}, #{bAddr1},#{bAddr2},#{bAddr3}, #{bEndTime}, #{bMno}, #{bCno}, sysdate)
+	insert into board(b_cno,b_title,b_content, b_reward, b_write_time,b_end_time,b_mno, bi_name, b_addr1, b_addr2, b_addr3) 
+	values (#{bCno},#{bTitle}, #{bContent}, #{bReward},sysdate, #{bEndTime}, #{bMno},#{biName, jdbcType=VARCHAR}, #{bAddr1},#{bAddr2},#{bAddr3})
 	]]>
+		<selectKey keyProperty="bNo" order="AFTER"
+			resultType="java.lang.Integer">
+			select board_seq.currval from dual
+		</selectKey>
 	</insert>
 
 	<select id="getBoardInfoName" parameterType="java.lang.Integer"
@@ -31,7 +26,7 @@
 	<select id="getBoardList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select b_cno, b_no, b_mno, b_title, b_reward, b_location, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3
+	select b_cno, b_no, b_mno, b_title, b_reward, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3
 			from board
 			where b_cno=#{bCno} and (b_end_time > sysdate)
 			order by b_no desc

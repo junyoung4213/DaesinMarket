@@ -116,6 +116,7 @@ public class BoardController {
 	}
 //
 
+
 	@GetMapping("/modify")
 	public String modify(@RequestParam("bNo") int bNo, @RequestParam("bCno") int bCno,
 			@ModelAttribute("modifyContentBean") BoardBean modifyContentBean, @RequestParam("page") int page,

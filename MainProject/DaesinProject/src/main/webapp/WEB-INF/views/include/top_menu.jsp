@@ -38,7 +38,7 @@
 												<span class="d-none d-md-block btn btn-primary"
 													style="font-size: 20px;">로그아웃</span>
 											</a></li>
-										<li><a href="${root }member/modify">
+										<li><a href="${root }member/mypage">
 												<span class="d-none d-md-block btn btn-info"
 													style="font-size: 20px;">마이페이지</span>
 											</a></li>

@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.daesin.beans.MemberBean;
-import com.daesin.beans.CommentBean;
 
 @Repository
 public class MemberDao {

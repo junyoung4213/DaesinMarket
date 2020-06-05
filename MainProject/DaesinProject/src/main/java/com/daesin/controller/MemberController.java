@@ -114,6 +114,17 @@ public class MemberController extends HomeController {
 	 * 
 	 * }
 	 */
+	
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "member/mypage";
+	}
+	
+	@GetMapping("/point")
+	public String point() {
+		return "member/point";
+	}
 
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {

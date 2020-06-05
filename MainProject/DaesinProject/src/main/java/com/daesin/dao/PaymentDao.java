@@ -15,5 +15,9 @@ public class PaymentDao {
 	public void addPaymentInfo(PaymentBean paymentBean) {
 		sqlSessionTemplate.insert("payment.addPaymentInfo",paymentBean);
 	}
+	
+	public void updatePointInfo(PaymentBean paymentBean) {
+		sqlSessionTemplate.update("payment.updatePointInfo",paymentBean);
+	}
 
 }

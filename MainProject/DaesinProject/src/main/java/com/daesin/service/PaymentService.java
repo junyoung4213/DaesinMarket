@@ -21,4 +21,8 @@ public class PaymentService {
 	public void addPaymentInfo(PaymentBean paymentBean) {
 		paymentDao.addPaymentInfo(paymentBean);
 	}
+	
+	public void updatePointInfo(PaymentBean paymentBean) {
+		paymentDao.updatePointInfo(paymentBean);
+	}
 }

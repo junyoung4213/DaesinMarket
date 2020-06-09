@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,23 +17,28 @@ import com.daesin.service.PaymentService;
 @Controller
 @RequestMapping("/payment")
 public class PaymentController {
-	
+
 	@Autowired
 	private PaymentService paymentService;
-	
+
 	@Autowired
 	private MemberService memberService;
 
 	@RequestMapping("/success")
-	public String success(@RequestParam("amount") int amount,@RequestParam("mNo") int mNo, @ModelAttribute("paymentBean") PaymentBean paymentBean,HttpSession session) {
+	public String success(@RequestParam("amount") int amount, @RequestParam("mNo") int mNo,
+			@ModelAttribute("paymentBean") PaymentBean paymentBean, HttpSession session) {
 		paymentBean.setPAmount(amount);
 		paymentBean.setPMno(mNo);
-		paymentService.addPaymentInfo(paymentBean);
-		paymentService.updatePointInfo(paymentBean);
-		MemberBean memberVO = memberService.getLoginMemberInfo((MemberBean)session.getAttribute("member"));
-		
-		session.setAttribute("member", memberVO);
-		
+
+		try {
+
+			paymentService.updatePointInfo(paymentBean);
+			MemberBean memberVO = memberService.getLoginMemberInfo((MemberBean) session.getAttribute("member"));
+			session.setAttribute("member", memberVO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "payment/fail";
+		}
 		return "payment/success";
 	}
 }

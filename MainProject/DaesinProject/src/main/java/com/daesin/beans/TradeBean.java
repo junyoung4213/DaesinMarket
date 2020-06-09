@@ -12,6 +12,9 @@ public class TradeBean {
 	// 게시물번호
 	private int tBno;
 
+	// 의뢰금액
+	private int tReward;
+
 	private BoardBean boardBean;
 
 	public int gettNo() {
@@ -38,6 +41,14 @@ public class TradeBean {
 		this.tBno = tBno;
 	}
 
+	public int gettReward() {
+		return tReward;
+	}
+
+	public void settReward(int tReward) {
+		this.tReward = tReward;
+	}
+
 	public BoardBean getBoardBean() {
 		return boardBean;
 	}
@@ -48,7 +59,8 @@ public class TradeBean {
 
 	@Override
 	public String toString() {
-		return "TradeBean [tNo=" + tNo + ", tSno=" + tSno + ", tBno=" + tBno + ", boardBean=" + boardBean + "]";
+		return "TradeBean [tNo=" + tNo + ", tSno=" + tSno + ", tBno=" + tBno + ", tReward=" + tReward + ", boardBean="
+				+ boardBean + "]";
 	}
 
 }

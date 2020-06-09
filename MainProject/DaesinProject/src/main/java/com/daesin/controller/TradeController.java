@@ -31,9 +31,6 @@ public class TradeController {
 	@ResponseBody
 	public String add(@RequestParam("tSno") int tSno, @RequestParam("tBno") int tBno) {
 
-		System.out.println("tSno: " + tSno);
-		System.out.println("tBno: " + tBno);
-
 		HashMap<String, Integer> list = new HashMap<String, Integer>();
 
 		list.put("tSno", tSno);

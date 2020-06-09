@@ -16,8 +16,13 @@
 	</resultMap>
 
 	<insert id="addTradeInfo" parameterType="HashMap">
+	
+	<selectKey keyProperty="tReward" order="BEFORE"
+			resultType="java.lang.Integer">
+			select b_reward from board where b_no=#{tBno}
+		</selectKey>
 	<![CDATA[
-	INSERT INTO board_trade(t_sno,t_bno) VALUES(#{tSno},#{tBno})
+	INSERT INTO board_trade(t_sno,t_bno,t_reward) VALUES(#{tSno},#{tBno},#{tReward})
 	]]>
 	</insert>
 

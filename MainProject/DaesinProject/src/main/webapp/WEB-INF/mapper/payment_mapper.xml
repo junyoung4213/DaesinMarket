@@ -10,7 +10,7 @@
 		]]>
 	</insert>
 	
-	<update id="updatePointInfo" parameterType="com.daesin.beans.PaymentBean">
+	<update id="updatePointInfo" parameterType="com.daesin.beans.PaymentBean" >
 		UPDATE member 
 		SET m_point = m_point + #{pAmount}
 		WHERE m_no = #{pMno}

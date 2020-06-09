@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans
-	xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- 스캔한 패지키 내부의 클래스 중 Controller 어노테이션을 가지고 있는 클래스들을 Controller로 로딩하도록 
 		한다 -->
 	<annotation-driven />
 
+	<!-- @Transactional 어노테이션을 이용하는 경우 -->
+	<tx:annotation-driven
+		transaction-manager="transactionManager" proxy-target-class="true" /> <!-- <3> -->
 
 	<!-- 스캔할 bean들이 모여있는 패키지를 지정한다. -->
 	<context:component-scan
@@ -42,8 +46,7 @@
 
 		<interceptor>
 			<mapping path="/**" />
-			<beans:bean
-				class="com.daesin.interceptor.MenuInterceptor" />
+			<beans:bean class="com.daesin.interceptor.MenuInterceptor" />
 		</interceptor>
 
 		<!-- 로그인시 인터셉터 발동 -->

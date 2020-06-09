@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.daesin.beans.BoardBean;
@@ -36,8 +35,6 @@ public class TradeService {
 	public void updateBoardInfo(HashMap<String, Integer> list) {
 		tradeDao.updateBoardInfo(list);
 	}
-	
-
 
 	// 일반 회원
 	public List<BoardBean> getTradeList(int mNo, int page) {

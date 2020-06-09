@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="trade">
+
+	<resultMap id="trade" type="com.daesin.beans.TradeBean">
+		<id property="tNo" column="t_no" />
+		<result property="tSno" column="t_sno" />
+		<association property="boardBean" javaType="com.daesin.beans.BoardBean">
+			<id property="bNo" column="b_no" />
+			<result property="bTitle" column="b_title" />
+			<result property="bReward" column="b_reward" />
+			<result property="bWriteTime" column="b_write_time" />
+			<result property="bStatus" column="b_status" />
+		</association>
+	</resultMap>
+
+	<insert id="addTradeInfo" parameterType="HashMap">
+	<![CDATA[
+	INSERT INTO board_trade(t_sno,t_bno) VALUES(#{tSno},#{tBno})
+	]]>
+	</insert>
+
+	<update id="updateBoardInfo" parameterType="HashMap">
+	<![CDATA[
+	UPDATE board
+	SET b_status = #{bStatus}
+	WHERE b_no=#{tBno}
+	]]>
+	</update>
+
+	<select id="getTradeList" parameterType="java.lang.Integer"
+		resultType="com.daesin.beans.BoardBean">
+	<![CDATA[
+	select b_cno, b_no, b_mno, b_title, b_reward, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3, b_status
+			from board
+			where b_mno=#{mNo} 
+			order by b_no desc
+	]]>
+	</select>
+
+	<select id="getTradeList2" parameterType="java.lang.Integer"
+		resultMap="trade">
+	<![CDATA[
+	select b_cno, b_no, b_mno, b_title, b_reward, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3, b_status, t_no, t_sno
+			from board, board_trade
+			where t_bno = b_no and t_sno=#{mNo} 
+			order by t_no desc
+	]]>
+	</select>
+
+
+	<select id="getContentCnt" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+	<![CDATA[
+	select count(*) from board where b_mno = #{mNo}
+	]]>
+	</select>
+
+	<select id="getContentCnt2" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+	<![CDATA[
+	select count(*) from board, board_trade where t_bno = b_no and t_sno = #{mNo} 
+	]]>
+	</select>
+
+</mapper>

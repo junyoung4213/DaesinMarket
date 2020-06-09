@@ -33,7 +33,6 @@ public class PaymentController {
 		
 		session.setAttribute("member", memberVO);
 		
-		
 		return "payment/success";
 	}
 }

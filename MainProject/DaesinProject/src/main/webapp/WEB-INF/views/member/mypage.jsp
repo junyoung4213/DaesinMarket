@@ -47,8 +47,17 @@
 				<h2 class="h1 mb-3 text-black">마이페이지</h2>
 			</div>
 			<div class="row col-md-12 justify-content-center">
-				<div class="card shadow col-md-3 text-center p-5 m-3" onclick="modify();" style="cursor:pointer">정보수정</div>
-				<div class="card shadow col-md-3 text-center p-5 m-3" onclick="point();" style="cursor:pointer">포인트 충전</div>
+				<div class="card shadow col-md-3 text-center p-5 m-3"
+					onclick="modify();" style="cursor: pointer">정보수정</div>
+				<div class="card shadow col-md-3 text-center p-5 m-3"
+					onclick="point();" style="cursor: pointer">포인트 충전</div>
+
+			</div>
+			<div class="row col-md-12 justify-content-center">
+				<div class="card shadow col-md-3 text-center p-5 m-3"
+					onclick="trade();" style="cursor: pointer">내 게시물 보기</div>
+				<div class="card shadow col-md-3 text-center p-5 m-3"
+					onclick="support();" style="cursor: pointer">내가 맡은 의뢰글 보기</div>
 			</div>
 		</div>
 		<div class="col-sm-3"></div>
@@ -65,15 +74,21 @@
 <script src="${root }js/aos.js"></script>
 <script src="${root }js/main.js"></script>
 <script>
+	function modify() {
+		location.href = "${root }member/modify";
+	}
 
-function modify(){
-	location.href="${root }member/modify";
-}
+	function point() {
+		location.href = "${root}member/point";
+	}
 
-function point(){
-	location.href="${root}member/point";
-}
+	function trade() {
+		location.href = "${root}trade/member";
+	}
 
+	function support() {
+		location.href = "${root}trade/supporter";
+	}
 </script>
 </body>
 </html>

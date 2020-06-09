@@ -35,10 +35,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a>
-				<span class="mx-2 mb-0">/</span>
-				<a href="${root }board/main">Request</a>
-				<span class="mx-2 mb-0">/</span> <strong class="text-black">${cName }</strong>
+				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
+					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
+				<strong class="text-black">${cName }</strong>
 			</div>
 		</div>
 	</div>
@@ -165,46 +164,7 @@
 			</div>
 			<!-- //댓글 구현부 -->
 
-			<div id="commentPart" class="d-none d-md-block">
-				<%-- <ul class="pagination justify-content-center">
-					<c:choose>
-						<c:when test="${pageBean.prevPage <=0 }">
-							<li class="page-item disabled"><a href="#" class="page-link">이전</a>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item"><a onclick="getCommentList(${pageBean.prevPage});"
-								class="page-link">이전</a></li>
-						</c:otherwise>
-					</c:choose>
-					<c:forEach var="idx" begin="${pageBean.min }"
-						end="${pageBean.max }">
-						<c:choose>
-							<c:when test="${idx==pageBean.currentPage }">
-								<li class="page-item active"><a
-									onclick="getCommentList(${idx});"
-									class="page-link">${idx }</a></li>
-							</c:when>
-							<c:otherwise>
-								<li class="page-item"><a
-									onclick="getCommentList(${idx});"
-									class="page-link">${idx }</a></li>
-							</c:otherwise>
-						</c:choose>
-
-					</c:forEach>
-					<c:choose>
-						<c:when test="${pageBean.max >= pageBean.pageCnt }">
-							<li class="page-item disabled"><a href="#" class="page-link">다음</a>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item"><a onclick="getCommentList(${pageBean.nextPage});"
-								class="page-link">다음</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul> --%>
-			</div>
+			<div id="commentPart" class="d-none d-md-block"></div>
 
 
 
@@ -258,6 +218,32 @@
 		if(result==true){
 			fn_comment();
 		}
+	}
+	
+	function aceept(co_sno){
+		
+		
+		var result = confirm("정말 수락하시겠습니까?");
+		var bno = ${readContentBean.bNo};
+		var cno = ${bCno};
+		if(result==true){
+		$.ajax({
+			type : 'POST',
+			url : "<c:url value='/trade/add'/>",
+			data : {tSno : co_sno,
+					tBno : bno},
+			success : function(data) {
+				if (data == "success") {
+					alert("서포터와 매칭에 성공하셨습니다");
+				}
+			},
+			error : function(request, status, error) {
+				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+
+		});
+		}
+		
 	}
 	
 	function del(coNum){
@@ -317,6 +303,7 @@
 			data : $("#commentForm").serialize(),
 			success : function(data) {
 				if (data == "success") {
+					alert("신청에 성공하셨습니다")
 					getCommentList(lastPage);
 					$("#coMsg").val("");
 				}
@@ -334,6 +321,9 @@
 	 * 댓글 불러오기(Ajax)
 	 */
 	function getCommentList(x) {
+		
+		var status =${readContentBean.bStatus}
+		console.log(status)
 		$.ajax({
 					type : 'GET',
 					url : "<c:url value='/board/commentList.do?cPage="+ x + "'/>",
@@ -358,20 +348,19 @@
 								html += value.co_date + "</h6>";
 								html += "</div>"
 								
-								
+								if(status==0){
 								if(${readContentBean.bMno == member.mNo}){
 									html += "<div class='text-center card'>";
-									html += "<button type='button' class='btn btn-primary' onclick='aceept("+value.co_num+");'>수락하기</button>";
-									html += "</div>";
+									html += "<button type='button' class='btn btn-primary' onclick='aceept("+value.co_sno+");'>수락하기</button>";
 									html += "</div>";
 								}else if(value.co_sno == ${member.mNo}){
 									html += "<div class='text-center card'>";
 									html += "<button type='button' class='btn btn-danger' onclick='del("+value.co_num+");'>취소하기</button>";
 									html += "</div>";
-									html += "</div>";
-								}else{
-									html += "</div>";
 								}
+								}
+								
+								html+="</div>"
 								}
 								
 								
@@ -379,7 +368,6 @@
 							
 							$.each(data[0], function(key, value){
 								cCnt = value.contentCnt;
-								console.log(cCnt);
 								comment+= '<ul class="pagination justify-content-center">';
 								
 								if(value.prevPage<=0){

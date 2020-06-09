@@ -3,7 +3,6 @@ package com.daesin.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -80,11 +79,8 @@ public class BoardController {
 		if (writeContentBean.getbReward() > member.getmPoint()) {
 			return "board/write_fail";
 		}
-		System.out.println("바뀌기전 : " + writeContentBean.toString());
 
 		boardService.addContentInfo(writeContentBean);
-
-		System.out.println("바뀐후 : " + writeContentBean.toString());
 
 		return "board/write_success";
 	}
@@ -253,7 +249,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/delete.do")
 	@ResponseBody
-	public String ajax_delete(@RequestParam("coNum") int coNum, HttpSession session) throws Exception {
+	public String ajax_delete(@RequestParam("coNum") int coNum) throws Exception {
 
 		try {
 			System.out.println(coNum);

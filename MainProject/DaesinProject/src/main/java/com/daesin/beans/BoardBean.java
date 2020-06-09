@@ -40,7 +40,7 @@ public class BoardBean {
 	// 작성자번호
 	private int bMno;
 
-	// 진행상황
+	// 진행상황(0:대기중,1:진행중,2:완료,3:취소)
 	private int bStatus;
 
 	// 연락처

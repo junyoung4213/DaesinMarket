@@ -26,9 +26,9 @@
 	<select id="getBoardList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select b_cno, b_no, b_mno, b_title, b_reward, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3
+	select b_cno, b_no, b_mno, b_title, b_reward, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3, b_status
 			from board
-			where b_cno=#{bCno} and (b_end_time > sysdate)
+			where b_cno=#{bCno} and (b_end_time >= (sysdate-1)) and b_status=0
 			order by b_no desc
 	]]>
 	</select>
@@ -38,7 +38,8 @@
 	<![CDATA[
 	select b_mno, b_no, b_title, b_content, bi_name, b_reward, b_addr1, b_addr2,
 	TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time,
-	TO_CHAR(b_end_time, 'YYYY-MM-DD') as b_end_time
+	TO_CHAR(b_end_time, 'YYYY-MM-DD') as b_end_time,
+	b_status
 	from board
 	where b_no = #{bNo}
 	]]>
@@ -65,7 +66,7 @@
 	<select id="getContentCnt" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">
 	<![CDATA[
-	select count(*) from board where b_cno = #{bCno}
+	select count(*) from board where b_cno=#{bCno} and (b_end_time >= (sysdate-1)) and b_status=0
 	]]>
 	</select>
 

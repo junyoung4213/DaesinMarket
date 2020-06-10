@@ -40,7 +40,7 @@ public class BoardController {
 	private SupporterService supporterService;
 
 	@GetMapping("/main")
-	public String main(@RequestParam("bCno") int bCno, @RequestParam(value = "page", defaultValue = "1") int page,
+	public String main(@RequestParam(value="bCno", defaultValue = "1") int bCno, @RequestParam(value = "page", defaultValue = "1") int page,
 			Model model) {
 		model.addAttribute("bCno", bCno);
 
@@ -110,9 +110,7 @@ public class BoardController {
 
 		return "board/read";
 	}
-//
-
-
+	
 	@GetMapping("/modify")
 	public String modify(@RequestParam("bNo") int bNo, @RequestParam("bCno") int bCno,
 			@ModelAttribute("modifyContentBean") BoardBean modifyContentBean, @RequestParam("page") int page,

@@ -37,7 +37,7 @@
 			<div class="col-md-12 mb-0">
 				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
 					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
-				<strong class="text-black">${cName }</strong>
+				<strong class="text-black">거래 페이지</strong>
 			</div>
 		</div>
 	</div>
@@ -48,7 +48,7 @@
 		<div class="col-lg-3"></div>
 		<div class="col-lg-6 mb-5">
 			<div class="col-lg-12 text-center">
-				<h1 class="text-black">${cName }의뢰</h1>
+				<h1 class="text-black">${readContentBean.bTitle}</h1>
 				<br />
 				<div class="border-bottom"></div>
 				<br /> <br />
@@ -110,23 +110,18 @@
 
 					<div class="form-group">
 						<div class="text-center">
-							<a href="${root }board/main?bCno=${bCno}&page=${page}"
-								class="btn btn-primary">목록보기</a>
 							<c:if test="${readContentBean.bMno == member.mNo}">
-								<a
-									href="${root }board/modify?bCno=${bCno }&bNo=${bNo}&page=${page}"
-									class="btn btn-info">수정하기</a>
-								<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button>
+								<button class="btn btn-warning" onclick="complete();">완료하기</button>
 							</c:if>
 							<c:if test="${readContentBean.bMno != member.mNo }">
-								<button class="btn btn-danger" onclick="report();">신고하기</button>
+								<button class="btn btn-danger" onclick="cancel();">취소하기</button>
 							</c:if>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<!-- 댓글 구현부  -->
+			<!-- 댓글 구현부 
 			<div class="container col-md-12">
 				<form id="commentForm" name="commentForm" method="post">
 					<br> <br>
@@ -162,10 +157,9 @@
 					<div id="commentList"></div>
 				</form>
 			</div>
-			<!-- //댓글 구현부 -->
 
 			<div id="commentPart" class="d-none d-md-block"></div>
-
+			 -->
 
 
 		</div>
@@ -184,62 +178,27 @@
 
 <script src="${root }js/main.js"></script>
 <script>
-	var deletePopup = function() {
-		if (confirm("정말 삭제하시겠습니까?")) {
-			location.href = "delete?bCno=${bCno}&bNo=${bNo}"
-		}
-	}
-	
-	function report() {
-		var report = prompt("신고내용을 적어주세요","신고 내용");
-		if(report==null){
-			alert("신고요청이 취소되었습니다")
-		}else{
-		$.ajax({
-			type : 'POST',
-			url : "<c:url value='/board/report.do?bNo="+${bNo}+"'/>",
-			data : {report : report},
-			success : function(data) {
-				if (data == "success") {
-					alert("신고내용이 성공적으로 접수되었습니다");
-				}
-			},
-			error : function(request, status, error) {
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
 
-		});
-		}
-	}
 	
-	function request(){
-		var result = confirm("정말 신청하시겠습니까?");
-		
-		if(result==true){
-			fn_comment();
-		}
-	}
 	
-	function aceept(co_sno){
+	function complete(){
 		
 		
-		var result = confirm("정말 수락하시겠습니까?");
+		var result = confirm("정말 완료하시겠습니까?");
 		var bno = ${readContentBean.bNo};
-		var cno = ${bCno};
-		var mno = ${readContentBean.bMno}
+		var tReward = ${readContentBean.bReward};
 		if(result==true){
 		$.ajax({
 			type : 'POST',
-			url : "<c:url value='/trade/add'/>",
-			data : {tSno : co_sno,
-					tBno : bno,
-					mNo : mno},
+			url : "<c:url value='/trade/complete'/>",
+			data : {tBno : bno,
+					tReward : tReward},
 			success : function(data) {
 				if (data == "success") {
-					alert("서포터와 매칭에 성공하셨습니다");
-					location.href="${root}trade/read?bNo=" + ${readContentBean.bNo};
+					alert("의뢰가 성공적으로 완료되었습니다.");
+					location.href="${root}main"
 				}else if(data == "fail"){
-					alert("서포터와의 매칭에 실패하셨습니다");
+					alert("에러)의뢰가 완료되지 못했습니다");
 				}
 			},
 			error : function(request, status, error) {
@@ -251,66 +210,22 @@
 		
 	}
 	
-	function del(coNum){
-		
-		
+	function cancel(){
 		var result = confirm("정말 취소하시겠습니까?");
-		
+		var mNo = ${readContentBean.bMno};
+		var tReward = ${readContentBean.bReward};
+		var tBno = ${readContentBean.bNo};
 		if(result==true){
 		$.ajax({
 			type : 'POST',
-			url : "<c:url value='/board/delete.do'/>",
-			data : {coNum : coNum},
+			url : "<c:url value='/trade/cancel'/>",
+			data : {mNo : mNo,
+				tReward : tReward,
+				tBno : tBno},
 			success : function(data) {
 				if (data == "success") {
-					alert("신청이 정상적으로 취소되었습니다.");
-					getCommentList(1);
-				}
-			},
-			error : function(request, status, error) {
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-
-		});
-		}
-	}
-	
-	/**
-	 * 초기 페이지 로딩시 댓글 불러오기
-	 */
-	$(function() {
-		
-		getCommentList(1);
-
-	});
-
-
-	/*
-	 * 댓글 등록하기(Ajax)
-	 */
-	function fn_comment() {
-		
-		if(${readContentBean.bMno == member.mNo}){
-			alert("본인 글에는 본인이 신청할 수 없습니다.")
-		}else{
-		
-		var today = new Date();
-		var cnt = (Number($('#cCnt').text()) + 1); 
-		var lastPage = Math.floor(cnt/10);
-		if (cnt%10 > 0) {
-			lastPage++;
-		}
-		
-		$('#coDate').val(today.toLocaleString())
-		$.ajax({
-			type : 'POST',
-			url : "<c:url value='/board/addComment.do'/>",
-			data : $("#commentForm").serialize(),
-			success : function(data) {
-				if (data == "success") {
-					alert("신청에 성공하셨습니다")
-					getCommentList(lastPage);
-					$("#coMsg").val("");
+					alert("맡은 의뢰가 정상적으로 취소되었습니다.");
+					location.href="${root}main"
 				}
 			},
 			error : function(request, status, error) {
@@ -321,106 +236,6 @@
 		}
 	}
 
-
-	/**
-	 * 댓글 불러오기(Ajax)
-	 */
-	function getCommentList(x) {
-		
-		var status =${readContentBean.bStatus}
-		console.log(status)
-		$.ajax({
-					type : 'GET',
-					url : "<c:url value='/board/commentList.do?cPage="+ x + "'/>",
-					dataType : "json",
-					data : $("#commentForm").serialize(),
-					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-					success : function(data) {
-						var html = "";
-						var cCnt = 0;
-						var comment = "";
-
-						if (data.length > 0) {
-							
-							$.each(data, function(key, value){ 
-								
-								if(value.co_name!=null ){
-								
-								html += "<div class='card shadow m-2 p-3 row' style='text-align:left'>"
-								html += "<div>"
-								html += "<h6>이름 : " + value.co_name + "<br>";
-								html += "<p>내용 : " + value.co_msg + "</p><br>";
-								html += value.co_date + "</h6>";
-								html += "</div>"
-								
-								if(status==0){
-								if(${readContentBean.bMno == member.mNo}){
-									html += "<div class='text-center card'>";
-									html += "<button type='button' class='btn btn-primary' onclick='aceept("+value.co_sno+");'>수락하기</button>";
-									html += "</div>";
-								}else if(value.co_sno == ${member.mNo}){
-									html += "<div class='text-center card'>";
-									html += "<button type='button' class='btn btn-danger' onclick='del("+value.co_num+");'>취소하기</button>";
-									html += "</div>";
-								}
-								}
-								
-								html+="</div>"
-								}
-								
-								
-				            });
-							
-							$.each(data[0], function(key, value){
-								cCnt = value.contentCnt;
-								comment+= '<ul class="pagination justify-content-center">';
-								
-								if(value.prevPage<=0){
-									comment += '<li class="page-item disabled"><a href="#" class="page-link">이전</a></li>';
-								}else{
-									comment += '<li class="page-item"><a onclick="getCommentList('+value.prevPage+');" class="page-link">이전</a></li>'
-								}
-								
-								for(var i=value.min; i<=value.max;i++){
-									if(value.currentPage==i){
-										comment+='<li class="page-item active"><a onclick="getCommentList('+i+');" class="page-link">'+i+'</a></li>'
-									}else{
-										comment+='<li class="page-item"><a onclick="getCommentList('+i+');" class="page-link">'+i+'</a></li>'
-									}
-								}
-								
-								if(value.max >= value.pageCnt){
-									comment+='<li class="page-item disabled"><a href="#" class="page-link">다음</a></li>'
-								}else{
-									comment+='<li class="page-item"><a onclick="getCommentList('+value.nextPage+');" class="page-link">다음</a></li>'
-								}
-								
-								comment+='</ul>'
-								
-							});
-
-						} else {
-							html += "<div><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-							html += "</div>";
-						}
-						
-						
-						
-						
-						$("#cCnt").html(cCnt);
-						/* $("#cnt").val(cCnt); */
-						$("#commentList").html(html);
-						$("#commentPart").html(comment);
-
-					},
-					error : function(request, status, error) {
-
-					}
-
-				});
-
-	}
-	
 </script>
 </body>
 </html>

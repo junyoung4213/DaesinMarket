@@ -126,9 +126,11 @@ function point(){
 	if (rsp.success) {
 	location.href="${root}payment/success?amount="+rsp.paid_amount+"&mNo="+${member.mNo};
 	} else {
-	var msg = '결제에 실패하였습니다.';
+	var msg = '포인트 충전에 실패했습니다. 고객센터로 문의해주세요.';
 	msg += '에러내용 : ' + rsp.error_msg;
 	alert(msg);
+	
+	
 	}
 	
 	});

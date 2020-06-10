@@ -63,7 +63,7 @@
 							<td class="text-center">${obj.tNo }</td>
 							<td class="text-center">${obj.boardBean.bNo }</td>
 							<td class="text-center"><a
-								href='${root }board/read?bCno=${obj.boardBean.bCno}&bNo=${obj.boardBean.bNo}&page=${page}'>${obj.boardBean.bTitle}</a></td>
+								href='${root}trade/read?bNo=${obj.boardBean.bNo}'>${obj.boardBean.bTitle}</a></td>
 							<td class="text-center">${obj.boardBean.bReward }</td>
 							<td class="text-center d-none d-md-table-cell">${obj.boardBean.bWriteTime}</td>
 							<c:choose>

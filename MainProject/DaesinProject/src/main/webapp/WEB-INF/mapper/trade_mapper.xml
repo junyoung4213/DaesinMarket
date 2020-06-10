@@ -6,7 +6,8 @@
 	<resultMap id="trade" type="com.daesin.beans.TradeBean">
 		<id property="tNo" column="t_no" />
 		<result property="tSno" column="t_sno" />
-		<association property="boardBean" javaType="com.daesin.beans.BoardBean">
+		<association property="boardBean"
+			javaType="com.daesin.beans.BoardBean">
 			<id property="bNo" column="b_no" />
 			<result property="bTitle" column="b_title" />
 			<result property="bReward" column="b_reward" />
@@ -15,9 +16,9 @@
 		</association>
 	</resultMap>
 
+	<!-- 거래 정보 삽입 -->
 	<insert id="addTradeInfo" parameterType="HashMap">
-	
-	<selectKey keyProperty="tReward" order="BEFORE"
+		<selectKey keyProperty="tReward" order="BEFORE"
 			resultType="java.lang.Integer">
 			select b_reward from board where b_no=#{tBno}
 		</selectKey>
@@ -26,6 +27,7 @@
 	]]>
 	</insert>
 
+	<!-- 게시물 정보 수정(상태 수정) -->
 	<update id="updateBoardInfo" parameterType="HashMap">
 	<![CDATA[
 	UPDATE board
@@ -33,6 +35,49 @@
 	WHERE b_no=#{tBno}
 	]]>
 	</update>
+
+	<!-- 멤버 정보 수정 -->
+	<update id="updateMemberInfo" parameterType="HashMap">
+		<selectKey keyProperty="tReward" order="BEFORE"
+			resultType="java.lang.Integer">
+			select b_reward from board where b_no=#{tBno}
+		</selectKey>
+	<![CDATA[
+	UPDATE member
+	SET m_point = m_point - #{tReward}
+	WHERE m_no = #{mNo}
+	]]>
+	</update>
+
+	<!-- 멤버 정보 롤백 -->
+	<update id="rollbackMemberInfo" parameterType="HashMap">
+	<![CDATA[
+	UPDATE member
+	SET m_point = m_point + #{tReward}
+	WHERE m_no = #{mNo}
+	]]>
+	</update>
+
+	<!-- 서포터 정보 수정 -->
+	<update id="updateSupporterInfo" parameterType="HashMap">
+		<selectKey keyProperty="tSno" order="BEFORE"
+			resultType="java.lang.Integer">
+			select t_sno from board_trade where t_bno=#{tBno}
+		</selectKey>
+	<![CDATA[
+	UPDATE member
+	SET m_point = m_point + #{tReward}
+	WHERE m_no = #{tSno}
+	]]>
+	</update>
+
+	<!-- 거래 정보 삭제 -->
+	<delete id="deleteTradeInfo" parameterType="HashMap">
+
+		DELETE FROM board_trade
+		WHERE t_bno=#{tBno}
+
+	</delete>
 
 	<select id="getTradeList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">

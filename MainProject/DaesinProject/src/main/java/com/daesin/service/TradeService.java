@@ -35,6 +35,23 @@ public class TradeService {
 	public void updateBoardInfo(HashMap<String, Integer> list) {
 		tradeDao.updateBoardInfo(list);
 	}
+	
+	public void updateMemberInfo(HashMap<String, Integer> list) {
+		tradeDao.updateMemberInfo(list);
+	}
+	
+	public void updateSupporterInfo(HashMap<String, Integer> list) {
+		tradeDao.updateSupporterInfo(list);
+	}
+	
+	public void rollbackMemberInfo(HashMap<String, Integer> list) {
+		tradeDao.rollbackMemberInfo(list);
+	}
+	
+	public void deleteTradeInfo(HashMap<String, Integer> list) {
+		tradeDao.deleteTradeInfo(list);
+	}
+	
 
 	// 일반 회원
 	public List<BoardBean> getTradeList(int mNo, int page) {

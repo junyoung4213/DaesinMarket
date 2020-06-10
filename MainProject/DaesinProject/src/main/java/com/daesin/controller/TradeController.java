@@ -18,6 +18,8 @@ import com.daesin.beans.BoardBean;
 import com.daesin.beans.MemberBean;
 import com.daesin.beans.PageBean;
 import com.daesin.beans.TradeBean;
+import com.daesin.service.BoardService;
+import com.daesin.service.MemberService;
 import com.daesin.service.TradeService;
 
 @Controller
@@ -26,22 +28,94 @@ public class TradeController {
 
 	@Autowired
 	private TradeService tradeService;
+	
+	@Autowired
+	private MemberService memberService;
+	
+	@Autowired
+	private BoardService boardService;
+	
+	
+	@GetMapping("/read")
+	public String trade(@RequestParam("bNo") int bNo, Model model) {
+
+		model.addAttribute("bNo", bNo);
+
+		BoardBean readContentBean = boardService.getContentInfo(bNo);
+		model.addAttribute("readContentBean", readContentBean);
+
+		return "trade/read";
+	}
+	
+	@PostMapping("/complete")
+	@ResponseBody
+	public String complete(@RequestParam("tBno") int tBno,@RequestParam("tReward") int tReward) {
+		
+		HashMap<String, Integer> list = new HashMap<String, Integer>();
+
+		list.put("tBno", tBno);
+		list.put("tReward", tReward);
+		list.put("bStatus",2);
+		
+		
+		try {
+			tradeService.updateBoardInfo(list);
+			tradeService.updateSupporterInfo(list);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+		return "success";
+	}
+	
+	@PostMapping("/cancel")
+	@ResponseBody
+	public String cancel(@RequestParam("mNo") int mNo,@RequestParam("tBno") int tBno,@RequestParam("tReward") int tReward) {
+		
+		HashMap<String, Integer> list = new HashMap<String, Integer>();
+
+		list.put("mNo", mNo);
+		list.put("tReward", tReward);
+		list.put("tBno", tBno);
+		list.put("bStatus",3);
+		try {
+			tradeService.updateBoardInfo(list);
+			tradeService.rollbackMemberInfo(list);
+			tradeService.deleteTradeInfo(list);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		}
+		return "success";
+	}
+	
 
 	@PostMapping("/add")
 	@ResponseBody
-	public String add(@RequestParam("tSno") int tSno, @RequestParam("tBno") int tBno) {
+	public String add(@RequestParam("tSno") int tSno, @RequestParam("tBno") int tBno,@RequestParam("mNo") int mNo, HttpSession session) {
 
 		HashMap<String, Integer> list = new HashMap<String, Integer>();
 
 		list.put("tSno", tSno);
 		list.put("tBno", tBno);
+		list.put("mNo", mNo);
 		list.put("bStatus",1);
 
 		try {
 			tradeService.addTradeInfo(list);
 			tradeService.updateBoardInfo(list);
+			tradeService.updateMemberInfo(list);
+			
+		
+			MemberBean member = memberService.getLoginMemberInfo((MemberBean)session.getAttribute("member"));
+			
+			session.setAttribute("member", member);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "fail";
 		}
 		return "success";
 	}

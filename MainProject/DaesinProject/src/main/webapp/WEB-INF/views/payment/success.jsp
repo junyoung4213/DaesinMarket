@@ -44,10 +44,10 @@
 	<div class="container">
 		<div class="justify-content-center">
 			<div class="col-md-12 text-center">
-				<h2 class="h1 mb-3 text-black">결제완료</h2>
+				<h2 class="h1 mb-3 text-black">충전완료</h2>
 			</div>
 			<div class="row col-md-12 justify-content-center m-0">
-				<div class="card shadow text-center p-5 m-3">결제가 완료되었습니다</div>
+				<div class="card shadow text-center p-5 m-3">포인트가 충전되었습니다</div>
 			</div>
 		</div>
 		<div class="col-sm-3"></div>

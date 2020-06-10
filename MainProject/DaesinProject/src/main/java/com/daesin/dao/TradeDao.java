@@ -24,6 +24,23 @@ public class TradeDao {
 	public void updateBoardInfo(HashMap<String, Integer> list) {
 		sqlSessionTemplate.update("trade.updateBoardInfo",list);
 	}
+	
+	public void updateMemberInfo(HashMap<String, Integer> list) {
+		sqlSessionTemplate.update("trade.updateMemberInfo",list);
+	}
+	
+	public void updateSupporterInfo(HashMap<String, Integer> list) {
+		sqlSessionTemplate.update("trade.updateSupporterInfo",list);
+	}
+	
+	public void rollbackMemberInfo(HashMap<String, Integer> list) {
+		sqlSessionTemplate.update("trade.rollbackMemberInfo",list);
+	}
+	
+	public void deleteTradeInfo(HashMap<String, Integer> list) {
+		sqlSessionTemplate.update("trade.deleteTradeInfo",list);
+	}
+	
 
 	public List<BoardBean> getTradeList(int mNo, RowBounds rowBounds) {
 		return sqlSessionTemplate.selectList("trade.getTradeList", mNo, rowBounds);

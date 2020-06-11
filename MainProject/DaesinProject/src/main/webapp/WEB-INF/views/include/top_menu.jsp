@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="${root }css/aos.css" />
 
     <link rel="stylesheet" href="${root }css/style.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
   </head>
 <body>
 	<div class="site-wrap">

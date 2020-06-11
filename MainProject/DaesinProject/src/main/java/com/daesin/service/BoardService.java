@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,10 +27,6 @@ public class BoardService {
 
 	@Autowired
 	private BoardDao boardDao;
-
-	@Autowired
-	@Lazy
-	private BoardBean boardBean;
 	
 	private String saveUploadFile(MultipartFile upload_file) {
 

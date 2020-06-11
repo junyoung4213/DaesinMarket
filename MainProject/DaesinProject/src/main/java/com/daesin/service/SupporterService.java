@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.daesin.beans.CommentBean;
@@ -16,7 +15,7 @@ import com.daesin.dao.SupporterDao;
 
 @Service
 public class SupporterService {
-	
+
 	@Value("${path.upload}")
 	private String path_upload;
 
@@ -28,67 +27,59 @@ public class SupporterService {
 
 	@Autowired
 	private SupporterDao supporterDao;
-	
-	@Autowired
-	@Lazy 
-	private CommentBean commentBean;
-	
-	@Autowired
-	@Lazy 
-	private ReportBean reportBean;
 
 	public void addSupporterInfo(MemberBean tempSupporterBean) {
 		supporterDao.addSupporterInfo(tempSupporterBean);
 	}
-	
+
 	public CommentBean findCommentInfo(int bNo) {
 		return supporterDao.findCommentInfo(bNo);
 	}
-	
+
 	public void addComment(CommentBean commentBean) {
 		supporterDao.addComment(commentBean);
 	}
-	
-	public List<CommentBean> selectComment(int coBno, int cPage){
-		
+
+	public List<CommentBean> selectComment(int coBno, int cPage) {
+
 		int start = (cPage - 1) * page_listcnt;
 		RowBounds rowBounds = new RowBounds(start, page_listcnt);
-		
-		return supporterDao.selectComment(coBno,rowBounds);
+
+		return supporterDao.selectComment(coBno, rowBounds);
 	}
-	
-	public List<CommentBean> selectCommentPart(int coSno, int cPage){
-		
+
+	public List<CommentBean> selectCommentPart(int coSno, int cPage) {
+
 		int start = (cPage - 1) * page_listcnt;
 		RowBounds rowBounds = new RowBounds(start, page_listcnt);
-		
-		return supporterDao.selectCommentPart(coSno,rowBounds);
+
+		return supporterDao.selectCommentPart(coSno, rowBounds);
 	}
-	
+
 	public PageBean getCommentCnt(int coBno, int currentPage) {
 		int content_cnt = supporterDao.getCommentCnt(coBno);
-		
+
 		System.out.println("content_cnt : " + content_cnt);
 
 		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
 
 		return pageBean;
 	}
-	
+
 	public PageBean getCommentCntPart(int coSno, int currentPage) {
 		int content_cnt = supporterDao.getCommentCntPart(coSno);
-		
+
 		System.out.println("content_cnt : " + content_cnt);
-		
+
 		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
-		
+
 		return pageBean;
 	}
-	
+
 	public void addReport(ReportBean reportBean) {
 		supporterDao.addReport(reportBean);
 	}
-	
+
 	public void deleteReport(int coNum) {
 		supporterDao.deleteReport(coNum);
 	}

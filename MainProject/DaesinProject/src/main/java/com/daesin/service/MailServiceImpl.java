@@ -43,7 +43,7 @@ public class MailServiceImpl implements MailService {
 // 첨부 파일 처리 다른방법(이건 확인함)
 // FileSystemResource file = new FileSystemResource(new File("D:/load.gif"));
 // helper.addAttachment("load.gif", file);
-// 메일에 이미지 심어서 보낸는 방법(한글파일은 안됨)
+// 메일에 이미지 심어서 보내는 방법(한글파일은 안됨)
 // String contents = text + "<br><br><img src=\"cid:emailPic.png \">";
 // helper.setText(contents, true);
 // FileSystemResource file = new FileSystemResource(new File("D:/emailPic.png"));

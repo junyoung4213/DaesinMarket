@@ -21,7 +21,7 @@ import com.daesin.service.SupporterService;
 
 @Controller
 @RequestMapping("/member")
-public class MemberController extends HomeController {
+public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
@@ -35,30 +35,6 @@ public class MemberController extends HomeController {
 		return ran;
 	}
 
-	/*
-	 * @GetMapping("/login") public String
-	 * login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean,
-	 * 
-	 * @RequestParam(value = "fail", defaultValue = "false") boolean fail, Model
-	 * model) {
-	 * 
-	 * model.addAttribute("fail", fail);
-	 * 
-	 * return "member/login"; }
-	 * 
-	 * @PostMapping("/login_pro") public String
-	 * login_pro(@Valid @ModelAttribute("tempLoginMemberBean") MemberBean
-	 * tempLoginMemberBean, BindingResult result) { if (result.hasErrors()) { return
-	 * "member/login"; }
-	 * 
-	 * memberService.getLoginMemberInfo(tempLoginMemberBean);
-	 * 
-	 * if (loginMemberBean.isMemberLogin() == true) { return "member/login_success";
-	 * } else { return "member/login_fail"; }
-	 * 
-	 * }
-	 */
-
 	@GetMapping("/join")
 	public ModelAndView join(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
 
@@ -71,7 +47,7 @@ public class MemberController extends HomeController {
 
 	@PostMapping("/join_pro")
 	public String join_pro(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
-	
+
 		memberService.addMemberInfo(joinMemberBean);
 
 		return "member/join_success";
@@ -94,33 +70,11 @@ public class MemberController extends HomeController {
 
 	}
 
-	/*
-	 * @GetMapping("/modify") public String modify(@ModelAttribute("modifyUserBean")
-	 * UserBean modifyUserBean) {
-	 * 
-	 * userService.getModifyUserInfo(modifyUserBean);
-	 * 
-	 * return "user/modify"; }
-	 * 
-	 * @PostMapping("/modify_pro") public String
-	 * modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean,
-	 * BindingResult result) {
-	 * 
-	 * if (result.hasErrors()) { return "user/modify"; }
-	 * 
-	 * userService.modifyUserInfo(modifyUserBean);
-	 * 
-	 * return "user/modify_success";
-	 * 
-	 * }
-	 */
-	
-	
 	@GetMapping("/mypage")
 	public String mypage() {
 		return "member/mypage";
 	}
-	
+
 	@GetMapping("/point")
 	public String point() {
 		return "member/point";
@@ -192,7 +146,9 @@ public class MemberController extends HomeController {
 		return "member/login_success";
 	}
 
-	/* 추후에 수정할것. 유효성 검사.
+	/*
+	 * 추후에 수정할것. 유효성 검사.
+	 * 
 	 * @InitBinder public void initBinder(WebDataBinder binder) { UserValidator
 	 * validator1 = new UserValidator(); binder.addValidators(validator1); }
 	 */

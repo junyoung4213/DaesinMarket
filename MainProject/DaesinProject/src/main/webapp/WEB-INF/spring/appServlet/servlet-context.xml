@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -66,8 +67,12 @@
 			<mapping path="/member/modify" />
 			<beans:bean class="com.daesin.interceptor.AuthInterceptor" />
 		</interceptor>
-		<!-- <interceptor> <mapping path="/board/modify"/> <mapping path="/board/delete"/> 
-			<beans:bean class="com.daesin.interceptor.CheckWriterInterceptor" /> </interceptor> -->
+		<interceptor>
+			<mapping path="/board/modify" />
+			<mapping path="/board/delete" />
+			<beans:bean
+				class="com.daesin.interceptor.CheckWriterInterceptor" />
+		</interceptor>
 	</interceptors>
 
 
@@ -102,15 +107,18 @@
 	<beans:bean
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver"
 		id="multipartResolver" />
-		
-			<!-- websocket handler -->
-	<beans:bean id="echoHandler" class="com.daesin.handler.EchoHandler" />
- 
+
+	<!-- websocket handler -->
+	<beans:bean id="echoHandler"
+		class="com.daesin.handler.EchoHandler" />
+
 	<websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/echo" />
+		<websocket:mapping handler="echoHandler"
+			path="/echo" />
 		<websocket:handshake-interceptors>
-	         <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
-	      </websocket:handshake-interceptors>
-	 </websocket:handlers>
+			<beans:bean
+				class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
 </beans:beans>
 

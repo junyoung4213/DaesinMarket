@@ -28,9 +28,9 @@ public class AlarmController {
 		alarmBean.setACaller(caller);
 		alarmBean.setABno(boardNum);
 		
-		alarmService.addAlarm(alarmBean);
 
 		try {
+			alarmService.addAlarm(alarmBean);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

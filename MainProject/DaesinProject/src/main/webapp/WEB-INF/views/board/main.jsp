@@ -39,7 +39,7 @@
 						<tr>
 							<td class="text-center">${obj.bNo }</td>
 							<td class="text-center"><a
-								href='${root }board/read?bCno=${bCno}&bNo=${obj.bNo}&page=${page}'>${obj.bTitle}</a></td>
+								href='${root }board/read?bNo=${obj.bNo}&page=${page}'>${obj.bTitle}</a></td>
 							<td class="text-center">${obj.bReward }</td>
 							<td class="text-center d-none d-md-table-cell">${obj.bAddr3}</td>
 							<td class="text-center d-none d-md-table-cell">${obj.bWriteTime}</td>

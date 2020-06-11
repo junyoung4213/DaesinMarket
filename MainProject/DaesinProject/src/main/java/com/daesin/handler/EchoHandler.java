@@ -55,7 +55,7 @@ public class EchoHandler extends TextWebSocketHandler {
 						System.out.println("리스트 통과함");
 						for (AlarmBean alarmBean : list) {
 							TextMessage tmpMsg = new TextMessage(
-									alarmBean.getACaller() + "님이 " + alarmBean.getABno() + "번 게시글에 댓글을 남겼습니다.");
+									alarmBean.getACaller() + "님이 " +"<a type='external' href='/DaesinProject/board/read?bNo=" +  alarmBean.getABno() + "'>" +alarmBean.getABno()+ "번 게시글에 댓글을 남겼습니다.");
 							boardWriterSession.sendMessage(tmpMsg);
 						}
 						alarmService.deleteAlarm(strs[1]);
@@ -75,21 +75,14 @@ public class EchoHandler extends TextWebSocketHandler {
 				System.out.println("로그인했는지 확인한후");
 
 				if ("reply".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(caller + "님이 " + seq + "번 게시글에 댓글을 남겼습니다.");
+					TextMessage tmpMsg = new TextMessage(caller + "님이 " +"<a type='external' href='/DaesinProject/board/read?bNo=" + seq + "'>"+ seq + "</a>번 게시글에 댓글을 남겼습니다.");
 					boardWriterSession.sendMessage(tmpMsg);
 					alarmService.deleteAlarm(strs[2]);
 
-				} else if ("follow".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(caller + "님이 " + receiver + "님을 팔로우를 시작했습니다.");
-					boardWriterSession.sendMessage(tmpMsg);
-
-				} else if ("scrap".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(caller + "님이 " +
-					// 변수를 하나더 보낼수 없어서 receiver 변수에 member_seq를 넣어서 썼다.
-							"<a type='external' href='/mentor/essayboard/essayboardView?pg=1&seq=" + seq + "&mentors="
-							+ receiver + "'>" + seq + "</a>번 에세이를 스크랩 했습니다.");
-					boardWriterSession.sendMessage(tmpMsg);
-				}
+				} 
+				
+				
+				
 			}
 
 		}

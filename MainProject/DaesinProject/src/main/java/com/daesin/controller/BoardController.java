@@ -86,17 +86,17 @@ public class BoardController {
 	}
 
 	@GetMapping("/read")
-	public String read(@RequestParam("bCno") int bCno, @RequestParam("bNo") int bNo, @RequestParam("page") int page,
+	public String read(@RequestParam("bNo") int bNo, @RequestParam(value="page",defaultValue = "1") int page,
 			@RequestParam(value = "cPage", defaultValue = "1") int cPage, Model model) {
-		model.addAttribute("bCno", bCno);
 
-		String cName = boardService.getBoardInfoName(bCno);
-		model.addAttribute("cName", cName);
 
 		model.addAttribute("bNo", bNo);
 
 		BoardBean readContentBean = boardService.getContentInfo(bNo);
 		/* CommentBean readCommentBean = supporterService.findCommentInfo(bNo); */
+		
+		String cName = boardService.getBoardInfoName(readContentBean.getbCno());
+		model.addAttribute("cName", cName);
 		
 		System.out.println(readContentBean.toString());
 		

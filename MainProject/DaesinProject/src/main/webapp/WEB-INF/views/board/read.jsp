@@ -87,11 +87,11 @@
 
 					<div class="form-group">
 						<div class="text-center">
-							<a href="${root }board/main?bCno=${bCno}&page=${page}"
+							<a href="${root }board/main?bCno=${readContentBean.bCno}&page=${page}"
 								class="btn btn-primary">목록보기</a>
 							<c:if test="${readContentBean.bMno == member.mNo}">
 								<a
-									href="${root }board/modify?bCno=${bCno }&bNo=${bNo}&page=${page}"
+									href="${root }board/modify?bCno=${readContentBean.bCno }&bNo=${bNo}&page=${page}"
 									class="btn btn-info">수정하기</a>
 								<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button>
 							</c:if>
@@ -155,7 +155,7 @@
 <script>
 	var deletePopup = function() {
 		if (confirm("정말 삭제하시겠습니까?")) {
-			location.href = "delete?bCno=${bCno}&bNo=${bNo}";
+			location.href = "delete?bCno=${readContentBean.bCno}&bNo=${bNo}";
 		}
 	}
 	
@@ -194,7 +194,7 @@
 		
 		var result = confirm("정말 수락하시겠습니까?");
 		var bno = ${readContentBean.bNo};
-		var cno = ${bCno};
+		var cno = ${readContentBean.bCno};
 		var mno = ${readContentBean.bMno};
 		if(result==true){
 		$.ajax({

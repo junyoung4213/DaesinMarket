@@ -68,23 +68,44 @@
 <script src="${root }js/jquery.magnific-popup.min.js"></script>
 <script src="${root }js/aos.js"></script>
 <script src="${root }js/main.js"></script>
+<script
+	src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
 
 <script>
-var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
-function socket(){
-ws.onopen = function () {
-    console.log('Info: connection opened.');
-            var msg = "search,"+$('#memberId').val();
-            console.log(msg);
-            ws.send(msg);
-    };
-ws.onmessage = function (event) {
-	console.log("메세지 : " + event.data);
-};
-ws.onclose = function (event) {
-    console.log('Info: connection closed.');
-};
-}
-socket();
+	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
+	function socket() {
+		ws.onopen = function() {
+			console.log('Info: connection opened.');
+			var msg = "search," + $('#memberId').val();
+			console.log(msg);
+			ws.send(msg);
+		};
+		ws.onmessage = function(event) {
+			console.log("메세지 : " + event.data);
+			toastr.options = {
+				"closeButton" : true,
+				"debug" : false,
+				"newestOnTop" : false,
+				"progressBar" : true,
+				"preventDuplicates" : false,
+				"onclick" : null,
+				"showDuration" : "300",
+				"hideDuration" : "1000",
+				"timeOut" : "5000",
+				"extendedTimeOut" : "1000",
+				"showEasing" : "swing",
+				"hideEasing" : "linear",
+				"showMethod" : "fadeIn",
+				"hideMethod" : "fadeOut"
+			}
+			toastr.success(event.data, "알림", {
+			});
+		};
+		ws.onclose = function(event) {
+			console.log('Info: connection closed.');
+		};
+	}
+
+	socket();
 </script>
 

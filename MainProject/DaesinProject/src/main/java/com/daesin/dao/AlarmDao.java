@@ -22,4 +22,8 @@ public class AlarmDao {
 	public List<AlarmBean> searchAlarm(String receiver){
 		return sqlSessionTemplate.selectList("alarm.searchAlarm", receiver);
 	}
+	
+	public void deleteAlarm(String receiver) {
+		sqlSessionTemplate.delete("alarm.deleteAlarm",receiver);
+	}
 }

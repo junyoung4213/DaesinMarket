@@ -17,7 +17,7 @@ import com.daesin.beans.MemberBean;
 import com.daesin.service.AlarmService;
 
 public class EchoHandler extends TextWebSocketHandler {
-	
+
 	@Autowired
 	private AlarmService alarmService;
 
@@ -41,20 +41,25 @@ public class EchoHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 		System.out.println("메세지 전송받았음");
 		if (!StringUtils.isEmpty(msg)) {
-			
+
 			System.out.println("메세지 통과함");
 			String[] strs = msg.split(",");
 			
-			if(strs[0].equals("search") && strs[1] != null) {
+			if (strs[0].equals("search") && strs[1] != null) {
 				System.out.println("멤버 ID는 " + strs[1]);
 				WebSocketSession boardWriterSession = userSessionsMap.get(strs[1]);
-				List<AlarmBean> list = alarmService.searchAlarm(strs[1]);
-				if(list!=null) {
-					System.out.println("리스트 통과함");
-				for (AlarmBean alarmBean : list) {
-					TextMessage tmpMsg = new TextMessage(alarmBean.getACaller() + "님이 " + alarmBean.getABno() + "번 게시글에 댓글을 남겼습니다.");
-					boardWriterSession.sendMessage(tmpMsg);
-				}
+
+				if (boardWriterSession != null) {
+					List<AlarmBean> list = alarmService.searchAlarm(strs[1]);
+					if (list != null) {
+						System.out.println("리스트 통과함");
+						for (AlarmBean alarmBean : list) {
+							TextMessage tmpMsg = new TextMessage(
+									alarmBean.getACaller() + "님이 " + alarmBean.getABno() + "번 게시글에 댓글을 남겼습니다.");
+							boardWriterSession.sendMessage(tmpMsg);
+						}
+						alarmService.deleteAlarm(strs[1]);
+					}
 				}
 			}
 
@@ -63,8 +68,7 @@ public class EchoHandler extends TextWebSocketHandler {
 				String caller = strs[1];
 				String receiver = strs[2];
 				String seq = strs[3];
-				
-				
+
 				System.out.println("로그인했는지 확인하기전");
 				// 작성자가 로그인 해서 있다면
 				WebSocketSession boardWriterSession = userSessionsMap.get(receiver);
@@ -73,6 +77,7 @@ public class EchoHandler extends TextWebSocketHandler {
 				if ("reply".equals(cmd) && boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage(caller + "님이 " + seq + "번 게시글에 댓글을 남겼습니다.");
 					boardWriterSession.sendMessage(tmpMsg);
+					alarmService.deleteAlarm(strs[2]);
 
 				} else if ("follow".equals(cmd) && boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage(caller + "님이 " + receiver + "님을 팔로우를 시작했습니다.");

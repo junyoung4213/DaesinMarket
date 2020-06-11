@@ -120,8 +120,6 @@
 										<div class="card">
 											<button type="button" onClick="request();"
 												class="btn btn-success">신청하기</button>
-											<button type="button" onClick="saveAlarm();"
-												class="btn btn-success">메세지 테스트</button>
 										</div></td>
 								</tr>
 							</table>
@@ -311,6 +309,7 @@
 					alert("신청에 성공하셨습니다");
 					getCommentList(lastPage);
 					$("#coMsg").val("");
+					saveAlarm();
 				}
 			},
 			error : function(request, status, error) {

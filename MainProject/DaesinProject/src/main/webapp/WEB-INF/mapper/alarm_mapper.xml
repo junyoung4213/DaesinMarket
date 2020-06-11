@@ -18,6 +18,13 @@
 	where a_receiver=#{receiver}
 	]]>
 	</select>
+	
+	<delete id="deleteAlarm" parameterType="java.lang.String">
+	<![CDATA[
+	delete from board_alarm
+	where a_receiver=#{receiver}
+	]]>
+	</delete>
 
 	
 </mapper>

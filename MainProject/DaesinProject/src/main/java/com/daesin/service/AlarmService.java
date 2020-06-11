@@ -27,4 +27,8 @@ public class AlarmService {
 		return alarmDao.searchAlarm(receiver);
 	}
 	
+	public void deleteAlarm(String receiver) {
+		alarmDao.deleteAlarm(receiver);
+	}
+	
 }

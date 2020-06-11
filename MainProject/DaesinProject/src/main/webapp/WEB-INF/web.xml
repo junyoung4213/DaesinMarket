@@ -18,9 +18,8 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
-		
-		
 		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
 		<multipart-config>
 			<max-file-size>52428800</max-file-size>
 			<max-request-size>524288000</max-request-size>
@@ -33,7 +32,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/*context.xml</param-value>
 	</context-param>
-	<!-- 리스너설정 -->z
+	<!-- 리스너설정 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>

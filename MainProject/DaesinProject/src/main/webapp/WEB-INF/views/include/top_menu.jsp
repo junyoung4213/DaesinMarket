@@ -10,8 +10,8 @@
 			<div class="site-navbar-top">
 				<div class="container">
 					<div class="row align-items-center">
-						
-						
+
+
 						<div class="col-md-12 row">
 							<div class="site-logo col-md-6">
 								<a href="${root }main" class="js-logo-clone">대신컴퍼니</a>
@@ -19,14 +19,14 @@
 							<div class="site-top-icons col-md-6 text-right">
 								<ul class="">
 									<c:if test="${member == null}">
-										<li><a href="${root }member/login">
-												<span class="d-none d-md-block btn btn-primary"
-													style="font-size: 20px;">로그인</span>
-											</a></li>
-										<li><a href="${root }member/join">
-												<span class="d-none d-md-block btn btn-info"
-													style="font-size: 20px;">회원가입</span>
-											</a></li>
+										<li><a href="${root }member/login"> <span
+												class="d-none d-md-block btn btn-primary"
+												style="font-size: 20px;">로그인</span>
+										</a></li>
+										<li><a href="${root }member/join"> <span
+												class="d-none d-md-block btn btn-info"
+												style="font-size: 20px;">회원가입</span>
+										</a></li>
 									</c:if>
 									<c:if test="${member != null}">
 										<li><span class="d-none d-md-block"
@@ -34,19 +34,20 @@
 										<li><span class="d-none d-md-block"
 											style="font-size: 20px;">포인트: ${member.mPoint }</span></li>
 										<br>
-										<li><a href="${root }member/logout">
-												<span class="d-none d-md-block btn btn-primary"
-													style="font-size: 20px;">로그아웃</span>
-											</a></li>
-										<li><a href="${root }member/mypage">
-												<span class="d-none d-md-block btn btn-info"
-													style="font-size: 20px;">마이페이지</span>
-											</a></li>
+										<li><a href="${root }member/logout"> <span
+												class="d-none d-md-block btn btn-primary"
+												style="font-size: 20px;">로그아웃</span>
+										</a></li>
+										<li><a href="${root }member/mypage"> <span
+												class="d-none d-md-block btn btn-info"
+												style="font-size: 20px;">마이페이지</span>
+										</a></li>
+										<input type="hidden" id="memberId" value="${member.mId }"/>
 									</c:if>
 									<li class="d-inline-block d-md-none ml-md-0"><a href="#"
-											class="site-menu-toggle js-menu-toggle">
-											<span class="icon-menu"></span>
-										</a></li>
+										class="site-menu-toggle js-menu-toggle"> <span
+											class="icon-menu"></span>
+									</a></li>
 								</ul>
 							</div>
 						</div>
@@ -58,6 +59,16 @@
 				role="navigation">
 				<div class="container">
 					<ul class="site-menu js-clone-nav d-none d-md-block" id="menu">
+						<c:if test="${member == null }">
+							<li><a href="${root }member/login">로그인</a></li>
+							<li><a href="${root }member/join">회원가입</a></li>
+						</c:if>
+						<c:if test="${member != null }">
+							<li><a>회원아이디: ${member.mId }</a></li><br>
+							<li><a>포인트: ${member.mPoint }</a></li>
+							<li><a href="${root }member/logout"> 로그아웃 </a></li>
+							<li><a href="${root }member/mypage"> 마이페이지 </a></li>
+						</c:if>
 						<li><a href="${root }main">HOME</a></li>
 						<li><a href="${root }member/about">ABOUT</a></li>
 						<li class="has-children"><a>Request</a>

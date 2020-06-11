@@ -45,16 +45,17 @@
 
 <div class="container" style="margin-top: 100px">
 	<div class="row">
-		<div class="col-lg-3"></div>
-		<div class="col-lg-6 mb-5">
+		<div class="col-lg-12 mb-5">
 			<div class="col-lg-12 text-center">
 				<h1 class="text-black">${cName }의뢰</h1>
 				<br />
 				<div class="border-bottom"></div>
 				<br /> <br />
 			</div>
-			<div class="card shadow">
+			<div class="container card shadow col-md-6">
 				<div class="card-body">
+				<input type="hidden" id="receiver" value="${readContentBean.mId}"/>
+				<input type="hidden" id="caller" value="${member.mId}"/>
 					<div class="form-group">
 						<label for="bTitle">제목</label>
 						<input type="text" id="bTitle" name="bTitle" class="form-control"
@@ -127,7 +128,7 @@
 			</div>
 
 			<!-- 댓글 구현부  -->
-			<div class="container col-md-12">
+			<div class="container col-md-6">
 				<form id="commentForm" name="commentForm" method="post">
 					<br> <br>
 					<div>
@@ -141,8 +142,10 @@
 											id="coMsg" name="coMsg" placeholder="한마디를 입력하세요"></textarea>
 										<br>
 										<div class="card">
-											<button type="button" onClick="request()"
+											<button type="button" onClick="request();"
 												class="btn btn-success">신청하기</button>
+											<button type="button" onClick="saveAlarm();"
+												class="btn btn-success">메세지 테스트</button>
 										</div></td>
 								</tr>
 							</table>
@@ -157,7 +160,7 @@
 						name="cnt" value="" />
 				</form>
 			</div>
-			<div class="container text-center">
+			<div class="container col-md-6 text-center">
 				<form id="commentListForm" name="commentListForm" method="post">
 					<div id="commentList"></div>
 				</form>
@@ -174,26 +177,18 @@
 </div>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 
-<script src="${root }js/jquery-3.3.1.min.js"></script>
-<script src="${root }js/jquery-ui.js"></script>
-<script src="${root }js/popper.min.js"></script>
-<script src="${root }js/bootstrap.min.js"></script>
-<script src="${root }js/owl.carousel.min.js"></script>
-<script src="${root }js/jquery.magnific-popup.min.js"></script>
-<script src="${root }js/aos.js"></script>
 
-<script src="${root }js/main.js"></script>
 <script>
 	var deletePopup = function() {
 		if (confirm("정말 삭제하시겠습니까?")) {
-			location.href = "delete?bCno=${bCno}&bNo=${bNo}"
+			location.href = "delete?bCno=${bCno}&bNo=${bNo}";
 		}
 	}
 	
 	function report() {
 		var report = prompt("신고내용을 적어주세요","신고 내용");
 		if(report==null){
-			alert("신고요청이 취소되었습니다")
+			alert("신고요청이 취소되었습니다");
 		}else{
 		$.ajax({
 			type : 'POST',
@@ -226,7 +221,7 @@
 		var result = confirm("정말 수락하시겠습니까?");
 		var bno = ${readContentBean.bNo};
 		var cno = ${bCno};
-		var mno = ${readContentBean.bMno}
+		var mno = ${readContentBean.bMno};
 		if(result==true){
 		$.ajax({
 			type : 'POST',
@@ -283,6 +278,36 @@
 		getCommentList(1);
 
 	});
+	
+	/* 소켓통신 */
+	function saveAlarm(){
+	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
+	var receiver = $('#receiver').val();
+	var caller = $('#caller').val();
+	var boardNum = ${readContentBean.bNo };
+	console.log("리시버: " + receiver)
+	console.log("콜러 : " + caller)
+	console.log("게시물번호 : " + boardNum)
+	// 댓글 알림 DB저장
+	$.ajax({
+		type : 'POST',
+		url : "<c:url value='/alarm/save'/>",
+		data : {
+				receiver : receiver,
+				caller : caller,
+				boardNum : boardNum
+		},
+		success : function(data){
+				var socketMsg = "reply," + caller +","+ receiver +","+ boardNum;
+				console.log("msgmsg : " + socketMsg);
+				ws.send(socketMsg);
+		},
+		error : function(err){
+			console.log(err);
+		}
+	});
+	}
+	/* 소켓통신 */
 
 
 	/*
@@ -291,7 +316,7 @@
 	function fn_comment() {
 		
 		if(${readContentBean.bMno == member.mNo}){
-			alert("본인 글에는 본인이 신청할 수 없습니다.")
+			alert("본인 글에는 본인이 신청할 수 없습니다.");
 		}else{
 		
 		var today = new Date();
@@ -300,15 +325,14 @@
 		if (cnt%10 > 0) {
 			lastPage++;
 		}
-		
-		$('#coDate').val(today.toLocaleString())
+		$('#coDate').val(today.toLocaleString());
 		$.ajax({
 			type : 'POST',
 			url : "<c:url value='/board/addComment.do'/>",
 			data : $("#commentForm").serialize(),
 			success : function(data) {
 				if (data == "success") {
-					alert("신청에 성공하셨습니다")
+					alert("신청에 성공하셨습니다");
 					getCommentList(lastPage);
 					$("#coMsg").val("");
 				}
@@ -320,15 +344,14 @@
 		});
 		}
 	}
-
+	
 
 	/**
 	 * 댓글 불러오기(Ajax)
 	 */
 	function getCommentList(x) {
 		
-		var status =${readContentBean.bStatus}
-		console.log(status)
+		var status =${readContentBean.bStatus};
 		$.ajax({
 					type : 'GET',
 					url : "<c:url value='/board/commentList.do?cPage="+ x + "'/>",
@@ -346,12 +369,12 @@
 								
 								if(value.co_name!=null ){
 								
-								html += "<div class='card shadow m-2 p-3 row' style='text-align:left'>"
-								html += "<div>"
+								html += "<div class='card shadow m-2 p-3 row' style='text-align:left'>";
+								html += "<div>";
 								html += "<h6>이름 : " + value.co_name + "<br>";
 								html += "<p>내용 : " + value.co_msg + "</p><br>";
 								html += value.co_date + "</h6>";
-								html += "</div>"
+								html += "</div>";
 								
 								if(status==0){
 								if(${readContentBean.bMno == member.mNo}){
@@ -365,7 +388,7 @@
 								}
 								}
 								
-								html+="</div>"
+								html+="</div>";
 								}
 								
 								
@@ -378,24 +401,24 @@
 								if(value.prevPage<=0){
 									comment += '<li class="page-item disabled"><a href="#" class="page-link">이전</a></li>';
 								}else{
-									comment += '<li class="page-item"><a onclick="getCommentList('+value.prevPage+');" class="page-link">이전</a></li>'
+									comment += '<li class="page-item"><a onclick="getCommentList('+value.prevPage+');" class="page-link">이전</a></li>';
 								}
 								
 								for(var i=value.min; i<=value.max;i++){
 									if(value.currentPage==i){
-										comment+='<li class="page-item active"><a onclick="getCommentList('+i+');" class="page-link">'+i+'</a></li>'
+										comment+='<li class="page-item active"><a onclick="getCommentList('+i+');" class="page-link">'+i+'</a></li>';
 									}else{
-										comment+='<li class="page-item"><a onclick="getCommentList('+i+');" class="page-link">'+i+'</a></li>'
+										comment+='<li class="page-item"><a onclick="getCommentList('+i+');" class="page-link">'+i+'</a></li>';
 									}
 								}
 								
 								if(value.max >= value.pageCnt){
-									comment+='<li class="page-item disabled"><a href="#" class="page-link">다음</a></li>'
+									comment+='<li class="page-item disabled"><a href="#" class="page-link">다음</a></li>';
 								}else{
-									comment+='<li class="page-item"><a onclick="getCommentList('+value.nextPage+');" class="page-link">다음</a></li>'
+									comment+='<li class="page-item"><a onclick="getCommentList('+value.nextPage+');" class="page-link">다음</a></li>';
 								}
 								
-								comment+='</ul>'
+								comment+='</ul>';
 								
 							});
 
@@ -414,7 +437,6 @@
 
 					},
 					error : function(request, status, error) {
-
 					}
 
 				});

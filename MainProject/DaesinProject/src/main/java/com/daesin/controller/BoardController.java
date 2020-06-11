@@ -97,6 +97,10 @@ public class BoardController {
 
 		BoardBean readContentBean = boardService.getContentInfo(bNo);
 		/* CommentBean readCommentBean = supporterService.findCommentInfo(bNo); */
+		
+		System.out.println(readContentBean.toString());
+		
+		
 		model.addAttribute("readContentBean", readContentBean);
 		/* model.addAttribute("readCommentBean", readCommentBean); */
 

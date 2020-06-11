@@ -39,9 +39,9 @@
 	select b_mno, b_no, b_title, b_content, bi_name, b_reward, b_addr1, b_addr2,
 	TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time,
 	TO_CHAR(b_end_time, 'YYYY-MM-DD') as b_end_time,
-	b_status, b_reward
-	from board
-	where b_no = #{bNo}
+	b_status, b_reward, m_id
+	from board, member
+	where b_no = #{bNo} and b_mno=m_no
 	]]>
 	</select>
 

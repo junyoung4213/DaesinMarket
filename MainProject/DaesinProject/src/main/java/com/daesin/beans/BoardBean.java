@@ -55,6 +55,9 @@ public class BoardBean {
 	// 이미지 파일
 	private MultipartFile upload_file;
 
+	// 작성자 아이디
+	private String mId;
+
 	public int getbCno() {
 		return bCno;
 	}
@@ -183,13 +186,21 @@ public class BoardBean {
 		this.upload_file = upload_file;
 	}
 
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardBean [bCno=" + bCno + ", bNo=" + bNo + ", bTitle=" + bTitle + ", bContent=" + bContent
 				+ ", bReward=" + bReward + ", bAddr1=" + bAddr1 + ", bAddr2=" + bAddr2 + ", bAddr3=" + bAddr3
 				+ ", bWriteTime=" + bWriteTime + ", bEndTime=" + bEndTime + ", bMno=" + bMno + ", bStatus=" + bStatus
 				+ ", bPhone=" + bPhone + ", bLocation=" + bLocation + ", biName=" + biName + ", upload_file="
-				+ upload_file + "]";
+				+ upload_file + ", mId=" + mId + "]";
 	}
 
 }

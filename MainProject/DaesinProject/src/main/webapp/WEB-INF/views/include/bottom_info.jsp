@@ -60,3 +60,30 @@
 </footer>
 </div>
 
+<script src="${root }js/jquery-3.3.1.min.js"></script>
+<script src="${root }js/jquery-ui.js"></script>
+<script src="${root }js/popper.min.js"></script>
+<script src="${root }js/bootstrap.min.js"></script>
+<script src="${root }js/owl.carousel.min.js"></script>
+<script src="${root }js/jquery.magnific-popup.min.js"></script>
+<script src="${root }js/aos.js"></script>
+<script src="${root }js/main.js"></script>
+<script>
+var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
+function socket(){
+ws.onopen = function () {
+    console.log('Info: connection opened.');
+            var msg = "search,"+$('#memberId').val();
+            console.log(msg);
+            ws.send(msg);
+    };
+ws.onmessage = function (event) {
+	console.log("메세지 : " + event.data);
+};
+ws.onclose = function (event) {
+    console.log('Info: connection closed.');
+};
+}
+socket();
+</script>
+

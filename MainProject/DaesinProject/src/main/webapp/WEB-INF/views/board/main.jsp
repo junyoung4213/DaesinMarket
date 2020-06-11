@@ -33,10 +33,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a>
-				<span class="mx-2 mb-0">/</span>
-				<a href="${root }board/main">Request</a>
-				<span class="mx-2 mb-0">/</span> <strong class="text-black">${cName }</strong>
+				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
+					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
+				<strong class="text-black">${cName }</strong>
 			</div>
 		</div>
 	</div>
@@ -62,7 +61,7 @@
 						<tr>
 							<td class="text-center">${obj.bNo }</td>
 							<td class="text-center"><a
-									href='${root }board/read?bCno=${bCno}&bNo=${obj.bNo}&page=${page}'>${obj.bTitle}</a></td>
+								href='${root }board/read?bCno=${bCno}&bNo=${obj.bNo}&page=${page}'>${obj.bTitle}</a></td>
 							<td class="text-center">${obj.bReward }</td>
 							<td class="text-center d-none d-md-table-cell">${obj.bAddr3}</td>
 							<td class="text-center d-none d-md-table-cell">${obj.bWriteTime}</td>
@@ -80,8 +79,8 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a
-									href="${root }board/main?bCno=${bCno}&page=${pageBean.prevPage}"
-									class="page-link">&lt;&lt;</a></li>
+								href="${root }board/main?bCno=${bCno}&page=${pageBean.prevPage}"
+								class="page-link">&lt;&lt;</a></li>
 						</c:otherwise>
 					</c:choose>
 
@@ -92,8 +91,8 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a
-									href="${root }board/main?bCno=${bCno}&page=${pageBean.currentPage-1}"
-									class="page-link">&lt;</a></li>
+								href="${root }board/main?bCno=${bCno}&page=${pageBean.currentPage-1}"
+								class="page-link">&lt;</a></li>
 						</c:otherwise>
 					</c:choose>
 
@@ -104,13 +103,13 @@
 						<c:choose>
 							<c:when test="${idx==pageBean.currentPage }">
 								<li class="page-item active d-none d-md-block"><a
-										href="${root}board/main?bCno=${bCno}&page=${idx}"
-										class="page-link">${idx }</a></li>
+									href="${root}board/main?bCno=${bCno}&page=${idx}"
+									class="page-link">${idx }</a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item d-none d-md-block"><a
-										href="${root}board/main?bCno=${bCno}&page=${idx}"
-										class="page-link">${idx }</a></li>
+									href="${root}board/main?bCno=${bCno}&page=${idx}"
+									class="page-link">${idx }</a></li>
 							</c:otherwise>
 						</c:choose>
 
@@ -122,8 +121,8 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a
-									href="${root }board/main?bCno=${bCno}&page=${pageBean.currentPage+1}"
-									class="page-link">&gt;</a></li>
+								href="${root }board/main?bCno=${bCno}&page=${pageBean.currentPage+1}"
+								class="page-link">&gt;</a></li>
 						</c:otherwise>
 					</c:choose>
 					<c:choose>
@@ -133,8 +132,8 @@
 						</c:when>
 						<c:otherwise>
 							<li class="page-item"><a
-									href="${root }board/main?bCno=${bCno}&page=${pageBean.nextPage}"
-									class="page-link">&gt;&gt;</a></li>
+								href="${root }board/main?bCno=${bCno}&page=${pageBean.nextPage}"
+								class="page-link">&gt;&gt;</a></li>
 						</c:otherwise>
 					</c:choose>
 
@@ -154,15 +153,7 @@
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 
-<script src="${root }js/jquery-3.3.1.min.js"></script>
-<script src="${root }js/jquery-ui.js"></script>
-<script src="${root }js/popper.min.js"></script>
-<script src="${root }js/bootstrap.min.js"></script>
-<script src="${root }js/owl.carousel.min.js"></script>
-<script src="${root }js/jquery.magnific-popup.min.js"></script>
-<script src="${root }js/aos.js"></script>
 
-<script src="${root }js/main.js"></script>
 </body>
 </html>
 

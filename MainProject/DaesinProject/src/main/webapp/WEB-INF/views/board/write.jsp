@@ -65,16 +65,11 @@
 </div>
 
 <div class="container" style="margin-top: 100px;">
-	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6 mb-5">
+	<div class="row justify-content-center">
 			<div class="col-md-12 text-center">
 				<h1 class="mb-3 text-black">글쓰기</h1>
-				<br />
-				<div class="border-bottom"></div>
-				<br /> <br />
 			</div>
-			<div class="card shadow">
+			<div class="card shadow col-md-5">
 				<div class="card-body">
 					<form:form action="${root }board/write_pro" method="post"
 						modelAttribute="writeContentBean" enctype="multipart/form-data">
@@ -134,19 +129,10 @@
 		</div>
 		<div class="col-sm-3"></div>
 	</div>
-</div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 
-<script src="${root }js/jquery-3.3.1.min.js"></script>
-<script src="${root }js/jquery-ui.js"></script>
-<script src="${root }js/popper.min.js"></script>
-<script src="${root }js/bootstrap.min.js"></script>
-<script src="${root }js/owl.carousel.min.js"></script>
-<script src="${root }js/jquery.magnific-popup.min.js"></script>
-<script src="${root }js/aos.js"></script>
 
-<script src="${root }js/main.js"></script>
 </body>
 </html>
 

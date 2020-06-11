@@ -96,48 +96,6 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- 댓글 구현부 
-			<div class="container col-md-12">
-				<form id="commentForm" name="commentForm" method="post">
-					<br> <br>
-					<div>
-						<div>
-							<span><strong>신청자수</strong></span> <span id="cCnt"></span>명
-						</div>
-						<div>
-							<table class="table">
-								<tr>
-									<td><textarea class="col-md-12" rows="3" cols="30"
-											id="coMsg" name="coMsg" placeholder="한마디를 입력하세요"></textarea>
-										<br>
-										<div class="card">
-											<button type="button" onClick="request()"
-												class="btn btn-success">신청하기</button>
-										</div></td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<input type="hidden" id="coBno" name="coBno"
-						value="${readContentBean.bNo }" /> <input type="hidden"
-						id="coSno" name="coSno" value="${member.mNo}" /> <input
-						type="hidden" id="coDate" name="coDate" value="" /> <input
-						type="hidden" id="bMno" name="bMno"
-						value="${readContentBean.bMno }" /> <input type="hidden" id="cnt"
-						name="cnt" value="" />
-				</form>
-			</div>
-			<div class="container text-center">
-				<form id="commentListForm" name="commentListForm" method="post">
-					<div id="commentList"></div>
-				</form>
-			</div>
-
-			<div id="commentPart" class="d-none d-md-block"></div>
-			 -->
-
-
 		</div>
 	</div>
 
@@ -145,64 +103,83 @@
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 
 <script>
+	function complete() {
 
-	
-	
-	function complete(){
-		
-		
 		var result = confirm("정말 완료하시겠습니까?");
-		var bno = ${readContentBean.bNo};
-		var tReward = ${readContentBean.bReward};
-		if(result==true){
-		$.ajax({
-			type : 'POST',
-			url : "<c:url value='/trade/complete'/>",
-			data : {tBno : bno,
-					tReward : tReward},
-			success : function(data) {
-				if (data == "success") {
-					alert("의뢰가 성공적으로 완료되었습니다.");
-					location.href="${root}main"
-				}else if(data == "fail"){
-					alert("에러)의뢰가 완료되지 못했습니다");
-				}
-			},
-			error : function(request, status, error) {
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-
-		});
+		var bno = $
+		{
+			readContentBean.bNo
 		}
-		
+		;
+		var tReward = $
+		{
+			readContentBean.bReward
+		}
+		;
+		if (result == true) {
+			$.ajax({
+				type : 'POST',
+				url : "<c:url value='/trade/complete'/>",
+				data : {
+					tBno : bno,
+					tReward : tReward
+				},
+				success : function(data) {
+					if (data == "success") {
+						alert("의뢰가 성공적으로 완료되었습니다.");
+						location.href = "${root}main"
+					} else if (data == "fail") {
+						alert("에러)의뢰가 완료되지 못했습니다");
+					}
+				},
+				error : function(request, status, error) {
+					//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+
+			});
+		}
+
 	}
-	
-	function cancel(){
+
+	function cancel() {
 		var result = confirm("정말 취소하시겠습니까?");
-		var mNo = ${readContentBean.bMno};
-		var tReward = ${readContentBean.bReward};
-		var tBno = ${readContentBean.bNo};
-		if(result==true){
-		$.ajax({
-			type : 'POST',
-			url : "<c:url value='/trade/cancel'/>",
-			data : {mNo : mNo,
-				tReward : tReward,
-				tBno : tBno},
-			success : function(data) {
-				if (data == "success") {
-					alert("맡은 의뢰가 정상적으로 취소되었습니다.");
-					location.href="${root}main"
+		var mNo = $
+		{
+			readContentBean.bMno
+		}
+		;
+		var tReward = $
+		{
+			readContentBean.bReward
+		}
+		;
+		var tBno = $
+		{
+			readContentBean.bNo
+		}
+		;
+		if (result == true) {
+			$.ajax({
+				type : 'POST',
+				url : "<c:url value='/trade/cancel'/>",
+				data : {
+					mNo : mNo,
+					tReward : tReward,
+					tBno : tBno
+				},
+				success : function(data) {
+					if (data == "success") {
+						alert("맡은 의뢰가 정상적으로 취소되었습니다.");
+						location.href = "${root}main"
+					}
+				},
+				error : function(request, status, error) {
+					//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
-			},
-			error : function(request, status, error) {
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
 
-		});
+			});
 		}
 	}
-
 </script>
 </body>
 </html>

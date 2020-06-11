@@ -44,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row pt-5 mt-5 text-center">
+		<!-- <div class="row pt-5 mt-5 text-center">
 			<div class="col-md-12">
 				<p>
 					Copyright &copy;
@@ -55,7 +55,7 @@
 					
 				</p>
 			</div>
-		</div>
+		</div> -->
 	</div>
 </footer>
 </div>
@@ -68,6 +68,7 @@
 <script src="${root }js/jquery.magnific-popup.min.js"></script>
 <script src="${root }js/aos.js"></script>
 <script src="${root }js/main.js"></script>
+
 <script>
 var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
 function socket(){

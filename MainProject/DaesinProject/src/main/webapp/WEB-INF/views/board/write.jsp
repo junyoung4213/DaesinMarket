@@ -3,28 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Daesin Company</title>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Mukta:300,400,700" />
-<link rel="stylesheet" href="${root }fonts/icomoon/style.css" />
-
-<link rel="stylesheet" href="${root }css/bootstrap.min.css" />
-<link rel="stylesheet" href="${root }css/magnific-popup.css" />
-<link rel="stylesheet" href="${root }css/jquery-ui.css" />
-<link rel="stylesheet" href="${root }css/owl.carousel.min.css" />
-<link rel="stylesheet" href="${root }css/owl.theme.default.min.css" />
-
-<link rel="stylesheet" href="${root }css/aos.css" />
-
-<link rel="stylesheet" href="${root }css/style.css" />
-</head>
 
 <script>
 	// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)

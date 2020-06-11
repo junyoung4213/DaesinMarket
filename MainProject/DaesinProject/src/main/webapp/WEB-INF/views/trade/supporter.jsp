@@ -3,28 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Daesin Company</title>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Mukta:300,400,700" />
-<link rel="stylesheet" href="${root }fonts/icomoon/style.css" />
-
-<link rel="stylesheet" href="${root }css/bootstrap.min.css" />
-<link rel="stylesheet" href="${root }css/magnific-popup.css" />
-<link rel="stylesheet" href="${root }css/jquery-ui.css" />
-<link rel="stylesheet" href="${root }css/owl.carousel.min.css" />
-<link rel="stylesheet" href="${root }css/owl.theme.default.min.css" />
-
-<link rel="stylesheet" href="${root }css/aos.css" />
-
-<link rel="stylesheet" href="${root }css/style.css" />
-</head>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 

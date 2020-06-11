@@ -1,435 +1,377 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.daesin.service.AlarmService" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/service/AlarmService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="246" x="6894" y="507"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="com.daesin.dao.AlarmDao" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/dao/AlarmDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="268" x="6894" y="1571"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="com.daesin.beans.AlarmBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/AlarmBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="322" width="170" x="3016" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="com.daesin.controller.AlarmController" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/controller/AlarmController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="251" x="7104" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="com.daesin.beans.BoardBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/BoardBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="1024" width="212" x="608" y="507"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="com.daesin.controller.BoardController" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/controller/BoardController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="322" width="563" x="7395" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="com.daesin.dao.BoardDao" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/dao/BoardDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="299" x="7395" y="1571"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="com.daesin.service.BoardService" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/service/BoardService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="244" x="7395" y="507"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="com.daesin.beans.MemberBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/MemberBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="862" width="210" x="7998" y="507"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="com.daesin.controller.MemberController" project="DaesinProject" 
+  <class id="1" language="java" name="com.daesin.controller.MemberController" project="DaesinProject" 
     file="/DaesinProject/src/main/java/com/daesin/controller/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="412" width="240" x="6110" y="37"/>    
+    <position height="394" width="240" x="1949" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="com.daesin.dao.MemberDao" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="232" width="316" x="5842" y="1571"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="com.daesin.service.MemberService" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="316" x="5842" y="507"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="com.daesin.beans.CommentBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/CommentBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="430" width="162" x="4366" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="com.daesin.beans.QuestionBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/QuestionBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="376" width="157" x="229" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="15" language="java" name="com.daesin.beans.PaymentBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/PaymentBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="322" width="148" x="41" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="com.daesin.beans.CategoryBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/CategoryBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="153" x="3992" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="17" language="java" name="com.daesin.beans.PageBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/PageBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="358" width="162" x="2281" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="18" language="java" name="com.daesin.beans.ReportBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/ReportBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="322" width="141" x="4185" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="19" language="java" name="com.daesin.beans.TradeBean" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/beans/TradeBean.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="358" width="206" x="608" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="20" language="java" name="com.daesin.controller.MainController" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/controller/MainController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="135" x="1313" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="21" language="java" name="com.daesin.controller.RestApiController" project="DaesinProject" 
+  <class id="2" language="java" name="com.daesin.controller.RestApiController" project="DaesinProject" 
     file="/DaesinProject/src/main/java/com/daesin/controller/RestApiController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="124" width="228" x="5842" y="37"/>    
+    <position height="124" width="228" x="1033" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="com.daesin.controller.HomeController" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/controller/HomeController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="137" x="1796" y="37"/>    
+  <class id="3" language="java" name="com.daesin.controller.AlarmController" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/controller/AlarmController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="251" x="41" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="com.daesin.controller.EmailController" project="DaesinProject" 
+  <class id="4" language="java" name="com.daesin.controller.BoardController" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/controller/BoardController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="563" x="2229" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.daesin.controller.EmailController" project="DaesinProject" 
     file="/DaesinProject/src/main/java/com/daesin/controller/EmailController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="347" x="5455" y="37"/>    
+    <position height="178" width="347" x="646" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="com.daesin.controller.TradeController" project="DaesinProject" 
+  <class id="6" language="java" name="com.daesin.controller.TradeController" project="DaesinProject" 
     file="/DaesinProject/src/main/java/com/daesin/controller/TradeController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="254" x="6390" y="37"/>    
+    <position height="196" width="254" x="1301" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="25" language="java" name="com.daesin.controller.PaymentController" project="DaesinProject" 
+  <class id="7" language="java" name="com.daesin.controller.PaymentController" project="DaesinProject" 
     file="/DaesinProject/src/main/java/com/daesin/controller/PaymentController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="124" width="314" x="5101" y="37"/>    
+    <position height="106" width="314" x="1595" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="com.daesin.controller.PopupController" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/controller/PopupController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="142" x="426" y="37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="27" language="java" name="com.daesin.dao.PaymentDao" project="DaesinProject" 
+  <class id="8" language="java" name="com.daesin.dao.PaymentDao" project="DaesinProject" 
     file="/DaesinProject/src/main/java/com/daesin/dao/PaymentDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="268" x="1488" y="37"/>    
+    <position height="142" width="268" x="1637" y="833"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="com.daesin.dao.SupporterDao" project="DaesinProject" 
+  <class id="9" language="java" name="com.daesin.dao.SupporterDao" project="DaesinProject" 
     file="/DaesinProject/src/main/java/com/daesin/dao/SupporterDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="268" width="363" x="3226" y="37"/>    
+    <position height="268" width="363" x="2284" y="833"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="com.daesin.dao.MenuDao" project="DaesinProject" 
+  <class id="10" language="java" name="com.daesin.dao.MenuDao" project="DaesinProject" 
     file="/DaesinProject/src/main/java/com/daesin/dao/MenuDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="268" x="1973" y="37"/>    
+    <position height="124" width="268" x="2792" y="471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="30" language="java" name="com.daesin.dao.TradeDao" project="DaesinProject" 
+  <class id="11" language="java" name="com.daesin.dao.TradeDao" project="DaesinProject" 
     file="/DaesinProject/src/main/java/com/daesin/dao/TradeDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="286" width="323" x="3629" y="37"/>    
+    <position height="286" width="323" x="918" y="833"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="31" language="java" name="com.daesin.handler.EchoHandler" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/handler/EchoHandler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="196" width="380" x="6684" y="37"/>    
+  <class id="12" language="java" name="com.daesin.dao.AlarmDao" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/dao/AlarmDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="160" width="268" x="41" y="833"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="32" language="java" name="com.daesin.interceptor.MenuInterceptor" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/interceptor/MenuInterceptor.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="160" width="493" x="4568" y="37"/>    
+  <class id="13" language="java" name="com.daesin.dao.MemberDao" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="316" x="1281" y="833"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="33" language="java" name="com.daesin.interceptor.CheckWriterInterceptor" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/interceptor/CheckWriterInterceptor.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="142" width="493" x="7998" y="37"/>    
+  <class id="14" language="java" name="com.daesin.dao.BoardDao" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/dao/BoardDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="232" width="299" x="1945" y="833"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="34" language="java" name="com.daesin.interceptor.CheckLoginInterceptor" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/interceptor/CheckLoginInterceptor.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="142" width="493" x="2483" y="37"/>    
+  <class id="15" language="java" name="com.daesin.service.MemberService" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="316" x="1281" y="471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="35" language="java" name="com.daesin.interceptor.AuthInterceptor" project="DaesinProject" 
-    file="/DaesinProject/src/main/java/com/daesin/interceptor/AuthInterceptor.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="419" x="854" y="37"/>    
+  <class id="16" language="java" name="com.daesin.service.BoardService" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/service/BoardService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="286" width="244" x="1945" y="471"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <class id="17" language="java" name="com.daesin.service.MailServiceImpl" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/service/MailServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="274" x="332" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.daesin.service.MenuService" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/service/MenuService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="228" x="2832" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="19" language="java" name="com.daesin.service.MailService" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/service/MailService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="88" width="274" x="489" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="20" language="java" name="com.daesin.service.SupporterService" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/service/SupporterService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="304" width="308" x="2229" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="com.daesin.service.PaymentService" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/service/PaymentService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="106" width="231" x="1637" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="com.daesin.service.TradeService" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/service/TradeService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="322" width="323" x="918" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="com.daesin.service.AlarmService" project="DaesinProject" 
+    file="/DaesinProject/src/main/java/com/daesin/service/AlarmService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="142" width="246" x="41" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="24">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="25" name="memberDao"/>      
+      <multiplicity id="26" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="28" name="alarmService"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="31" name="boardDao"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="34" name="memberService"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="36">    
-    <end type="SOURCE" refId="23" navigable="false">      
+    <end type="SOURCE" refId="2" navigable="false">      
       <attribute id="37" name="memberService"/>      
       <multiplicity id="38" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="39">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="40" name="boardService"/>      
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="40" name="paymentDao"/>      
       <multiplicity id="41" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="42">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="43" name="boardBean"/>      
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="43" name="memberService"/>      
       <multiplicity id="44" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="45">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="46" name="boardDao"/>      
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="46" name="memberService"/>      
       <multiplicity id="47" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="48">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="49" name="memberDao"/>      
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="49" name="boardService"/>      
       <multiplicity id="50" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="51">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="52" name="supporterService"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="54">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="55" name="tradeDao"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="51">    
-    <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="52" name="boardService"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="55" name="memberService"/>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="57">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="58" name="alarmDao"/>      
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="58" name="supporterDao"/>      
       <multiplicity id="59" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="60">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="61" name="boardService"/>      
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="61" name="menuDao"/>      
       <multiplicity id="62" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="63">    
-    <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="64" name="memberService"/>      
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="64" name="alarmDao"/>      
       <multiplicity id="65" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="66">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="67" name="alarmService"/>      
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="67" name="boardService"/>      
       <multiplicity id="68" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="69">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="70" name="memberService"/>      
-      <multiplicity id="71" minimum="0" maximum="1"/>    
+  <realization id="69">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <association id="70">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="71" name="mailService"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="72">    
-    <end type="SOURCE" refId="31" navigable="false">      
-      <attribute id="73" name="alarmService"/>      
-      <multiplicity id="74" minimum="0" maximum="1"/>    
+  <association id="73">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="74" name="memberService"/>      
+      <multiplicity id="75" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="75">    
-    <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="76" name="memberService"/>      
-      <multiplicity id="77" minimum="0" maximum="1"/>    
+  <association id="76">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="77" name="tradeService"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="79">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="80" name="supporterService"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="82">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="83" name="paymentService"/>      
+      <multiplicity id="84" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

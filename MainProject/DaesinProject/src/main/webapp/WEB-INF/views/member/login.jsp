@@ -7,7 +7,7 @@
 	function find_id() {
 		location.href = "${root}member/findId";
 	}
-	
+
 	function find_pw() {
 		location.href = "${root}member/findPw";
 	}
@@ -61,9 +61,8 @@
 
 						<div class="form-group row">
 							<div class="col-lg-12">
-								<input type="button"
-									class="btn btn-lg btn-outline-success col-md-12" value="회원가입"
-									onclick="join();" />
+								<input type="submit" class="btn btn-primary btn-lg btn-block"
+									value="로그인" />
 							</div>
 						</div>
 
@@ -78,13 +77,14 @@
 									value="비밀번호찾기" onclick="find_pw();" />
 							</div>
 						</div>
-
 						<div class="form-group row">
 							<div class="col-lg-12">
-								<input type="submit" class="btn btn-primary btn-lg btn-block"
-									value="로그인" />
+								<input type="button"
+									class="btn btn-lg btn-outline-success col-md-12" value="회원가입"
+									onclick="join();" />
 							</div>
 						</div>
+
 					</div>
 				</form:form>
 			</div>

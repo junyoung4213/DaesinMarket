@@ -41,7 +41,7 @@
 
 						<div class="col-md-12 row">
 							<div class="site-logo col-md-6 text-center">
-								<a href="${root }main" class="js-logo-clone">대신컴퍼니</a>
+								<a href="${root }main" class="js-logo-clone">대신마켓</a>
 							</div>
 							<div class="site-top-icons col-md-6 text-right">
 								<ul class="">

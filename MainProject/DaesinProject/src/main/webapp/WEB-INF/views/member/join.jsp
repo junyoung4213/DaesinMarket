@@ -161,7 +161,7 @@
 							<form:password path="mPw2" class="form-control"
 								onkeyup="checkPwd()" />
 							<form:errors path="mPw2" style="color:red" />
-							<div id="checkPwd">동일한 암호를 입력하세요.</div>
+							<div id="checkPwd"></div>
 
 
 						</div>

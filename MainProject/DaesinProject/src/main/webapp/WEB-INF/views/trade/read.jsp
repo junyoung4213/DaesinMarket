@@ -106,16 +106,8 @@
 	function complete() {
 
 		var result = confirm("정말 완료하시겠습니까?");
-		var bno = $
-		{
-			readContentBean.bNo
-		}
-		;
-		var tReward = $
-		{
-			readContentBean.bReward
-		}
-		;
+		var bno = ${readContentBean.bNo};
+		var tReward = ${readContentBean.bReward};
 		if (result == true) {
 			$.ajax({
 				type : 'POST',
@@ -143,21 +135,9 @@
 
 	function cancel() {
 		var result = confirm("정말 취소하시겠습니까?");
-		var mNo = $
-		{
-			readContentBean.bMno
-		}
-		;
-		var tReward = $
-		{
-			readContentBean.bReward
-		}
-		;
-		var tBno = $
-		{
-			readContentBean.bNo
-		}
-		;
+		var mNo = ${readContentBean.bMno};
+		var tReward = ${readContentBean.bReward};
+		var tBno = ${readContentBean.bNo};
 		if (result == true) {
 			$.ajax({
 				type : 'POST',

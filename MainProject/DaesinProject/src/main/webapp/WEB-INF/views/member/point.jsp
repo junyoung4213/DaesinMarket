@@ -49,15 +49,6 @@
 </div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
-<script src="${root }js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script src="${root }js/jquery-ui.js"></script>
-<script src="${root }js/popper.min.js"></script>
-<script src="${root }js/bootstrap.min.js"></script>
-<script src="${root }js/owl.carousel.min.js"></script>
-<script src="${root }js/jquery.magnific-popup.min.js"></script>
-<script src="${root }js/aos.js"></script>
-<script src="${root }js/main.js"></script>
 <script>
 function point(){
 	var IMP = window.IMP; // 생략가능

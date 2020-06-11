@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="${root }css/aos.css" />
 
     <link rel="stylesheet" href="${root }css/style.css" />
-    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
   </head>
 <body>
 	<div class="site-wrap">
@@ -36,11 +35,11 @@
 		<header class="site-navbar" role="banner">
 			<div class="site-navbar-top">
 				<div class="container">
-					<div class="row align-items-center">
+					<div class="row justify-content-center">
 
 
 						<div class="col-md-12 row">
-							<div class="site-logo col-md-6">
+							<div class="site-logo col-md-6 text-center">
 								<a href="${root }main" class="js-logo-clone">대신컴퍼니</a>
 							</div>
 							<div class="site-top-icons col-md-6 text-right">
@@ -87,14 +86,14 @@
 				<div class="container">
 					<ul class="site-menu js-clone-nav d-none d-md-block" id="menu">
 						<c:if test="${member == null }">
-							<li><a href="${root }member/login">로그인</a></li>
-							<li><a href="${root }member/join">회원가입</a></li>
+							<li class="d-md-none"><a href="${root }member/login">로그인</a></li>
+							<li class="d-md-none"><a href="${root }member/join">회원가입</a></li>
 						</c:if>
 						<c:if test="${member != null }">
-							<li><a>회원아이디: ${member.mId }</a></li><br>
-							<li><a>포인트: ${member.mPoint }</a></li>
-							<li><a href="${root }member/logout"> 로그아웃 </a></li>
-							<li><a href="${root }member/mypage"> 마이페이지 </a></li>
+							<li class="d-md-none"><a>회원아이디: ${member.mId }</a></li><br>
+							<li class="d-md-none"><a>포인트: ${member.mPoint }</a></li>
+							<li class="d-md-none"><a href="${root }member/logout"> 로그아웃 </a></li>
+							<li class="d-md-none"><a href="${root }member/mypage"> 마이페이지 </a></li>
 						</c:if>
 						<li><a href="${root }main">HOME</a></li>
 						<li><a href="${root }member/about">ABOUT</a></li>

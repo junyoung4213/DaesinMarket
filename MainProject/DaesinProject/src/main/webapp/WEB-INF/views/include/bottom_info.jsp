@@ -69,6 +69,7 @@
 <script src="${root }js/aos.js"></script>
 <script src="${root }js/main.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
 	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");

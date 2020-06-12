@@ -38,6 +38,7 @@
 	 */
 	function emailBtn() {
 
+		
 		/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
 		$.ajax({
 
@@ -46,6 +47,7 @@
 			data : "userEmail=" + $("#mEmail").val(),
 			complete : function(data) {
 				alert("입력하신 메일로 인증번호가 발송되었습니다.");
+				$('#email_AuthBtn').attr('disabled',false);
 			}
 		});
 	};
@@ -54,6 +56,7 @@
 	 */
 
 	function emailAuthBtn() {
+		
 		$.ajax({
 
 			type : "get",
@@ -122,7 +125,7 @@
 							<form:label path="mId">아이디</form:label>
 							<div class="input-group">
 								<form:input path="mId" class="form-control"
-									onkeypress="resetMemberIdExist()" />
+									onkeypress="resetMemberIdExist()" placeholder="영문만 입력해주세요" />
 								<div class="input-group-append">
 									<button type="button" class="btn btn-primary"
 										onclick="checkMemberIdExist()">중복확인</button>
@@ -146,7 +149,7 @@
 								<form:input path="certification" class="form-control" />
 								<div class="input-group-append">
 									<button type="button" class="btn btn-primary"
-										onclick="emailAuthBtn();" id="email_AuthBtn">인증확인</button>
+										onclick="emailAuthBtn();" id="email_AuthBtn" disabled="disabled">인증확인</button>
 								</div>
 							</div>
 						</div>

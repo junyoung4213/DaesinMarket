@@ -27,11 +27,11 @@
 			<table class="table table-hover mb-5" id="board_list">
 				<thead>
 					<tr>
-						<th class="text-center">번호</th>
-						<th class="text-center">제목</th>
-						<th class="text-center">금액</th>
-						<th class="text-center d-none d-md-table-cell">지역</th>
-						<th class="text-center d-none d-md-table-cell">작성시간</th>
+						<th class="text-center" width=10%>번호</th>
+						<th class="text-center" width=50%>제목</th>
+						<th class="text-center" width=10%>금액</th>
+						<th class="text-center d-none d-md-table-cell" width=20%>지역</th>
+						<th class="text-center d-none d-md-table-cell" width=10%>작성시간</th>
 					</tr>
 				</thead>
 				<tbody>

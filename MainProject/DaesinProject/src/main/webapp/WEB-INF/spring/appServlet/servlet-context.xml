@@ -65,6 +65,7 @@
 			<mapping path="/member/support" />
 			<mapping path="/member/faq" />
 			<mapping path="/member/modify" />
+			<mapping path="/board/write" />
 			<beans:bean class="com.daesin.interceptor.AuthInterceptor" />
 		</interceptor>
 		<interceptor>

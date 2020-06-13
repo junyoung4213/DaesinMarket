@@ -58,6 +58,7 @@ public class TradeController {
 		
 		HashMap<String, Integer> list = new HashMap<String, Integer>();
 
+		tReward-=1000;
 		list.put("tBno", tBno);
 		list.put("tReward", tReward);
 		list.put("bStatus",2);

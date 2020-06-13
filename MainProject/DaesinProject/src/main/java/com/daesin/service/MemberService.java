@@ -12,7 +12,7 @@ public class MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
-	
+
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
 
@@ -41,27 +41,26 @@ public class MemberService {
 
 		return member_id;
 	}
-	
+
 	public String getId(int mNo) {
 		return memberDao.getId(mNo);
 	}
 
 	public void addMemberInfo(MemberBean joinMemberBean) {
-		
-		  String encPassword = bcryptPasswordEncoder.encode(joinMemberBean.getmPw());
-		  joinMemberBean.setmPw(encPassword);
+
+		String encPassword = bcryptPasswordEncoder.encode(joinMemberBean.getmPw());
+		joinMemberBean.setmPw(encPassword);
 		memberDao.addMemberInfo(joinMemberBean);
 	}
-	
-
 
 	public MemberBean getLoginMemberInfo(MemberBean tempLoginMemberBean) {
-		
+
 		String pw = memberDao.getUserPw(tempLoginMemberBean.getmId());
-		  String rawPw = tempLoginMemberBean.getmPw();
-		  if(bcryptPasswordEncoder.matches(rawPw, pw)) {
-		    tempLoginMemberBean.setmPw(pw);
-		  }
+		
+		String rawPw = tempLoginMemberBean.getmPw();
+		if (bcryptPasswordEncoder.matches(rawPw, pw)) {
+			tempLoginMemberBean.setmPw(pw);
+		}
 		MemberBean tempLoginMemberBean2 = memberDao.getLoginMemberInfo(tempLoginMemberBean);
 
 		if (tempLoginMemberBean2 != null) {
@@ -72,6 +71,14 @@ public class MemberService {
 
 	public void modifyMemberInfo(MemberBean modifyMemberBean) {
 		memberDao.modifyMemberInfo(modifyMemberBean);
+	}
+
+	public void updatePw(MemberBean memberBean) {
+		String encPassword = bcryptPasswordEncoder.encode(memberBean.getmPw());
+		System.out.println(encPassword);
+		memberBean.setmPw(encPassword);
+
+		memberDao.updatePw(memberBean);
 	}
 
 }

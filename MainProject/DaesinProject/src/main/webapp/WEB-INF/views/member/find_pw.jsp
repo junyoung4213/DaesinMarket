@@ -17,7 +17,7 @@
 			data : formData,
 			success : function(data) {
 				if (data == "complete") {
-					alert("[성공]메일주소로 비밀번호가 전송되었습니다");
+					alert("[성공]메일주소로 변경된 비밀번호가 전송되었습니다");
 				} else if (data == "false") {
 					alert("[실패]아이디와 이메일주소를 확인해주세요")
 				}

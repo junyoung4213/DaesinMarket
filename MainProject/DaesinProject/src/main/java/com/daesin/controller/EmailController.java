@@ -40,7 +40,7 @@ public class EmailController {
 		HttpSession session = req.getSession(true);
 		String authCode = String.valueOf(ran);
 		session.setAttribute("authCode", authCode);
-		String subject = "인증코드";
+		String subject = "[대신마켓] 인증코드 ";
 		StringBuilder sb = new StringBuilder();
 		sb.append("인증코드는 [" + authCode + "] 입니다.");
 		sendEmail(subject, sb.toString(), userEmail);
@@ -59,16 +59,20 @@ public class EmailController {
 	// 비밀번호 찾기
 	@RequestMapping(value = "/findPassword.do", method = RequestMethod.POST)
 	public ResponseEntity<String> findPassword(@ModelAttribute("tempMemberBean") MemberBean tempMemberBean) {
-		MemberBean MemberVO = memberService.checkCorrectMember(tempMemberBean);
+		MemberBean member = memberService.checkCorrectMember(tempMemberBean);
 
-		if (MemberVO != null) {
-			String password = MemberVO.getmPw();
-			String userEmail = MemberVO.getmEmail();
+		if (member != null) {
+			String password = (int)(Math.random()*100000) + "";
+			member.setmPw(password);
+			String userEmail = member.getmEmail();
 			System.out.println(password);
-			String subject = "비밀번호";
+			String subject = "[대신마켓] 변경된 비밀번호 ";
 			StringBuilder sb = new StringBuilder();
-			sb.append("회원님의 비밀번호는 " + password + " 입니다.");
+			sb.append("회원님의 변경된 비밀번호는 " + password + " 입니다.\n");
+			sb.append("로그인 하신 후 원하시는 비밀번호로 바로 변경해주시기 바랍니다.");
 			sendEmail(subject, sb.toString(), userEmail);
+			
+			memberService.updatePw(member);
 			return new ResponseEntity<String>("complete", HttpStatus.OK);
 
 		} else {

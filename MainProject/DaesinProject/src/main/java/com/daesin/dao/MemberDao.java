@@ -49,4 +49,8 @@ public class MemberDao {
 	public void modifyMemberInfo(MemberBean modifyMemberBean) {
 		sqlSessionTemplate.update("member.modifyMemberInfo", modifyMemberBean);
 	}
+	
+	public void updatePw(MemberBean memberBean) {
+		sqlSessionTemplate.update("member.updatePw", memberBean);
+	}
 }

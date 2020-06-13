@@ -16,7 +16,7 @@
 		parameterType="com.daesin.beans.MemberBean"
 		resultType="com.daesin.beans.MemberBean">
 		<![CDATA[
-		select m_id, m_email, m_pw
+		select m_id, m_email
 		from member
 		where m_id =#{mId} and m_email=#{mEmail}
 		]]>
@@ -65,6 +65,14 @@
 		where m_id = #{mId}
 	]]>
 	</select>
+	
+	<update id="updatePw" parameterType="com.daesin.beans.MemberBean">
+	<![CDATA[ 
+		update member
+		set m_pw = #{mPw}
+		where m_id = #{mId}
+	]]>
+	</update>
 	
 	<update id="modifyMemberInfo"
 		parameterType="com.daesin.beans.MemberBean"> 

@@ -58,6 +58,14 @@
 		]]>
 	</select>
 	
+	<select id="getUserPw" parameterType="java.lang.String" resultType="java.lang.String">
+	<![CDATA[ 
+		select m_pw
+		from member
+		where m_id = #{mId}
+	]]>
+	</select>
+	
 	<update id="modifyMemberInfo"
 		parameterType="com.daesin.beans.MemberBean"> 
 		<![CDATA[ 

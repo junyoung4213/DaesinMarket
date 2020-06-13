@@ -1,6 +1,7 @@
 package com.daesin.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.daesin.beans.MemberBean;
@@ -11,6 +12,9 @@ public class MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	BCryptPasswordEncoder bcryptPasswordEncoder;
 
 	public boolean checkMemberIdExist(String m_id) {
 		String member_id = memberDao.checkMemberIdExist(m_id);
@@ -43,12 +47,21 @@ public class MemberService {
 	}
 
 	public void addMemberInfo(MemberBean joinMemberBean) {
+		
+		  String encPassword = bcryptPasswordEncoder.encode(joinMemberBean.getmPw());
+		  joinMemberBean.setmPw(encPassword);
 		memberDao.addMemberInfo(joinMemberBean);
 	}
 	
 
 
 	public MemberBean getLoginMemberInfo(MemberBean tempLoginMemberBean) {
+		
+		String pw = memberDao.getUserPw(tempLoginMemberBean.getmId());
+		  String rawPw = tempLoginMemberBean.getmPw();
+		  if(bcryptPasswordEncoder.matches(rawPw, pw)) {
+		    tempLoginMemberBean.setmPw(pw);
+		  }
 		MemberBean tempLoginMemberBean2 = memberDao.getLoginMemberInfo(tempLoginMemberBean);
 
 		if (tempLoginMemberBean2 != null) {

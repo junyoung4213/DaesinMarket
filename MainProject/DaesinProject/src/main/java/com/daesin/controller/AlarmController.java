@@ -20,24 +20,21 @@ public class AlarmController {
 
 	@PostMapping("/save")
 	@ResponseBody
-	public String add(@ModelAttribute("alarmBean") AlarmBean alarmBean, @RequestParam("receiver") String receiver,@RequestParam("caller") String caller,@RequestParam("boardNum") int boardNum) {
-		
-		
+	public String add(@ModelAttribute("alarmBean") AlarmBean alarmBean, @RequestParam("receiver") String receiver,
+			@RequestParam("caller") String caller, @RequestParam("boardNum") int boardNum,
+			@RequestParam("msg") String msg) {
 		alarmBean.setAReceiver(receiver);
 		alarmBean.setACaller(caller);
 		alarmBean.setABno(boardNum);
-		
-
+		alarmBean.setaMsg(msg);
 		try {
 			alarmService.addAlarm(alarmBean);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "fail";
 		}
 		return "success";
 	}
-	
-
 
 }

@@ -14,8 +14,8 @@ public class CommentBean {
 	// 메세지
 	private String coMsg;
 
-	// 서포터 이름
-	private String coName;
+	// 서포터 아이디
+	private String coId;
 
 	private String coDate;
 
@@ -51,12 +51,12 @@ public class CommentBean {
 		this.coMsg = coMsg;
 	}
 
-	public String getCoName() {
-		return coName;
+	public String getCoId() {
+		return coId;
 	}
 
-	public void setCoName(String coName) {
-		this.coName = coName;
+	public void setCoId(String coId) {
+		this.coId = coId;
 	}
 
 	public String getCoDate() {
@@ -69,8 +69,8 @@ public class CommentBean {
 
 	@Override
 	public String toString() {
-		return "CommentBean [coNum=" + coNum + ", coSno=" + coSno + ", coBno=" + coBno + ", coMsg=" + coMsg
-				+ ", coName=" + coName + ", coDate=" + coDate + "]";
+		return "CommentBean [coNum=" + coNum + ", coSno=" + coSno + ", coBno=" + coBno + ", coMsg=" + coMsg + ", coId="
+				+ coId + ", coDate=" + coDate + "]";
 	}
 
 }

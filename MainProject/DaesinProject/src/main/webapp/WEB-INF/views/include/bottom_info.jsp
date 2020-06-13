@@ -76,7 +76,7 @@
 	function socket() {
 		ws.onopen = function() {
 			console.log('Info: connection opened.');
-			var msg = "search," + $('#memberId').val();
+			var msg = "search," + $('#memberId').val() + "," + "알림메시지";
 			console.log(msg);
 			ws.send(msg);
 		};

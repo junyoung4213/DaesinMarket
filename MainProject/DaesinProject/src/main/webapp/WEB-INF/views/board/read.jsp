@@ -153,11 +153,14 @@
 
 
 <script>
+
+
+
 	var deletePopup = function() {
 		if (confirm("정말 삭제하시겠습니까?")) {
 			location.href = "delete?bCno=${readContentBean.bCno}&bNo=${bNo}";
 		}
-	}
+	};
 	
 	function report() {
 		var report = prompt("신고내용을 적어주세요","신고 내용");
@@ -179,7 +182,7 @@
 
 		});
 		}
-	}
+	};
 	
 	function request(){
 		var result = confirm("정말 신청하시겠습니까?");
@@ -187,15 +190,15 @@
 		if(result==true){
 			fn_comment();
 		}
-	}
+	};
 	
-	function aceept(co_sno){
-		
-		
+	function accept(co_sno,co_id){
 		var result = confirm("정말 수락하시겠습니까?");
 		var bno = ${readContentBean.bNo};
 		var cno = ${readContentBean.bCno};
 		var mno = ${readContentBean.bMno};
+		var caller = $('#caller').val();
+		var receiver = co_id;
 		if(result==true){
 		$.ajax({
 			type : 'POST',
@@ -206,7 +209,7 @@
 			success : function(data) {
 				if (data == "success") {
 					alert("서포터와 매칭에 성공하셨습니다");
-					location.href="${root}trade/read?bNo=" + ${readContentBean.bNo};
+					saveAlarm(caller,receiver);
 				}else if(data == "fail"){
 					alert("서포터와의 매칭에 실패하셨습니다");
 				}
@@ -215,10 +218,9 @@
 				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
 
-		});
+		})
 		}
-		
-	}
+	};
 	
 	function del(coNum){
 		
@@ -242,7 +244,7 @@
 
 		});
 		}
-	}
+	};
 	
 	/**
 	 * 초기 페이지 로딩시 댓글 불러오기
@@ -254,14 +256,23 @@
 	});
 	
 	/* 소켓통신 */
-	function saveAlarm(){
+	function saveAlarm(caller, receiver){
 	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
-	var receiver = $('#receiver').val();
-	var caller = $('#caller').val();
 	var boardNum = ${readContentBean.bNo };
+	var socketMsg = "";
+	var msg="";
 	console.log("리시버: " + receiver)
 	console.log("콜러 : " + caller)
 	console.log("게시물번호 : " + boardNum)
+	
+	if(receiver == $('#receiver').val()){
+		msg = caller + "님이 " +"<a type='external' href='/DaesinProject/board/read?bNo=" +  boardNum + "'>" +boardNum+ "번 게시글에 댓글을 남겼습니다.";
+		socketMsg = "reply," + receiver +"," + msg;
+		}else{
+		msg= caller + "님이 " + receiver + " 님의 신청을 수락했습니다."
+		socketMsg = "accept," + receiver + "," + msg;
+		console.log("서포터에게 보내는 메세지 : " + socketMsg);
+		}
 	// 댓글 알림 DB저장
 	$.ajax({
 		type : 'POST',
@@ -269,10 +280,10 @@
 		data : {
 				receiver : receiver,
 				caller : caller,
-				boardNum : boardNum
+				boardNum : boardNum,
+				msg : msg
 		},
 		success : function(data){
-				var socketMsg = "reply," + caller +","+ receiver +","+ boardNum;
 				console.log("msgmsg : " + socketMsg);
 				ws.send(socketMsg);
 		},
@@ -280,7 +291,7 @@
 			console.log(err);
 		}
 	});
-	}
+	};
 	/* 소켓통신 */
 
 
@@ -292,10 +303,11 @@
 		if(${readContentBean.bMno == member.mNo}){
 			alert("본인 글에는 본인이 신청할 수 없습니다.");
 		}else{
-		
 		var today = new Date();
 		var cnt = (Number($('#cCnt').text()) + 1); 
 		var lastPage = Math.floor(cnt/10);
+		var caller = $('#caller').val();
+		var receiver = $('#receiver').val();
 		if (cnt%10 > 0) {
 			lastPage++;
 		}
@@ -309,7 +321,7 @@
 					alert("신청에 성공하셨습니다");
 					getCommentList(lastPage);
 					$("#coMsg").val("");
-					saveAlarm();
+					saveAlarm(caller,receiver);
 				}
 			},
 			error : function(request, status, error) {
@@ -318,7 +330,7 @@
 
 		});
 		}
-	}
+	};
 	
 
 	/**
@@ -332,7 +344,6 @@
 					url : "<c:url value='/board/commentList.do?cPage="+ x + "'/>",
 					dataType : "json",
 					data : $("#commentForm").serialize(),
-					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 					success : function(data) {
 						var html = "";
 						var cCnt = 0;
@@ -342,11 +353,11 @@
 							
 							$.each(data, function(key, value){ 
 								
-								if(value.co_name!=null ){
+								if(value.co_id!=null ){
 								
 								html += "<div class='card shadow m-2 p-3 row' style='text-align:left'>";
 								html += "<div>";
-								html += "<h6>이름 : " + value.co_name + "<br>";
+								html += "<h6>아이디 : " + value.co_id + "<br>";
 								html += "<p>내용 : " + value.co_msg + "</p><br>";
 								html += value.co_date + "</h6>";
 								html += "</div>";
@@ -354,14 +365,14 @@
 								if(status==0){
 								if(${readContentBean.bMno == member.mNo}){
 									html += "<div class='text-center card'>";
-									html += "<button type='button' class='btn btn-primary' onclick='aceept("+value.co_sno+");'>수락하기</button>";
+									html += "<button type='button' class='btn btn-primary' onclick='accept("+"\""+value.co_sno+"\",\""+value.co_id+"\""+");'>수락하기</button>";
 									html += "</div>";
 								}else if(value.co_sno == ${member.mNo}){
 									html += "<div class='text-center card'>";
 									html += "<button type='button' class='btn btn-danger' onclick='del("+value.co_num+");'>취소하기</button>";
 									html += "</div>";
 								}
-								}
+								};
 								
 								html+="</div>";
 								}
@@ -417,6 +428,7 @@
 				});
 
 	}
+	
 	
 </script>
 </body>

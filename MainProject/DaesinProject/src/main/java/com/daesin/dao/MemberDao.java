@@ -23,6 +23,10 @@ public class MemberDao {
 	public String returnId(String m_email) {
 		return sqlSessionTemplate.selectOne("member.returnId", m_email);
 	}
+	
+	public String getId(int mNo) {
+		return sqlSessionTemplate.selectOne("member.getId", mNo);
+	}
 
 	public void addMemberInfo(MemberBean joinMemberBean) {
 		sqlSessionTemplate.insert("member.addMemberInfo", joinMemberBean);

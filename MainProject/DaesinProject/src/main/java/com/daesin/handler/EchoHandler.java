@@ -39,50 +39,42 @@ public class EchoHandler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		String msg = message.getPayload();
-		System.out.println("메세지 전송받았음");
 		if (!StringUtils.isEmpty(msg)) {
 
-			System.out.println("메세지 통과함");
 			String[] strs = msg.split(",");
-			
-			if (strs[0].equals("search") && strs[1] != null) {
-				System.out.println("멤버 ID는 " + strs[1]);
-				WebSocketSession boardWriterSession = userSessionsMap.get(strs[1]);
 
-				if (boardWriterSession != null) {
-					List<AlarmBean> list = alarmService.searchAlarm(strs[1]);
-					if (list != null) {
-						System.out.println("리스트 통과함");
-						for (AlarmBean alarmBean : list) {
-							TextMessage tmpMsg = new TextMessage(
-									alarmBean.getACaller() + "님이 " +"<a type='external' href='/DaesinProject/board/read?bNo=" +  alarmBean.getABno() + "'>" +alarmBean.getABno()+ "번 게시글에 댓글을 남겼습니다.");
-							boardWriterSession.sendMessage(tmpMsg);
-						}
-						alarmService.deleteAlarm(strs[1]);
-					}
-				}
-			}
-
-			if (strs != null && strs.length == 4) {
+			if (strs != null && strs.length == 3) {
 				String cmd = strs[0];
-				String caller = strs[1];
-				String receiver = strs[2];
-				String seq = strs[3];
+				String receiver = strs[1];
+				String saveMsg = strs[2];
 
-				System.out.println("로그인했는지 확인하기전");
-				// 작성자가 로그인 해서 있다면
 				WebSocketSession boardWriterSession = userSessionsMap.get(receiver);
-				System.out.println("로그인했는지 확인한후");
+				if ("search".equals(cmd) && boardWriterSession != null) {
+					System.out.println("멤버 ID는 " + receiver);
 
-				if ("reply".equals(cmd) && boardWriterSession != null) {
-					TextMessage tmpMsg = new TextMessage(caller + "님이 " +"<a type='external' href='/DaesinProject/board/read?bNo=" + seq + "'>"+ seq + "</a>번 게시글에 댓글을 남겼습니다.");
+					if (boardWriterSession != null) {
+						List<AlarmBean> list = alarmService.searchAlarm(receiver);
+						if (list != null) {
+							System.out.println("리스트 통과함");
+							for (AlarmBean alarmBean : list) {
+								TextMessage tmpMsg = new TextMessage(alarmBean.getaMsg());
+								boardWriterSession.sendMessage(tmpMsg);
+							}
+							alarmService.deleteAlarmAll(receiver);
+						}
+					}
+				} else if ("reply".equals(cmd) && boardWriterSession != null) {
+					TextMessage tmpMsg = new TextMessage(saveMsg);
 					boardWriterSession.sendMessage(tmpMsg);
-					alarmService.deleteAlarm(strs[2]);
+					alarmService.deleteAlarm(saveMsg);
 
-				} 
-				
-				
-				
+				} else if ("accept".equals(cmd) && boardWriterSession != null) {
+					TextMessage tmpMsg = new TextMessage(saveMsg);
+					System.out.println("서포터에게 보내는 메세지 : " + tmpMsg);
+					boardWriterSession.sendMessage(tmpMsg);
+					alarmService.deleteAlarm(saveMsg);
+				}
+
 			}
 
 		}

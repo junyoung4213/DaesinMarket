@@ -87,5 +87,9 @@ public class TradeService {
 
 		return pageBean;
 	}
+	
+	public String getSupporterInfo(int tSno) {
+		return tradeDao.getSupporterInfo(tSno);
+	}
 
 }

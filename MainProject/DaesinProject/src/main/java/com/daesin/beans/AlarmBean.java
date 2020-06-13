@@ -15,6 +15,9 @@ public class AlarmBean {
 	// 게시물번호
 	private int aBno;
 
+	// 메세지
+	private String aMsg;
+
 	public int getANo() {
 		return aNo;
 	}
@@ -47,9 +50,18 @@ public class AlarmBean {
 		this.aBno = aBno;
 	}
 
+	public String getaMsg() {
+		return aMsg;
+	}
+
+	public void setaMsg(String aMsg) {
+		this.aMsg = aMsg;
+	}
+
 	@Override
 	public String toString() {
-		return "AlarmBean [aNo=" + aNo + ", aCaller=" + aCaller + ", aReceiver=" + aReceiver + ", aBno=" + aBno + "]";
+		return "AlarmBean [aNo=" + aNo + ", aCaller=" + aCaller + ", aReceiver=" + aReceiver + ", aBno=" + aBno
+				+ ", aMsg=" + aMsg + "]";
 	}
 
 }

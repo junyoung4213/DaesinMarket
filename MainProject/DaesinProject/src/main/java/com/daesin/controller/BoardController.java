@@ -170,7 +170,7 @@ public class BoardController {
 		MemberBean memberBean = (MemberBean) session.getAttribute("member");
 		try {
 			System.out.println(memberBean.toString());
-			commentBean.setCoName(memberBean.getsName());
+			commentBean.setCoId(memberBean.getmId());
 			supporterService.addComment(commentBean);
 
 		} catch (Exception e) {
@@ -215,7 +215,7 @@ public class BoardController {
 				hm = new HashMap<String, Object>();
 				hm.put("co_num", commentList.get(i).getCoNum());
 				hm.put("co_msg", commentList.get(i).getCoMsg());
-				hm.put("co_name", commentList.get(i).getCoName());
+				hm.put("co_id", commentList.get(i).getCoId());
 				hm.put("co_date", commentList.get(i).getCoDate());
 				hm.put("co_sno", commentList.get(i).getCoSno());
 				hmlist.add(hm);

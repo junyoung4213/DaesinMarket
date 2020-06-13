@@ -23,7 +23,11 @@ public class AlarmDao {
 		return sqlSessionTemplate.selectList("alarm.searchAlarm", receiver);
 	}
 	
-	public void deleteAlarm(String receiver) {
-		sqlSessionTemplate.delete("alarm.deleteAlarm",receiver);
+	public void deleteAlarm(String aMsg) {
+		sqlSessionTemplate.delete("alarm.deleteAlarm",aMsg);
+	}
+	
+	public void deleteAlarmAll(String receiver) {
+		sqlSessionTemplate.delete("alarm.deleteAlarmAll",receiver);
 	}
 }

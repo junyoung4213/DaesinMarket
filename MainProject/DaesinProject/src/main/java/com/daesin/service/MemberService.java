@@ -37,6 +37,10 @@ public class MemberService {
 
 		return member_id;
 	}
+	
+	public String getId(int mNo) {
+		return memberDao.getId(mNo);
+	}
 
 	public void addMemberInfo(MemberBean joinMemberBean) {
 		memberDao.addMemberInfo(joinMemberBean);

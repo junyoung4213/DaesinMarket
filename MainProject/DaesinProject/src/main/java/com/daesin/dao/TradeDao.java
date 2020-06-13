@@ -59,5 +59,9 @@ public class TradeDao {
 	public int getContentCnt2(int bCno) {
 		return sqlSessionTemplate.selectOne("trade.getContentCnt2", bCno);
 	}
+	
+	public String getSupporterInfo(int tSno) {
+		return sqlSessionTemplate.selectOne("trade.getSupporterInfo", tSno);
+	}
 
 }

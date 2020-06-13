@@ -22,8 +22,12 @@ public class AlarmService {
 		return alarmDao.searchAlarm(receiver);
 	}
 	
-	public void deleteAlarm(String receiver) {
-		alarmDao.deleteAlarm(receiver);
+	public void deleteAlarm(String aMsg) {
+		alarmDao.deleteAlarm(aMsg);
+	}
+	
+	public void deleteAlarmAll(String receiver) {
+		alarmDao.deleteAlarmAll(receiver);
 	}
 	
 }

@@ -5,8 +5,8 @@
 
 	<insert id="addAlarm" parameterType="com.daesin.beans.AlarmBean">
 	<![CDATA[
-	insert into board_alarm(a_receiver, a_caller, a_bno) 
-	values (#{aReceiver},#{aCaller},#{aBno})
+	insert into board_alarm(a_receiver, a_caller, a_bno,a_msg) 
+	values (#{aReceiver},#{aCaller},#{aBno},#{aMsg})
 	]]>
 	</insert>
 	
@@ -20,6 +20,13 @@
 	</select>
 	
 	<delete id="deleteAlarm" parameterType="java.lang.String">
+	<![CDATA[
+	delete from board_alarm
+	where a_msg=#{aMsg}
+	]]>
+	</delete>
+	
+	<delete id="deleteAlarmAll" parameterType="java.lang.String">
 	<![CDATA[
 	delete from board_alarm
 	where a_receiver=#{receiver}

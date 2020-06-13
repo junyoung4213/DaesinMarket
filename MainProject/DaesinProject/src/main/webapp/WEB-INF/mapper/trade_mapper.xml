@@ -113,5 +113,11 @@
 	select count(*) from board, board_trade where t_bno = b_no and t_sno = #{mNo} 
 	]]>
 	</select>
+	
+	<select id="getSupporterInfo" parameterType="java.lang.Integer" resultType="java.lang.String">
+	SELECT m_id
+	FROM member
+	WHERE m_no = #{tSno}
+	</select>
 
 </mapper>

@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.daesin.beans.AlarmBean;
 import com.daesin.beans.BoardBean;
 import com.daesin.beans.MemberBean;
 import com.daesin.beans.PageBean;
 import com.daesin.beans.TradeBean;
+import com.daesin.service.AlarmService;
 import com.daesin.service.BoardService;
 import com.daesin.service.MemberService;
 import com.daesin.service.TradeService;
@@ -34,6 +36,9 @@ public class TradeController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private AlarmService alarmService;
 	
 	
 	@GetMapping("/read")
@@ -108,11 +113,12 @@ public class TradeController {
 			tradeService.updateBoardInfo(list);
 			tradeService.updateMemberInfo(list);
 			
-		
+			String sId = tradeService.getSupporterInfo(tSno);
+			
 			MemberBean member = memberService.getLoginMemberInfo((MemberBean)session.getAttribute("member"));
 			
 			session.setAttribute("member", member);
-			
+			session.setAttribute("sId", sId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "fail";

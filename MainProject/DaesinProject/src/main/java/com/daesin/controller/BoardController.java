@@ -72,11 +72,12 @@ public class BoardController {
 	}
 
 	@PostMapping("/write_pro")
-	public String write_pro(@ModelAttribute("writeContentBean") BoardBean writeContentBean, HttpSession session) {
+	public String write_pro(@ModelAttribute("writeContentBean") BoardBean writeContentBean, HttpSession session, Model model) {
 
 		MemberBean member = (MemberBean) session.getAttribute("member");
 
 		if (writeContentBean.getbReward() > member.getmPoint()) {
+			model.addAttribute("reward", writeContentBean.getbReward()-member.getmPoint());
 			return "board/write_fail";
 		}
 

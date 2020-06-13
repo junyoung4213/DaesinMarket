@@ -28,4 +28,12 @@ public class RestApiController {
 		String member_id = memberService.returnId(m_email);
 		return member_id + "";
 	}
+	
+	@GetMapping(value = "/member/returnPoint/{m_id}")
+	public String returnPoint(@PathVariable String m_id) {
+		// 이메일 주소를 서버에서 받을 때, '.com'을 잘라내는 현상을 발견.
+		// 뒷 부분에 '.com'을 붙여줘야 제대로 해당 이메일로 가입한 아이디를 찾을 수 있다.
+	 
+		return memberService.returnPoint(m_id) + "";
+	}
 }

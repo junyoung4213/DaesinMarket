@@ -31,6 +31,15 @@
 		]]>
 	</select>
 	
+	<select id="returnPoint" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		<![CDATA[
+		select m_point
+		from member
+		where m_id =#{mId}
+		]]>
+	</select>
+	
 	<select id="getId" parameterType="java.lang.Integer"
 		resultType="java.lang.String">
 		<![CDATA[

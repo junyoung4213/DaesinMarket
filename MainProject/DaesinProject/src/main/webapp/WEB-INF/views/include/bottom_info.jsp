@@ -70,7 +70,7 @@
 <script src="${root }js/main.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
 	function socket() {
@@ -106,5 +106,6 @@
 		};
 	}
 	socket();
+	
 </script>
 

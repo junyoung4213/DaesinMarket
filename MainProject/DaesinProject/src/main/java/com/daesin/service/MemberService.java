@@ -80,5 +80,9 @@ public class MemberService {
 
 		memberDao.updatePw(memberBean);
 	}
+	
+	public int returnPoint(String mId) {
+		return memberDao.returnPoint(mId);
+	}
 
 }

@@ -20,10 +20,12 @@
 	/** API 서비스 제공항목 확대 (2017.02) **/
 	function jusoCallBack(roadAddrPart1, addrDetail) {
 		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-		$('#bAddr1').val(roadAddrPart1.substring(0,addrDetail.length));
-		$('#bAddr2').val(roadAddrPart1.substring(addrDetail.length+2,roadAddrPart1.length));
+		$('#bAddr1').val(roadAddrPart1.substring(0, addrDetail.length));
+		$('#bAddr2').val(
+				roadAddrPart1.substring(addrDetail.length + 2,
+						roadAddrPart1.length));
 		var list = roadAddrPart1.split(" ");
-		$('#bAddr3').val(list[0] +" "+ list[1])
+		$('#bAddr3').val(list[0] + " " + list[1])
 	}
 </script>
 
@@ -45,73 +47,171 @@
 
 <div class="container" style="margin-top: 100px;">
 	<div class="row justify-content-center">
-			<div class="col-md-12 text-center">
-				<h1 class="mb-3 text-black">글쓰기</h1>
-			</div>
-			<div class="card shadow col-md-5">
-				<div class="card-body">
-					<form:form action="${root }board/write_pro" method="post"
-						modelAttribute="writeContentBean" enctype="multipart/form-data">
-						<form:hidden path="bCno" value="${bCno }" />
-						<form:hidden path="bMno" value="${member.mNo }" />
-						<form:hidden path="bNo"/>
-						<div class="form-group">
-							<form:label path="bTitle">제목</form:label>
-							<form:input path="bTitle" class="form-control" />
-						</div>
-						<div class="form-group">
-							<form:label path="bContent">내용</form:label>
-							<form:textarea path="bContent" class="form-control" rows="10"
-								style="resize: none;"></form:textarea>
-						</div>
-						<div class="form-group">
-							<form:label path="biName">첨부이미지</form:label>
-							<form:input type="file" path="upload_file" class="form-control"
-								accept="image/*" />
-						</div>
-						<div class="form-group">
-							<form:label path="bReward">금액</form:label>
+		<div class="col-md-12 text-center">
+			<h1 class="mb-3 text-black">글쓰기</h1>
+		</div>
+		<div class="card shadow col-md-5">
+			<div class="card-body">
+				<form:form action="${root }board/write_pro" method="post"
+					modelAttribute="writeContentBean" enctype="multipart/form-data">
+					<form:hidden path="bCno" value="${bCno }" />
+					<form:hidden path="bMno" value="${member.mNo }" />
+					<form:hidden path="bNo" />
+					<div class="form-group">
+						<form:label path="bTitle">제목</form:label>
+						<form:input path="bTitle" class="form-control" />
+					</div>
+					<div class="form-group">
+						<form:label path="bContent">내용</form:label>
+						<form:textarea path="bContent" class="form-control" rows="10"
+							style="resize: none;"></form:textarea>
+					</div>
+					<div class="form-group">
+						<form:label path="biName">첨부이미지</form:label>
+						<form:input type="file" path="upload_file" class="form-control"
+							accept="image/*" />
+					</div>
+					<div class="form-group">
+						<form:label path="bReward">보상포인트</form:label>
+						<div class="input-group">
 							<form:input path="bReward" class="form-control" />
+							<div class="input-group-append">
+								<form:button type="button" class="btn btn-primary"
+									onclick="point();">포인트 충전</form:button>
+							</div>
 						</div>
-						<div class="form-group">
-							<form:label path="bAddr1">주소</form:label>
-							<div class="input-group">
-								<form:input path="bAddr1" class="form-control"
-									placeholder="Enter Addr" readonly="true" />
-								<div class="input-group-append">
-									<form:button type="button" class="btn btn-primary"
-										onclick="goPopup();">주소검색</form:button>
+					</div>
+					<div class="form-group">
+						<form:label path="bPhone">전화번호</form:label>
+						<form:input path="bPhone" class="form-control" />
+					</div>
+					<div class="form-group">
+						<form:label path="bAddr1">주소</form:label>
+						<div class="input-group">
+							<form:input path="bAddr1" class="form-control"
+								placeholder="Enter Addr" readonly="true" />
+							<div class="input-group-append">
+								<form:button type="button" class="btn btn-primary"
+									onclick="goPopup();">주소검색</form:button>
 								<input type="hidden" id="confmKey" name="confmKey" value="">
-								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<form:label path="bAddr2">상세주소</form:label>
-							<form:input path="bAddr2" class="form-control"
-								placeholder="상세주소" required="true" readonly="true" />
+					</div>
+					<div class="form-group">
+						<form:label path="bAddr2">상세주소</form:label>
+						<form:input path="bAddr2" class="form-control" placeholder="상세주소"
+							required="true" readonly="true" />
+					</div>
+
+					<form:hidden path="bAddr3" value="" />
+
+					<div class="form-group">
+						<form:label path="bEndTime">마감기간</form:label>
+						<form:input type="date" path="bEndTime" class="form-control" />
+					</div>
+					<div class="form-group">
+						<div class="text-center">
+							<form:button class="btn btn-primary">작성하기</form:button>
 						</div>
-						
-						<form:hidden path="bAddr3" value=""/>
-						
-						<div class="form-group">
-							<form:label path="bEndTime">마감기간</form:label>
-							<form:input type="date" path="bEndTime" class="form-control" />
-						</div>
-						<div class="form-group">
-							<div class="text-center">
-								<form:button class="btn btn-primary">작성하기</form:button>
-							</div>
-						</div>
-					</form:form>
-				</div>
+					</div>
+				</form:form>
 			</div>
 		</div>
-		<div class="col-sm-3"></div>
 	</div>
+	<div class="col-sm-3"></div>
+</div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+<script>
 
+function changePoint(){
+	var mId = $('#memberId').val();
+	$.ajax({
+		type : 'GET',
+		url : "${root}member/returnPoint/"+mId,
+		dataType : "text",
+		success : function(result){
+			result= result.trim()
+			$('#memberPoint').html(result);
+		},
+		error : function(err){
+			console.log(err);
+		}
+	});
+}
 
+function point(){
+	var IMP = window.IMP; // 생략가능
+	var reward = prompt("포인트","충전하실 포인트를 숫자만 입력해주세요.");
+	IMP.init('imp06686127');
+	// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+	IMP.request_pay({
+	pg: 'kakaopay', // version 1.1.0부터 지원.
+	/*
+	'kakao':카카오페이,
+	html5_inicis':이니시스(웹표준결제)
+	'nice':나이스페이
+	'jtnet':제이티넷
+	'uplus':LG유플러스
+	'danal':다날
+	'payco':페이코
+	'syrup':시럽페이
+	'paypal':페이팔
+	*/
+	pay_method: 'card',
+	/*
+	'samsung':삼성페이,
+	'card':신용카드,
+	'trans':실시간계좌이체,
+	'vbank':가상계좌,
+	'phone':휴대폰소액결제
+	*/
+	merchant_uid: 'merchant_' + new Date().getTime(),
+	
+	name: '주문명:결제테스트',
+	//결제창에서 보여질 이름
+	amount: reward,
+	//가격
+	buyer_name: '아이디: ${member.mId}',
+	buyer_email: '이메일: ${member.mEmail}'
+	/*
+	모바일 결제시,
+	결제가 끝나고 랜딩되는 URL을 지정
+	(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+	*/
+	}, function (rsp) {
+	console.log(rsp);
+	if (rsp.success) {
+		
+		$.ajax({
+			type : 'POST',
+			url : "<c:url value='/payment/success2'/>",
+			data : {
+					amount : rsp.paid_amount,
+					mNo : ${member.mNo},
+			},
+			success : function(data){
+					changePoint();
+			},
+			error : function(err){
+				console.log(err);
+			}
+		});
+		
+		alert("포인트 충전에 성공했습니다");
+
+		
+	} else {
+	var msg = '포인트 충전에 실패했습니다. 고객센터로 문의해주세요.';
+	msg += '에러내용 : ' + rsp.error_msg;
+	alert(msg);
+	}
+	
+	});
+
+};
+</script>
 </body>
 </html>
 

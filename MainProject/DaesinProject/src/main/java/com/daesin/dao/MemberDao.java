@@ -53,4 +53,8 @@ public class MemberDao {
 	public void updatePw(MemberBean memberBean) {
 		sqlSessionTemplate.update("member.updatePw", memberBean);
 	}
+	
+	public int returnPoint(String mId) {
+		return sqlSessionTemplate.selectOne("member.returnPoint", mId);
+	}
 }

@@ -219,6 +219,10 @@ jQuery(document).ready(function ($) {
     });
   };
   siteMagnificPopup();
-
- 
+  
+  
+  
 });
+
+
+

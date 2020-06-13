@@ -59,7 +59,7 @@
 										<li><span class="d-none d-md-block"
 											style="font-size: 20px;">회원아이디: ${member.mId } / </span></li>
 										<li><span class="d-none d-md-block"
-											style="font-size: 20px;">포인트: ${member.mPoint }</span></li>
+											style="font-size: 20px;">포인트: <span id="memberPoint">${member.mPoint }</span></span></li>
 										<br>
 										<li><a href="${root }member/logout"> <span
 												class="d-none d-md-block btn btn-primary"

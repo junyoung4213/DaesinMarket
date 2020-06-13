@@ -4,7 +4,93 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
 
-</head>
+<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+
+
+<div class="bg-light py-3">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 mb-0">
+				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <strong
+					class="text-black">회원가입</strong>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="site-section" data-aos="fade">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-12 text-center">
+				<h2 class="h1 mb-3 text-black">회원가입</h2>
+			</div>
+			<div class="card shadow col-md-5">
+				<div class="card-body">
+					<form:form action="${root }member/join_pro" method="post"
+						modelAttribute="joinMemberBean">
+						<form:hidden path="memberIdExist" />
+						<div class="form-group">
+							<form:label path="mId">아이디</form:label>
+							<div class="input-group">
+								<form:input path="mId" class="form-control"
+									onkeypress="resetMemberIdExist()" placeholder="영문만 입력해주세요" />
+								<div class="input-group-append">
+									<button type="button" class="btn btn-primary"
+										onclick="checkMemberIdExist()">중복확인</button>
+								</div>
+							</div>
+							<form:errors path="mId" style="color:red" />
+						</div>
+						<div class="form-group">
+							<form:label path="mEmail">이메일 주소</form:label>
+							<div class="input-group">
+								<form:input path="mEmail" class="form-control" />
+								<div class="input-group-append">
+									<button type="button" class="btn btn-primary"
+										onclick="emailBtn();" id="email_Btn">인증하기</button>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<form:label path="certification">인증번호</form:label>
+							<div class="input-group">
+								<form:input path="certification" class="form-control" />
+								<div class="input-group-append">
+									<button type="button" class="btn btn-primary"
+										onclick="emailAuthBtn();" id="email_AuthBtn" disabled="disabled">인증확인</button>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<form:label path="mPw">비밀번호</form:label>
+							<form:password path="mPw" class="form-control" />
+							<form:errors path="mPw" style="color:red" />
+						</div>
+						<div class="form-group">
+							<form:label path="mPw2">비밀번호 확인</form:label>
+							<form:password path="mPw2" class="form-control"
+								onkeyup="checkPwd()" />
+							<form:errors path="mPw2" style="color:red" />
+							<div id="checkPwd"></div>
+
+
+						</div>
+
+						<div class="form-group">
+							<div class="text-center">
+								<form:button class="btn btn-primary">회원가입</form:button>
+							</div>
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+</div>
+
+<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 <script>
 	function checkMemberIdExist() {
 		var mId = $("#mId").val()
@@ -95,95 +181,6 @@
 
 	}
 </script>
-
-<c:import url="/WEB-INF/views/include/top_menu.jsp" />
-
-
-<div class="bg-light py-3">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <strong
-					class="text-black">회원가입</strong>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="site-section" data-aos="fade">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-12 text-center">
-				<h2 class="h1 mb-3 text-black">회원가입</h2>
-			</div>
-			<div class="card shadow col-md-5">
-				<div class="card-body">
-					<form:form action="${root }member/join_pro" method="post"
-						modelAttribute="joinMemberBean">
-						<form:hidden path="memberIdExist" />
-						<div class="form-group">
-							<form:label path="mId">아이디</form:label>
-							<div class="input-group">
-								<form:input path="mId" class="form-control"
-									onkeypress="resetMemberIdExist()" placeholder="영문만 입력해주세요" />
-								<div class="input-group-append">
-									<button type="button" class="btn btn-primary"
-										onclick="checkMemberIdExist()">중복확인</button>
-								</div>
-							</div>
-							<form:errors path="mId" style="color:red" />
-						</div>
-						<div class="form-group">
-							<form:label path="mEmail">이메일 주소</form:label>
-							<div class="input-group">
-								<form:input path="mEmail" class="form-control" />
-								<div class="input-group-append">
-									<button type="button" class="btn btn-primary"
-										onclick="emailBtn();" id="email_Btn">인증하기</button>
-								</div>
-							</div>
-						</div>
-						<div class="form-group">
-							<form:label path="certification">인증번호</form:label>
-							<div class="input-group">
-								<form:input path="certification" class="form-control" />
-								<div class="input-group-append">
-									<button type="button" class="btn btn-primary"
-										onclick="emailAuthBtn();" id="email_AuthBtn" disabled="disabled">인증확인</button>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<form:label path="mPw">비밀번호</form:label>
-							<form:password path="mPw" class="form-control" />
-							<form:errors path="mPw" style="color:red" />
-						</div>
-						<div class="form-group">
-							<form:label path="mPw2">비밀번호 확인</form:label>
-							<form:password path="mPw2" class="form-control"
-								onkeyup="checkPwd()" />
-							<form:errors path="mPw2" style="color:red" />
-							<div id="checkPwd"></div>
-
-
-						</div>
-
-						<div class="form-group">
-							<div class="text-center">
-								<form:button class="btn btn-primary">회원가입</form:button>
-							</div>
-						</div>
-					</form:form>
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-3"></div>
-	</div>
-</div>
-
-<c:import url="/WEB-INF/views/include/bottom_info.jsp" />
-
 </body>
 </html>
 

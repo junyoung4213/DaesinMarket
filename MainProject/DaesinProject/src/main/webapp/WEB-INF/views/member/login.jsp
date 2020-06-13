@@ -3,19 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
-<script>
-	function find_id() {
-		location.href = "${root}member/findId";
-	}
 
-	function find_pw() {
-		location.href = "${root}member/findPw";
-	}
-
-	function join() {
-		location.href = "${root}member/join";
-	}
-</script>
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 <div class="bg-light py-3">
@@ -92,6 +80,18 @@
 	</div>
 </div>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+<script>
+	function find_id() {
+		location.href = "${root}member/findId";
+	}
 
+	function find_pw() {
+		location.href = "${root}member/findPw";
+	}
+
+	function join() {
+		location.href = "${root}member/join";
+	}
+</script>
 </body>
 </html>

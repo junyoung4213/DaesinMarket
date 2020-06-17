@@ -40,7 +40,7 @@ public class MemberBean {
 	// 회원아이디 존재 확인
 	private boolean memberIdExist;
 
-	// 이메일 인증번호
+	// 인증번호
 	private String certification;
 
 	private String sFname;

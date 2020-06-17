@@ -68,8 +68,12 @@
 <script src="${root }js/jquery.magnific-popup.min.js"></script>
 <script src="${root }js/aos.js"></script>
 <script src="${root }js/main.js"></script>
+<script src="${root }js/jquery.ajax-cross-origin.min.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/hmac-sha256.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-base64.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");

@@ -26,7 +26,7 @@
 			</div>
 			<div class="col-md-5">
 				<form:form action="${root}member/support_pro" method="post" modelAttribute="tempSupporterBean">
-				<form:hidden path="mNo" value="${member.mNo}"/>
+					<form:hidden path="mNo" value="${member.mNo}" />
 					<div class="p-3 p-lg-5 border">
 						<div class="form-group row">
 							<div class="col-md-6">
@@ -57,13 +57,48 @@
 						</div>
 					</div>
 				</form:form>
+				<div class="col-lg-12 text-center">
+					<button type="button" class="btn btn-primary btn-lg btn-clock" onclick="cert();">문자보내기</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 
+<script>
+	
+function cert() {
+	var obj = {
+			"type" : "SMS",
+			"contentType" : "COMM",
+			"from" : "01094750503",
+			"subject" : "본인인증 문자입니다",
+			"countryCode" : "82",
+			"content" : "테스트중입니다",
+			"messages" : [ {
+				"to" : "01094750503",
+				"subject" : "본인인증 문자2",
+				"content" : "테스트중2"
+			} ]
+		};
+	
+	$.ajax({
+		type : 'POST',
+		url : "/DaesinProject/supporter/sms",
+		dataType : "json",
+		data :  JSON.stringify(obj),
+		contentType: "application/json",
+		success : function(data) {
+			if(data.statusName == "success"){
+					console.log(data.statusName);
+					alert("성공했습니다!");
+			}
+		}
+	});
+}
+	
+</script>
 </body>
 </html>

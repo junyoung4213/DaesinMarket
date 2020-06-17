@@ -52,16 +52,13 @@ public class EchoHandler extends TextWebSocketHandler {
 				if ("search".equals(cmd) && boardWriterSession != null) {
 					System.out.println("멤버 ID는 " + receiver);
 
-					if (boardWriterSession != null) {
-						List<AlarmBean> list = alarmService.searchAlarm(receiver);
-						if (list != null) {
-							System.out.println("리스트 통과함");
-							for (AlarmBean alarmBean : list) {
-								TextMessage tmpMsg = new TextMessage(alarmBean.getaMsg());
-								boardWriterSession.sendMessage(tmpMsg);
-							}
-							alarmService.deleteAlarmAll(receiver);
+					List<AlarmBean> list = alarmService.searchAlarm(receiver);
+					if (list != null) {
+						for (AlarmBean alarmBean : list) {
+							TextMessage tmpMsg = new TextMessage(alarmBean.getaMsg());
+							boardWriterSession.sendMessage(tmpMsg);
 						}
+						alarmService.deleteAlarmAll(receiver);
 					}
 				} else if ("reply".equals(cmd) && boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage(saveMsg);

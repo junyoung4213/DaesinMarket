@@ -1,0 +1,90 @@
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.client.RestTemplate;
+
+import com.google.gson.Gson;
+
+public class RestTemplateTest {
+
+	public static void main(String[] args) throws Exception {
+		
+		HashMap<String,String> message = new HashMap<>();
+		message.put("to", "01094750503");
+		message.put("content", "테스트중2");
+		
+		HashMap<String,Object> data = new HashMap<>();
+		data.put("type", "SMS");
+		data.put("contentType", "COMM");
+		data.put("countryCode", "82");
+		data.put("from", "01094750503");
+		data.put("subject", "본인인증 문자입니다");
+		data.put("content", "테스트중입니다");
+		data.put("messages", new HashMap[] {message});
+		
+		String jsonString = new Gson().toJson(data);
+		
+		System.out.println(jsonString);
+		Map<String,String> signature = makeSignature();
+		System.out.println("인증코드는 : " + signature.get("signature"));
+		
+		String url = "https://sens.apigw.ntruss.com/sms/v2/services/ncp:sms:kr:259554053327:daesin_project/messages";
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Content-Type", "application/json; charset=UTF-8");
+		headers.set("x-ncp-apigw-timestamp", signature.get("timestamp"));
+		headers.set("x-ncp-iam-access-key", signature.get("accessKey"));
+		headers.set("x-ncp-apigw-signature-v2", signature.get("signature"));
+		
+		System.out.println("헤더는 : " +headers.toString());
+		
+		HttpEntity<String> request = new HttpEntity<String>(jsonString,headers);
+		
+		RestTemplate rt = new RestTemplate();
+		System.out.println("url은 : "+url);
+		Object responseEntity = rt.postForObject(url, request, String.class);
+		System.out.println(responseEntity.toString());
+		
+	}
+	
+	public static Map<String,String> makeSignature() throws Exception {
+		String space = " ";					// one space
+		String newLine = "\n";					// new line
+		String method = "POST";					// method
+		String url = "/sms/v2/services/ncp:sms:kr:259554053327:daesin_project/messages";	// url (include query string)
+		String timestamp = System.currentTimeMillis()+"";			// current timestamp (epoch)
+		String accessKey = "RXTDdstRRq06rbzA0Oo1";			// access key id (from portal or Sub Account)
+		String secretKey = "oc4gHYWQ64PJlZ1PZ2OAHAzvWwQvdGaSBiNRxyFe";
+		
+		String message = new StringBuilder()
+			.append(method)
+			.append(space)
+			.append(url)
+			.append(newLine)
+			.append(timestamp)
+			.append(newLine)
+			.append(accessKey)
+			.toString();
+
+		SecretKeySpec signingKey = new SecretKeySpec(secretKey.getBytes("UTF-8"), "HmacSHA256");
+		Mac mac = Mac.getInstance("HmacSHA256");
+		mac.init(signingKey);
+
+		byte[] rawHmac = mac.doFinal(message.getBytes("UTF-8"));
+		String encodeBase64String = Base64.encodeBase64String(rawHmac);
+		
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("signature", encodeBase64String);
+		map.put("accessKey", accessKey);
+		map.put("timestamp", timestamp);
+
+	  return map;
+	}
+
+}

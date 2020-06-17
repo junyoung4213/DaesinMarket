@@ -11,4 +11,8 @@ public class PopupController {
 	public String jusoPopup() {
 		return "popup/jusoPopup";
 	}
+	@RequestMapping("/sertPopup")
+	public String sertPopup() {
+		return "popup/sertPopup";
+	}
 }

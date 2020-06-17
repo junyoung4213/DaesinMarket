@@ -175,11 +175,7 @@
 				if (data == "success") {
 					alert("신고내용이 성공적으로 접수되었습니다");
 				}
-			},
-			error : function(request, status, error) {
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
-
 		});
 		}
 	};
@@ -261,8 +257,8 @@
 	var boardNum = ${readContentBean.bNo };
 	var socketMsg = "";
 	var msg="";
-	console.log("리시버: " + receiver)
 	console.log("콜러 : " + caller)
+	console.log("리시버: " + receiver)
 	console.log("게시물번호 : " + boardNum)
 	
 	if(receiver == $('#receiver').val()){
@@ -271,7 +267,6 @@
 		}else{
 		msg= caller + "님이 " + receiver + " 님의 신청을 수락했습니다."
 		socketMsg = "accept," + receiver + "," + msg;
-		console.log("서포터에게 보내는 메세지 : " + socketMsg);
 		}
 	// 댓글 알림 DB저장
 	$.ajax({

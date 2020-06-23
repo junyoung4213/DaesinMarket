@@ -59,7 +59,7 @@
 										<li><span class="d-none d-md-block"
 											style="font-size: 20px;">회원아이디: ${member.mId } / </span></li>
 										<li><span class="d-none d-md-block"
-											style="font-size: 20px;">포인트: <span id="memberPoint"></span></span></li>
+											style="font-size: 20px;">포인트: <span class="memberPoint"></span></span></li>
 										<br>
 										<li><a href="${root }member/logout"> <span
 												class="d-none d-md-block btn btn-primary"
@@ -92,7 +92,7 @@
 						</c:if>
 						<c:if test="${member != null }">
 							<li class="d-md-none"><a>회원아이디: ${member.mId }</a></li><br>
-							<li class="d-md-none"><a>포인트: ${member.mPoint }</a></li>
+							<li class="d-md-none"><a>포인트: <span class="memberPoint"></span></a></li>
 							<li class="d-md-none"><a href="${root }member/logout"> 로그아웃 </a></li>
 							<li class="d-md-none"><a href="${root }member/mypage"> 마이페이지 </a></li>
 						</c:if>

@@ -62,7 +62,6 @@ public class RestApiController {
 		
 		System.out.println(jsonData.toString());
 		Map<String,String> signature = makeSignature();
-		System.out.println("인증코드는 : " + signature.get("signature"));
 		
 		String url = "https://sens.apigw.ntruss.com/sms/v2/services/ncp:sms:kr:259554053327:daesin_project/messages";
 
@@ -72,20 +71,10 @@ public class RestApiController {
 		headers.set("x-ncp-iam-access-key", signature.get("accessKey"));
 		headers.set("x-ncp-apigw-signature-v2", signature.get("signature"));
 		
-		System.out.println("헤더는 : " +headers.toString());
-		
-		
-		
 		HttpEntity<String> request = new HttpEntity<String>(jsonData,headers);
 		
 		RestTemplate rt = new RestTemplate();
-		System.out.println("url은 : "+url);
 		ResponseEntity<String> responseEntity = rt.postForEntity(url, request, String.class);
-		System.out.println(responseEntity.toString());
-//		
-//		
-//		Map<String, Object> result = rt.postForObject(url, request, Map.class);
-//		 System.out.println(result);
 		
 		return responseEntity;
 	}

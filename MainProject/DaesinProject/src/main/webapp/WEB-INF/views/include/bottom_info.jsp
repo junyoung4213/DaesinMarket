@@ -113,7 +113,7 @@
 			type : 'GET',
 			url : "${root}member/returnPoint/"+mId,
 			success : function(data) {
-				$('#memberPoint').html(data);
+				$('.memberPoint').html(data);
 			}
 		});
 	};

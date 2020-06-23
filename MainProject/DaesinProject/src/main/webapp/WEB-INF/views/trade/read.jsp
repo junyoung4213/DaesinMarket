@@ -169,8 +169,9 @@
 						alert("거래 상대방이 취소 버튼을 누른 상태입니다. 문제시 고객센터로 문의해주세요.");
 					} else if (data == "complete"){
 						alert("의뢰가 성공적으로 완료되었습니다.");
-						saveAlarm(caller,receiver,"완료");
+						saveAlarm(caller,receiver,"완료",function(){
 						location.href = "${root}main";
+						});
 					}
 				},
 				error : function(request, status, error) {

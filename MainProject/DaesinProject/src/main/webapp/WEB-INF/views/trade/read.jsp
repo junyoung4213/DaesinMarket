@@ -31,6 +31,13 @@
 			</div>
 			<div class="card shadow">
 				<div class="card-body">
+				<c:if test="${member.mId == readContentBean.mId }">
+				<input type="hidden" id="receiver" value="${sId }"/>
+				</c:if>
+				<c:if test="${member.mId != readContentBean.mId }">
+				<input type="hidden" id="receiver" value="${readContentBean.mId}"/>
+				</c:if>
+				<input type="hidden" id="caller" value="${member.mId}"/>
 					<div class="form-group">
 						<label for="bTitle">제목</label>
 						<input type="text" id="bTitle" name="bTitle" class="form-control"
@@ -86,12 +93,8 @@
 
 					<div class="form-group">
 						<div class="text-center">
-							<c:if test="${readContentBean.bMno == member.mNo}">
 								<button class="btn btn-warning" onclick="complete();">완료하기</button>
-							</c:if>
-							<c:if test="${readContentBean.bMno != member.mNo }">
 								<button class="btn btn-danger" onclick="cancel();">취소하기</button>
-							</c:if>
 						</div>
 					</div>
 				</div>
@@ -103,9 +106,48 @@
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
 
 <script>
+	var caller = $('#caller').val();
+	var receiver = $('#receiver').val();
+	
+	/* 소켓통신 */
+	function saveAlarm(caller, receiver, status){
+	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
+	var boardNum = ${readContentBean.bNo };
+	var socketMsg = "";
+	var msg="";
+	console.log("콜러 : " + caller);
+	console.log("리시버: " + receiver);
+	console.log("게시물번호 : " + boardNum);
+	
+	msg = caller + "님이 " + boardNum + "번 의뢰글에 "+ status+ " 버튼을 누르셨습니다.";
+	socketMsg = "reply," + receiver +"," + msg;
+
+	// 댓글 알림 DB저장
+	$.ajax({
+		type : 'POST',
+		url : "<c:url value='/alarm/save'/>",
+		data : {
+				receiver : receiver,
+				caller : caller,
+				boardNum : boardNum,
+				msg : msg
+		},
+		success : function(data){
+				console.log("msgmsg : " + socketMsg);
+				ws.send(socketMsg);
+		},
+		error : function(err){
+			console.log(err);
+		}
+	});
+	};
+	/* 소켓통신 */
+
+
 	function complete() {
 
 		var result = confirm("정말 완료하시겠습니까?");
+		var mNo = ${member.mNo};
 		var bno = ${readContentBean.bNo};
 		var tReward = ${readContentBean.bReward};
 		if (result == true) {
@@ -113,15 +155,22 @@
 				type : 'POST',
 				url : "<c:url value='/trade/complete'/>",
 				data : {
+					mNo : mNo,
 					tBno : bno,
 					tReward : tReward
 				},
 				success : function(data) {
 					if (data == "success") {
-						alert("의뢰가 성공적으로 완료되었습니다.");
-						location.href = "${root}main"
+						alert("의뢰 완료 요청을 전송했습니다.");
+						saveAlarm(caller,receiver,"완료");
 					} else if (data == "fail") {
 						alert("에러)의뢰가 완료되지 못했습니다");
+					} else if (data == "different"){
+						alert("거래 상대방이 취소 버튼을 누른 상태입니다. 문제시 고객센터로 문의해주세요.");
+					} else if (data == "complete"){
+						alert("의뢰가 성공적으로 완료되었습니다.");
+						saveAlarm(caller,receiver,"완료");
+						location.href = "${root}main";
 					}
 				},
 				error : function(request, status, error) {
@@ -135,7 +184,7 @@
 
 	function cancel() {
 		var result = confirm("정말 취소하시겠습니까?");
-		var mNo = ${readContentBean.bMno};
+		var mNo = ${member.mNo};
 		var tReward = ${readContentBean.bReward};
 		var tBno = ${readContentBean.bNo};
 		if (result == true) {
@@ -149,8 +198,16 @@
 				},
 				success : function(data) {
 					if (data == "success") {
-						alert("맡은 의뢰가 정상적으로 취소되었습니다.");
-						location.href = "${root}main"
+						alert("의뢰 취소 요청을 전송했습니다.");
+						saveAlarm(caller,receiver,"취소");
+					}else if (data == "fail") {
+						alert("에러)의뢰가 취소되지 못했습니다");
+					}else if (data == "different"){
+						alert("거래 상대방이 완료 버튼을 누른 상태입니다. 문제시 고객센터로 문의해주세요.")
+					}else if (data == "complete"){
+						alert("의뢰가 성공적으로 취소되었습니다.");
+						saveAlarm(caller,receiver,"취소");
+						location.href = "${root}main";
 					}
 				},
 				error : function(request, status, error) {
@@ -160,6 +217,8 @@
 			});
 		}
 	}
+	
+	
 </script>
 </body>
 </html>

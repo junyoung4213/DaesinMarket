@@ -31,6 +31,18 @@ public class TradeService {
 	public void addTradeInfo(HashMap<String, Integer> list) {
 		tradeDao.addTradeInfo(list);
 	}
+	
+	public TradeBean searchTradeInfo(int tBno) {
+		return tradeDao.searchTradeInfo(tBno);
+	}
+	
+	public void updateTradeBoardInfo1(TradeBean tradeInfo) {
+		tradeDao.updateTradeBoardInfo1(tradeInfo);
+	}
+	
+	public void updateTradeBoardInfo2(TradeBean tradeInfo) {
+		tradeDao.updateTradeBoardInfo2(tradeInfo);
+	}
 
 	public void updateBoardInfo(HashMap<String, Integer> list) {
 		tradeDao.updateBoardInfo(list);

@@ -83,7 +83,7 @@
 					</div>
 					<div class="form-group">
 						<form:label path="bPhone">전화번호</form:label>
-						<form:input path="bPhone" class="form-control" />
+						<form:input path="bPhone" class="form-control" placeholder="하이픈(-)은 빼고 입력해주세요" />
 					</div>
 					<div class="form-group">
 						<form:label path="bAddr1">주소</form:label>

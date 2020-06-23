@@ -67,7 +67,6 @@ public class EchoHandler extends TextWebSocketHandler {
 
 				} else if ("accept".equals(cmd) && boardWriterSession != null) {
 					TextMessage tmpMsg = new TextMessage(saveMsg);
-					System.out.println("서포터에게 보내는 메세지 : " + tmpMsg);
 					boardWriterSession.sendMessage(tmpMsg);
 					alarmService.deleteAlarm(saveMsg);
 				}

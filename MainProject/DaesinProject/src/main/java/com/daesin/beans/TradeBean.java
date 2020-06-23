@@ -15,6 +15,12 @@ public class TradeBean {
 	// 의뢰금액
 	private int tReward;
 
+	// 회원 의사결정
+	private int tMStatus;
+
+	// 서포터 의사결정
+	private int tSStatus;
+
 	private BoardBean boardBean;
 
 	public int gettNo() {
@@ -57,10 +63,26 @@ public class TradeBean {
 		this.boardBean = boardBean;
 	}
 
+	public int gettMStatus() {
+		return tMStatus;
+	}
+
+	public void settMStatus(int tMStatus) {
+		this.tMStatus = tMStatus;
+	}
+
+	public int gettSStatus() {
+		return tSStatus;
+	}
+
+	public void settSStatus(int tSStatus) {
+		this.tSStatus = tSStatus;
+	}
+
 	@Override
 	public String toString() {
-		return "TradeBean [tNo=" + tNo + ", tSno=" + tSno + ", tBno=" + tBno + ", tReward=" + tReward + ", boardBean="
-				+ boardBean + "]";
+		return "TradeBean [tNo=" + tNo + ", tSno=" + tSno + ", tBno=" + tBno + ", tReward=" + tReward + ", tMStatus="
+				+ tMStatus + ", tSStatus=" + tSStatus + ", boardBean=" + boardBean + "]";
 	}
 
 }

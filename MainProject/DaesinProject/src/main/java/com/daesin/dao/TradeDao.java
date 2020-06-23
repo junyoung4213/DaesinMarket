@@ -21,6 +21,18 @@ public class TradeDao {
 		sqlSessionTemplate.insert("trade.addTradeInfo", list);
 	}
 	
+	public TradeBean searchTradeInfo(int tBno) {
+		return sqlSessionTemplate.selectOne("trade.searchTradeInfo",tBno);
+	}
+	
+	public void updateTradeBoardInfo1(TradeBean tradeInfo) {
+		sqlSessionTemplate.update("trade.updateTradeBoardInfo1",tradeInfo);
+	}
+	
+	public void updateTradeBoardInfo2(TradeBean tradeInfo) {
+		sqlSessionTemplate.update("trade.updateTradeBoardInfo2",tradeInfo);
+	}
+	
 	public void updateBoardInfo(HashMap<String, Integer> list) {
 		sqlSessionTemplate.update("trade.updateBoardInfo",list);
 	}

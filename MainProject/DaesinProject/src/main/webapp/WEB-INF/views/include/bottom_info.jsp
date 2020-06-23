@@ -76,11 +76,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-base64.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
+	$('document').ready(function(){
 	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
 	function socket() {
 		ws.onopen = function() {
 			console.log('Info: connection opened.');
-			var msg = "search," + $('#memberId').val() + "," + "알림메시지";
+			var msg = "search," + $('#memberId').val() + ",알림메시지";
 			console.log(msg);
 			ws.send(msg);
 		};
@@ -90,17 +91,12 @@
 				"closeButton" : true,
 				"debug" : false,
 				"newestOnTop" : false,
-				"progressBar" : true,
 				"preventDuplicates" : false,
 				"onclick" : null,
 				"showDuration" : "300",
-				"hideDuration" : "1000",
-				"timeOut" : "5000",
 				"extendedTimeOut" : "1000",
 				"showEasing" : "swing",
-				"hideEasing" : "linear",
 				"showMethod" : "fadeIn",
-				"hideMethod" : "fadeOut"
 			}
 			toastr.success(event.data, "알림", {
 			});
@@ -110,6 +106,6 @@
 		};
 	}
 	socket();
-	
+	});
 </script>
 

@@ -38,8 +38,17 @@
 					<c:forEach var="obj" items="${boardList }">
 						<tr>
 							<td class="text-center">${obj.bNo }</td>
-							<td class="text-center"><a
+							
+							<c:choose>
+								<c:when test="${obj.bStatus == 1 }">
+								<td class="text-center"><a
+								href='${root}trade/read?bNo=${obj.bNo}'>${obj.bTitle}</a></td>
+								</c:when>
+								<c:otherwise>
+								<td class="text-center"><a
 								href='${root }board/read?bCno=${obj.bCno}&bNo=${obj.bNo}&page=${page}'>${obj.bTitle}</a></td>
+								</c:otherwise>
+							</c:choose>
 							<td class="text-center">${obj.bReward }</td>
 							<td class="text-center d-none d-md-table-cell">${obj.bWriteTime}</td>
 							<c:choose>

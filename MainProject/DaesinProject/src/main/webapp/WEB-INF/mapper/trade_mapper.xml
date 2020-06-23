@@ -23,9 +23,36 @@
 			select b_reward from board where b_no=#{tBno}
 		</selectKey>
 	<![CDATA[
-	INSERT INTO board_trade(t_sno,t_bno,t_reward) VALUES(#{tSno},#{tBno},#{tReward})
+	INSERT INTO board_trade(t_sno,t_bno,t_reward,t_m_status,t_s_status) VALUES(#{tSno},#{tBno},#{tReward},0,0)
 	]]>
 	</insert>
+	
+	<!-- 거래 정보 불러오기 -->
+	<select id="searchTradeInfo" parameterType="java.lang.Integer" resultType="com.daesin.beans.TradeBean">
+		<![CDATA[
+		select *
+		from board_trade
+		where t_bno=#{tBno}
+		]]>
+	</select>
+	
+	<!-- 거래 게시판 정보 수정(상태 수정) - 서포터 -->
+	<update id="updateTradeBoardInfo1" parameterType="com.daesin.beans.TradeBean" >
+	<![CDATA[
+	UPDATE board_trade
+	SET t_s_status = #{tSStatus}
+	WHERE t_bno=#{tBno}
+	]]>
+	</update>
+	
+	<!-- 거래 게시판 정보 수정(상태 수정) - 회원 -->
+	<update id="updateTradeBoardInfo2" parameterType="com.daesin.beans.TradeBean">
+	<![CDATA[
+	UPDATE board_trade
+	SET t_m_status = #{tMStatus}
+	WHERE t_bno=#{tBno}
+	]]>
+	</update>
 
 	<!-- 게시물 정보 수정(상태 수정) -->
 	<update id="updateBoardInfo" parameterType="HashMap">
@@ -71,14 +98,16 @@
 	]]>
 	</update>
 
-	<!-- 거래 정보 삭제 -->
+	<!-- 거래 정보 삭제 
 	<delete id="deleteTradeInfo" parameterType="HashMap">
 
 		DELETE FROM board_trade
 		WHERE t_bno=#{tBno}
 
 	</delete>
+	-->
 
+	<!-- 회원 게시물 불러오기 -->
 	<select id="getTradeList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
@@ -89,6 +118,7 @@
 	]]>
 	</select>
 
+	<!-- 서포터 관련 게시물 불러오기 -->
 	<select id="getTradeList2" parameterType="java.lang.Integer"
 		resultMap="trade">
 	<![CDATA[
@@ -99,7 +129,7 @@
 	]]>
 	</select>
 
-
+	<!-- 회원 게시물 카운트 -->
 	<select id="getContentCnt" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">
 	<![CDATA[
@@ -107,6 +137,7 @@
 	]]>
 	</select>
 
+	<!-- 서포터 관련 게시물 카운트 -->
 	<select id="getContentCnt2" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">
 	<![CDATA[
@@ -114,6 +145,7 @@
 	]]>
 	</select>
 	
+	<!-- 서포터 id 불러오기 -->
 	<select id="getSupporterInfo" parameterType="java.lang.Integer" resultType="java.lang.String">
 	SELECT m_id
 	FROM member

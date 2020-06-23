@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.daesin.beans.AlarmBean;
 import com.daesin.beans.BoardBean;
 import com.daesin.beans.MemberBean;
 import com.daesin.beans.PageBean;
@@ -30,94 +29,157 @@ public class TradeController {
 
 	@Autowired
 	private TradeService tradeService;
-	
+
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private BoardService boardService;
-	
+
 	@Autowired
 	private AlarmService alarmService;
-	
-	
+
 	@GetMapping("/read")
 	public String trade(@RequestParam("bNo") int bNo, Model model) {
 
 		model.addAttribute("bNo", bNo);
 
 		BoardBean readContentBean = boardService.getContentInfo(bNo);
+		
+		String sId = memberService.getId(tradeService.searchTradeInfo(bNo).gettSno());
+		
 		model.addAttribute("readContentBean", readContentBean);
-
+		model.addAttribute("sId", sId);
 		return "trade/read";
 	}
-	
+
 	@PostMapping("/complete")
 	@ResponseBody
-	public String complete(@RequestParam("tBno") int tBno,@RequestParam("tReward") int tReward) {
-		
-		HashMap<String, Integer> list = new HashMap<String, Integer>();
+	public String complete(@RequestParam("mNo") int mNo, @RequestParam("tBno") int tBno,
+			@RequestParam("tReward") int tReward) {
 
-		tReward-=1000;
-		list.put("tBno", tBno);
-		list.put("tReward", tReward);
-		list.put("bStatus",2);
-		
-		
 		try {
-			tradeService.updateBoardInfo(list);
-			tradeService.updateSupporterInfo(list);
+			TradeBean tradeInfo = tradeService.searchTradeInfo(tBno);
+
+			if (tradeInfo == null) {
+				return "fail";
+			}
 			
+			System.out.println("tradeBean은 : " + tradeInfo);
+			System.out.println("mNo는 : " + mNo);
+
+			if (tradeInfo.gettSno() == mNo) {
+				// 서포터의 경우
+				if (tradeInfo.gettMStatus() == 2) {
+					return "different";
+				} else {
+					tradeInfo.settSStatus(1);
+					tradeService.updateTradeBoardInfo1(tradeInfo);
+				}
+			} else {
+				// 회원의 경우
+				if (tradeInfo.gettSStatus() == 2) {
+					return "different";
+				} else {
+					tradeInfo.settMStatus(1);
+					tradeService.updateTradeBoardInfo2(tradeInfo);
+				}
+			}
+
+			if (tradeInfo.gettMStatus() == tradeInfo.gettSStatus()) {
+				HashMap<String, Integer> list = new HashMap<String, Integer>();
+
+				tReward -= 1000;
+				list.put("tBno", tBno);
+				list.put("tReward", tReward);
+				list.put("bStatus", 2);
+
+				tradeService.updateBoardInfo(list);
+				tradeService.updateSupporterInfo(list);
+				return "complete";
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "fail";
 		}
 		return "success";
 	}
-	
+
 	@PostMapping("/cancel")
 	@ResponseBody
-	public String cancel(@RequestParam("mNo") int mNo,@RequestParam("tBno") int tBno,@RequestParam("tReward") int tReward) {
-		
-		HashMap<String, Integer> list = new HashMap<String, Integer>();
+	public String cancel(@RequestParam("mNo") int mNo, @RequestParam("tBno") int tBno,
+			@RequestParam("tReward") int tReward, HttpSession session) {
 
-		list.put("mNo", mNo);
-		list.put("tReward", tReward);
-		list.put("tBno", tBno);
-		list.put("bStatus",3);
+		
+		MemberBean member = (MemberBean)session.getAttribute("member");
 		try {
-			tradeService.updateBoardInfo(list);
-			tradeService.rollbackMemberInfo(list);
-			tradeService.deleteTradeInfo(list);
-			
+			TradeBean tradeInfo = tradeService.searchTradeInfo(tBno);
+
+			if (tradeInfo == null) {
+				return "fail";
+			}
+
+			if (tradeInfo.gettSno() == member.getmNo()) {
+				// 서포터의 경우
+				if (tradeInfo.gettMStatus() == 1) {
+					return "different";
+				} else {
+					tradeInfo.settSStatus(2);
+					tradeService.updateTradeBoardInfo1(tradeInfo);
+				}
+			} else {
+				// 회원의 경우
+				if (tradeInfo.gettSStatus() == 1) {
+					return "different";
+				} else {
+					tradeInfo.settMStatus(2);
+					tradeService.updateTradeBoardInfo2(tradeInfo);
+				}
+			}
+
+			if (tradeInfo.gettMStatus() == tradeInfo.gettSStatus()) {
+				HashMap<String, Integer> list = new HashMap<String, Integer>();
+
+				list.put("mNo", mNo);
+				list.put("tReward", tReward);
+				list.put("tBno", tBno);
+				list.put("bStatus", 3);
+				tradeService.updateBoardInfo(list);
+				tradeService.rollbackMemberInfo(list);
+				
+				return "complete";
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "fail";
 		}
 		return "success";
+
 	}
-	
 
 	@PostMapping("/add")
 	@ResponseBody
-	public String add(@RequestParam("tSno") int tSno, @RequestParam("tBno") int tBno,@RequestParam("mNo") int mNo, HttpSession session) {
+	public String add(@RequestParam("tSno") int tSno, @RequestParam("tBno") int tBno, @RequestParam("mNo") int mNo,
+			HttpSession session) {
 
 		HashMap<String, Integer> list = new HashMap<String, Integer>();
 
 		list.put("tSno", tSno);
 		list.put("tBno", tBno);
 		list.put("mNo", mNo);
-		list.put("bStatus",1);
+		list.put("bStatus", 1);
 
 		try {
 			tradeService.addTradeInfo(list);
 			tradeService.updateBoardInfo(list);
 			tradeService.updateMemberInfo(list);
-			
+
 			String sId = tradeService.getSupporterInfo(tSno);
-			
-			MemberBean member = memberService.getLoginMemberInfo((MemberBean)session.getAttribute("member"));
-			
+
+			MemberBean member = memberService.getLoginMemberInfo((MemberBean) session.getAttribute("member"));
+
 			session.setAttribute("member", member);
 			session.setAttribute("sId", sId);
 		} catch (Exception e) {

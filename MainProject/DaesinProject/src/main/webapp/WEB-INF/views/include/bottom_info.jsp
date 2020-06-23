@@ -106,6 +106,20 @@
 		};
 	}
 	socket();
+	
+	function getPoint() {
+		var mId = $('#memberId').val();
+		$.ajax({
+			type : 'GET',
+			url : "${root}member/returnPoint/"+mId,
+			success : function(data) {
+				$('#memberPoint').html(data);
+			}
+		});
+	};
+	
+	getPoint();
+	
 	});
 </script>
 

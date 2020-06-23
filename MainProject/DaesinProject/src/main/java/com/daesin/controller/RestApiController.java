@@ -5,12 +5,12 @@ import java.util.Map;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.daesin.beans.MemberBean;
 import com.daesin.service.MemberService;
 
 @RestController
@@ -46,11 +47,13 @@ public class RestApiController {
 	}
 
 	@GetMapping(value = "/member/returnPoint/{m_id}")
-	public String returnPoint(@PathVariable String m_id) {
-		// 이메일 주소를 서버에서 받을 때, '.com'을 잘라내는 현상을 발견.
-		// 뒷 부분에 '.com'을 붙여줘야 제대로 해당 이메일로 가입한 아이디를 찾을 수 있다.
-
-		return memberService.returnPoint(m_id) + "";
+	public String returnPoint(@PathVariable String m_id, HttpSession session) {
+		MemberBean member = (MemberBean)session.getAttribute("member");
+		int mPoint = memberService.returnPoint(m_id);
+		member.setmPoint(mPoint);
+		session.setAttribute("member", member);
+		
+		return  mPoint + "";
 	}
 
 	@RequestMapping(value = "/supporter/sms", method = RequestMethod.POST)

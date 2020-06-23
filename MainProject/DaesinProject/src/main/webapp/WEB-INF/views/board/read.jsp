@@ -160,7 +160,7 @@
 
 	var deletePopup = function() {
 		if (confirm("정말 삭제하시겠습니까?")) {
-			location.href = "delete?bCno=${readContentBean.bCno}&bNo=${bNo}";
+			location.href = "delete?bCno=${readContentBean.bCno}&bNo=${bNo}&bReward=${readContentBean.bReward}&mNo=${member.mNo}";
 		}
 	};
 	

@@ -64,9 +64,6 @@ public class TradeController {
 			if (tradeInfo == null) {
 				return "fail";
 			}
-			
-			System.out.println("tradeBean은 : " + tradeInfo);
-			System.out.println("mNo는 : " + mNo);
 
 			if (tradeInfo.gettSno() == mNo) {
 				// 서포터의 경우
@@ -174,13 +171,9 @@ public class TradeController {
 		try {
 			tradeService.addTradeInfo(list);
 			tradeService.updateBoardInfo(list);
-			tradeService.updateMemberInfo(list);
 
 			String sId = tradeService.getSupporterInfo(tSno);
 
-			MemberBean member = memberService.getLoginMemberInfo((MemberBean) session.getAttribute("member"));
-
-			session.setAttribute("member", member);
 			session.setAttribute("sId", sId);
 		} catch (Exception e) {
 			e.printStackTrace();

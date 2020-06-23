@@ -27,7 +27,9 @@ import com.daesin.beans.MemberBean;
 import com.daesin.beans.PageBean;
 import com.daesin.beans.ReportBean;
 import com.daesin.service.BoardService;
+import com.daesin.service.MemberService;
 import com.daesin.service.SupporterService;
+import com.daesin.service.TradeService;
 
 @Controller
 @RequestMapping("/board")
@@ -38,6 +40,12 @@ public class BoardController {
 
 	@Autowired
 	private SupporterService supporterService;
+	
+	@Autowired
+	private TradeService tradeService;
+	
+	@Autowired
+	private MemberService memberService;
 
 	@GetMapping("/main")
 	public String main(@RequestParam(value="bCno", defaultValue = "1") int bCno, @RequestParam(value = "page", defaultValue = "1") int page,
@@ -77,11 +85,16 @@ public class BoardController {
 		MemberBean member = (MemberBean) session.getAttribute("member");
 
 		if (writeContentBean.getbReward() > member.getmPoint()) {
-			model.addAttribute("reward", writeContentBean.getbReward()-member.getmPoint());
 			return "board/write_fail";
 		}
 
 		boardService.addContentInfo(writeContentBean);
+		
+		HashMap<String, Integer> list = new HashMap<String, Integer>();
+
+		list.put("mNo", member.getmNo());
+		list.put("bReward", writeContentBean.getbReward());
+		tradeService.updateMemberInfo(list);
 
 		return "board/write_success";
 	}
@@ -148,12 +161,18 @@ public class BoardController {
 	}
 
 	@GetMapping("/delete")
-	public String delete(@RequestParam("bNo") int bNo, @RequestParam("bCno") int bCno, Model model) {
+	public String delete(@RequestParam("bNo") int bNo, @RequestParam("bCno") int bCno,@RequestParam("bReward") int bReward,@RequestParam("mNo") int mNo, Model model) {
 
 		boardService.deleteContentInfo(bNo);
 
 		model.addAttribute("bNo", bNo);
 		model.addAttribute("bCno", bCno);
+		
+		HashMap<String, Integer> list = new HashMap<String, Integer>();
+
+		list.put("mNo", mNo);
+		list.put("tReward", bReward);
+		tradeService.rollbackMemberInfo(list);
 
 		return "board/delete";
 	}
@@ -232,12 +251,9 @@ public class BoardController {
 
 		MemberBean memberBean = (MemberBean) session.getAttribute("member");
 		try {
-			System.out.println("report: " + report);
-			System.out.println(memberBean.toString());
 			reportBean.setrSno(memberBean.getmNo());
 			reportBean.setrBno(bNo);
 			reportBean.setrMsg(report);
-			System.out.println(reportBean.toString());
 			supporterService.addReport(reportBean);
 
 		} catch (Exception e) {

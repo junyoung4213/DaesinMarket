@@ -65,13 +65,9 @@
 
 	<!-- 멤버 정보 수정 -->
 	<update id="updateMemberInfo" parameterType="HashMap">
-		<selectKey keyProperty="tReward" order="BEFORE"
-			resultType="java.lang.Integer">
-			select b_reward from board where b_no=#{tBno}
-		</selectKey>
 	<![CDATA[
 	UPDATE member
-	SET m_point = m_point - #{tReward}
+	SET m_point = m_point - #{bReward}
 	WHERE m_no = #{mNo}
 	]]>
 	</update>

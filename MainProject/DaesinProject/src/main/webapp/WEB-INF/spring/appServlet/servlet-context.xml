@@ -65,7 +65,13 @@
 			<mapping path="/member/support" />
 			<mapping path="/member/faq" />
 			<mapping path="/member/modify" />
+			<mapping path="/member/mypage" />
+			<mapping path="/member/point" />
 			<mapping path="/board/write" />
+			<mapping path="/board/addComment.do" />
+			<mapping path="/board/report.do" />
+			<mapping path="/board/delete.do" />
+			<mapping path="/trade/*" />
 			<beans:bean class="com.daesin.interceptor.AuthInterceptor" />
 		</interceptor>
 		<interceptor>

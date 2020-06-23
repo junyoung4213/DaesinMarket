@@ -30,8 +30,8 @@
 			</div>
 			<div class="container card shadow col-md-6">
 				<div class="card-body">
-				<input type="hidden" id="receiver" value="${readContentBean.mId}"/>
-				<input type="hidden" id="caller" value="${member.mId}"/>
+					<input type="hidden" id="receiver" value="${readContentBean.mId}" />
+					<input type="hidden" id="caller" value="${member.mId}" />
 					<div class="form-group">
 						<label for="bTitle">제목</label>
 						<input type="text" id="bTitle" name="bTitle" class="form-control"
@@ -87,7 +87,8 @@
 
 					<div class="form-group">
 						<div class="text-center">
-							<a href="${root }board/main?bCno=${readContentBean.bCno}&page=${page}"
+							<a
+								href="${root }board/main?bCno=${readContentBean.bCno}&page=${page}"
 								class="btn btn-primary">목록보기</a>
 							<c:if test="${readContentBean.bMno == member.mNo}">
 								<a
@@ -95,7 +96,7 @@
 									class="btn btn-info">수정하기</a>
 								<button class="btn btn-warning" onclick="deletePopup();">삭제하기</button>
 							</c:if>
-							<c:if test="${readContentBean.bMno != member.mNo }">
+							<c:if test="${readContentBean.bMno != member.mNo and member != null }">
 								<button class="btn btn-danger" onclick="report();">신고하기</button>
 							</c:if>
 						</div>
@@ -104,6 +105,7 @@
 			</div>
 
 			<!-- 댓글 구현부  -->
+			<c:if test="${member != null }">
 			<div class="container col-md-6">
 				<form id="commentForm" name="commentForm" method="post">
 					<br> <br>
@@ -126,12 +128,11 @@
 						</div>
 					</div>
 					<input type="hidden" id="coBno" name="coBno"
-						value="${readContentBean.bNo }" /> <input type="hidden"
-						id="coSno" name="coSno" value="${member.mNo}" /> <input
-						type="hidden" id="coDate" name="coDate" value="" /> <input
-						type="hidden" id="bMno" name="bMno"
-						value="${readContentBean.bMno }" /> <input type="hidden" id="cnt"
-						name="cnt" value="" />
+						value="${readContentBean.bNo }" />
+					<input type="hidden" id="coDate" name="coDate" value="" />
+					<input type="hidden" id="bMno" name="bMno"
+						value="${readContentBean.bMno }" />
+					<input type="hidden" id="cnt" name="cnt" value="" />
 				</form>
 			</div>
 			<div class="container col-md-6 text-center">
@@ -139,6 +140,7 @@
 					<div id="commentList"></div>
 				</form>
 			</div>
+			</c:if>
 			<!-- //댓글 구현부 -->
 
 			<div id="commentPart" class="d-none d-md-block"></div>

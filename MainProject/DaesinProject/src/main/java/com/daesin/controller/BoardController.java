@@ -184,14 +184,11 @@ public class BoardController {
 	@RequestMapping(value = "/commentList.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public ResponseEntity<Object> ajax_commentList(@ModelAttribute("commentBean") CommentBean commentBean,
-			@RequestParam("coBno") int coBno, @RequestParam("coSno") int coSno, @RequestParam("bMno") int bMno,
+			@RequestParam("coBno") int coBno, @RequestParam("bMno") int bMno,
 			HttpServletRequest request, @RequestParam(value = "cPage", defaultValue = "1") int cPage) throws Exception {
 
 		HttpHeaders responseHeaders = new HttpHeaders();
 		ArrayList<HashMap<String, Object>> hmlist = new ArrayList<HashMap<String, Object>>();
-
-		commentBean.setCoBno(coBno);
-		commentBean.setCoSno(coSno);
 
 		// 해당 게시물 댓글
 		List<CommentBean> commentList;

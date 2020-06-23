@@ -110,7 +110,7 @@
 	var receiver = $('#receiver').val();
 	
 	/* 소켓통신 */
-	function saveAlarm(caller, receiver, status){
+	function saveAlarm(caller, receiver, status, callback){
 	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
 	var boardNum = ${readContentBean.bNo };
 	var socketMsg = "";
@@ -135,6 +135,7 @@
 		success : function(data){
 				console.log("msgmsg : " + socketMsg);
 				ws.send(socketMsg);
+				callback();
 		},
 		error : function(err){
 			console.log(err);

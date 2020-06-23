@@ -54,6 +54,7 @@
 												class="d-none d-md-block btn btn-info"
 												style="font-size: 20px;">회원가입</span>
 										</a></li>
+										<input type="hidden" id="memberId" value=""/>
 									</c:if>
 									<c:if test="${member != null}">
 										<li><span class="d-none d-md-block"

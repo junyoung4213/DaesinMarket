@@ -17,7 +17,11 @@ public class CommentBean {
 	// 서포터 아이디
 	private String coId;
 
+	// 댓글 작성 시간
 	private String coDate;
+
+	// 서포터 전화번호
+	private String coPhone;
 
 	public int getCoNum() {
 		return coNum;
@@ -67,10 +71,18 @@ public class CommentBean {
 		this.coDate = coDate;
 	}
 
+	public String getCoPhone() {
+		return coPhone;
+	}
+
+	public void setCoPhone(String coPhone) {
+		this.coPhone = coPhone;
+	}
+
 	@Override
 	public String toString() {
 		return "CommentBean [coNum=" + coNum + ", coSno=" + coSno + ", coBno=" + coBno + ", coMsg=" + coMsg + ", coId="
-				+ coId + ", coDate=" + coDate + "]";
+				+ coId + ", coDate=" + coDate + ", coPhone=" + coPhone + "]";
 	}
 
 }

@@ -5,8 +5,8 @@
 
 	<insert id="addContentInfo" parameterType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	insert into board(b_cno,b_title,b_content, b_reward, b_write_time,b_end_time,b_mno, bi_name, b_addr1, b_addr2, b_addr3) 
-	values (#{bCno},#{bTitle}, #{bContent}, #{bReward},sysdate, #{bEndTime}, #{bMno},#{biName, jdbcType=VARCHAR}, #{bAddr1},#{bAddr2},#{bAddr3})
+	insert into board(b_cno,b_title,b_content, b_reward, b_write_time,b_end_time,b_mno, b_phone, bi_name, b_addr1, b_addr2, b_addr3) 
+	values (#{bCno},#{bTitle}, #{bContent}, #{bReward},sysdate, #{bEndTime}, #{bMno},#{bPhone}, #{biName, jdbcType=VARCHAR}, #{bAddr1},#{bAddr2},#{bAddr3})
 	]]>
 		<selectKey keyProperty="bNo" order="AFTER"
 			resultType="java.lang.Integer">
@@ -39,7 +39,7 @@
 	select b_mno, b_no, b_title, b_content, bi_name, b_reward, b_addr1, b_addr2,
 	TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time,
 	TO_CHAR(b_end_time, 'YYYY-MM-DD') as b_end_time,
-	b_status, b_reward, b_cno, m_id
+	b_status, b_reward, b_cno, b_phone, m_id
 	from board, member
 	where b_no = #{bNo} and b_mno=m_no
 	]]>
@@ -53,7 +53,7 @@
 	bi_name = #{biName, jdbcType=VARCHAR},
 	</if> 
 	b_reward = #{bReward},
-	b_addr1 = #{bAddr1}, b_addr2 =#{bAddr2}, b_end_time = #{bEndTime}
+	b_addr1 = #{bAddr1}, b_addr2 =#{bAddr2}, b_end_time = #{bEndTime}, b_Phone = #{bPhone}
 	where b_no = #{bNo}
 	</update>
 

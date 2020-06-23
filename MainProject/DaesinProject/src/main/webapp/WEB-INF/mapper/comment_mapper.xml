@@ -16,15 +16,15 @@
 	
 	<insert id="addComment" parameterType="com.daesin.beans.CommentBean">
 	<![CDATA[ 
-		INSERT INTO board_comment(co_sno,co_bno,co_msg,co_id,co_date)
-		VALUES(#{coSno},#{coBno},#{coMsg},#{coId},#{coDate})
+		INSERT INTO board_comment(co_sno,co_bno,co_msg,co_id,co_date,co_phone)
+		VALUES(#{coSno},#{coBno},#{coMsg},#{coId},#{coDate},#{coPhone})
 		]]>
 	
 	
 	</insert>
 	
 	<select id="selectComment" parameterType="java.lang.Integer" resultType="com.daesin.beans.CommentBean">
-		SELECT co_sno,co_num,co_bno,co_msg,co_id,co_date
+		SELECT co_sno,co_num,co_bno,co_msg,co_id,co_date,co_phone
 		FROM board_comment
 		WHERE co_bno=#{coBno}
 		order By co_num

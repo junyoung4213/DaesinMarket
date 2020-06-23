@@ -49,7 +49,10 @@ public class EchoHandler extends TextWebSocketHandler {
 				String saveMsg = strs[2];
 
 				WebSocketSession boardWriterSession = userSessionsMap.get(receiver);
-				if ("search".equals(cmd) && boardWriterSession != null) {
+				if(boardWriterSession == null) {
+					return;
+				}
+				if ("search".equals(cmd)) {
 					System.out.println("멤버 ID는 " + receiver);
 
 					List<AlarmBean> list = alarmService.searchAlarm(receiver);
@@ -57,15 +60,15 @@ public class EchoHandler extends TextWebSocketHandler {
 						for (AlarmBean alarmBean : list) {
 							TextMessage tmpMsg = new TextMessage(alarmBean.getaMsg());
 							boardWriterSession.sendMessage(tmpMsg);
+							alarmService.deleteAlarm(alarmBean.getaMsg());
 						}
-						alarmService.deleteAlarmAll(receiver);
 					}
-				} else if ("reply".equals(cmd) && boardWriterSession != null) {
+				} else if ("reply".equals(cmd)) {
 					TextMessage tmpMsg = new TextMessage(saveMsg);
 					boardWriterSession.sendMessage(tmpMsg);
 					alarmService.deleteAlarm(saveMsg);
 
-				} else if ("accept".equals(cmd) && boardWriterSession != null) {
+				} else if ("accept".equals(cmd)) {
 					TextMessage tmpMsg = new TextMessage(saveMsg);
 					boardWriterSession.sendMessage(tmpMsg);
 					alarmService.deleteAlarm(saveMsg);

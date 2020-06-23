@@ -80,6 +80,10 @@
 							<form:input path="bReward" class="form-control" />
 						</div>
 						<div class="form-group">
+							<form:label path="bPhone">전화번호</form:label>
+							<form:input path="bPhone" class="form-control" />
+						</div>
+						<div class="form-group">
 							<form:label path="bAddr1">주소</form:label>
 							<div class="input-group">
 								<form:input path="bAddr1" class="form-control"

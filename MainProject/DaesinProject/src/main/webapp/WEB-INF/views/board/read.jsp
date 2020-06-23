@@ -30,6 +30,7 @@
 			</div>
 			<div class="container card shadow col-md-6">
 				<div class="card-body">
+					<input type="hidden" id="bPhone" value="${readContentBean.bPhone}" />
 					<input type="hidden" id="receiver" value="${readContentBean.mId}" />
 					<input type="hidden" id="caller" value="${member.mId}" />
 					<div class="form-group">
@@ -51,6 +52,14 @@
 								width="100%">
 						</div>
 					</c:if>
+					
+					<div class="form-group">
+						<label for="bPhone">전화번호</label>
+						<input type="text" id="bPhone" name="bPhone"
+							class="form-control" value="${readContentBean.bPhone }"
+							disabled="disabled" />
+					</div>
+					
 
 					<div class="form-group">
 						<label for="bReward">금액</label>
@@ -191,7 +200,7 @@
 		}
 	};
 	
-	function accept(co_sno,co_id){
+	function accept(co_sno,co_id,co_phone){
 		var result = confirm("정말 수락하시겠습니까?");
 		var bno = ${readContentBean.bNo};
 		var cno = ${readContentBean.bCno};
@@ -208,7 +217,7 @@
 			success : function(data) {
 				if (data == "success") {
 					alert("서포터와 매칭에 성공하셨습니다");
-					saveAlarm(caller,receiver);
+					saveAlarm(caller,receiver,co_phone);
 				}else if(data == "fail"){
 					alert("서포터와의 매칭에 실패하셨습니다");
 				}
@@ -254,45 +263,6 @@
 
 	});
 	
-	/* 소켓통신 */
-	function saveAlarm(caller, receiver){
-	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
-	var boardNum = ${readContentBean.bNo };
-	var socketMsg = "";
-	var msg="";
-	console.log("콜러 : " + caller)
-	console.log("리시버: " + receiver)
-	console.log("게시물번호 : " + boardNum)
-	
-	if(receiver == $('#receiver').val()){
-		msg = caller + "님이 " +"<a type='external' href='/DaesinProject/board/read?bNo=" +  boardNum + "'>" +boardNum+ "번 게시글에 댓글을 남겼습니다.";
-		socketMsg = "reply," + receiver +"," + msg;
-		}else{
-		msg= caller + "님이 " + receiver + " 님의 신청을 수락했습니다."
-		socketMsg = "accept," + receiver + "," + msg;
-		}
-	// 댓글 알림 DB저장
-	$.ajax({
-		type : 'POST',
-		url : "<c:url value='/alarm/save'/>",
-		data : {
-				receiver : receiver,
-				caller : caller,
-				boardNum : boardNum,
-				msg : msg
-		},
-		success : function(data){
-				console.log("msgmsg : " + socketMsg);
-				ws.send(socketMsg);
-		},
-		error : function(err){
-			console.log(err);
-		}
-	});
-	};
-	/* 소켓통신 */
-
-
 	/*
 	 * 댓글 등록하기(Ajax)
 	 */
@@ -363,7 +333,7 @@
 								if(status==0){
 								if(${readContentBean.bMno == member.mNo}){
 									html += "<div class='text-center card'>";
-									html += "<button type='button' class='btn btn-primary' onclick='accept("+"\""+value.co_sno+"\",\""+value.co_id+"\""+");'>수락하기</button>";
+									html += "<button type='button' class='btn btn-primary' onclick='accept("+"\""+value.co_sno+"\",\""+value.co_id+"\",\""+value.co_phone+"\""+");'>수락하기</button>";
 									html += "</div>";
 								}else if(value.co_sno == ${member.mNo}){
 									html += "<div class='text-center card'>";
@@ -411,9 +381,6 @@
 							html += "</div>";
 						}
 						
-						
-						
-						
 						$("#cCnt").html(cCnt);
 						/* $("#cnt").val(cCnt); */
 						$("#commentList").html(html);
@@ -426,6 +393,8 @@
 				});
 
 	}
+	
+	
 	
 	
 </script>

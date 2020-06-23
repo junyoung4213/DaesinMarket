@@ -112,9 +112,6 @@ public class BoardController {
 		String cName = boardService.getBoardInfoName(readContentBean.getbCno());
 		model.addAttribute("cName", cName);
 		
-		System.out.println(readContentBean.toString());
-		
-		
 		model.addAttribute("readContentBean", readContentBean);
 		/* model.addAttribute("readCommentBean", readCommentBean); */
 
@@ -122,7 +119,6 @@ public class BoardController {
 
 		PageBean pageBean = supporterService.getCommentCnt(bNo, cPage);
 
-		System.out.println(pageBean.toString());
 		model.addAttribute("pageBean", pageBean);
 		model.addAttribute("cPage", cPage);
 
@@ -191,6 +187,7 @@ public class BoardController {
 		try {
 			System.out.println(memberBean.toString());
 			commentBean.setCoId(memberBean.getmId());
+			commentBean.setCoPhone(memberBean.getsPhone());
 			supporterService.addComment(commentBean);
 
 		} catch (Exception e) {
@@ -235,6 +232,7 @@ public class BoardController {
 				hm.put("co_id", commentList.get(i).getCoId());
 				hm.put("co_date", commentList.get(i).getCoDate());
 				hm.put("co_sno", commentList.get(i).getCoSno());
+				hm.put("co_phone", commentList.get(i).getCoPhone());
 				hmlist.add(hm);
 			}
 

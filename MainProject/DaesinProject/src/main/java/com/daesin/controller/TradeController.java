@@ -160,6 +160,8 @@ public class TradeController {
 	@ResponseBody
 	public String add(@RequestParam("tSno") int tSno, @RequestParam("tBno") int tBno, @RequestParam("mNo") int mNo,
 			HttpSession session) {
+		
+		System.out.println("tSno :" + tSno);
 
 		HashMap<String, Integer> list = new HashMap<String, Integer>();
 

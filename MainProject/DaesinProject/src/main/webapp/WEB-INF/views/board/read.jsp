@@ -133,6 +133,7 @@
 					<input type="hidden" id="bMno" name="bMno"
 						value="${readContentBean.bMno }" />
 					<input type="hidden" id="cnt" name="cnt" value="" />
+					<input type="hidden" id="coSno" name="coSno" value="${member.mNo}" />
 				</form>
 			</div>
 			<div class="container col-md-6 text-center">

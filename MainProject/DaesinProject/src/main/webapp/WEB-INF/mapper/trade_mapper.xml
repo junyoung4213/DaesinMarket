@@ -23,7 +23,7 @@
 			select b_reward from board where b_no=#{tBno}
 		</selectKey>
 	<![CDATA[
-	INSERT INTO board_trade(t_sno,t_bno,t_reward,t_m_status,t_s_status) VALUES(#{tSno},#{tBno},#{tReward},0,0)
+	INSERT INTO board_trade(t_sno,t_bno,t_reward) VALUES(#{tSno},#{tBno},#{tReward})
 	]]>
 	</insert>
 	

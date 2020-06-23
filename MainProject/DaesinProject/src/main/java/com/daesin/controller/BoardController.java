@@ -28,6 +28,7 @@ import com.daesin.beans.PageBean;
 import com.daesin.beans.ReportBean;
 import com.daesin.service.BoardService;
 import com.daesin.service.MemberService;
+import com.daesin.service.PaymentService;
 import com.daesin.service.SupporterService;
 import com.daesin.service.TradeService;
 
@@ -46,6 +47,9 @@ public class BoardController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private PaymentService paymentService;
 
 	@GetMapping("/main")
 	public String main(@RequestParam(value="bCno", defaultValue = "1") int bCno, @RequestParam(value = "page", defaultValue = "1") int page,
@@ -147,9 +151,24 @@ public class BoardController {
 
 	@PostMapping("/modify_pro")
 	public String modify_pro(@ModelAttribute("modifyContentBean") BoardBean modifyContentBean,
-			@RequestParam("page") int page, Model model) {
+			@RequestParam("page") int page, Model model, HttpSession session) {
 
+		MemberBean tempMemberBean = (MemberBean)session.getAttribute("member");
+		
 		model.addAttribute("page", page);
+		
+		BoardBean tempContentBean = boardService.getContentInfo(modifyContentBean.getbNo());
+		int tempReward = tempContentBean.getbReward();
+		int modifyReward = modifyContentBean.getbReward();
+		int mPoint = tempMemberBean.getmPoint();
+		
+		if(tempReward != modifyReward ) {
+				tempContentBean.setbReward(tempReward-modifyReward);
+				if(tempContentBean.getbReward()+mPoint < 0 ) {
+					return "board/modify_fail";
+				}
+				memberService.updatePointInfo(tempContentBean);
+		}
 
 		boardService.modifyContentInfo(modifyContentBean);
 

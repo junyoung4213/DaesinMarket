@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.daesin.beans.BoardBean;
 import com.daesin.beans.MemberBean;
 
 @Repository
@@ -23,7 +24,7 @@ public class MemberDao {
 	public String returnId(String m_email) {
 		return sqlSessionTemplate.selectOne("member.returnId", m_email);
 	}
-	
+
 	public String getId(int mNo) {
 		return sqlSessionTemplate.selectOne("member.getId", mNo);
 	}
@@ -32,12 +33,11 @@ public class MemberDao {
 		sqlSessionTemplate.insert("member.addMemberInfo", joinMemberBean);
 
 	}
-	
-	
 
 	public MemberBean getLoginMemberInfo(MemberBean tempLoginMemberBean) {
 		return sqlSessionTemplate.selectOne("member.getLoginMemberInfo", tempLoginMemberBean);
 	}
+
 	public String getUserPw(String mId) {
 		return sqlSessionTemplate.selectOne("member.getUserPw", mId);
 	}
@@ -49,12 +49,16 @@ public class MemberDao {
 	public void modifyMemberInfo(MemberBean modifyMemberBean) {
 		sqlSessionTemplate.update("member.modifyMemberInfo", modifyMemberBean);
 	}
-	
+
 	public void updatePw(MemberBean memberBean) {
 		sqlSessionTemplate.update("member.updatePw", memberBean);
 	}
-	
+
 	public int returnPoint(String mId) {
 		return sqlSessionTemplate.selectOne("member.returnPoint", mId);
+	}
+
+	public void updatePointInfo(BoardBean boardBean) {
+		sqlSessionTemplate.update("member.updatePointInfo", boardBean);
 	}
 }

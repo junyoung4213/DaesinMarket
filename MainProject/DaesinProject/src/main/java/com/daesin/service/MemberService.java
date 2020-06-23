@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.daesin.beans.BoardBean;
 import com.daesin.beans.MemberBean;
 import com.daesin.dao.MemberDao;
 
@@ -56,7 +57,7 @@ public class MemberService {
 	public MemberBean getLoginMemberInfo(MemberBean tempLoginMemberBean) {
 
 		String pw = memberDao.getUserPw(tempLoginMemberBean.getmId());
-		
+
 		String rawPw = tempLoginMemberBean.getmPw();
 		if (bcryptPasswordEncoder.matches(rawPw, pw)) {
 			tempLoginMemberBean.setmPw(pw);
@@ -80,9 +81,13 @@ public class MemberService {
 
 		memberDao.updatePw(memberBean);
 	}
-	
+
 	public int returnPoint(String mId) {
 		return memberDao.returnPoint(mId);
+	}
+
+	public void updatePointInfo(BoardBean boardBean) {
+		memberDao.updatePointInfo(boardBean);
 	}
 
 }

@@ -99,6 +99,12 @@
 		WHERE m_no=#{mNo}
 		]]>
 	</insert>
+	
+	<update id="updatePointInfo" parameterType="com.daesin.beans.BoardBean" >
+		UPDATE member 
+		SET m_point = m_point + #{bReward}
+		WHERE m_no = #{bMno}
+	</update>
 
 </mapper>
 

@@ -43,4 +43,5 @@ public class BoardDao {
 	public int getContentCnt(int bCno) {
 		return sqlSessionTemplate.selectOne("board.getContentCnt", bCno);
 	}
+	
 }

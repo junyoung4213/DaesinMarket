@@ -19,7 +19,7 @@
 	</div>
 </div>
 
-<div class="container" style="margin-top: 100px">
+<div class="container" style="padding-top: 150px;">
 	<div class="row">
 		<div class="col-lg-3"></div>
 		<div class="col-lg-6 mb-5">

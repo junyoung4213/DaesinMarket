@@ -18,7 +18,7 @@
 </div>
 
 <div class="site-section" data-aos="fade">
-	<div class="container border-bottom">
+	<div class="container border-bottom" style="padding-top: 150px;">
 		<div class="row mb-5">
 			<div class="col-md-6">
 				<div class="block-16">

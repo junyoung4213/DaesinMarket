@@ -20,15 +20,22 @@
 </div>
 
 <!-- 게시글 리스트 -->
-<div class="container" style="margin-top: 100px;">
+<div class="menu col-md-12 text-center mt-5 mb-5" style="padding-top: 150px;">
+			<a class="btn btn-primary" href="${root }board/main">전체보기</a>
+			<a class="btn btn-primary" href="${root }board/main?bCno=1">배달</a>
+			<a class="btn btn-primary" href="${root }board/main?bCno=2">쇼핑</a>
+			<a class="btn btn-primary" href="${root }board/main?bCno=3">단순작업</a>
+			<a class="btn btn-primary" href="${root }board/main?bCno=4">역할대행</a>
+</div>			
+<div class="container">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title text-center mb-5 ">${cName}게시판</h4>
 			<table class="table table-hover mb-5" id="board_list">
 				<thead>
 					<tr>
+						<th class="text-center" width=10%>분류</th>
 						<th class="text-center" width=10%>번호</th>
-						<th class="text-center" width=50%>제목</th>
+						<th class="text-center" width=40%>제목</th>
 						<th class="text-center" width=10%>금액</th>
 						<th class="text-center d-none d-md-table-cell" width=20%>지역</th>
 						<th class="text-center d-none d-md-table-cell" width=10%>작성시간</th>
@@ -37,6 +44,7 @@
 				<tbody>
 					<c:forEach var="obj" items="${boardList }">
 						<tr>
+							<td class="text-center">${obj.cName}</td>
 							<td class="text-center">${obj.bNo }</td>
 							<td class="text-center"><a
 								href='${root }board/read?bNo=${obj.bNo}&page=${page}'>${obj.bTitle}</a></td>
@@ -48,7 +56,7 @@
 				</tbody>
 			</table>
 
-			<div class="wrapper">
+			<%-- <div class="wrapper">
 				<div class="search-container">
 					<form action="${root }board/main" method="get">
 						<button class="search-button" style="cursor:pointer"> <i
@@ -57,7 +65,7 @@
 						<input type="hidden" id="cNo" name="cNo" value="${bCno }">
 					</form>
 				</div>
-			</div>
+			</div> --%>
 
 			<div class="d-md-block">
 				<ul class="pagination justify-content-center">

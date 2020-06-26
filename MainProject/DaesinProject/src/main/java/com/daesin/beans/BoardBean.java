@@ -58,6 +58,9 @@ public class BoardBean {
 	// 작성자 아이디
 	private String mId;
 
+	// 카테고리 이름
+	private String cName;
+
 	public int getbCno() {
 		return bCno;
 	}
@@ -194,13 +197,21 @@ public class BoardBean {
 		this.mId = mId;
 	}
 
+	public String getcName() {
+		return cName;
+	}
+
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardBean [bCno=" + bCno + ", bNo=" + bNo + ", bTitle=" + bTitle + ", bContent=" + bContent
 				+ ", bReward=" + bReward + ", bAddr1=" + bAddr1 + ", bAddr2=" + bAddr2 + ", bAddr3=" + bAddr3
 				+ ", bWriteTime=" + bWriteTime + ", bEndTime=" + bEndTime + ", bMno=" + bMno + ", bStatus=" + bStatus
 				+ ", bPhone=" + bPhone + ", bLocation=" + bLocation + ", biName=" + biName + ", upload_file="
-				+ upload_file + ", mId=" + mId + "]";
+				+ upload_file + ", mId=" + mId + ", cName=" + cName + "]";
 	}
 
 }

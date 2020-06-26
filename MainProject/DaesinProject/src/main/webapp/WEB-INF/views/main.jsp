@@ -8,12 +8,11 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 
-<div class="site-blocks-cover"
-	style="background-image: url(images/puzzle.jpg);" data-aos="fade">
-	<div class="container">
+<div class="site-blocks-cover">
+	<div class="container" style="background-image: url(images/puzzle.jpg); background-size:cover;" data-aos="fade">
 		<div
 			class="row align-items-start align-items-md-center justify-content-end">
-			<div class="col-md-6 text-center text-md-left pt-5 pt-md-0">
+			<div class="col-md-6 text-center pt-5 mt-5">
 				<h2 class="mb-4">시간은 부족한데 할일은 많으신가요?</h2>
 				<div class="intro-text text-center text-md-left">
 					<p class="mb-4">

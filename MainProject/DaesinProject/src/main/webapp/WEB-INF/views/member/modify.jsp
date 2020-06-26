@@ -3,23 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
-<script>
-
-function checkPwd() {
-	var f1 = document.forms[0];
-	var pw1 = f1.mPw.value;
-	var pw2 = f1.mPw2.value;
-	if (pw1 != pw2) {
-		document.getElementById('checkPwd').style.color = "red";
-		document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
-	} else {
-		document.getElementById('checkPwd').style.color = "black";
-		document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
-
-	}
-
-}
-</script>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
@@ -36,7 +19,7 @@ function checkPwd() {
 </div>
 
 <div class="site-section" data-aos="fade">
-	<div class="container">
+	<div class="container" style="padding-top: 150px;">
 		<div class="row justify-content-center">
 			<div class="col-md-12 text-center">
 				<h2 class="h1 mb-3 text-black">정보수정</h2>
@@ -81,7 +64,23 @@ function checkPwd() {
 </div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+<script>
 
+function checkPwd() {
+	var f1 = document.forms[0];
+	var pw1 = f1.mPw.value;
+	var pw2 = f1.mPw2.value;
+	if (pw1 != pw2) {
+		document.getElementById('checkPwd').style.color = "red";
+		document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요.";
+	} else {
+		document.getElementById('checkPwd').style.color = "black";
+		document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다.";
+
+	}
+
+}
+</script>
 </body>
 </html>
 

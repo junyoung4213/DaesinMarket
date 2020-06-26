@@ -20,10 +20,10 @@
 </div>
 
 <!-- 게시글 리스트 -->
-<div class="container" style="margin-top: 100px;">
+<div class="container" style="padding-top: 200px;">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title text-center mb-5 ">의뢰목록 게시판</h4>
+			<h4 class="card-title text-center mb-5 ">내가 맡은 의뢰 게시물</h4>
 			<table class="table table-hover mb-5" id="board_list">
 				<thead>
 					<tr>

@@ -58,25 +58,33 @@ public class BoardController {
 	private SearchBean searchBean;
 
 	@GetMapping("/main")
-	public String main(@RequestParam(value="bCno", defaultValue = "1") int bCno, @RequestParam(value = "page", defaultValue = "1") int page,
+	public String main(@RequestParam(value="bCno", defaultValue = "0") int bCno, @RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value="keyward", defaultValue="") String keyward, Model model) {
 		model.addAttribute("bCno", bCno);
 
 		String cName = boardService.getBoardInfoName(bCno);
-		model.addAttribute("cName", cName);
 		List<BoardBean> boardList;
 		PageBean pageBean;
+		
+		
 		if(!keyward.equals("")) {
 			searchBean.setcNo(bCno);
 			searchBean.setKeyward(keyward);
 			boardList = boardService.searchBoardList(searchBean, page);
-			pageBean = boardService.searchContentCnt(searchBean, page);			
+			pageBean = boardService.searchContentCnt(searchBean, page);	
 		}else {
+			if(bCno == 0) {
+				cName="전체보기";
+				boardList = boardService.getBoardListAll(bCno,page);
+				pageBean = boardService.getAllContentCnt(bCno,page);
+			}else {
 			boardList = boardService.getBoardList(bCno, page);
 			pageBean = boardService.getContentCnt(bCno, page);
+			}
 		}
 		System.out.println("main페이지 : " + pageBean.toString());
 
+		model.addAttribute("cName", cName);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pageBean", pageBean);
 		model.addAttribute("page", page);

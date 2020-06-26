@@ -172,7 +172,8 @@ a:hover {
   background: #fff;
   margin-bottom: 0px;
   z-index: 1999;
-  position: relative;
+  position: fixed;
+  width:100%;
 }
 .site-navbar.transparent {
   background: transparent;
@@ -184,7 +185,6 @@ a:hover {
 }
 @media (min-width: 768px) {
   .site-navbar .site-navbar-top {
-    padding-top: 40px;
   }
 }
 .site-navbar .site-search-icon a span {
@@ -1033,3 +1033,5 @@ a:hover {
   border-radius: 50%;
   margin-bottom: 20px;
 }
+
+

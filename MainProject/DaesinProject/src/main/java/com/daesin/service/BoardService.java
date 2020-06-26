@@ -59,6 +59,14 @@ public class BoardService {
 		return boardDao.getBoardInfoName(board_info_idx);
 	}
 
+	public List<BoardBean> getBoardListAll(int bCno, int page) {
+		
+		int start = (page - 1) * page_listcnt;
+		RowBounds rowBounds = new RowBounds(start, page_listcnt);
+		
+		return boardDao.getBoardListAll(bCno, rowBounds);
+		
+	}
 	public List<BoardBean> getBoardList(int bCno, int page) {
 
 		int start = (page - 1) * page_listcnt;
@@ -100,6 +108,14 @@ public class BoardService {
 
 		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
 
+		return pageBean;
+	}
+	
+	public PageBean getAllContentCnt(int bCno, int currentPage) {
+		int content_cnt = boardDao.getAllContentCnt(bCno);
+		
+		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
+		
 		return pageBean;
 	}
 	

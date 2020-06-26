@@ -19,7 +19,7 @@
 </div>
 
 <div class="site-section" data-aos="fade">
-	<div class="container">
+	<div class="container" style="padding-top: 200px;">
 		<div class="row justify-content-center">
 			<div class="col-md-12 text-center">
 				<h2 class="h1 mb-3 text-black">문의하기</h2>

@@ -26,22 +26,34 @@
 	<select id="getBoardList" parameterType="java.lang.Integer"
 		resultType="com.daesin.beans.BoardBean">
 	<![CDATA[
-	select b_cno, b_no, b_mno, b_title, b_reward, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3, b_status
-			from board
-			where b_cno=#{bCno} and (b_end_time >= (sysdate-1)) and b_status=0
+	select b_cno, b_no, b_mno, b_title, b_reward, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3, b_status, c_name
+			from board, category
+			where b_cno = c_no and b_cno=#{bCno} and (b_end_time >= (sysdate-1)) and b_status=0
+			order by b_no desc
+	]]>
+	</select>
+	
+	<select id="getBoardListAll" parameterType="java.lang.Integer" resultType="com.daesin.beans.BoardBean">
+	<![CDATA[
+	select b_cno, b_no, b_mno, b_title, b_reward, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3, b_status, c_name
+			from board, category
+			where b_cno = c_no and (b_end_time >= (sysdate-1)) and b_status=0
 			order by b_no desc
 	]]>
 	</select>
 	
 	<select id="searchBoardList" parameterType="com.daesin.beans.SearchBean"
 		resultType="com.daesin.beans.BoardBean">
-	<![CDATA[
 	select b_cno, b_no, b_mno, b_title, b_reward, TO_CHAR(b_write_time, 'YYYY-MM-DD') as b_write_time, b_end_time, b_addr3, b_status
 			from board
-			where b_title LIKE '%'||#{keyward}||'%' and b_cno=#{cNo} and (b_end_time >= (sysdate-1)) and b_status=0 
+			where b_title LIKE '%'||#{keyward}||'%' 
+			<if test="cNo != 0">
+    		and b_cno=#{cNo} 
+  			</if>
+			and (b_end_time >= (sysdate-1)) and b_status=0 
 			order by b_no desc
-	]]>
 	</select>
+	
 
 
 	<select id="getContentInfo" parameterType="java.lang.Integer"
@@ -78,6 +90,12 @@
 		resultType="java.lang.Integer">
 	<![CDATA[
 	select count(*) from board where b_cno=#{bCno} and (b_end_time >= (sysdate-1)) and b_status=0
+	]]>
+	</select>
+	
+	<select id="getAllContentCnt" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	<![CDATA[
+	select count(*) from board where (b_end_time >= (sysdate-1)) and b_status=0
 	]]>
 	</select>
 	

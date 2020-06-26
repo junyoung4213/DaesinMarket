@@ -24,6 +24,10 @@ public class BoardDao {
 		return sqlSessionTemplate.selectOne("board.getBoardInfoName", board_info_idx);
 	}
 
+	public List<BoardBean> getBoardListAll(int bCno, RowBounds rowBounds) {
+		return sqlSessionTemplate.selectList("board.getBoardListAll", bCno, rowBounds);
+		
+	}
 	public List<BoardBean> getBoardList(int bCno, RowBounds rowBounds) {
 		return sqlSessionTemplate.selectList("board.getBoardList", bCno, rowBounds);
 
@@ -48,6 +52,10 @@ public class BoardDao {
 
 	public int getContentCnt(int bCno) {
 		return sqlSessionTemplate.selectOne("board.getContentCnt", bCno);
+	}
+	
+	public int getAllContentCnt(int bCno) {
+		return sqlSessionTemplate.selectOne("board.getAllContentCnt", bCno);
 	}
 	
 	public int searchContentCnt(SearchBean searchBean) {

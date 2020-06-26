@@ -48,6 +48,17 @@
 				</tbody>
 			</table>
 
+			<div class="wrapper">
+				<div class="search-container">
+					<form action="${root }board/main" method="get">
+						<button class="search-button" style="cursor:pointer"> <i
+							class="fa fa-search"></i>
+						</button> <input type="text" id="keyward" name="keyward" placeholder="검색어를 입력해주세요">
+						<input type="hidden" id="cNo" name="cNo" value="${bCno }">
+					</form>
+				</div>
+			</div>
+
 			<div class="d-md-block">
 				<ul class="pagination justify-content-center">
 					<c:choose>

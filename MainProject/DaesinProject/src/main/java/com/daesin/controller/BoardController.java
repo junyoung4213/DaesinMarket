@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import com.daesin.beans.CommentBean;
 import com.daesin.beans.MemberBean;
 import com.daesin.beans.PageBean;
 import com.daesin.beans.ReportBean;
+import com.daesin.beans.SearchBean;
 import com.daesin.service.BoardService;
 import com.daesin.service.MemberService;
 import com.daesin.service.PaymentService;
@@ -50,26 +52,35 @@ public class BoardController {
 	
 	@Autowired
 	private PaymentService paymentService;
+	
+	@Autowired
+	@Lazy
+	private SearchBean searchBean;
 
 	@GetMapping("/main")
 	public String main(@RequestParam(value="bCno", defaultValue = "1") int bCno, @RequestParam(value = "page", defaultValue = "1") int page,
-			Model model) {
+			@RequestParam(value="keyward", defaultValue="") String keyward, Model model) {
 		model.addAttribute("bCno", bCno);
 
 		String cName = boardService.getBoardInfoName(bCno);
 		model.addAttribute("cName", cName);
-
-		List<BoardBean> boardList = boardService.getBoardList(bCno, page);
-		System.out.println(boardList.toString());
-		model.addAttribute("boardList", boardList);
-
-		PageBean pageBean = boardService.getContentCnt(bCno, page);
-
+		List<BoardBean> boardList;
+		PageBean pageBean;
+		if(!keyward.equals("")) {
+			searchBean.setcNo(bCno);
+			searchBean.setKeyward(keyward);
+			boardList = boardService.searchBoardList(searchBean, page);
+			pageBean = boardService.searchContentCnt(searchBean, page);			
+		}else {
+			boardList = boardService.getBoardList(bCno, page);
+			pageBean = boardService.getContentCnt(bCno, page);
+		}
 		System.out.println("main페이지 : " + pageBean.toString());
 
+		model.addAttribute("boardList", boardList);
 		model.addAttribute("pageBean", pageBean);
-
 		model.addAttribute("page", page);
+
 
 		return "board/main";
 	}

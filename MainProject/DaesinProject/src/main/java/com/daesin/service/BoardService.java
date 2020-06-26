@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.daesin.beans.BoardBean;
 import com.daesin.beans.PageBean;
+import com.daesin.beans.SearchBean;
 import com.daesin.dao.BoardDao;
 
 @Service
@@ -66,6 +67,15 @@ public class BoardService {
 		return boardDao.getBoardList(bCno, rowBounds);
 
 	}
+	
+	public List<BoardBean> searchBoardList(SearchBean searchBean, int page) {
+		
+		int start = (page - 1) * page_listcnt;
+		RowBounds rowBounds = new RowBounds(start, page_listcnt);
+		
+		return boardDao.searchBoardList(searchBean, rowBounds);
+		
+	}
 
 	public BoardBean getContentInfo(int bNo) {
 		return boardDao.getContentInfo(bNo);
@@ -92,5 +102,14 @@ public class BoardService {
 
 		return pageBean;
 	}
+	
+	public PageBean searchContentCnt(SearchBean searchBean, int currentPage) {
+		int content_cnt = boardDao.searchContentCnt(searchBean);
+		
+		PageBean pageBean = new PageBean(content_cnt, currentPage, page_listcnt, page_paginationcnt);
+		
+		return pageBean;
+	}
+	
 	
 }

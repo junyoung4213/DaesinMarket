@@ -68,7 +68,7 @@
 
 
 <div class="bg-light py-3">
-	<div class="container">
+	<div class="container" style="padding-top: 200px;">
 		<div class="row">
 			<div class="col-md-12 mb-0">
 				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <strong
@@ -79,7 +79,7 @@
 </div>
 
 <div class="site-section" data-aos="fade">
-	<div class="container" style="padding-top: 100px;">
+	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-12 text-center">
 				<h2 class="h1 mb-3 text-black">아이디 찾기</h2>

@@ -112,11 +112,6 @@ public class MemberController {
 		return "member/faq";
 	}
 
-	@GetMapping("/about")
-	public String about() {
-		return "member/about";
-	}
-
 	@GetMapping("/findId")
 	public String findId(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
 		return "member/find_id";

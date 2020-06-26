@@ -8,7 +8,7 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 
-<div class="site-blocks-cover">
+<div class="site-blocks-cover" style="padding-top:150px; margin-bottom:150px">
 	<div class="container" style="background-image: url(images/puzzle.jpg); background-size:cover;" data-aos="fade">
 		<div
 			class="row align-items-start align-items-md-center justify-content-end">
@@ -18,9 +18,6 @@
 					<p class="mb-4">
 						대신 컴퍼니에서는 시간이 부족하신 고객님께<br /> 일을 대신해줄 서포터분들을 연결시켜드립니다.
 					</p>
-					<p>
-						<a href="${root }member/about" class="btn btn-sm btn-primary">자세히보기</a>
-					</p>
 				</div>
 			</div>
 		</div>
@@ -29,6 +26,25 @@
 
 <div class="site-section site-section-sm site-blocks-1">
 	<div class="container">
+	<div class="row mb-5">
+			<div class="col-md-6">
+				<div class="block-16">
+					<figure>
+						<img src="${root }images/blog_1.jpg" alt="Image placeholder"
+							class="img-fluid rounded" />
+					</figure>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+			<div class="col-md-5">
+				<div class="site-section-heading pt-3 mb-4">
+					<h2 class="text-black">인력대행서비스?</h2>
+				</div>
+				<p>시간은 돈으로도 살 수 없다는 말이 있습니다. 하지만 현대 사회에서는 그것이 가능합니다. 예를 들면 고속도로의
+					하이패스, 놀이공원의 패스권, 우편물 특급배송이 있습니다. 합당한 비용을 지불하면 그만큼의 시간을 절약할 수 있는
+					시스템입니다. 필링컴퍼니는 모든 분야에서 고객님들의 소중한 시간을 절약시켜드리기 위해 인력대행 서비스를 시작했습니다.</p>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4"
 				data-aos="fade-up" data-aos-delay="">
@@ -72,7 +88,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-7 site-section-heading text-center pt-4">
-				<h2>카테고리</h2>
+				<h2>서비스 목록</h2>
 			</div>
 		</div>
 		<div class="row">

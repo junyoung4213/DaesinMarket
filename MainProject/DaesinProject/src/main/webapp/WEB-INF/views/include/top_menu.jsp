@@ -27,6 +27,8 @@
 <link rel="stylesheet" href="${root }css/style.css" />
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 	<div class="site-wrap">
@@ -43,16 +45,17 @@
 							</div>
 
 							<div class="site-logo col-md-4 text-center">
-								<div class="wrapper">
-									<div class="search-container">
-										<form action="${root }board/main" method="get">
-											<button class="search-button" style="cursor: pointer">
-												<i class="fa fa-search"></i>
+								<div class="srch_wrpr">
+									<form action="${root }board/main" method="get">
+										<input type="checkbox" name="" class="checkbox">
+										<div class="srch_sb_cnt">
+											<input type="text" name="keyward" id="keyward"
+												class="sech_txt_inpt" placeholder="키워드를 입력해주세요">
+											<button class="srch_btn">
+												<i class="fa fa-search" aria-hidden="true"></i>
 											</button>
-											<input type="text" id="keyward" name="keyward"
-												placeholder="검색어를 입력해주세요"> 
-										</form>
-									</div>
+										</div>
+									</form>
 								</div>
 							</div>
 
@@ -98,7 +101,7 @@
 				</div>
 			</div>
 			<nav class="site-navigation text-right text-md-center"
-				role="navigation">
+				role="navigation" style="border-bottom: 1px solid #f3f3f4">
 				<div class="container">
 					<ul class="site-menu js-clone-nav d-none d-md-block" id="menu">
 						<c:if test="${member == null }">
@@ -113,13 +116,11 @@
 							<li class="d-md-none"><a href="${root }member/mypage">
 									마이페이지 </a></li>
 						</c:if>
-						<li><a href="${root }main">HOME</a></li>
-						<li><a href="${root }member/about">ABOUT</a></li>
-						<li><a href="${root }board/main">Request</a> <%-- <ul class="dropdown">
-								<c:forEach var="obj" items="${menuList }">
-									<li><a href="${root }board/main?bCno=${obj.cNo}">${obj.cName }</a></li>
-								</c:forEach>
-							</ul></li> --%>
+						<li><a href="${root }board/main">전체보기</a></li>
+						<li><a href="${root }board/main?bCno=1">배달</a></li>
+						<li><a href="${root }board/main?bCno=2">쇼핑</a>
+						<li><a href="${root }board/main?bCno=3">단순작업</a>
+						<li><a href="${root }board/main?bCno=4">역할대행</a>
 						<li class="has-children"><a href="#">Contact</a>
 							<ul class="dropdown">
 								<li><a href="${root }member/support">서포터 신청</a></li>

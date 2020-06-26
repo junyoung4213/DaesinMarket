@@ -8,7 +8,7 @@
 
 
 <div class="bg-light py-3">
-	<div class="container">
+	<div class="container" style="padding-top:200px">
 		<div class="row">
 			<div class="col-md-12 mb-0">
 				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
@@ -20,14 +20,8 @@
 </div>
 
 <!-- 게시글 리스트 -->
-<div class="menu col-md-12 text-center mt-5 mb-5" style="padding-top: 150px;">
-			<a class="btn btn-primary" href="${root }board/main">전체보기</a>
-			<a class="btn btn-primary" href="${root }board/main?bCno=1">배달</a>
-			<a class="btn btn-primary" href="${root }board/main?bCno=2">쇼핑</a>
-			<a class="btn btn-primary" href="${root }board/main?bCno=3">단순작업</a>
-			<a class="btn btn-primary" href="${root }board/main?bCno=4">역할대행</a>
-</div>			
-<div class="container">
+
+<div class="container mt-5">
 	<div class="card shadow">
 		<div class="card-body">
 			<table class="table table-hover mb-5" id="board_list">

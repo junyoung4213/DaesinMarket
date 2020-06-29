@@ -3,66 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
-<script>
-	/*
-	이메일 인증 버튼 클릭시 발생하는 이벤트
-	 */
-	function emailBtn() {
-
-		/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
-		$.ajax({
-
-			type : "get",
-			url : "<c:url value='/email/createEmailCheck.do'/>",
-			data : "userEmail=" + $("#mEmail").val(),
-			complete : function(data) {
-				alert("입력하신 메일로 인증번호가 발송되었습니다.");
-			}
-		});
-	};
-	/*
-	이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
-	 */
-
-	function emailAuthBtn() {
-		$.ajax({
-
-			type : "get",
-			url : "<c:url value='/email/emailAuth.do'/>",
-			data : "authCode=" + $('#certification').val(),
-			success : function(data) {
-				if (data == "complete") {
-					alert("인증이 완료되었습니다.");
-
-					$('#email_Btn').attr('disabled', true)
-					$('#email_AuthBtn').attr('disabled', true)
-					$('#mEmail').attr('readonly', true)
-					$('#certification').attr('readonly', true)
-					returnId();
-				} else if (data == "false") {
-					alert("인증번호를 잘못 입력하셨습니다.")
-				}
-			},
-			error : function(data) {
-				alert("에러가 발생했습니다.");
-			}
-		});
-	};
-
-	function returnId() {
-		var mEmail = $("#mEmail").val()
-
-		$.ajax({
-			url : "${root}member/returnId/" + mEmail,
-			type : "get",
-			dataType : "text",
-			success : function(data) {
-				$('#resultId').css("display", "");
-				$('#mId').attr("placeholder", data)
-			}
-		})
-	}
-</script>
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
@@ -126,7 +66,66 @@
 </div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+<script>
+	/*
+	이메일 인증 버튼 클릭시 발생하는 이벤트
+	 */
+	function emailBtn() {
 
+		/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
+		$.ajax({
+
+			type : "get",
+			url : "<c:url value='/email/createEmailCheck.do'/>",
+			data : "userEmail=" + $("#mEmail").val(),
+			complete : function(data) {
+				swal("인증메일 발송 성공", "입력하신 메일로 인증번호가 발송되었습니다", "success");
+			}
+		});
+	};
+	/*
+	이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
+	 */
+
+	function emailAuthBtn() {
+		$.ajax({
+
+			type : "get",
+			url : "<c:url value='/email/emailAuth.do'/>",
+			data : "authCode=" + $('#certification').val(),
+			success : function(data) {
+				if (data == "complete") {
+					swal("인증 완료", "인증이 완료되었습니다", "success");
+
+					$('#email_Btn').attr('disabled', true)
+					$('#email_AuthBtn').attr('disabled', true)
+					$('#mEmail').attr('readonly', true)
+					$('#certification').attr('readonly', true)
+					returnId();
+				} else if (data == "false") {
+					swal("인증 실패", "인증번호를 잘못 입력하셨습니다", "error");
+				}
+			},
+			error : function(data) {
+				swal("에러 발생", "에러가 발생했습니다! 다시 시도해주세요", "error");
+			}
+		});
+	};
+
+	function returnId() {
+		var mEmail = $("#mEmail").val()
+
+		$.ajax({
+			url : "${root}member/returnId/" + mEmail,
+			type : "get",
+			dataType : "text",
+			success : function(data) {
+				$('#resultId').css("display", "");
+				$('#mId').attr("placeholder", data)
+			}
+		})
+	}
+</script>
 </body>
 </html>
 

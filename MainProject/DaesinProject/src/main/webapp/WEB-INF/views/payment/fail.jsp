@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="col-md-12 mb-0">
 				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <strong
-					class="text-black">결제실패 페이지</strong>
+					class="text-black">결제실패</strong>
 			</div>
 		</div>
 	</div>

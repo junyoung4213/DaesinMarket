@@ -33,7 +33,7 @@
 							<form:label path="mId">아이디</form:label>
 							<div class="input-group">
 								<form:input path="mId" class="form-control"
-									onkeypress="resetMemberIdExist()" placeholder="영문만 입력해주세요" />
+									onkeypress="resetMemberIdExist()" placeholder="영문,숫자의 조합으로만 입력해주세요" />
 								<div class="input-group-append">
 									<button type="button" class="btn btn-primary"
 										onclick="checkMemberIdExist()">중복확인</button>
@@ -44,7 +44,7 @@
 						<div class="form-group">
 							<form:label path="mEmail">이메일 주소</form:label>
 							<div class="input-group">
-								<form:input path="mEmail" class="form-control" />
+								<form:input path="mEmail" class="form-control" placeholder="ex)daesin@daesin.com" />
 								<div class="input-group-append">
 									<button type="button" class="btn btn-primary"
 										onclick="emailBtn();" id="email_Btn">인증하기</button>
@@ -94,9 +94,11 @@
 <script>
 	function checkMemberIdExist() {
 		var mId = $("#mId").val()
+		var regId =/^[a-zA-Z]{1}[a-zA-Z0-9_]{4,11}$/i;
 
-		if (mId.length == 0) {
-			alert("아이디를 입력해주세요");
+
+		if (!regId.test(mId)) {
+			swal("에러발생", "아이디를 제대로 입력해주세요", "error");
 			return;
 		}
 
@@ -106,10 +108,10 @@
 			dataType : "text",
 			success : function(result) {
 				if (result.trim() == "true") {
-					alert("사용할 수 있는 아이디입니다");
+					swal("중복확인 성공", "사용할 수 있는 아이디입니다", "success");
 					$("#memberIdExist").val("true")
 				} else {
-					alert("사용할 수 없는 아이디입니다");
+					swal("중복확인 실패", "사용할 수 없는 아이디입니다", "error");
 					$("#memberIdExist").val("false")
 				}
 			}
@@ -123,8 +125,12 @@
 	이메일 인증 버튼 클릭시 발생하는 이벤트
 	 */
 	function emailBtn() {
-
 		
+		var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+		 
+		if(!emailRule.test($('#mEmail').val())){
+			swal("에러발생", "이메일 주소를 제대로 입력해주세요", "error");
+		}else{
 		/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
 		$.ajax({
 
@@ -132,10 +138,11 @@
 			url : "<c:url value='/email/createEmailCheck.do'/>",
 			data : "userEmail=" + $("#mEmail").val(),
 			complete : function(data) {
-				alert("입력하신 메일로 인증번호가 발송되었습니다.");
+				swal("발송 성공", "입력하신 메일로 인증번호가 발송되었습니다", "success");
 				$('#email_AuthBtn').attr('disabled',false);
 			}
 		});
+		}
 	};
 	/*
 	이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
@@ -150,18 +157,18 @@
 			data : "authCode=" + $('#certification').val(),
 			success : function(data) {
 				if (data == "complete") {
-					alert("인증이 완료되었습니다.");
+					swal("인증 완료", "인증이 완료되었습니다.", "success");
 					$('#email_Btn').attr('disabled', true)
 					$('#email_AuthBtn').attr('disabled', true)
 					$('#mEmail').attr('readonly', true)
 					$('#certification').attr('readonly', true)
 				} else if (data == "false") {
-					alert("인증번호를 잘못 입력하셨습니다.")
+					swal("인증 실패", "인증번호를 잘못 입력하셨습니다.", "error");
 
 				}
 			},
 			error : function(data) {
-				alert("에러가 발생했습니다.");
+				swal("에러 발생", "다시 시도해주세요", "error");
 			}
 		});
 	};

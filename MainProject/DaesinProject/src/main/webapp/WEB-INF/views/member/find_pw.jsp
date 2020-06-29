@@ -4,31 +4,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="root" value="${pageContext.request.contextPath}/" />
 
-</head>
-<script>
-	function findPwBtn() {
-
-		var formData = $('#testform').serialize();
-
-		$.ajax({
-
-			type : "post",
-			url : "<c:url value='/email/findPassword.do'/>",
-			data : formData,
-			success : function(data) {
-				if (data == "complete") {
-					alert("[성공]메일주소로 변경된 비밀번호가 전송되었습니다");
-				} else if (data == "false") {
-					alert("[실패]아이디와 이메일주소를 확인해주세요")
-				}
-			},
-			error : function(data) {
-				alert("에러가 발생했습니다.");
-			}
-		});
-	};
-</script>
-
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 
@@ -81,6 +56,29 @@
 </div>
 
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
+<script>
+	function findPwBtn() {
+
+		var formData = $('#testform').serialize();
+
+		$.ajax({
+
+			type : "post",
+			url : "<c:url value='/email/findPassword.do'/>",
+			data : formData,
+			success : function(data) {
+				if (data == "complete") {
+					swal("성공", "메일주소로 변경된 비밀번호가 전송되었습니다", "success");
+				} else if (data == "false") {
+					swal("실패", "아이디와 이메일주소를 확인해주세요", "error");
+				}
+			},
+			error : function(data) {
+				swal("에러 발생", "에러가 발생했습니다! 다시 시도해주세요", "error");
+			}
+		});
+	};
+</script>
 
 </body>
 </html>

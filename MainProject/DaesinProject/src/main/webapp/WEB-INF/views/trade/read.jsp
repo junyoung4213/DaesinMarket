@@ -136,7 +136,9 @@
 		success : function(data){
 				console.log("msgmsg : " + socketMsg);
 				ws.send(socketMsg);
+				if(callback){
 				callback();
+				}
 		},
 		error : function(err){
 			console.log(err);
@@ -148,11 +150,17 @@
 
 	function complete() {
 
-		var result = confirm("정말 완료하시겠습니까?");
 		var mNo = ${member.mNo};
 		var bno = ${readContentBean.bNo};
 		var tReward = ${readContentBean.bReward};
-		if (result == true) {
+		swal({
+			 title: "완료 요청",
+	         text: "정말 완료하시겠습니까?", 
+	         icon: "warning",
+	         buttons: true,
+	         dangerMode: true,
+		}).then((isAccept)=> {
+			if(isAccept){
 			$.ajax({
 				type : 'POST',
 				url : "<c:url value='/trade/complete'/>",
@@ -163,14 +171,14 @@
 				},
 				success : function(data) {
 					if (data == "success") {
-						alert("의뢰 완료 요청을 전송했습니다.");
+						swal("전송 완료","의뢰 완료 요청을 전송했습니다","success");
 						saveAlarm(caller,receiver,"완료");
 					} else if (data == "fail") {
-						alert("에러)의뢰가 완료되지 못했습니다");
+						swal("에러","의뢰가 완료되지 못했습니다","error");
 					} else if (data == "different"){
-						alert("거래 상대방이 취소 버튼을 누른 상태입니다. 문제시 고객센터로 문의해주세요.");
+						swal("에러","상대방이 취소 버튼을 누른 상태입니다. 문제시 고객센터로 문의해주세요.","error");
 					} else if (data == "complete"){
-						alert("의뢰가 성공적으로 완료되었습니다.");
+						swal("의뢰 완료","의뢰가 성공적으로 완료되었습니다","success");
 						saveAlarm(caller,receiver,"완료",function(){
 						location.href = "${root}main";
 						});
@@ -180,17 +188,25 @@
 					//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 
-			});
-		}
+			})
+			}
+		});
 
 	}
 
+
 	function cancel() {
-		var result = confirm("정말 취소하시겠습니까?");
 		var mNo = ${member.mNo};
 		var tReward = ${readContentBean.bReward};
 		var tBno = ${readContentBean.bNo};
-		if (result == true) {
+		swal({
+			 title: "취소 요청",
+	         text: "정말 취소하시겠습니까?", 
+	         icon: "warning",
+	         buttons: true,
+	         dangerMode: true,
+		}).then((isAccept)=> {
+			if(isAccept){
 			$.ajax({
 				type : 'POST',
 				url : "<c:url value='/trade/cancel'/>",
@@ -201,16 +217,17 @@
 				},
 				success : function(data) {
 					if (data == "success") {
-						alert("의뢰 취소 요청을 전송했습니다.");
+						swal("전송 완료","의뢰 취소 요청을 전송했습니다","success");
 						saveAlarm(caller,receiver,"취소");
 					}else if (data == "fail") {
-						alert("에러)의뢰가 취소되지 못했습니다");
+						swal("에러","의뢰가 취소되지 못했습니다","error");
 					}else if (data == "different"){
-						alert("거래 상대방이 완료 버튼을 누른 상태입니다. 문제시 고객센터로 문의해주세요.")
+						swal("에러","상대방이 완료 버튼을 누른 상태입니다. 문제시 고객센터로 문의해주세요.","error");
 					}else if (data == "complete"){
-						alert("의뢰가 성공적으로 취소되었습니다.");
-						saveAlarm(caller,receiver,"취소");
+						swal("취소 완료","의뢰가 성공적으로 취소되었습니다","success");
+						saveAlarm(caller,receiver,"취소",function(){
 						location.href = "${root}main";
+						});
 					}
 				},
 				error : function(request, status, error) {
@@ -219,6 +236,7 @@
 
 			});
 		}
+		});
 	}
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -266,23 +284,38 @@
 		$('#map').remove();
 	}
 	
-	function report() {
-		var report = prompt("문의내용을 적어주세요","문의 내용");
-		if(report==null){
-			alert("요청이 취소되었습니다");
-		}else{
+	function report(){
+		swal({
+			  title: "신고하기",
+			  text: "신고 내용을 입력해주세요",
+			  content: "input",
+			  buttons: true,
+			  inputPlaceholder: "신고 내용"
+			}).then((inputValue)=>{
+			  if (inputValue) {
+					reportSubmit(inputValue);
+			  }else{
+				  if(inputValue === ""){
+						swal("실패", "빈칸은 제출하실 수 없습니다", "error");
+				    	return false;
+					  }
+				  swal("안내", "신고 요청이 취소되었습니다", "info");
+			  }
+			});
+	}
+	
+	function reportSubmit(report) {
 		$.ajax({
 			type : 'POST',
 			url : "<c:url value='/board/report.do?bNo="+${bNo}+"'/>",
 			data : {report : report},
 			success : function(data) {
 				if (data == "success") {
-					alert("신고내용이 성공적으로 접수되었습니다");
+					swal("신고하기 성공", "신고 내용이 성공적으로 접수되었습니다", "success");
 				}
 			}
 		});
 		}
-	};
 	
 </script>
 </body>

@@ -81,9 +81,7 @@
 function cert() {
     var random = Math.floor(Math.random() * 1000000)+"";
     var phone = $('#sPhone').val();
-    console.log(phone);
     $('#randomVal').val(random);
-    console.log(random);
 	var obj = {
 			"type" : "SMS",
 			"contentType" : "COMM",
@@ -106,7 +104,7 @@ function cert() {
 		contentType: "application/json",
 		success : function(data) {
 			if(data.statusName == "success"){
-					alert("인증 문자가 성공적으로 전송되었습니다!");
+				swal("성공", "인증 문자가 성공적으로 전송되었습니다", "success");
 			}
 		}
 	});
@@ -123,12 +121,13 @@ function smsAuthBtn() {
 			url : "/DaesinProject/member/support_pro",
 			data : $('#sup').serialize(),
 			complete : function(data) {
-				alert("서포터 등록에 성공하셨습니다!");
+				swal("성공", "서포터 등록에 성공하셨습니다", "success").then(function(){
 				location.href="${root}main"
+				});
 			}
 		});
 	}else{
-		alert("인증번호를 다시 확인해주세요")
+		swal("실패", "인증번호를 다시 확인해주세요", "error");
 	}
 	
 	

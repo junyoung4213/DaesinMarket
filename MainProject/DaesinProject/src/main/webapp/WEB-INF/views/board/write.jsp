@@ -77,7 +77,7 @@
 							<form:input path="bReward" class="form-control" />
 							<div class="input-group-append">
 								<form:button type="button" class="btn btn-primary"
-									onclick="point();">포인트 충전</form:button>
+									onclick="submitPoint();">포인트 충전</form:button>
 							</div>
 						</div>
 					</div>
@@ -140,9 +140,28 @@ function changePoint(){
 	});
 }
 
-function point(){
+function submitPoint(){
+	swal({
+		  title: "포인트 충전",
+		  text: "충전하실 금액을 입력해주세요",
+		  content: "input",
+		  buttons: true,
+		  inputPlaceholder: "충전 금액"
+		}).then((inputValue)=>{
+		  if (inputValue) {
+				point(inputValue);
+		  }else{
+			  if(inputValue === ""){
+					swal("실패", "빈칸은 제출하실 수 없습니다", "error");
+			    	return false;
+				  }
+			  swal("안내", "충전 요청이 취소되었습니다", "info");
+		  }
+		});
+}
+
+function point(reward){
 	var IMP = window.IMP; // 생략가능
-	var reward = prompt("포인트","충전하실 포인트를 숫자만 입력해주세요.");
 	IMP.init('imp06686127');
 	// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 	// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
@@ -199,13 +218,11 @@ function point(){
 			}
 		});
 		
-		alert("포인트 충전에 성공했습니다");
+		swal("충전 성공", "포인트 충전에 성공했습니다", "success");
 
 		
 	} else {
-	var msg = '포인트 충전에 실패했습니다. 고객센터로 문의해주세요.';
-	msg += '에러내용 : ' + rsp.error_msg;
-	alert(msg);
+	swal("충전 실패", "포인트 충전에 실패했습니다. 고객센터로 문의해주세요.", "error");
 	}
 	
 	});

@@ -8,7 +8,7 @@
 
 
 <div class="bg-light py-3">
-	<div class="container">
+	<div class="container" style="margin-top: 200px">
 		<div class="row">
 			<div class="col-md-12 mb-0">
 				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
@@ -19,9 +19,9 @@
 	</div>
 </div>
 
-<div class="container" style="margin-top: 100px">
+<div class="container">
 	<div class="row">
-		<div class="col-lg-12 mb-5">
+		<div class="col-lg-12 mb-5 mt-5">
 			<div class="col-lg-12 text-center">
 				<h1 class="text-black">${cName }의뢰</h1>
 				<br />
@@ -166,92 +166,162 @@
 
 <script>
 
+var confirmDelete = function(msg, title) {
+	swal({
+		 title: title,
+         text: msg, 
+         icon: "warning",
+         buttons: true,
+         dangerMode: true,
+	}).then((isDelete)=> {
+		if (isDelete) {
+			location.href = "delete?bCno=${readContentBean.bCno}&bNo=${bNo}&bReward=${readContentBean.bReward}&mNo=${member.mNo}";
+		}else{
+			swal("취소", "삭제 요청이 취소되었습니다", "info");
+		}
+	});
+};
+
 
 
 	var deletePopup = function() {
-		if (confirm("정말 삭제하시겠습니까?")) {
-			location.href = "delete?bCno=${readContentBean.bCno}&bNo=${bNo}&bReward=${readContentBean.bReward}&mNo=${member.mNo}";
-		}
+		confirmDelete('정말 삭제하시겠습니까?','경고');
 	};
 	
-	function report() {
-		var report = prompt("신고내용을 적어주세요","신고 내용");
-		if(report==null){
-			alert("신고요청이 취소되었습니다");
-		}else{
+	function reportSubmit(report) {
 		$.ajax({
 			type : 'POST',
 			url : "<c:url value='/board/report.do?bNo="+${bNo}+"'/>",
 			data : {report : report},
 			success : function(data) {
 				if (data == "success") {
-					alert("신고내용이 성공적으로 접수되었습니다");
+					swal("신고하기 성공", "신고 내용이 성공적으로 접수되었습니다", "success");
 				}
 			}
 		});
 		}
-	};
+	
+	function report(){
+		swal({
+			  title: "신고하기",
+			  text: "신고 내용을 입력해주세요",
+			  content: "input",
+			  buttons: true,
+			  inputPlaceholder: "신고 내용"
+			}).then((inputValue)=>{
+			  if (inputValue) {
+					reportSubmit(inputValue);
+			  }else{
+				  if(inputValue === ""){
+						swal("실패", "빈칸은 제출하실 수 없습니다", "error");
+				    	return false;
+					  }
+				  swal("안내", "신고 요청이 취소되었습니다", "info");
+			  }
+			});
+	}
 	
 	function request(){
-		var result = confirm("정말 신청하시겠습니까?");
-		
-		if(result==true){
-			fn_comment();
-		}
+		confirmRequest("정말 신청하시겠습니까?","신청하기");
 	};
 	
+	var confirmRequest = function(msg, title) {
+		swal({
+			 title: title,
+	         text: msg, 
+	         icon: "warning",
+	         buttons: true,
+	         dangerMode: true,
+		}).then((isAccept)=> {
+			if (isAccept) {
+				fn_comment();
+			}else{
+				swal("취소", "신청이 취소되었습니다", "info");
+			}
+		});
+	};
+	
+	var confirmAccept = function(msg, title, co_sno, bno, mno, caller, receiver, co_phone) {
+		swal({
+			 title: title,
+	         text: msg, 
+	         icon: "warning",
+	         buttons: true,
+	         dangerMode: true,
+		}).then((isAccept)=> {
+			if (isAccept) {
+				
+				$.ajax({
+					type : 'POST',
+					url : "<c:url value='/trade/add'/>",
+					data : {tSno : co_sno,
+							tBno : bno,
+							mNo : mno},
+					success : function(data) {
+						if (data == "success") {
+							swal("매칭 성공", "서포터와의 매칭에 성공하셨습니다", "success");
+							saveAlarm(caller,receiver,co_phone);
+						}else if(data == "fail"){
+							swal("매칭 실패", "서포터와의 매칭에 실패하셨습니다", "error");
+						}
+					},
+					error : function(request, status, error) {
+						//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+
+				});
+				
+			}else{
+				swal("취소", "요청이 취소되었습니다", "info");
+				return false;
+			}
+		});
+	};
+
 	function accept(co_sno,co_id,co_phone){
-		var result = confirm("정말 수락하시겠습니까?");
 		var bno = ${readContentBean.bNo};
 		var cno = ${readContentBean.bCno};
 		var mno = ${readContentBean.bMno};
 		var caller = $('#caller').val();
 		var receiver = co_id;
-		if(result==true){
-		$.ajax({
-			type : 'POST',
-			url : "<c:url value='/trade/add'/>",
-			data : {tSno : co_sno,
-					tBno : bno,
-					mNo : mno},
-			success : function(data) {
-				if (data == "success") {
-					alert("서포터와 매칭에 성공하셨습니다");
-					saveAlarm(caller,receiver,co_phone);
-				}else if(data == "fail"){
-					alert("서포터와의 매칭에 실패하셨습니다");
-				}
-			},
-			error : function(request, status, error) {
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
+		confirmAccept("정말 수락하시겠습니까?","수락하기",co_sno, bno, mno, caller, receiver, co_phone);
+	};
+	
+	var confirmDeleteComment = function(msg, title, coNum) {
+		swal({
+			 title: title,
+	         text: msg, 
+	         icon: "warning",
+	         buttons: true,
+	         dangerMode: true,
+		}).then((isAccept)=> {
+			if (isAccept) {
+				
+				$.ajax({
+					type : 'POST',
+					url : "<c:url value='/board/delete.do'/>",
+					data : {coNum : coNum},
+					success : function(data) {
+						if (data == "success") {
+							swal("취소 성공", "신청이 정상적으로 취소되었습니다", "success");
+							getCommentList(1);
+						}
+					},
+					error : function(request, status, error) {
+						//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
 
-		})
-		}
+				});
+				
+			}else{
+				swal("취소", "요청이 취소되었습니다", "info");
+				return false;
+			}
+		});
 	};
 	
 	function del(coNum){
-		
-		
-		var result = confirm("정말 취소하시겠습니까?");
-		
-		if(result==true){
-		$.ajax({
-			type : 'POST',
-			url : "<c:url value='/board/delete.do'/>",
-			data : {coNum : coNum},
-			success : function(data) {
-				if (data == "success") {
-					alert("신청이 정상적으로 취소되었습니다.");
-					getCommentList(1);
-				}
-			},
-			error : function(request, status, error) {
-				//alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-
-		});
-		}
+		confirmDeleteComment("정말 취소하시겠습니까?","신청 취소",coNum);
 	};
 	
 	/**
@@ -269,7 +339,7 @@
 	function fn_comment() {
 		
 		if(${readContentBean.bMno == member.mNo}){
-			alert("본인 글에는 본인이 신청할 수 없습니다.");
+			swal("실패", "본인 글에는 본인이 신청할 수 없습니다", "error");
 		}else{
 		var today = new Date();
 		var cnt = (Number($('#cCnt').text()) + 1); 
@@ -286,7 +356,7 @@
 			data : $("#commentForm").serialize(),
 			success : function(data) {
 				if (data == "success") {
-					alert("신청에 성공하셨습니다");
+					swal("성공", "신청에 성공하셨습니다", "success");
 					getCommentList(lastPage);
 					$("#coMsg").val("");
 					saveAlarm(caller,receiver);

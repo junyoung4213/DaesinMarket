@@ -7,27 +7,35 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-
-<div class="site-blocks-cover" style="padding-top:150px; margin-bottom:150px">
-	<div class="container" style="background-image: url(images/puzzle.jpg); background-size:cover;" data-aos="fade">
-		<div
-			class="row align-items-start align-items-md-center justify-content-end">
-			<div class="col-md-6 text-center pt-5 mt-5">
-				<h2 class="mb-4">시간은 부족한데 할일은 많으신가요?</h2>
-				<div class="intro-text text-center text-md-left">
-					<p class="mb-4">
-						대신 컴퍼니에서는 시간이 부족하신 고객님께<br /> 일을 대신해줄 서포터분들을 연결시켜드립니다.
-					</p>
-				</div>
+<c:if test="${member == null }">
+	<div class="site-blocks-cover"
+		style="padding-top: 114.24px; margin-bottom: 150px">
+</c:if>
+<c:if test="${member != null }">
+	<div class="site-blocks-cover"
+		style="padding-top: 129.4px; margin-bottom: 150px">
+</c:if>
+<div class="container"
+	style="background-image: url(images/puzzle.jpg); background-size: cover;"
+	data-aos="fade">
+	<div
+		class="row align-items-start align-items-md-center justify-content-end">
+		<div class="col-md-6 text-center pt-5 mt-5">
+			<h2 class="mb-4">시간은 부족한데 할일은 많으신가요?</h2>
+			<div class="intro-text text-center text-md-left">
+				<p class="mb-4">
+					대신 컴퍼니에서는 시간이 부족하신 고객님께<br /> 일을 대신해줄 서포터분들을 연결시켜드립니다.
+				</p>
 			</div>
 		</div>
 	</div>
 </div>
+</div>
 
 <div class="site-section site-section-sm site-blocks-1">
 	<div class="container">
-	<div class="row mb-5">
-			<div class="col-md-6">
+		<div class="row mb-5">
+			<div class="col-md-6" style="padding: 0px">
 				<div class="block-16">
 					<figure>
 						<img src="${root }images/blog_1.jpg" alt="Image placeholder"
@@ -36,7 +44,7 @@
 				</div>
 			</div>
 			<div class="col-md-1"></div>
-			<div class="col-md-5">
+			<div class="col-md-5" style="padding: 0px">
 				<div class="site-section-heading pt-3 mb-4">
 					<h2 class="text-black">인력대행서비스?</h2>
 				</div>
@@ -46,7 +54,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4"
+			<div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-0"
 				data-aos="fade-up" data-aos-delay="">
 				<div class="icon mr-4 align-self-start">
 					<span class="icon-group"></span>
@@ -57,7 +65,7 @@
 						알바 등등.. 간단한 일부터 숙련이 필요한 일까지, 고객님이 원하시는 모든 일을 서포터가 대신해드립니다.</p>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4"
+			<div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0"
 				data-aos="fade-up" data-aos-delay="100">
 				<div class="icon mr-4 align-self-start">
 					<span class="icon-money"></span>
@@ -68,7 +76,7 @@
 						이용해주세요.</p>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4"
+			<div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pr-0"
 				data-aos="fade-up" data-aos-delay="200">
 				<div class="icon mr-4 align-self-start">
 					<span class="icon-help"></span>
@@ -92,7 +100,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" style="padding: 0px">
 				<div class="nonloop-block-3 owl-carousel">
 					<div class="item">
 						<div class="block-4 text-center">
@@ -167,11 +175,11 @@
 			</div>
 		</div>
 		<div class="row align-items-center justify-content-center">
-			<div class="col-md-12 col-lg-4 mb-5">
+			<div class="col-md-12 col-lg-3 mb-5">
 				<a href="${root }member/support"><img src="images/recruit.jpg"
 					alt="Image placeholder" class="img-fluid rounded" /></a>
 			</div>
-			<div class="col-md-12 col-lg-6 text-center pl-md-5">
+			<div class="col-md-12 col-lg-6 text-center">
 				<h3>
 					<a href="${root }member/support">서포터를 찾고 있습니다</a>
 				</h3>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,6 +49,9 @@ public class MemberController {
 	@PostMapping("/join_pro")
 	public String join_pro(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
 
+		joinMemberBean.setmId(joinMemberBean.getmId2());
+		joinMemberBean.setmPw(joinMemberBean.getmPw2());
+		
 		memberService.addMemberInfo(joinMemberBean);
 
 		return "member/join_success";
@@ -113,7 +117,7 @@ public class MemberController {
 	}
 
 	@GetMapping("/findId")
-	public String findId(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean) {
+	public String findId(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean,@ModelAttribute("tempMemberBean") MemberBean tempMemberBean) {
 		return "member/find_id";
 	}
 
@@ -123,7 +127,11 @@ public class MemberController {
 	}
 
 	@GetMapping("/login")
-	public String login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean) {
+	public String login(@ModelAttribute("tempLoginMemberBean") MemberBean tempLoginMemberBean,@ModelAttribute("joinMemberBean") MemberBean joinMemberBean, Model model) {
+		
+		int ran = new Random().nextInt(900000) + 100000;
+		model.addAttribute("random",ran);
+		
 		return "member/login";
 	}
 
@@ -134,9 +142,7 @@ public class MemberController {
 		if (memberVO == null) {
 			return "member/login_fail";
 		}
-
-		model.addAttribute("member", memberVO);
-
+		model.addAttribute("member",memberVO);
 		return "member/login_success";
 	}
 

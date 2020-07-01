@@ -1,0 +1,396 @@
+@import
+	url("https://fonts.googleapis.com/css?family=Nunito:300, 400, 700");
+
+body, .bgImage {
+	 margin: 0;
+	 height: 100%;
+	 width: 100%;
+	 overflow: hidden;
+}
+ .bgImage {
+	 position: absolute;
+	 background-image: url(https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-0.3.5&s=e20bc3d490c974d9ea190e05c47962f5&auto=format&fit=crop&w=634&q=80);
+	 background-size: cover;
+	 background-position: top;
+	 -webkit-filter: grayscale(70%);
+	/* Safari 6.0 - 9.0 */
+	 filter: grayscale(70%);
+	 z-index: -1;
+}
+ .blobCont {
+	 position: absolute;
+	 width: 100vw;
+	 height: 100vh;
+}
+ .blob:nth-child(1) {
+	 animation: move1 20s infinite linear;
+}
+ @keyframes move1 {
+	 from {
+		 transform: rotate(90deg) translate(200px, 0.1px) rotate(-90deg);
+	}
+	 to {
+		 transform: rotate(450deg) translate(200px, 0.1px) rotate(-450deg);
+	}
+}
+ .blob:nth-child(2) {
+	 animation: move2 20s infinite linear;
+}
+ @keyframes move2 {
+	 from {
+		 transform: rotate(180deg) translate(200px, 0.1px) rotate(-180deg);
+	}
+	 to {
+		 transform: rotate(540deg) translate(200px, 0.1px) rotate(-540deg);
+	}
+}
+ .blob:nth-child(3) {
+	 animation: move3 20s infinite linear;
+}
+ @keyframes move3 {
+	 from {
+		 transform: rotate(270deg) translate(200px, 0.1px) rotate(-270deg);
+	}
+	 to {
+		 transform: rotate(630deg) translate(200px, 0.1px) rotate(-630deg);
+	}
+}
+ .blob:nth-child(4) {
+	 animation: move4 20s infinite linear;
+}
+ @keyframes move4 {
+	 from {
+		 transform: rotate(360deg) translate(200px, 0.1px) rotate(-360deg);
+	}
+	 to {
+		 transform: rotate(720deg) translate(200px, 0.1px) rotate(-720deg);
+	}
+}
+ .blob:nth-child(5) {
+	 animation: move5 20s infinite linear;
+}
+ @keyframes move5 {
+	 from {
+		 transform: rotate(450deg) translate(200px, 0.1px) rotate(-450deg);
+	}
+	 to {
+		 transform: rotate(810deg) translate(200px, 0.1px) rotate(-810deg);
+	}
+}
+ .blob:nth-child(6) {
+	 animation: move6 20s infinite linear;
+}
+ @keyframes move6 {
+	 from {
+		 transform: rotate(540deg) translate(200px, 0.1px) rotate(-540deg);
+	}
+	 to {
+		 transform: rotate(900deg) translate(200px, 0.1px) rotate(-900deg);
+	}
+}
+ .blob:nth-child(7) {
+	 animation: move7 20s infinite linear;
+}
+ @keyframes move7 {
+	 from {
+		 transform: rotate(630deg) translate(200px, 0.1px) rotate(-630deg);
+	}
+	 to {
+		 transform: rotate(990deg) translate(200px, 0.1px) rotate(-990deg);
+	}
+}
+ .blob:nth-child(8) {
+	 animation: move8 20s infinite linear;
+}
+ @keyframes move8 {
+	 from {
+		 transform: rotate(720deg) translate(200px, 0.1px) rotate(-720deg);
+	}
+	 to {
+		 transform: rotate(1080deg) translate(200px, 0.1px) rotate(-1080deg);
+	}
+}
+ .blob:nth-child(9) {
+	 animation: move9 20s infinite linear;
+}
+ @keyframes move9 {
+	 from {
+		 transform: rotate(810deg) translate(200px, 0.1px) rotate(-810deg);
+	}
+	 to {
+		 transform: rotate(1170deg) translate(200px, 0.1px) rotate(-1170deg);
+	}
+}
+ .blob:nth-child(10) {
+	 animation: move10 20s infinite linear;
+}
+ @keyframes move10 {
+	 from {
+		 transform: rotate(900deg) translate(200px, 0.1px) rotate(-900deg);
+	}
+	 to {
+		 transform: rotate(1260deg) translate(200px, 0.1px) rotate(-1260deg);
+	}
+}
+ .blob:nth-child(11) {
+	 animation: move11 20s infinite linear;
+}
+ @keyframes move11 {
+	 from {
+		 transform: rotate(990deg) translate(200px, 0.1px) rotate(-990deg);
+	}
+	 to {
+		 transform: rotate(1350deg) translate(200px, 0.1px) rotate(-1350deg);
+	}
+}
+ .blob:nth-child(12) {
+	 animation: move12 20s infinite linear;
+}
+ @keyframes move12 {
+	 from {
+		 transform: rotate(1080deg) translate(200px, 0.1px) rotate(-1080deg);
+	}
+	 to {
+		 transform: rotate(1440deg) translate(200px, 0.1px) rotate(-1440deg);
+	}
+}
+ .blob:nth-child(13) {
+	 animation: move13 20s infinite linear;
+}
+ @keyframes move13 {
+	 from {
+		 transform: rotate(1170deg) translate(200px, 0.1px) rotate(-1170deg);
+	}
+	 to {
+		 transform: rotate(1530deg) translate(200px, 0.1px) rotate(-1530deg);
+	}
+}
+ .blob:nth-child(14) {
+	 animation: move14 20s infinite linear;
+}
+ @keyframes move14 {
+	 from {
+		 transform: rotate(1260deg) translate(200px, 0.1px) rotate(-1260deg);
+	}
+	 to {
+		 transform: rotate(1620deg) translate(200px, 0.1px) rotate(-1620deg);
+	}
+}
+ .blob:nth-child(15) {
+	 animation: move15 20s infinite linear;
+}
+ @keyframes move15 {
+	 from {
+		 transform: rotate(1350deg) translate(200px, 0.1px) rotate(-1350deg);
+	}
+	 to {
+		 transform: rotate(1710deg) translate(200px, 0.1px) rotate(-1710deg);
+	}
+}
+ .blob:nth-child(16) {
+	 animation: move16 20s infinite linear;
+}
+ @keyframes move16 {
+	 from {
+		 transform: rotate(1440deg) translate(200px, 0.1px) rotate(-1440deg);
+	}
+	 to {
+		 transform: rotate(1800deg) translate(200px, 0.1px) rotate(-1800deg);
+	}
+}
+ .blob:nth-child(17) {
+	 animation: move17 20s infinite linear;
+}
+ @keyframes move17 {
+	 from {
+		 transform: rotate(1530deg) translate(200px, 0.1px) rotate(-1530deg);
+	}
+	 to {
+		 transform: rotate(1890deg) translate(200px, 0.1px) rotate(-1890deg);
+	}
+}
+ .blob:nth-child(18) {
+	 animation: move18 20s infinite linear;
+}
+ @keyframes move18 {
+	 from {
+		 transform: rotate(1620deg) translate(200px, 0.1px) rotate(-1620deg);
+	}
+	 to {
+		 transform: rotate(1980deg) translate(200px, 0.1px) rotate(-1980deg);
+	}
+}
+
+:root {
+	font-family: "Nunito", sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+	font-size: 16px;
+}
+
+small {
+	font-size: 0.9em;
+	line-height: 2.5em;
+	display: block;
+	color: #555;
+}
+
+.btn {
+	display: inline-block;
+	padding: 15px 25px;
+	border-radius: 23px;
+	text-decoration: none;
+	color: white;
+	white-space: nowrap;
+	line-height: 1em;
+	background: #ff4757;
+	border: 0;
+	cursor: pointer;
+	transition: transform 0.2s;
+}
+
+.btn:hover {
+	transform: scale(1.05);
+}
+
+.btn.btn-light {
+	color: #ff4757;
+	background: white;
+	border: 2px solid #ff4757;
+}
+
+.form {
+	position: relative;
+	width: 80vw;
+	max-width: 800px;
+	background: white;
+	margin: 0 auto;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.form__wrapper {
+	width: 100%;
+	height: 100vh;
+	padding: 10vh 20px;
+}
+
+.form__options {
+	padding: 160px 0;
+	display: flex;
+}
+
+.form__options>div {
+	width: 50%;
+	text-align: center;
+}
+
+.form.slide .form__background {
+	left: 50%;
+	right: -20px;
+}
+
+.form__background {
+	position: absolute;
+	background: #2f3542;
+	top: -20px;
+	left: -20px;
+	right: 50%;
+	bottom: -20px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	transition: 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.form__body {
+	position: absolute;
+	top: 0;
+	left: -20px;
+	right: -20px;
+	bottom: 0;
+	padding: 20px 0;
+	transition: 0.5s;
+	display: flex;
+	justify-content: space-around;
+	pointer-events: none;
+}
+
+.form__body form {
+	pointer-events: all;
+	margin: 20px 0;
+	transition: opacity 0.3s;
+}
+
+.form__body form h2 {
+	margin-top: 0;
+	color: white;
+	font-size: 3em;
+}
+
+.form__body form .input-field {
+	margin-bottom: 10px;
+}
+
+.form__body form label {
+	display: block;
+	color: white;
+	line-height: 2em;
+	font-weight: 300;
+}
+
+.form__body form input[type=text], .form__body form input[type=password],
+	.form__body form input[type=email] {
+	padding: 8px;
+	border: 0;
+	border-radius: 5px;
+}
+
+.form form:first-child {
+	opacity: 1;
+	visibility: visible;
+	transition-delay: 0.4s;
+}
+
+.form.slide form:first-child {
+	opacity: 0;
+	visibility: hidden;
+	transition-delay: 0s;
+}
+
+.form form:last-child {
+	opacity: 0;
+	visibility: hidden;
+	transition-delay: 0s;
+}
+
+.form.slide form:last-child {
+	opacity: 1;
+	visibility: visible;
+	transition-delay: 0.4s;
+}
+
+.btn2 {
+	display: inline-block;
+	padding: 10px 20px;
+	text-decoration: none;
+	color: white;
+	white-space: nowrap;
+	line-height: 1em;
+	background: #2f3542;
+	border:0;
+}
+.btn2.btn-light {
+	color: #ff4757;
+	background: white;
+	border: 2px solid #ff4757;
+}
+
+a{
+	color:white;
+}
+
+a:link, a:visited, a:hover{
+	text-decoration:none;
+	color:white;
+}
+ 

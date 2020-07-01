@@ -36,6 +36,15 @@ public class RestApiController {
 
 		return chk + "";
 	}
+	
+	@GetMapping(value = "/member/checkMemberEmailExist/{m_email}")
+	public String checkMemberEmailExist(@PathVariable String m_email) {
+		// 이 부분도 마찬가지로 서버에서 받을 때 '.com'을 잘나래므로
+		// 뒷 부분에 '.com'을 붙여줘야 제대로 작동한다.
+		m_email += ".com";
+		boolean chk = memberService.checkMemberEmailExist(m_email);
+		return chk + "";
+	}
 
 	@GetMapping(value = "/member/returnId/{m_email}")
 	public String returnId(@PathVariable String m_email) {

@@ -11,6 +11,15 @@
 		where m_id =#{mId}
 		]]>
 	</select>
+	
+	<select id="checkMemberEmailExist" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		<![CDATA[
+		select m_email
+		from member
+		where m_email =#{mEmail}
+		]]>
+	</select>
 
 	<select id="checkCorrectMember"
 		parameterType="com.daesin.beans.MemberBean"

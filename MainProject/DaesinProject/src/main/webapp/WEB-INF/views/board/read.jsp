@@ -155,8 +155,6 @@
 
 			<div id="commentPart" class="d-none d-md-block"></div>
 
-
-
 		</div>
 	</div>
 

@@ -29,37 +29,61 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.image-container {
+	overflow: hidden;
+}
+</style>
 </head>
 <body>
 	<div class="site-wrap">
 		<!-- 상단 메뉴 부분 -->
 		<header class="site-navbar" role="banner">
-			<div class="site-navbar-top">
+			<div class="site-navbar-top" style="padding-top: 0">
 				<div class="container">
 					<div class="row justify-content-center">
 
 
-						<div class="col-md-12 row">
-							<div class="site-logo col-md-4 text-left">
-								<a href="${root }main" class="js-logo-clone">대신마켓</a>
+						<div class="col-md-12 row" style="padding: 0px">
+							<div class="site-logo col-md-2 p-0 text-left image-container">
+								<a href="${root }main" style="all: unset; cursor: pointer;"><img
+									class="col-lg-10 col-md-3 p-0" src="${root }images/logo.png"></a>
 							</div>
-
-							<div class="site-logo col-md-4 text-center">
-								<div class="srch_wrpr">
-									<form action="${root }board/main" method="get">
-										<input type="checkbox" name="" class="checkbox">
-										<div class="srch_sb_cnt">
-											<input type="text" name="keyward" id="keyward"
-												class="sech_txt_inpt" placeholder="키워드를 입력해주세요">
-											<button class="srch_btn">
-												<i class="fa fa-search" aria-hidden="true"></i>
-											</button>
-										</div>
-									</form>
+							<div class="col-md-1"></div>
+							<nav
+								class="site-navigation text-right text-md-center col-md-6 align-self-center"
+								role="navigation">
+								<div class="container">
+									<ul class="site-menu js-clone-nav d-none d-md-block p-0" id="menu">
+										<c:if test="${member == null }">
+											<li class="d-md-none"><a href="${root }member/login">로그인</a></li>
+											<li class="d-md-none"><a href="${root }member/join">회원가입</a></li>
+										</c:if>
+										<c:if test="${member != null }">
+											<li class="d-md-none"><a>회원아이디: ${member.mId }</a></li>
+											<li class="d-md-none"><a>포인트: <span
+													class="memberPoint"></span></a></li>
+											<li class="d-md-none"><a href="${root }member/logout">
+													로그아웃 </a></li>
+											<li class="d-md-none"><a href="${root }member/mypage">
+													마이페이지 </a></li>
+										</c:if>
+										<li><a href="${root }board/main?bCno=1">배달</a></li>
+										<li><a href="${root }board/main?bCno=2">쇼핑</a>
+										<li><a href="${root }board/main?bCno=3">단순작업</a>
+										<li><a href="${root }board/main?bCno=4">역할대행</a>
+										<li class="has-children"><a href="#">Contact</a>
+											<ul class="dropdown">
+												<li><a href="${root }member/support">서포터 신청</a></li>
+												<li><a href="${root }member/faq">문의하기</a></li>
+											</ul></li>
+									</ul>
 								</div>
-							</div>
+							</nav>
 
-							<div class="site-top-icons col-md-4 text-right">
+							<div
+								class="site-top-icons col-md-3 text-right align-self-center mt-4"
+								style="padding: 0px">
 								<ul class="">
 									<c:if test="${member == null}">
 										<li><a href="${root }member/login"> <span
@@ -74,7 +98,7 @@
 									</c:if>
 									<c:if test="${member != null}">
 										<li><span class="d-none d-md-block"
-											style="font-size: 20px;">회원아이디: ${member.mId } / </span></li>
+											style="font-size: 20px;">아이디: ${member.mId } / </span></li>
 										<li><span class="d-none d-md-block"
 											style="font-size: 20px;">포인트: <span
 												class="memberPoint"></span></span></li>
@@ -100,33 +124,5 @@
 					</div>
 				</div>
 			</div>
-			<nav class="site-navigation text-right text-md-center"
-				role="navigation" style="border-bottom: 1px solid #f3f3f4">
-				<div class="container">
-					<ul class="site-menu js-clone-nav d-none d-md-block" id="menu">
-						<c:if test="${member == null }">
-							<li class="d-md-none"><a href="${root }member/login">로그인</a></li>
-							<li class="d-md-none"><a href="${root }member/join">회원가입</a></li>
-						</c:if>
-						<c:if test="${member != null }">
-							<li class="d-md-none"><a>회원아이디: ${member.mId }</a></li>
-							<li class="d-md-none"><a>포인트: <span class="memberPoint"></span></a></li>
-							<li class="d-md-none"><a href="${root }member/logout">
-									로그아웃 </a></li>
-							<li class="d-md-none"><a href="${root }member/mypage">
-									마이페이지 </a></li>
-						</c:if>
-						<li><a href="${root }board/main">전체보기</a></li>
-						<li><a href="${root }board/main?bCno=1">배달</a></li>
-						<li><a href="${root }board/main?bCno=2">쇼핑</a>
-						<li><a href="${root }board/main?bCno=3">단순작업</a>
-						<li><a href="${root }board/main?bCno=4">역할대행</a>
-						<li class="has-children"><a href="#">Contact</a>
-							<ul class="dropdown">
-								<li><a href="${root }member/support">서포터 신청</a></li>
-								<li><a href="${root }member/faq">문의하기</a></li>
-							</ul></li>
-					</ul>
-				</div>
-			</nav>
+
 		</header>

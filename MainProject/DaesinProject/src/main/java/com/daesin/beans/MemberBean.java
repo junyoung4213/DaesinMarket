@@ -22,6 +22,9 @@ public class MemberBean {
 	// 회원아이디
 	private String mId;
 
+	// 회원아이디(임시)
+	private String mId2;
+
 	// 회원이메일
 	private String mEmail;
 
@@ -68,6 +71,14 @@ public class MemberBean {
 
 	public void setmId(String mId) {
 		this.mId = mId;
+	}
+
+	public String getmId2() {
+		return mId2;
+	}
+
+	public void setmId2(String mId2) {
+		this.mId2 = mId2;
 	}
 
 	public String getmEmail() {
@@ -168,10 +179,10 @@ public class MemberBean {
 
 	@Override
 	public String toString() {
-		return "MemberBean [mNo=" + mNo + ", mId=" + mId + ", mEmail=" + mEmail + ", mPw=" + mPw + ", mPw2=" + mPw2
-				+ ", mPoint=" + mPoint + ", memberLogin=" + memberLogin + ", memberIdExist=" + memberIdExist
-				+ ", certification=" + certification + ", sFname=" + sFname + ", sLname=" + sLname + ", sPhone="
-				+ sPhone + ", sName=" + sName + ", sScore=" + sScore + "]";
+		return "MemberBean [mNo=" + mNo + ", mId=" + mId + ", mId2=" + mId2 + ", mEmail=" + mEmail + ", mPw=" + mPw
+				+ ", mPw2=" + mPw2 + ", mPoint=" + mPoint + ", memberLogin=" + memberLogin + ", memberIdExist="
+				+ memberIdExist + ", certification=" + certification + ", sFname=" + sFname + ", sLname=" + sLname
+				+ ", sPhone=" + sPhone + ", sName=" + sName + ", sScore=" + sScore + "]";
 	}
 
 }

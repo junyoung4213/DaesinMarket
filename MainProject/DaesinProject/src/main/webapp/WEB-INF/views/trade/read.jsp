@@ -8,7 +8,7 @@
 
 
 <div class="bg-light py-3">
-	<div class="container">
+	<div class="container" style="padding-top: 200px;">
 		<div class="row">
 			<div class="col-md-12 mb-0">
 				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
@@ -19,25 +19,27 @@
 	</div>
 </div>
 
-<div class="container" style="padding-top: 150px;">
+<div class="container mt-5">
 	<div class="row">
+		<c:if test="${readContentBean.bAddr2 == null }">
 		<div class="col-lg-3"></div>
+		</c:if>
 		<div class="col-lg-6 mb-5">
 			<div class="col-lg-12 text-center">
-				<h1 class="text-black">${readContentBean.bTitle}</h1>
+				<h1 class="text-black">의뢰 내용</h1>
 				<br />
 				<div class="border-bottom"></div>
 				<br /> <br />
 			</div>
 			<div class="card shadow">
 				<div class="card-body">
-				<c:if test="${member.mId == readContentBean.mId }">
-				<input type="hidden" id="receiver" value="${sId }"/>
-				</c:if>
-				<c:if test="${member.mId != readContentBean.mId }">
-				<input type="hidden" id="receiver" value="${readContentBean.mId}"/>
-				</c:if>
-				<input type="hidden" id="caller" value="${member.mId}"/>
+					<c:if test="${member.mId == readContentBean.mId }">
+						<input type="hidden" id="receiver" value="${sId }" />
+					</c:if>
+					<c:if test="${member.mId != readContentBean.mId }">
+						<input type="hidden" id="receiver" value="${readContentBean.mId}" />
+					</c:if>
+					<input type="hidden" id="caller" value="${member.mId}" />
 					<div class="form-group">
 						<label for="bTitle">제목</label>
 						<input type="text" id="bTitle" name="bTitle" class="form-control"
@@ -93,26 +95,41 @@
 
 					<div class="form-group">
 						<div class="text-center">
+							<c:if test="${readContentBean.bStatus == 1 }">
 								<button class="btn btn-warning" onclick="complete();">완료하기</button>
 								<button class="btn btn-danger" onclick="cancel();">취소하기</button>
-								<button class="btn btn-danger" onclick="report();">문의하기</button>
+							</c:if>
+							<button class="btn btn-danger" onclick="report();">문의하기</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="col-lg-6">
+			<div class="col-lg-12 text-center">
+				<h1 class="text-black">목적지</h1>
+				<br />
+				<div class="border-bottom"></div>
+				<br /> <br />
+			</div>
+			<div class="card shadow">
+				<div class="card-body" id="map" style="width: 100%; height: 400px;">
+				
+				</div>
+			</div>
+		</div>
 	</div>
-	<div id="map" style="width:500px;height:400px;"></div>
+	
 </div>
 <c:import url="/WEB-INF/views/include/bottom_info.jsp" />
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.5/sweetalert2.all.js"></script>
 <script>
 	var caller = $('#caller').val();
 	var receiver = $('#receiver').val();
 	
 	/* 소켓통신 */
-	function saveAlarm(caller, receiver, status, callback){
-	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
+	function sendAlarm(caller, receiver, status, callback){
 	var boardNum = ${readContentBean.bNo };
 	var socketMsg = "";
 	var msg="";
@@ -157,7 +174,7 @@
 			 title: "완료 요청",
 	         text: "정말 완료하시겠습니까?", 
 	         icon: "warning",
-	         buttons: true,
+	         showCancelButton: true,
 	         dangerMode: true,
 		}).then((isAccept)=> {
 			if(isAccept){
@@ -172,15 +189,16 @@
 				success : function(data) {
 					if (data == "success") {
 						swal("전송 완료","의뢰 완료 요청을 전송했습니다","success");
-						saveAlarm(caller,receiver,"완료");
+						sendAlarm(caller,receiver,"완료");
 					} else if (data == "fail") {
 						swal("에러","의뢰가 완료되지 못했습니다","error");
 					} else if (data == "different"){
 						swal("에러","상대방이 취소 버튼을 누른 상태입니다. 문제시 고객센터로 문의해주세요.","error");
 					} else if (data == "complete"){
-						swal("의뢰 완료","의뢰가 성공적으로 완료되었습니다","success");
-						saveAlarm(caller,receiver,"완료",function(){
+						swal("의뢰 완료","의뢰가 성공적으로 완료되었습니다","success").then(function(){
+						sendAlarm(caller,receiver,"완료",function(){
 						location.href = "${root}main";
+						});
 						});
 					}
 				},
@@ -203,7 +221,7 @@
 			 title: "취소 요청",
 	         text: "정말 취소하시겠습니까?", 
 	         icon: "warning",
-	         buttons: true,
+	         showCancelButton: true,
 	         dangerMode: true,
 		}).then((isAccept)=> {
 			if(isAccept){
@@ -218,15 +236,16 @@
 				success : function(data) {
 					if (data == "success") {
 						swal("전송 완료","의뢰 취소 요청을 전송했습니다","success");
-						saveAlarm(caller,receiver,"취소");
+						sendAlarm(caller,receiver,"취소");
 					}else if (data == "fail") {
 						swal("에러","의뢰가 취소되지 못했습니다","error");
 					}else if (data == "different"){
 						swal("에러","상대방이 완료 버튼을 누른 상태입니다. 문제시 고객센터로 문의해주세요.","error");
 					}else if (data == "complete"){
-						swal("취소 완료","의뢰가 성공적으로 취소되었습니다","success");
-						saveAlarm(caller,receiver,"취소",function(){
+						swal("취소 완료","의뢰가 성공적으로 취소되었습니다","success").then(function(){
+						sendAlarm(caller,receiver,"취소",function(){
 						location.href = "${root}main";
+						});
 						});
 					}
 				},
@@ -287,10 +306,9 @@
 	function report(){
 		swal({
 			  title: "신고하기",
-			  text: "신고 내용을 입력해주세요",
-			  content: "input",
-			  buttons: true,
-			  inputPlaceholder: "신고 내용"
+			  input: "textarea",
+		      inputPlaceholder: "신고 내용을 입력해주세요",
+			  showCancelButton: true
 			}).then((inputValue)=>{
 			  if (inputValue) {
 					reportSubmit(inputValue);

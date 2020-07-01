@@ -31,7 +31,6 @@ public class CheckLoginInterceptor implements HandlerInterceptor {
 		ModelMap modelMap = modelAndView.getModelMap();
 		Object ModelVO = modelMap.getAttribute("member");
 		
-		
 		if(ModelVO!=null) {
 			session.setAttribute("member", ModelVO);
 		}

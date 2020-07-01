@@ -69,7 +69,7 @@ public class EmailController {
 			String subject = "[대신마켓] 변경된 비밀번호 ";
 			StringBuilder sb = new StringBuilder();
 			sb.append("회원님의 변경된 비밀번호는 " + password + " 입니다.\n");
-			sb.append("로그인 하신 후 원하시는 비밀번호로 바로 변경해주시기 바랍니다.");
+			sb.append("로그인 하신 후 비밀번호를 바로 변경해주시기 바랍니다.");
 			sendEmail(subject, sb.toString(), userEmail);
 			
 			memberService.updatePw(member);

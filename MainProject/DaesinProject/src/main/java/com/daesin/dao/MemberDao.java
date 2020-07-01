@@ -16,6 +16,10 @@ public class MemberDao {
 	public String checkMemberIdExist(String m_id) {
 		return sqlSessionTemplate.selectOne("member.checkMemberIdExist", m_id);
 	}
+	
+	public String checkMemberEmailExist(String m_email) {
+		return sqlSessionTemplate.selectOne("member.checkMemberEmailExist", m_email);
+	}
 
 	public MemberBean checkCorrectMember(MemberBean tempMemberBean) {
 		return sqlSessionTemplate.selectOne("member.checkCorrectMember", tempMemberBean);

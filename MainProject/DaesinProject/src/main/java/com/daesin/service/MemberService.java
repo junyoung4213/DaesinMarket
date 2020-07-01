@@ -26,6 +26,16 @@ public class MemberService {
 			return false;
 		}
 	}
+	
+	public boolean checkMemberEmailExist(String m_email) {
+		String member_Email = memberDao.checkMemberEmailExist(m_email);
+		
+		if (member_Email == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public MemberBean checkCorrectMember(MemberBean tempMemberBean) {
 		MemberBean MemberVO = memberDao.checkCorrectMember(tempMemberBean);

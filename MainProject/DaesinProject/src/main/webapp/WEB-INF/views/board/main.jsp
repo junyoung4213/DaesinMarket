@@ -8,12 +8,16 @@
 
 
 <div class="bg-light py-3">
-	<div class="container" style="padding-top:200px">
+	<c:if test="${member == null }">
+	<div class="container" style="padding-top: 114.24px">
+	</c:if>
+	<c:if test="${member != null }">
+	<div class="container" style="padding-top: 129.4px">
+	</c:if>
 		<div class="row">
 			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
-					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
-				<strong class="text-black">${cName }</strong>
+				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <strong
+					class="text-black">${cName }</strong>
 			</div>
 		</div>
 	</div>

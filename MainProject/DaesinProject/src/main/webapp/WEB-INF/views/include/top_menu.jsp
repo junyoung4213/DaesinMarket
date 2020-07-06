@@ -63,7 +63,7 @@
 									<ul class="site-menu js-clone-nav d-none d-md-block p-0" id="menu">
 										<c:if test="${member == null }">
 											<li class="d-md-none"><a href="${root }member/login">로그인</a></li>
-											<li class="d-md-none"><a href="${root }member/join">회원가입</a></li>
+											<li class="d-md-none"><a href="${root }member/login">회원가입</a></li>
 										</c:if>
 										<c:if test="${member != null }">
 											<li class="d-md-none"><a>회원아이디: ${member.mId }</a></li>

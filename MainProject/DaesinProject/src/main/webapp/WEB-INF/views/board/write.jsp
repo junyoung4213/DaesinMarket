@@ -45,7 +45,7 @@
 	</div>
 </div>
 
-<div class="container" style="margin-top: 100px;">
+<div class="container mb-5" style="margin-top: 100px;">
 	<div class="row justify-content-center">
 		<div class="col-md-12 text-center">
 			<h1 class="mb-3 text-black">글쓰기</h1>
@@ -77,7 +77,7 @@
 							<form:input path="bReward" class="form-control" />
 							<div class="input-group-append">
 								<form:button type="button" class="btn btn-primary"
-									onclick="submitPoint();">포인트 충전</form:button>
+									onclick="submitPoint();" style="margin: 0;font-size: 11px;">포인트 충전</form:button>
 							</div>
 						</div>
 					</div>
@@ -92,7 +92,7 @@
 								placeholder="Enter Addr" readonly="true" />
 							<div class="input-group-append">
 								<form:button type="button" class="btn btn-primary"
-									onclick="goPopup();">주소검색</form:button>
+									onclick="goPopup();"  style="margin: 0;font-size: 11px;">주소검색</form:button>
 								<input type="hidden" id="confmKey" name="confmKey" value="">
 							</div>
 						</div>
@@ -218,7 +218,9 @@ function point(reward){
 			}
 		});
 		
-		swal("충전 성공", "포인트 충전에 성공했습니다", "success");
+		swal("충전 성공", "포인트 충전에 성공했습니다", "success").then(function(){
+			changePoint();
+		});
 
 		
 	} else {

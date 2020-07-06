@@ -28,22 +28,12 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 
-<div class="bg-light py-3">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 mb-0">
-				<a href="index.html">Home</a>
-				<span class="mx-2 mb-0">/</span> <strong class="text-black">Request</strong>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="container" style="margin-top: 100px">
+<div class="container" style="padding-top:140px">
 	<div class="row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-6 mb-5">
-			<div class="col-md-12 text-center">
+			<div class="col-md-12 mt-3 text-center">
 				<h1 class="text-black">수정하기</h1>
 				<br />
 				<div class="border-bottom"></div>
@@ -67,10 +57,13 @@
 								style="resize: none;"></form:textarea>
 						</div>
 						
+						
 						<div class="form-group">
 							<form:label path="biName">첨부이미지</form:label>
+							<c:if test="${modifyContentBean.biName!=null }">
 							<img alt="첨부 이미지" src="${root }upload/${modifyContentBean.biName}"
 								width="100%">
+							</c:if>
 							<form:input type="file" path="upload_file" class="form-control"
 								accept="image/*"/>
 						</div>
@@ -89,8 +82,8 @@
 								<form:input path="bAddr1" class="form-control"
 									placeholder="Enter Addr" required="true" readonly="true" />
 								<div class="input-group-append">
-									<form:button type="button" class="btn btn-primary"
-										onclick="goPopup();">주소검색</form:button>
+									<form:button type="button" class="btn btn-primary m-0"
+										onclick="goPopup();" style="font-size:11px;">주소검색</form:button>
 									<input type="hidden" id="confmKey" name="confmKey" value="">
 								</div>
 							</div>
@@ -106,7 +99,7 @@
 						</div>
 						<div class="form-group">
 							<div class="text-right">
-								<form:button class="btn btn-primary">수정완료</form:button>
+								<form:button class="btn btn-primary" style="font-size:13px;">수정완료</form:button>
 								<a
 									href="${root }board/read?bCno=${bCno}&bNo=${bNo}&page=${page}"
 									class="btn btn-info">취소</a>

@@ -7,19 +7,8 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 
-<div class="bg-light py-3">
-	<div class="container" style="margin-top: 200px">
-		<div class="row">
-			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
-					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
-				<strong class="text-black">${cName }</strong>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="container">
+<div class="container"  style="padding-top: 140px;">
 	<div class="row">
 		<div class="col-lg-12 mb-5 mt-5">
 			<div class="col-lg-12 text-center">
@@ -53,16 +42,16 @@
 						</div>
 					</c:if>
 					
-					<div class="form-group">
+					<%-- <div class="form-group">
 						<label for="bPhone">전화번호</label>
 						<input type="text" id="bPhone" name="bPhone"
 							class="form-control" value="${readContentBean.bPhone }"
 							disabled="disabled" />
-					</div>
+					</div> --%>
 					
 
 					<div class="form-group">
-						<label for="bReward">금액</label>
+						<label for="bReward">보상금액</label>
 						<input type="text" id="bReward" name="bReward"
 							class="form-control" value="${readContentBean.bReward }"
 							disabled="disabled" />
@@ -74,18 +63,18 @@
 							value="${readContentBean.bAddr1 }" disabled="disabled" />
 					</div>
 
-					<div class="form-group">
+					<%-- <div class="form-group">
 						<label for="bAddr2">상세주소</label>
 						<input type="text" id="bAddr2" name="bAddr2" class="form-control"
 							value="${readContentBean.bAddr2 }" disabled="disabled" />
-					</div>
+					</div> --%>
 
-					<div class="form-group">
+					<%-- <div class="form-group">
 						<label for="b_write_time">작성시간</label>
 						<input type="text" id="b_write_time" name="b_write_time"
 							class="form-control" value="${readContentBean.bWriteTime }"
 							disabled="disabled" />
-					</div>
+					</div> --%>
 
 					<div class="form-group">
 						<label for="b_end_time">마감시간</label>
@@ -98,7 +87,7 @@
 						<div class="text-center">
 							<a
 								href="${root }board/main?bCno=${readContentBean.bCno}&page=${page}"
-								class="btn btn-primary">목록보기</a>
+								class="btn btn-primary" style="font-size:13px;">목록보기</a>
 							<c:if test="${readContentBean.bMno == member.mNo}">
 								<a
 									href="${root }board/modify?bCno=${readContentBean.bCno }&bNo=${bNo}&page=${page}"
@@ -126,11 +115,11 @@
 							<table class="table">
 								<tr>
 									<td><textarea class="col-md-12" rows="3" cols="30"
-											id="coMsg" name="coMsg" placeholder="한마디를 입력하세요"></textarea>
+											id="coMsg" name="coMsg" placeholder="한마디를 입력하세요" style="resize:none;"></textarea>
 										<br>
-										<div class="card">
+										<div class="text-center">
 											<button type="button" onClick="request();"
-												class="btn btn-success">신청하기</button>
+												class="btn btn-success col-md-12 m-0">신청하기</button>
 										</div></td>
 								</tr>
 							</table>
@@ -400,12 +389,12 @@ var confirmDelete = function(msg, title) {
 								
 								if(status==0){
 								if(${readContentBean.bMno == member.mNo}){
-									html += "<div class='text-center card'>";
-									html += "<button type='button' class='btn btn-primary' onclick='accept("+"\""+value.co_sno+"\",\""+value.co_id+"\",\""+value.co_phone+"\""+");'>수락하기</button>";
+									html += "<div class='text-center'>";
+									html += "<button type='button' class='btn btn-primary col-md-12' onclick='accept("+"\""+value.co_sno+"\",\""+value.co_id+"\",\""+value.co_phone+"\""+");'>수락하기</button>";
 									html += "</div>";
 								}else if(value.co_sno == ${member.mNo}){
-									html += "<div class='text-center card'>";
-									html += "<button type='button' class='btn btn-danger' onclick='del("+value.co_num+");'>취소하기</button>";
+									html += "<div class='text-center'>";
+									html += "<button type='button' class='btn btn-primary col-md-12' onclick='del("+value.co_num+");'>취소하기</button>";
 									html += "</div>";
 								}
 								};

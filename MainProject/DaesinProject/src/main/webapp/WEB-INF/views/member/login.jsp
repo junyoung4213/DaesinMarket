@@ -17,6 +17,25 @@
 <link rel="stylesheet" href="${root }css/owl.theme.default.min.css" />
 <link rel="stylesheet" href="${root }css/aos.css" />
 <link rel="stylesheet" href="${root }css/style.css" />
+<style>
+#logo {
+background-color:aliceblue;
+width:13%;
+height:10%;
+border-radius:30px;
+text-align:center;
+margin:0 auto;
+font-size:12px;
+vertical-align:middle;
+line-height:75px;
+border:outset;
+}
+
+#logo img{
+	width:100%;
+
+}
+</style>
 </head>
 <body>
 <div class="bgImage"></div>
@@ -55,9 +74,11 @@
 	<header class="site-navbar" role="banner" style="background:none;">
 			<div class="site-navbar-top" style="border-bottom:none;">
 				<div class="container">
-							<div class="site-logo col-md-12 text-center" style="font-size:30px">
-								<a href="${root }main" class="js-logo-clone" style="background:white;">대신마켓</a>
+				<a href="${root }main">
+							<div class="site-logo col-md-12 text-center" id="logo">
+								<img src="${root }images/daesinLogo.png"></img>
 							</div>
+				</a>
 				</div>
 			</div>
 	</header>
@@ -91,10 +112,10 @@
 					</div>
 					
 					<div class="row col-md-12 m-0 p-0 text-center">
-					<div class="card btn2 col-md-6 mb-4 p-2" >
+					<div class="card btn2 col-md-6 mb-2 p-2" >
 					<a href="${root }member/findId">아이디 찾기</a>
 					</div>
-					<div class="card btn2 col-md-6 mb-4 p-2">
+					<div class="card btn2 col-md-6 mb-2 p-2">
 					<a href="${root }member/findPw">비밀번호 찾기</a>
 					</div>
 					</div>

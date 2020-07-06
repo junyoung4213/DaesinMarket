@@ -23,7 +23,7 @@
 <div class="container" style="padding-top: 200px;">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title text-center mb-5 ">작성한 게시물</h4>
+			<h4 class="card-title text-center mb-5 ">내가 작성한 게시물 목록</h4>
 			<table class="table table-hover mb-5" id="board_list">
 				<thead>
 					<tr>

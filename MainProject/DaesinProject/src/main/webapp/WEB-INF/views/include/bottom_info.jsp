@@ -74,8 +74,11 @@
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="${root }js/fullpage.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 <script>
-	var ws = new WebSocket("ws://localhost:8765/DaesinProject/echo");
+	var ws = new WebSocket("ws://106.240.16.163:8765/DaesinProject/echo");
 	$('document').ready(function(){
 	function socket() {
 		ws.onopen = function() {
@@ -230,6 +233,39 @@
 			}
 		});
 	}
+	
+	$(document).ready(function () {
+        $("#fullpage").fullpage({
+          // anchors: ["main", "kor", "ch", "it", "jp"],
+          //options here
+          licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
+          // menu: ["#main_menu", "#kor_menu", "#ch_menu", "#it_menu", "#jp_menu"],
+          // navigationTooltips: ["메인메뉴", "한식", "중식", "양식", "일식"],
+          // slidesNavigation: true,
+          autoScrolling: true, // 자동으로 스크롤링
+          scrollHorizontally: true, // 수평으로 움직일지 여부
+          navigation: true, // 네비게이션
+          navigationPosition: "right", // 네비게이션 포지션
+          slidesNavigation: true,
+          continuousVertical: false, // 끝까지 가면 다시 처음으로 가는지 여부
+          scrollingSpeed: 500, // 스크롤링 스피드
+          keyboardScrolling: true, // 키보드로 스크롤링 가능하게
+          verticalCentered: true, // 가운데로 오도록 정렬
+          onLeave: function(){
+              jQuery('.section [data-aos]').removeClass("aos-animate");
+          },
+          onSlideLeave: function(){
+              jQuery('.slide [data-aos]').removeClass("aos-animate");
+          },
+          afterSlideLoad: function(){
+              jQuery('.slide.active [data-aos]').addClass("aos-animate");
+          },
+          afterLoad: function(){
+              jQuery('.section.active [data-aos]').addClass("aos-animate");
+             //jQuery('.fp-table.active .aos-init').addClass('aos-animate');
+          }
+        });
+      });
 	
 </script>
 

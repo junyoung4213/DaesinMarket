@@ -6,19 +6,8 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-<div class="bg-light py-3">
-	<div class="container" style="padding-top: 129.4px">
-		<div class="row">
-			<div class="col-md-12 mb-0">
-				<a href="index.html">Home</a> <span class="mx-2 mb-0">/</span> <span
-					class="text-black">Contact</span> <span class="mx-2 mb-0">/</span>
-				<strong class="text-black">문의하기</strong>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="site-section" data-aos="fade">
+<div class="site-section" data-aos="fade" style="padding-top:140px;">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-12 text-center">
@@ -42,7 +31,7 @@
 						<div class="form-group row">
 							<div class="col-md-12 mb-3">
 								<form:label path="content" class="text-black">내용</form:label>
-								<form:textarea path="content" cols="30" rows="7"
+								<form:textarea path="content" cols="20" rows="6"
 									class="form-control" />
 							</div>
 						</div>

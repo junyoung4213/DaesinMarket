@@ -6,24 +6,11 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-
-<div class="bg-light py-3">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
-					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
-				<strong class="text-black">서포터 의뢰 목록</strong>
-			</div>
-		</div>
-	</div>
-</div>
-
 <!-- 게시글 리스트 -->
 <div class="container" style="padding-top: 200px;">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title text-center mb-5 ">내가 맡은 의뢰 게시물</h4>
+			<h4 class="card-title text-center mb-5 ">내가 맡은 의뢰 목록</h4>
 			<table class="table table-hover mb-5" id="board_list">
 				<thead>
 					<tr>

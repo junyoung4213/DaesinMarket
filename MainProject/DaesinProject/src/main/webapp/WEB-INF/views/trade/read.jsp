@@ -7,19 +7,7 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 
-<div class="bg-light py-3">
-	<div class="container" style="padding-top: 200px;">
-		<div class="row">
-			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <a
-					href="${root }board/main">Request</a> <span class="mx-2 mb-0">/</span>
-				<strong class="text-black">거래 페이지</strong>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container mt-5">
+<div class="container" style="padding-top:160px;">
 	<div class="row">
 		<c:if test="${readContentBean.bAddr2 == null }">
 		<div class="col-lg-3"></div>
@@ -105,7 +93,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-6" id="destination">
 			<div class="col-lg-12 text-center">
 				<h1 class="text-black">목적지</h1>
 				<br />
@@ -300,7 +288,7 @@
 	});    
 	
 	}else{
-		$('#map').remove();
+		$('#destination').remove();
 	}
 	
 	function report(){

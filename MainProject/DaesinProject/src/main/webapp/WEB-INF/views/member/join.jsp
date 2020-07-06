@@ -7,17 +7,6 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 
-<div class="bg-light py-3">
-	<div class="container" style="padding-top: 200px;">
-		<div class="row">
-			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <strong
-					class="text-black">회원가입</strong>
-			</div>
-		</div>
-	</div>
-</div>
-
 <div class="site-section" data-aos="fade">
 	<div class="container">
 		<div class="row justify-content-center">

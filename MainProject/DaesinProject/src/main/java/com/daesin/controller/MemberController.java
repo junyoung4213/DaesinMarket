@@ -2,6 +2,7 @@ package com.daesin.controller;
 
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,14 +117,13 @@ public class MemberController {
 		return "member/faq";
 	}
 
-	@GetMapping("/findId")
-	public String findId(@ModelAttribute("joinMemberBean") MemberBean joinMemberBean,@ModelAttribute("tempMemberBean") MemberBean tempMemberBean) {
-		return "member/find_id";
-	}
-
-	@GetMapping("/findPw")
-	public String findPw(@ModelAttribute("tempMemberBean") MemberBean tempMemberBean) {
-		return "member/find_pw";
+	@GetMapping(value= {"/findId","/findPw"})
+	public String findId(@ModelAttribute("findIdBean") MemberBean findIdBean,@ModelAttribute("findPwBean") MemberBean findPwBean, HttpServletRequest request, Model model) {
+		String uri = request.getRequestURI();
+				
+		model.addAttribute("select", uri.substring(uri.length()-2));
+		
+		return "member/find_info";
 	}
 
 	@GetMapping("/login")

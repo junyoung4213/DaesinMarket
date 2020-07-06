@@ -6,26 +6,9 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-
-<div class="bg-light py-3">
-	<c:if test="${member == null }">
-	<div class="container" style="padding-top: 114.24px">
-	</c:if>
-	<c:if test="${member != null }">
-	<div class="container" style="padding-top: 129.4px">
-	</c:if>
-		<div class="row">
-			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <strong
-					class="text-black">${cName }</strong>
-			</div>
-		</div>
-	</div>
-</div>
-
 <!-- 게시글 리스트 -->
 
-<div class="container mt-5">
+<div class="container" style="padding-top:114px;">
 	<div class="card shadow">
 		<div class="card-body">
 			<table class="table table-hover mb-5" id="board_list">

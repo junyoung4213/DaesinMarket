@@ -27,8 +27,15 @@
 <link rel="stylesheet" href="${root }css/style.css" />
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--fullpage CSS-->
+<link rel="stylesheet" href="${root }css/fullpage.css" />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/aa194e1f0f.css">
+
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 <style>
 .image-container {
 	overflow: hidden;
@@ -45,13 +52,12 @@
 
 
 						<div class="col-md-12 row" style="padding: 0px">
-							<div class="site-logo col-md-2 p-0 text-left image-container">
+							<div class="site-logo col-md-2 p-0 d-none d-md-block text-left image-container">
 								<a href="${root }main" style="all: unset; cursor: pointer;"><img
-									class="col-lg-10 col-md-3 p-0" src="${root }images/logo.png"></a>
+									class="col-lg-10 col-md-3 p-0" id="logo" src="${root }images/daesinLogo.png"></a>
 							</div>
-							<div class="col-md-1"></div>
 							<nav
-								class="site-navigation text-right text-md-center col-md-6 align-self-center"
+								class="site-navigation text-right text-md-center col-md-7 align-self-center"
 								role="navigation">
 								<div class="container">
 									<ul class="site-menu js-clone-nav d-none d-md-block p-0" id="menu">
@@ -62,7 +68,7 @@
 										<c:if test="${member != null }">
 											<li class="d-md-none"><a>회원아이디: ${member.mId }</a></li>
 											<li class="d-md-none"><a>포인트: <span
-													class="memberPoint"></span></a></li>
+													class="memberPoint"></span></a></li><br>
 											<li class="d-md-none"><a href="${root }member/logout">
 													로그아웃 </a></li>
 											<li class="d-md-none"><a href="${root }member/mypage">
@@ -86,30 +92,29 @@
 								style="padding: 0px">
 								<ul class="">
 									<c:if test="${member == null}">
-										<li><a href="${root }member/login"> <span
-												class="d-none d-md-block btn btn-primary"
-												style="font-size: 20px;">로그인</span>
+										<li><a href="${root }member/login"> <button
+												class="d-none d-md-block btn btn-link"
+												style="font-size: 14px; padding:10px 15px 10px 15px"><i class="fas fa-sign-in-alt mr-1"></i>로그인</button>
 										</a></li>
-										<li><a href="${root }member/join"> <span
-												class="d-none d-md-block btn btn-info"
-												style="font-size: 20px;">회원가입</span>
+										<li><a href="${root }member/join"> <button
+												class="d-none d-md-block btn btn-primary"
+												style="font-size: 14px; padding: 10px 15px 10px 15px"><i class="fas fa-user-plus mr-1"></i>회원가입</button>
 										</a></li>
 										<input type="hidden" id="memberId" value="" />
 									</c:if>
 									<c:if test="${member != null}">
 										<li><span class="d-none d-md-block"
-											style="font-size: 20px;">아이디: ${member.mId } / </span></li>
+											style="font-size: 16px;">아이디: ${member.mId } / </span></li>
 										<li><span class="d-none d-md-block"
-											style="font-size: 20px;">포인트: <span
-												class="memberPoint"></span></span></li>
-										<br>
+											style="font-size: 16px;">포인트: <span
+												class="memberPoint"></span></span></li><br>
 										<li><a href="${root }member/logout"> <span
 												class="d-none d-md-block btn btn-primary"
-												style="font-size: 20px;">로그아웃</span>
+												style="font-size: 14px; padding:10px 15px 10px 15px"><i class="glyphicon glyphicon-log-out mr-1"></i>로그아웃</span>
 										</a></li>
 										<li><a href="${root }member/mypage"> <span
-												class="d-none d-md-block btn btn-info"
-												style="font-size: 20px;">마이페이지</span>
+												class="d-none d-md-block btn btn-info mr-0"
+												style="font-size: 14px; padding:10px 15px 10px 15px">마이페이지</span>
 										</a></li>
 										<input type="hidden" id="memberId" value="${member.mId }" />
 									</c:if>

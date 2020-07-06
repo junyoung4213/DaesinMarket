@@ -6,19 +6,7 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-<div class="bg-light py-3">
-	<div class="container" style="padding-top: 129.4px">
-		<div class="row">
-			<div class="col-md-12 mb-0">
-				<a href="${root }main">Home</a> <span class="mx-2 mb-0">/</span> <span
-					class="text-black">Contact</span> <span class="mx-2 mb-0">/</span>
-				<strong class="text-black">서포터 신청</strong>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="site-section" data-aos="fade">
+<div class="site-section" data-aos="fade" style="padding-top:150px;">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-12 text-center">
@@ -44,11 +32,11 @@
 							<div class="form-group row col-md-12 mb-3 m-0 p-0">
 									<form:label path="sPhone" class="text-black">전화번호</form:label>
 									<span class="text-danger">*</span>
-								<div class="input-group \">
+								<div class="input-group">
 									<form:input path="sPhone" class="form-control" placeholder="'-'를 뺀 번호를 입력해주세요" />
 									<div class="input-group-append">
-									<button type="button" class="btn btn-primary"
-										onclick="smsAuthBtn();" id="sms_AuthBtn">인증하기</button>
+									<button type="button" class="btn btn-primary btn-sm m-0"
+										onclick="cert();">인증하기</button>
 								</div>
 								</div>
 							</div>
@@ -63,7 +51,7 @@
 
 						<div class="form-group row">
 							<div class="col-lg-12 mt-4 text-center">
-								<form:button type="button" class="btn btn-primary btn-lg btn-clock" onclick="cert();">제출하기</form:button>
+								<form:button type="button" class="btn btn-primary btn-lg btn-clock"  id="sms_AuthBtn" onclick="smsAuthBtn();">제출하기</form:button>
 							</div>
 						</div>
 					</div>

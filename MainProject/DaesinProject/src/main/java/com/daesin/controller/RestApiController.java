@@ -92,10 +92,10 @@ public class RestApiController {
 		String space = " ";					// one space
 		String newLine = "\n";					// new line
 		String method = "POST";					// method
-		String url = "/sms/v2/services/ncp:sms:kr:259554053327:daesin_project/messages";	// url (include query string)
+		String url = "/sms/v2/services/{ServiceId}/messages";	// url (include query string)
 		String timestamp = System.currentTimeMillis()+"";			// current timestamp (epoch)
-		String accessKey = "RXTDdstRRq06rbzA0Oo1";			// access key id (from portal or Sub Account)
-		String secretKey = "oc4gHYWQ64PJlZ1PZ2OAHAzvWwQvdGaSBiNRxyFe";
+		String accessKey = {api key};			// access key id (from portal or Sub Account)
+		String secretKey = {secret key};
 		
 		String message = new StringBuilder()
 			.append(method)
